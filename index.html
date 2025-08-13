@@ -38,7 +38,8 @@
   .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 
   /* Header */
-  header{position:sticky;top:0;z-index:40;background:linear-gradient(90deg,#142a50cc,#173663cc);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff24}
+  header{position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,#142a50cc,#173663cc);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff24;transition:box-shadow .25s ease, background .25s ease}
+header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
   .brand{display:flex;gap:10px;align-items:center}
   .brand-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#0e1b2e;border:1px solid #ffffff22;box-shadow:0 8px 20px rgba(0,0,0,.3)}
@@ -69,10 +70,15 @@
 /* Extra safe padding on mobile */
 header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-right:calc(20px + env(safe-area-inset-right,0px))}
 @media(max-width:879px){.hero{padding-top:96px}}
-  .links{display:none;gap:18px;color:#cfe3ff}
-  .links a{padding:6px 10px;border-radius:12px}
-  .links a:hover{color:#fff;background:#ffffff15}
-  @media(min-width:880px){.links{display:flex}}
+  .links{display:none;gap:10px;align-items:center}
+.links a{position:relative;padding:10px 14px;border-radius:14px;border:1px solid transparent;background:
+  linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
+  linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box; color:#dbeaff; opacity:.92; transition:all .2s ease}
+.links a:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.links a::after{content:"";position:absolute;left:12px;right:12px;bottom:-8px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));opacity:0;transform:translateY(2px);transition:opacity .2s,transform .2s}
+.links a.active{color:#fff;box-shadow:0 14px 30px rgba(99,214,255,.22)}
+.links a.active::after{opacity:1;transform:translateY(0)}
+@media(min-width:880px){.links{display:flex}}
   .btn{display:inline-flex;align-items:center;gap:10px;border-radius:16px;padding:10px 14px;border:1px solid transparent;
     background:linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
                linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box;
@@ -627,6 +633,45 @@ if(menuBtn && mnav){
   });
   const hash = (location.hash||'').replace('#','');
   if(hash==='skills' || hash==='awards'){ activate(hash); } else { activate('projects'); }
+})();
+
+// Header shadow on scroll
+(function(){
+  const h = document.querySelector('header');
+  const onScroll = ()=> h && h.classList.toggle('is-scrolled', window.scrollY>8);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
+// Desktop nav scrollspy + active highlight (with skills/awards override)
+(function(){
+  const nav = document.querySelector('nav.links');
+  if(!nav) return;
+  const navLinks = Array.from(nav.querySelectorAll('a[href^="#"]'));
+  const idFor = a => (a.getAttribute('href')||'').replace('#','');
+  function setActive(name){ navLinks.forEach(a=> a.classList.toggle('active', idFor(a)===name)); }
+  let override = null; // 'skills' | 'awards' while on Projects section
+  nav.addEventListener('click', e=>{
+    const a = e.target.closest('a[href^="#"]'); if(!a) return;
+    const id = a.getAttribute('href');
+    if(id==='#skills' || id==='#awards'){ override = id.slice(1); setActive(override); }
+  });
+  const ids = ['about','experience','leadership','projects','contact'];
+  const els = ids.map(id=>document.getElementById(id)).filter(Boolean);
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        if((override==='skills'||override==='awards') && id==='projects'){
+          setActive(override);
+        } else {
+          setActive(id);
+          if(id!=='projects') override=null;
+        }
+      }
+    })
+  },{rootMargin:'-48% 0px -45% 0px',threshold:[0.1,0.4,0.6]});
+  els.forEach(el=>io.observe(el));
 })();
 
 </script>
