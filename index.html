@@ -41,7 +41,9 @@
 .menu:active{transform:translateY(1px)}
 @media(min-width:880px){.menu{display:none}}
 /* Mobile nav drawer */
-.mobile-nav{position:fixed;top:calc(60px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:flex;flex-direction:column;gap:8px;padding:12px 20px 18px;background:linear-gradient(180deg,#0b1224f0,#0d1732f0);border-bottom:1px solid #ffffff20;backdrop-filter:blur(10px)}
+.mobile-nav{position:fixed;top:calc(60px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:none;flex-direction:column;gap:10px;padding:14px 20px 18px;background:linear-gradient(180deg,#0b1224f0,#0d1732f0);border-bottom:1px solid #ffffff24;backdrop-filter:blur(12px);box-shadow:0 24px 60px rgba(0,0,0,.35);transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
+@media(min-width:880px){#mobile-nav{display:none !important}}
 .mobile-nav a{padding:10px 8px;border-radius:10px;color:#e7f3ff}
 .mobile-nav a:hover{background:#ffffff12}
 /* Extra safe padding on mobile */
@@ -142,7 +144,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
         <a href="#contact">Contact</a>
       </nav>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#leadership">Leadership</a>
@@ -488,19 +490,24 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
     })
   });
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('menu');
-  const mnav = document.getElementById('mobile-nav');
-  if(menuBtn && mnav){
-    menuBtn.addEventListener('click', ()=>{
-      const open = menuBtn.getAttribute('aria-expanded') === 'true';
-      menuBtn.setAttribute('aria-expanded', String(!open));
-      mnav.hidden = open; // show when not open
-    });
-    mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
-      mnav.hidden = true; menuBtn.setAttribute('aria-expanded','false');
-    }));
-  }
+  // Mobile menu toggle (mobile-only + animated)
+const menuBtn = document.getElementById('menu');
+const mnav = document.getElementById('mobile-nav');
+const mq = window.matchMedia('(min-width: 880px)');
+function closeNav(){ mnav.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); }
+function openNav(){ mnav.classList.add('open'); menuBtn.setAttribute('aria-expanded','true'); }
+if(menuBtn && mnav){
+  menuBtn.addEventListener('click', ()=>{
+    mnav.classList.contains('open') ? closeNav() : openNav();
+  });
+  // close when a link is tapped or Esc is pressed
+  mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
+  document.addEventListener('keyup', (e)=>{ if(e.key==='Escape') closeNav(); });
+  // force-close at desktop widths
+  const enforce = ()=>{ if(mq.matches) closeNav(); };
+  mq.addEventListener ? mq.addEventListener('change', enforce) : mq.addListener(enforce);
+  enforce();
+}
 </script>
 </body>
 </html>
