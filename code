@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ojasva Mishra — Portfolio</title>
+<style>
+  :root{
+    /* Light blue / cyan site-wide gradient */
+    --bg1:#0d2238; --bg2:#0f2d4c; --bg3:#0f365d; /* deep bases so text pops */
+    --glow1: rgba(0, 200, 255, .22);
+    --glow2: rgba(0, 160, 250, .18);
+    --text:#eaf3ff; --muted:#a8bfd7; --card:#11233b; --ring:rgba(120,210,255,.45);
+    --a1:#63d6ff; --a2:#53b8ff; --a3:#51f0bf; --a4:#ffc162; --a5:#7aa2ff;
+    --radius:20px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;color:var(--text)}
+  /* Full-page cyan gradient that runs under the entire site */
+  body::before{content:"";position:fixed;inset:0;z-index:-3;background:
+    radial-gradient(1200px 720px at 85% -10%, var(--glow1), transparent 60%),
+    radial-gradient(900px 520px at 10% -10%, var(--glow2), transparent 60%),
+    radial-gradient(1100px 700px at 50% 120%, rgba(0,240,255,.12), transparent 65%),
+    linear-gradient(180deg, var(--bg1), var(--bg2) 45%, var(--bg3));}
+  /* Subtle grid on top of the gradient */
+  body::after{content:"";position:fixed;inset:0;z-index:-2;opacity:.06;background:
+    linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:24px 24px}
+
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:40;background:linear-gradient(90deg,#0b1224c0,#0d1732c0);backdrop-filter:blur(10px);border-bottom:1px solid #ffffff20}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;gap:10px;align-items:center}
+  .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#b3ecff,#66d9ff);box-shadow:0 6px 18px #0007}
+  .links{display:none;gap:18px;color:#cfe3ff}
+  .links a{padding:6px 10px;border-radius:12px}
+  .links a:hover{color:#fff;background:#ffffff15}
+  @media(min-width:880px){.links{display:flex}}
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:16px;padding:10px 14px;border:1px solid #ffffff20;background:linear-gradient(180deg,#ffffff18,#ffffff10);color:#eaf1ff;transition:transform .2s ease, background .2s}
+  .btn:hover{transform:translateY(-2px);background:linear-gradient(180deg,#53b8ff55,#53b8ff2a)}
+
+  /* Hero */
+  .hero{padding:64px 0 28px;display:grid;gap:22px;align-items:center}
+  @media(min-width:980px){.hero{grid-template-columns:340px 1fr;gap:36px}}
+  h1{font-size:42px;line-height:1.05;margin:0;background:linear-gradient(90deg,#bfe5ff,#cfe7ff,#aef6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  @media(min-width:880px){h1{font-size:64px}}
+  .lead{margin:10px 6px 0 0;color:#cfe4ff;max-width:860px}
+  .subtitle{margin:8px 0 0;font-size:18px;color:#bfe0ff}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+
+  /* Headshot: fixed inline image (no uploader) */
+  .headshot{position:relative;width:260px;height:260px;margin:auto;border-radius:50%;padding:6px;background:conic-gradient(from 0deg,#63d6ff,#53b8ff,#51f0bf,#53b8ff,#7aa2ff,#63d6ff)}
+  .headshot .inner{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0b1f33;display:grid;place-items:center}
+  .headshot img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;display:block}
+
+  /* Feature cards */
+  .features{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(min-width:980px){.features{grid-template-columns:repeat(4,1fr)}}
+  .feature{position:relative;overflow:hidden;padding:16px;border-radius:var(--radius);background:linear-gradient(180deg,#ffffff14,#ffffff0a);border:1px solid #ffffff22;transition:transform .25s ease, box-shadow .25s ease}
+  .feature:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 1px var(--ring) inset}
+  .feature .tag{position:absolute;top:10px;right:10px;font-size:11px;border-radius:999px;border:1px solid #ffffff33;padding:4px 8px;background:#ffffff18}
+  .fx{position:absolute;inset:-40%;filter:blur(32px);opacity:0;transition:opacity .35s ease}
+  .feature:hover .fx{opacity:.95}
+  .fx.robo{background:radial-gradient(500px 220px at 60% 20%, var(--a1), transparent)}
+  .fx.ai{background:radial-gradient(500px 220px at 60% 20%, #e178ff, transparent)}
+  .fx.auto{background:radial-gradient(500px 220px at 60% 20%, var(--a3), transparent)}
+  .fx.aero{background:radial-gradient(500px 220px at 60% 20%, var(--a2), transparent)}
+  .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#ffffff12;font-size:20px}
+  .feature h3{margin:10px 0 6px;font-size:16px}
+  .feature p{margin:0;color:#d7e6ff;font-size:13px;line-height:1.45}
+
+  /* Sections */
+  section{padding:52px 0}
+  h2{font-size:24px;margin:0 0 14px}
+  .grid-2{display:grid;gap:18px}
+  @media(min-width:980px){.grid-2{grid-template-columns:2fr 1fr}}
+  .card{border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff16,#ffffff0c);border-radius:var(--radius);padding:18px;backdrop-filter:blur(2px)}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid #ffffff24;background:#ffffff12;margin:6px 6px 0 0;color:#e9f0ff;font-size:13px}
+  .muted{color:var(--muted);font-size:13px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+  /* Lists */
+  .list{display:grid;gap:12px}
+  .item{border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff16,#ffffff0c);border-radius:16px;padding:14px;transition:transform .2s ease;backdrop-filter:blur(2px)}
+  .item:hover{transform:translateY(-3px)}
+  .item h3{margin:0 0 6px;font-size:16px}
+  .meta{display:flex;gap:12px;flex-wrap:wrap;color:#cbd3e9;font-size:12px}
+  .bul{margin:8px 0 0 18px}
+  .bul li{margin:4px 0}
+
+  /* Tabs */
+  .tabs{display:inline-flex;border:1px solid #ffffff18;border-radius:12px;padding:4px;background:#ffffff12}
+  .tab{border:0;background:transparent;color:#cbd3e5;padding:8px 12px;border-radius:10px;cursor:pointer}
+  .tab.active{background:#53b8ff33;color:#bfe7ff}
+
+  footer{padding:36px 0;color:#9eb4d0;font-size:12px;text-align:center;border-top:1px solid #ffffff22}
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><div class="logo" aria-hidden="true"></div><strong>Ojasva Mishra</strong></div>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#awards">Awards</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="title">
+      <div>
+        <div class="headshot">
+          <div class="inner">
+            <img src="sandbox:/mnt/data/ojasva_headshot_inline_512.jpg" alt="Ojasva Mishra headshot"/>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1 id="title">Robotics • Autonomy • AI • Aerospace</h1>
+        <p class="subtitle">AI Robotics Researcher • President, BattleBots • VEX Robotics Competitor</p>
+        <p class="lead">AI robotics researcher focused on controls, autonomy, and human‑useful software. Cofounder & CEO at <a href="https://fusionbots.org" target="_blank" rel="noreferrer">Fusion Bots</a>. CTO/CPO on the governing committee at YPSF (UN MGCY).</p>
+        <div class="cta">
+          <a class="btn" href="#projects">🚀 See projects</a>
+          <a class="btn" href="#contact">✉️ Contact</a>
+          <a class="btn" href="#socials">🌐 Socials</a>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <span class="pill">🤖 Controls & Autonomy</span>
+          <span class="pill">🧠 AI Robotics Research</span>
+          <span class="pill">🔧 Rapid Prototyping</span>
+          <span class="pill">🛰️ Flight/ARC Sim</span>
+        </div>
+      </div>
+
+      <!-- Featured Interest Cards (Robotics first) -->
+      <div class="features" aria-label="Interests" style="grid-column:1/-1">
+        <a class="feature" href="#projects">
+          <div class="tag">Featured</div>
+          <div class="fx robo" aria-hidden="true"></div>
+          <div class="ic" aria-hidden="true">🛠️</div>
+          <h3>Robotics</h3>
+          <p>Mechanisms, reliability, and closed‑loop control — design → build → test with data‑driven iteration.</p>
+        </a>
+        <a class="feature" href="#projects">
+          <div class="fx ai" aria-hidden="true"></div>
+          <div class="ic" aria-hidden="true">🤖</div>
+          <h3>AI</h3>
+          <p>Perception, forecasting, and decision support integrated into real apps and robots.</p>
+        </a>
+        <a class="feature" href="#projects">
+          <div class="fx auto" aria-hidden="true"></div>
+          <div class="ic" aria-hidden="true">🧭</div>
+          <h3>Autonomy</h3>
+          <p>Sensing + feedback + planning for robust behavior under constraints and time pressure.</p>
+        </a>
+        <a class="feature" href="#projects">
+          <div class="fx aero" aria-hidden="true"></div>
+          <div class="ic" aria-hidden="true">✈️</div>
+          <h3>Aerospace</h3>
+          <p>Flight simulation, rocketry CAD, and mission math for safe, stable trajectories.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <div class="grid-2">
+        <div class="card">
+          <p><strong>Downingtown STEM Academy</strong> — IB Diploma Candidate (Class of 2026). Pathway: Robotics I–III. HL: Math AA, Physics, Economics; SL: German, Literature, TOK. <span class="muted">Weighted GPA 4.35.</span></p>
+          <p>I build end‑to‑end systems: perception and control on hardware, plus full‑stack web apps that people actually use. I value fast feedback loops, clear specs, and measurable results.</p>
+          <p class="muted">3 years Varsity Tennis • Team Captain (2025–26).</p>
+        </div>
+        <div class="card">
+          <strong>Focus Areas</strong>
+          <div class="pill">⚙️ Controls</div>
+          <div class="pill">🧩 Embedded</div>
+          <div class="pill">👁️ Perception</div>
+          <div class="pill">🗺️ Planning</div>
+          <div class="pill">🕸️ Web Apps</div>
+          <div class="pill">📣 Education & Outreach</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="exp-title">
+      <h2 id="exp-title">Experience</h2>
+      <div class="list">
+        <div class="item">
+          <h3>🧪 Fusion Bots — Founder & CEO</h3>
+          <div class="meta"><span>May 2025 – Present</span><span>Startup • Education Robotics</span></div>
+          <ul class="bul">
+            <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; grew early revenue (~$5k) and ran workshops that expanded STEM access.</li>
+            <li>Recruited and led intern teams (marketing, software, operations). Built processes for fulfillment, customer support, and content.</li>
+          </ul>
+          <div class="muted">🔗 <a href="https://fusionbots.org" target="_blank" rel="noreferrer">fusionbots.org</a></div>
+        </div>
+
+        <div class="item">
+          <h3>🧰 iPipeline — Software Development Intern</h3>
+          <div class="meta"><span>Summer 2025</span><span>Automation & Frontend</span></div>
+          <ul class="bul">
+            <li>Built internal tools for QA automation and code‑workflow efficiency.</li>
+            <li>Shipped UI enhancements and testing pipelines to improve developer velocity.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>📘 Kumon Learning Center — Tutor</h3>
+          <div class="meta"><span>2022 – 2023</span><span>Math & English</span></div>
+          <ul class="bul">
+            <li>Taught students ages 4–16; graded work and maintained the data system to track mastery.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>🎾 Tennis Coach — Paid & Volunteer</h3>
+          <div class="meta"><span>2022 – 2025</span></div>
+          <ul class="bul">
+            <li>Taught fundamentals (forehands, backhands, serves, volleys) to ages 8–15; ran drills; assisted head coach; helped new players make the team.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & ADVOCACY -->
+    <section id="leadership" aria-labelledby="lead-title">
+      <h2 id="lead-title">Leadership & Advocacy</h2>
+      <div class="list">
+        <div class="item">
+          <h3>🌍 CTO & CPO — YPSF (UN MGCY)</h3>
+          <div class="meta"><span>2024 – Present</span><span>Governing Committee (1 of 13) • ~600 members</span></div>
+          <ul class="bul">
+            <li>Lead AI literacy and equitable digital‑policy initiatives; co‑develop global programming for youth tech empowerment.</li>
+            <li>Manage 6 program managers and their international fellow teams; set standards and roadmaps for delivery.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>🪲 President — BattleBots Club</h3>
+          <div class="meta"><span>Downingtown STEM Academy</span></div>
+          <ul class="bul">
+            <li>Lead combat‑robot design, manufacturing, programming, and match strategy with emphasis on reliability and rapid field repair.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>🤖 VEX Robotics — Competitor (State Finalist)</h3>
+          <div class="meta"><span>Design • Build • Programming • Match Strategy</span></div>
+          <ul class="bul">
+            <li>Developed competition robots emphasizing drive reliability, robust mechanisms, and maintainable code.</li>
+            <li>Collaborated on autonomous routines and tuning; practiced rapid pit‑repair and iterative improvements.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>📈 CIO/President — Stocks & Investments Club</h3>
+          <div class="meta"><span>140+ members</span></div>
+          <ul class="bul">
+            <li>Run financial‑literacy seminars and competitions; built an AI stock tracker that generates daily bullish watchlists.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>🚀 Founder/President — American Rocketry Challenge Club</h3>
+          <ul class="bul">
+            <li>Lead CAD design, flight simulation, and physics/math calculations for safe launch profiles and recovery.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>🏅 State Competitor — DECA & HOSA</h3>
+          <ul class="bul">
+            <li>Business operations research, presentation, and health science competition experience at the state level.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS / TECHNICAL EXPERIENCE -->
+    <section id="projects" aria-labelledby="proj-title">
+      <div class="row" style="justify-content:space-between;gap:10px">
+        <h2 id="proj-title">Projects & Technical Experience</h2>
+        <div class="tabs" role="tablist" aria-label="Project tabs">
+          <button class="tab active" role="tab" aria-selected="true" data-tab="projects">Projects</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="skills">Skills</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="awards">Awards</button>
+        </div>
+      </div>
+
+      <div id="panel-projects" class="panel">
+        <div class="list">
+          <div class="item">
+            <h3>🌳 SAFMS — Smart Agro‑Forest Management System</h3>
+            <div class="meta"><span>React • AI • IoT simulation • Carbon‑credit concept</span></div>
+            <ul class="bul">
+              <li>Built a web platform modeling sustainable agriculture with AI insights and a device simulation layer.</li>
+              <li>Prototyped a carbon‑credit trading interface and explored blockchain concepts for traceability.</li>
+            </ul>
+            <div class="muted">🔗 <a href="https://safmstsa.vercel.app" target="_blank" rel="noreferrer">safmstsa.vercel.app</a></div>
+          </div>
+
+          <div class="item">
+            <h3>🛩️ Custom Racing Drone w/ Claw</h3>
+            <div class="meta"><span>Betaflight • ESC integration • PID tuning</span></div>
+            <ul class="bul">
+              <li>Designed and wired a competition‑grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness. Made to complete tasks.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <h3>🧪 NitroCapture Pro — Zeolite‑Based Nitrogen Capture</h3>
+            <div class="meta"><span>Environmental • 3D‑printed • Experiment design</span></div>
+            <ul class="bul">
+              <li>3D‑printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <h3>🧭 Competition Robot</h3>
+            <div class="meta"><span>Autonomous + Tele‑op • Mechanisms • Controls</span></div>
+            <ul class="bul">
+              <li>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <h3>🧠 Systems Control Challenge</h3>
+            <div class="meta"><span>Python • C++ • Feedback control</span></div>
+            <ul class="bul">
+              <li>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <h3>🎮 Unity VR Escape Room</h3>
+            <div class="meta"><span>Unity • C# • Blender assets • Meta Quest</span></div>
+            <ul class="bul">
+              <li>Created an immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <h3>🛡️ Tower Defense — Systems Design</h3>
+            <div class="meta"><span>Game design • Balancing • Documentation</span></div>
+            <ul class="bul">
+              <li>Implemented layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <h3>🎲 Modular Board Game System</h3>
+            <div class="meta"><span>Mechanics • Replayability</span></div>
+            <ul class="bul">
+              <li>Designed modular rule sets enabling variants and high replay value; emphasized clarity of interaction loops.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <h3>📈 AI Stock Tracker & Pre‑Market Watchlist</h3>
+            <div class="meta"><span>AI/ML • Finance • Web app</span></div>
+            <ul class="bul">
+              <li>Built an AI‑assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-skills" class="panel" hidden>
+        <div class="card">
+          <strong>Hardware & Robotics</strong>
+          <div class="pill">🤖 VEX</div><div class="pill">🧰 Arduino</div><div class="pill">🛩️ FPV Drones</div><div class="pill">🧿 Betaflight</div><div class="pill">⚖️ ESC/PID Tuning</div><div class="pill">🧠 Control Theory</div>
+          <div class="row" style="height:8px"></div>
+          <strong>CAD & Simulation</strong>
+          <div class="pill">🧩 Fusion 360</div><div class="pill">📐 Onshape</div><div class="pill">🛰️ RockSim</div><div class="pill">🚀 OpenRocket</div><div class="pill">🏗️ Revit</div>
+          <div class="row" style="height:8px"></div>
+          <strong>Programming</strong>
+          <div class="pill">🐍 Python</div><div class="pill">🧱 C++</div><div class="pill">🟨 JavaScript</div><div class="pill">🎮 C# (Unity)</div><div class="pill">🧷 HTML/CSS</div>
+          <div class="row" style="height:8px"></div>
+          <strong>Frameworks/Tools</strong>
+          <div class="pill">⚛️ React</div><div class="pill">🎛️ Unity</div><div class="pill">🌬️ Tailwind</div><div class="pill">✨ Framer Motion</div><div class="pill">🔧 Git</div><div class="pill">🌀 Blender</div>
+          <div class="row" style="height:8px"></div>
+          <strong>Other</strong>
+          <div class="pill">🧱 3D Printing</div><div class="pill">🔦 Laser Engraving</div><div class="pill">🛠️ CNC</div><div class="pill">🧩 CuraSlicer</div><div class="pill">📝 Technical Writing</div><div class="pill">🎤 Public Speaking</div><div class="pill">🛍️ Shopify</div><div class="pill">🎻 Violin</div><div class="pill">🎹 Piano</div>
+          <div class="row" style="height:8px"></div>
+          <strong>Investing</strong>
+          <div class="pill">🏛️ Wharton Challenge</div><div class="pill">📈 Tripled Portfolio</div><div class="pill">🧮 Options</div><div class="pill">⚡ Day Trading</div>
+        </div>
+      </div>
+
+      <div id="panel-awards" class="panel" hidden>
+        <div class="list">
+          <div class="item">🏆 TSA Nationals Competitor (7 events); State Finalist in all entered events; Top‑5 Regional in all events.</div>
+          <div class="item">🤖 VEX Robotics State Finalist; 🏥 DECA & HOSA State Qualifier.</div>
+          <div class="item">🧮 CalcUSolve: 1st Place Team, 2nd Place Individual.</div>
+          <div class="item">🎓 National Honor Society; 🗣️ Top‑10 Regional Debate Finalist.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Get in touch</h2>
+      <div class="card">
+        <p><strong>Ojasva Mishra</strong> • AI Robotics Researcher & Student Engineer</p>
+        <p class="muted">📞 (484) 703‑9916 • ✉️ <a href="mailto:ojasvamishra32@gmail.com">ojasvamishra32@gmail.com</a></p>
+        <div class="cta" id="socials">
+          <a class="btn" href="https://fusionbots.org" target="_blank" rel="noreferrer">🧪 Fusion Bots</a>
+          <a class="btn" href="https://www.instagram.com/ojas_mishra32/" target="_blank" rel="noreferrer">📸 Instagram</a>
+          <a class="btn" href="https://github.com/OjasMishra32" target="_blank" rel="noreferrer">💻 GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" rel="noreferrer">🔗 LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="yr"></span> Ojasva Mishra • Single‑file, Canvas‑ready</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  // Tabs
+  const tabs = document.querySelectorAll('.tab');
+  const panels = {
+    projects: document.getElementById('panel-projects'),
+    skills: document.getElementById('panel-skills'),
+    awards: document.getElementById('panel-awards')
+  };
+  tabs.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tabs.forEach(b=>{b.classList.remove('active'); b.setAttribute('aria-selected','false')});
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+      Object.keys(panels).forEach(k=>{ panels[k].hidden = (k !== btn.dataset.tab); });
+    });
+  });
+  // Smooth anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      const el = document.querySelector(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    })
+  });
+</script>
+</body>
+</html>
