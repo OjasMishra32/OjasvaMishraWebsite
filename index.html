@@ -34,7 +34,19 @@
   header{position:sticky;top:0;z-index:40;background:linear-gradient(90deg,#0b1224c0,#0d1732c0);backdrop-filter:blur(10px);border-bottom:1px solid #ffffff20}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
   .brand{display:flex;gap:10px;align-items:center}
-  .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#b3ecff,#66d9ff);box-shadow:0 6px 18px #0007}
+  .brand-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#0e1b2e;border:1px solid #ffffff22;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.brand-icon svg{width:24px;height:24px;display:block}
+/* Mobile menu button */
+.menu{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff12,#ffffff08);color:#eaf1ff}
+.menu:active{transform:translateY(1px)}
+@media(min-width:880px){.menu{display:none}}
+/* Mobile nav drawer */
+.mobile-nav{position:fixed;top:calc(60px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:flex;flex-direction:column;gap:8px;padding:12px 20px 18px;background:linear-gradient(180deg,#0b1224f0,#0d1732f0);border-bottom:1px solid #ffffff20;backdrop-filter:blur(10px)}
+.mobile-nav a{padding:10px 8px;border-radius:10px;color:#e7f3ff}
+.mobile-nav a:hover{background:#ffffff12}
+/* Extra safe padding on mobile */
+header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-right:calc(20px + env(safe-area-inset-right,0px))}
+@media(max-width:879px){.hero{padding-top:96px}}
   .links{display:none;gap:18px;color:#cfe3ff}
   .links a{padding:6px 10px;border-radius:12px}
   .links a:hover{color:#fff;background:#ffffff15}
@@ -102,8 +114,25 @@
 <body>
   <header>
     <div class="wrap nav">
-      <div class="brand"><div class="logo" aria-hidden="true"></div><strong>Ojasva Mishra</strong></div>
-      <nav class="links">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#63d6ff"/>
+                <stop offset="1" stop-color="#7aa2ff"/>
+              </linearGradient>
+            </defs>
+            <rect x="3" y="7" width="18" height="12" rx="3" stroke="url(#g)" stroke-width="1.6"/>
+            <circle cx="9" cy="13" r="2" fill="url(#g)"/>
+            <circle cx="15" cy="13" r="2" fill="url(#g)"/>
+            <rect x="9" y="3" width="6" height="3" rx="1.2" fill="url(#g)"/>
+          </svg>
+        </div>
+        <strong>Ojasva Mishra</strong>
+      </div>
+      <button class="menu" id="menu" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">☰</button>
+      <nav class="links" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#leadership">Leadership</a>
@@ -113,6 +142,15 @@
         <a href="#contact">Contact</a>
       </nav>
     </div>
+    <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Mobile">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
   <main class="wrap">
@@ -450,7 +488,19 @@
       if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
     })
   });
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu');
+  const mnav = document.getElementById('mobile-nav');
+  if(menuBtn && mnav){
+    menuBtn.addEventListener('click', ()=>{
+      const open = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!open));
+      mnav.hidden = open; // show when not open
+    });
+    mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+      mnav.hidden = true; menuBtn.setAttribute('aria-expanded','false');
+    }));
+  }
 </script>
 </body>
 </html>
-
