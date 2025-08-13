@@ -117,7 +117,8 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
   .feature p{margin:0;color:#d7e6ff;font-size:13px;line-height:1.45}
 
   /* Sections */
-  section{padding:52px 0}
+  section{padding:52px 0; scroll-margin-top: 96px}
+@media(min-width:880px){section{scroll-margin-top: 76px}}
   h2{font-size:24px;margin:0 0 14px;background:linear-gradient(90deg,#cfe8ff,#ffd1ef,#bffbe8);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
   h2::after{content:"";position:absolute;left:0;bottom:-8px;width:120px;height:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));border-radius:2px;opacity:.8}
   .grid-2{display:grid;gap:18px}
@@ -374,13 +375,13 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       <div class="row" style="justify-content:space-between;gap:10px">
         <h2 id="proj-title">Projects & Technical Experience</h2>
         <div class="tabs" role="tablist" aria-label="Project tabs">
-          <button class="tab active" role="tab" aria-selected="true" data-tab="projects">Projects</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="skills">Skills</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="awards">Awards</button>
+          <button id="tab-projects" class="tab active" role="tab" aria-selected="true" data-tab="projects">Projects</button>
+          <button id="tab-skills" class="tab" role="tab" aria-selected="false" data-tab="skills">Skills</button>
+          <button id="tab-awards" class="tab" role="tab" aria-selected="false" data-tab="awards">Awards</button>
         </div>
       </div>
 
-      <div id="panel-projects" class="panel">
+      <div id="panel-projects" class="panel" role="tabpanel" aria-labelledby="tab-projects">
         <div class="list">
           <div class="item">
             <h3>🌳 SAFMS — Smart Agro‑Forest Management System</h3>
@@ -458,7 +459,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
         </div>
       </div>
 
-      <div id="panel-skills" class="panel" hidden>
+      <div id="panel-skills" class="panel" role="tabpanel" aria-labelledby="tab-skills" hidden>
         <div class="card">
           <strong>Hardware & Robotics</strong>
           <div class="pill">🤖 VEX</div><div class="pill">🧰 Arduino</div><div class="pill">🛩️ FPV Drones</div><div class="pill">🧿 Betaflight</div><div class="pill">⚖️ ESC/PID Tuning</div><div class="pill">🧠 Control Theory</div>
@@ -480,7 +481,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
         </div>
       </div>
 
-      <div id="panel-awards" class="panel" hidden>
+      <div id="panel-awards" class="panel" role="tabpanel" aria-labelledby="tab-awards" hidden>
         <div class="list">
           <div class="item">🏆 TSA Nationals Competitor (7 events); State Finalist in all entered events; Top‑5 Regional in all events.</div>
           <div class="item">🤖 VEX Robotics State Finalist; 🏥 DECA & HOSA State Qualifier.</div>
@@ -506,7 +507,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
     </section>
   </main>
 
-  <footer>© <span id="yr"></span> Ojasva Mishra </footer>
+  <footer>© <span id="yr"></span> Ojasva Mishra • Single‑file, Canvas‑ready</footer>
 
 <script>
   // Year
@@ -525,15 +526,44 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       Object.keys(panels).forEach(k=>{ panels[k].hidden = (k !== btn.dataset.tab); });
     });
   });
-  // Smooth anchors
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const id = a.getAttribute('href');
-      const el = document.querySelector(id);
-      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-    })
+  // Smooth anchors with sticky-header offset + mobile drawer close + tabs hash support
+function smoothScrollTo(id){
+  const el = document.querySelector(id);
+  const headerEl = document.querySelector('header');
+  const offset = (headerEl ? headerEl.offsetHeight : 64) + 8;
+  const y = el ? (el.getBoundingClientRect().top + window.scrollY - offset) : 0;
+  window.scrollTo({top: Math.max(y, 0), behavior:'smooth'});
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id = a.getAttribute('href');
+    // Special handling: header/menu links to Skills/Awards should switch tabs and scroll to Projects section
+    if(id==='#skills' || id==='#awards'){
+      e.preventDefault();
+      if(typeof window.activateTab === 'function') window.activateTab(id.slice(1));
+      const drawer = document.getElementById('mobile-nav');
+      const isOpen = drawer && drawer.classList.contains('open');
+      const go = ()=> smoothScrollTo('#projects');
+      if(isOpen && typeof closeNav === 'function'){ closeNav(); setTimeout(go, 220); } else { go(); }
+      return;
+    }
+    const target = document.querySelector(id);
+    if(target){
+      e.preventDefault();
+      const drawer = document.getElementById('mobile-nav');
+      const isOpen = drawer && drawer.classList.contains('open');
+      if(isOpen && typeof closeNav === 'function'){
+        closeNav();
+        setTimeout(()=> smoothScrollTo(id), 220);
+      } else {
+        smoothScrollTo(id);
+      }
+    }
   });
-  // Mobile menu toggle (mobile-only + animated + scroll lock)
+});
+
+// Mobile menu toggle (mobile-only + animated + scroll lock)
 const menuBtn = document.getElementById('menu');
 const mnav = document.getElementById('mobile-nav');
 const mq = window.matchMedia('(min-width: 880px)');
@@ -565,6 +595,40 @@ if(menuBtn && mnav){
   mq.addEventListener ? mq.addEventListener('change', enforce) : mq.addListener(enforce);
   enforce();
 }
+// Robust Tabs (desktop & mobile)
+(function(){
+  const btns = Array.from(document.querySelectorAll('.tab'));
+  const panels = {
+    projects: document.getElementById('panel-projects'),
+    skills: document.getElementById('panel-skills'),
+    awards: document.getElementById('panel-awards')
+  };
+  function activate(name){
+    btns.forEach(b=>{
+      const on = b.dataset.tab === name;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+      b.tabIndex = on ? 0 : -1;
+    });
+    Object.keys(panels).forEach(k=>{ if(panels[k]) panels[k].hidden = (k !== name); });
+  }
+  window.activateTab = activate; // expose for anchor handler
+  btns.forEach(b=>{
+    b.addEventListener('click', ()=> activate(b.dataset.tab));
+    b.addEventListener('keydown', e=>{
+      if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+        e.preventDefault();
+        const i = btns.indexOf(b);
+        const next = e.key==='ArrowRight' ? (i+1)%btns.length : (i-1+btns.length)%btns.length;
+        btns[next].focus();
+        activate(btns[next].dataset.tab);
+      }
+    });
+  });
+  const hash = (location.hash||'').replace('#','');
+  if(hash==='skills' || hash==='awards'){ activate(hash); } else { activate('projects'); }
+})();
+
 </script>
 </body>
 </html>
