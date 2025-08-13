@@ -6,32 +6,39 @@
 <title>Ojasva Mishra — Portfolio</title>
 <style>
   :root{
-    /* Light blue / cyan site-wide gradient */
-    --bg1:#0d2238; --bg2:#0f2d4c; --bg3:#0f365d; /* deep bases so text pops */
-    --glow1: rgba(0, 200, 255, .22);
-    --glow2: rgba(0, 160, 250, .18);
-    --text:#eaf3ff; --muted:#a8bfd7; --card:#11233b; --ring:rgba(120,210,255,.45);
-    --a1:#63d6ff; --a2:#53b8ff; --a3:#51f0bf; --a4:#ffc162; --a5:#7aa2ff;
-    --radius:20px;
+    /* brighter multi-color palette for a lighter, modern feel */
+    --bg1:#102341; --bg2:#16375f; --bg3:#1a4471; /* lighter base blues */
+    --text:#eef6ff; --muted:#9fb4cf; --card:#0f1d37; --ring:rgba(120,210,255,.55);
+    --a1:#63d6ff; /* cyan */
+    --a2:#b99bff; /* softer purple */
+    --a3:#73f3cf; /* mint */
+    --a4:#ffd48a; /* warm amber */
+    --a5:#ff9adf; /* pink */
+    --radius:22px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;color:var(--text)}
   /* Full-page cyan gradient that runs under the entire site */
   body::before{content:"";position:fixed;inset:0;z-index:-3;background:
-    radial-gradient(1200px 720px at 85% -10%, var(--glow1), transparent 60%),
-    radial-gradient(900px 520px at 10% -10%, var(--glow2), transparent 60%),
-    radial-gradient(1100px 700px at 50% 120%, rgba(0,240,255,.12), transparent 65%),
-    linear-gradient(180deg, var(--bg1), var(--bg2) 45%, var(--bg3));}
+    /* brighter, airy gradient mesh with extra cyan pops */
+    radial-gradient(1300px 820px at 10% -10%, rgba(255,154,223,.25), transparent 65%),
+    radial-gradient(1200px 720px at 90% -20%, rgba(99,214,255,.34), transparent 62%),
+    radial-gradient(1200px 600px at 50% 20%, rgba(99,214,255,.22), transparent 60%),
+    radial-gradient(900px 420px at 35% 85%, rgba(99,214,255,.14), transparent 62%),
+    radial-gradient(900px 520px at 80% 120%, rgba(115,243,207,.22), transparent 65%),
+    radial-gradient(800px 520px at -10% 110%, rgba(255,212,138,.20), transparent 74%),
+    linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 42%, var(--bg3) 100%);
+  background-repeat:no-repeat;animation:bgfloat 26s ease-in-out infinite alternate}
   /* Subtle grid on top of the gradient */
-  body::after{content:"";position:fixed;inset:0;z-index:-2;opacity:.06;background:
+  body::after{content:"";position:fixed;inset:0;z-index:-2;opacity:.05;background:
     linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:24px 24px}
 
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 
   /* Header */
-  header{position:sticky;top:0;z-index:40;background:linear-gradient(90deg,#0b1224c0,#0d1732c0);backdrop-filter:blur(10px);border-bottom:1px solid #ffffff20}
+  header{position:sticky;top:0;z-index:40;background:linear-gradient(90deg,#142a50cc,#173663cc);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff24}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
   .brand{display:flex;gap:10px;align-items:center}
   .brand-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#0e1b2e;border:1px solid #ffffff22;box-shadow:0 8px 20px rgba(0,0,0,.3)}
@@ -66,13 +73,18 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
   .links a{padding:6px 10px;border-radius:12px}
   .links a:hover{color:#fff;background:#ffffff15}
   @media(min-width:880px){.links{display:flex}}
-  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:16px;padding:10px 14px;border:1px solid #ffffff20;background:linear-gradient(180deg,#ffffff18,#ffffff10);color:#eaf1ff;transition:transform .2s ease, background .2s}
-  .btn:hover{transform:translateY(-2px);background:linear-gradient(180deg,#53b8ff55,#53b8ff2a)}
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:16px;padding:10px 14px;border:1px solid transparent;
+    background:linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
+               linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box;
+    color:#eaf1ff;transition:transform .2s ease, box-shadow .2s ease, background .2s;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(99,214,255,.25),0 0 0 1px var(--ring) inset;background:linear-gradient(180deg,#0f213a,#0d1a33) padding-box,
+               linear-gradient(135deg,var(--a5),var(--a1),var(--a2)) border-box}
 
   /* Hero */
   .hero{padding:64px 0 28px;display:grid;gap:22px;align-items:center}
   @media(min-width:980px){.hero{grid-template-columns:340px 1fr;gap:36px}}
-  h1{font-size:42px;line-height:1.05;margin:0;background:linear-gradient(90deg,#bfe5ff,#cfe7ff,#aef6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-size:42px;line-height:1.05;margin:0;background:linear-gradient(90deg,#bfe5ff 0%,#d6c4ff 20%,#ffb6ea 45%,#bdfce7 70%,#bfe5ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 28px rgba(99,214,255,.16)}
+  @media(min-width:880px){h1{font-size:64px}}
   @media(min-width:880px){h1{font-size:64px}}
   .lead{margin:10px 6px 0 0;color:#cfe4ff;max-width:860px}
   .subtitle{margin:8px 0 0;font-size:18px;color:#bfe0ff}
@@ -86,8 +98,11 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
   /* Feature cards */
   .features{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   @media(min-width:980px){.features{grid-template-columns:repeat(4,1fr)}}
-  .feature{position:relative;overflow:hidden;padding:16px;border-radius:var(--radius);background:linear-gradient(180deg,#ffffff14,#ffffff0a);border:1px solid #ffffff22;transition:transform .25s ease, box-shadow .25s ease}
-  .feature:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 1px var(--ring) inset}
+  .feature{position:relative;overflow:hidden;padding:16px;border-radius:var(--radius);
+    background:linear-gradient(180deg,#0e1b32cc,#0c172ecc) padding-box,
+               linear-gradient(135deg,var(--a1),var(--a5),var(--a2),var(--a3)) border-box;
+    border:1px solid transparent;transition:transform .25s ease, box-shadow .25s ease, filter .25s ease}
+  .feature:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 1px var(--ring) inset;filter:saturate(1.15)}
   .feature .tag{position:absolute;top:10px;right:10px;font-size:11px;border-radius:999px;border:1px solid #ffffff33;padding:4px 8px;background:#ffffff18}
   .fx{position:absolute;inset:-40%;filter:blur(32px);opacity:0;transition:opacity .35s ease}
   .feature:hover .fx{opacity:.95}
@@ -95,23 +110,37 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
   .fx.ai{background:radial-gradient(500px 220px at 60% 20%, #e178ff, transparent)}
   .fx.auto{background:radial-gradient(500px 220px at 60% 20%, var(--a3), transparent)}
   .fx.aero{background:radial-gradient(500px 220px at 60% 20%, var(--a2), transparent)}
-  .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#ffffff12;font-size:20px}
+  .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:
+    linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
+    linear-gradient(135deg,var(--a1),var(--a5)) border-box; border:1px solid transparent;font-size:20px}
   .feature h3{margin:10px 0 6px;font-size:16px}
   .feature p{margin:0;color:#d7e6ff;font-size:13px;line-height:1.45}
 
   /* Sections */
   section{padding:52px 0}
-  h2{font-size:24px;margin:0 0 14px}
+  h2{font-size:24px;margin:0 0 14px;background:linear-gradient(90deg,#cfe8ff,#ffd1ef,#bffbe8);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+  h2::after{content:"";position:absolute;left:0;bottom:-8px;width:120px;height:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));border-radius:2px;opacity:.8}
   .grid-2{display:grid;gap:18px}
   @media(min-width:980px){.grid-2{grid-template-columns:2fr 1fr}}
-  .card{border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff16,#ffffff0c);border-radius:var(--radius);padding:18px;backdrop-filter:blur(2px)}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid #ffffff24;background:#ffffff12;margin:6px 6px 0 0;color:#e9f0ff;font-size:13px}
+  .card{border:1px solid transparent;background:
+    linear-gradient(180deg,#0f1d37cc,#0c1630cc) padding-box,
+    linear-gradient(135deg,var(--a1),var(--a3)) border-box;
+  border-radius:var(--radius);padding:18px;backdrop-filter:blur(4px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid transparent;
+  background:linear-gradient(180deg,#10203a,#0b182f) padding-box,
+             linear-gradient(135deg,var(--a1),var(--a5)) border-box;color:#e9f0ff;font-size:13px}
+.pill:nth-child(3n+1){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a5),var(--a3)) border-box}
+.pill:nth-child(3n+2){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a2),var(--a1)) border-box}
+.pill:nth-child(3n){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a4),var(--a2)) border-box}
   .muted{color:var(--muted);font-size:13px}
   .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 
   /* Lists */
   .list{display:grid;gap:12px}
-  .item{border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff16,#ffffff0c);border-radius:16px;padding:14px;transition:transform .2s ease;backdrop-filter:blur(2px)}
+  .item{border:1px solid transparent;background:
+    linear-gradient(180deg,#0f1d37cc,#0c1630cc) padding-box,
+    linear-gradient(135deg,var(--a2),var(--a1),var(--a5)) border-box;
+  border-radius:16px;padding:14px;transition:transform .2s ease, box-shadow .2s ease;backdrop-filter:blur(2px)}
   .item:hover{transform:translateY(-3px)}
   .item h3{margin:0 0 6px;font-size:16px}
   .meta{display:flex;gap:12px;flex-wrap:wrap;color:#cbd3e9;font-size:12px}
@@ -124,6 +153,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
   .tab.active{background:#53b8ff33;color:#bfe7ff}
 
   footer{padding:36px 0;color:#9eb4d0;font-size:12px;text-align:center;border-top:1px solid #ffffff22}
+@keyframes bgfloat{0%{background-position:15% -10%, 90% -20%, 80% 120%, -10% 110%, 0 0}100%{background-position:25% -5%, 80% -15%, 78% 110%, -4% 100%, 0 0}}
 </style>
 </head>
 <body>
@@ -476,7 +506,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
     </section>
   </main>
 
-  <footer>© <span id="yr"></span> Ojasva Mishra • Single‑file, Canvas‑ready</footer>
+  <footer>© <span id="yr"></span> Ojasva Mishra </footer>
 
 <script>
   // Year
