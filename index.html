@@ -41,7 +41,20 @@
 .menu:active{transform:translateY(1px)}
 @media(min-width:880px){.menu{display:none}}
 /* Mobile nav drawer */
-.mobile-nav{position:fixed;top:calc(60px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:none;flex-direction:column;gap:10px;padding:14px 20px 18px;background:linear-gradient(180deg,#0b1224f0,#0d1732f0);border-bottom:1px solid #ffffff24;backdrop-filter:blur(12px);box-shadow:0 24px 60px rgba(0,0,0,.35);transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.mobile-nav{position:fixed;top:calc(64px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:none;flex-direction:column;gap:10px;padding:16px;width:min(94vw,520px);margin:0 auto;border-radius:18px;background:
+      radial-gradient(800px 300px at 70% -20%, rgba(99,214,255,.18), transparent 60%),
+      radial-gradient(600px 260px at 0% 0%, rgba(122,162,255,.14), transparent 65%),
+      linear-gradient(180deg,#0b1224f2,#0d1732f2);
+  border:1px solid #ffffff2a;backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.35);
+  transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
+@media(min-width:880px){#mobile-nav{display:none !important}}
+.mobile-nav .nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,#ffffff14,#ffffff0c);border:1px solid #ffffff22}
+.mobile-nav .nav-item:hover{background:#ffffff1c}
+.mobile-nav .ni{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:#0f2037;border:1px solid #ffffff22}
+.mobile-nav .ni span{font-size:16px}
+.mobile-nav .nav-title{font-weight:600;color:#eaf3ff}
+.mobile-nav .divider{height:1px; background:#ffffff22; margin:6px 0 2px 0}
 .mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
 @media(min-width:880px){#mobile-nav{display:none !important}}
 .mobile-nav a{padding:10px 8px;border-radius:10px;color:#e7f3ff}
@@ -145,13 +158,13 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       </nav>
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#leadership">Leadership</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#awards">Awards</a>
-      <a href="#contact">Contact</a>
+      <a class="nav-item" href="#about"><span class="ni"><span>ℹ️</span></span><span class="nav-title">About</span></a>
+      <a class="nav-item" href="#experience"><span class="ni"><span>💼</span></span><span class="nav-title">Experience</span></a>
+      <a class="nav-item" href="#leadership"><span class="ni"><span>✨</span></span><span class="nav-title">Leadership</span></a>
+      <a class="nav-item" href="#projects"><span class="ni"><span>🧪</span></span><span class="nav-title">Projects</span></a>
+      <a class="nav-item" href="#skills"><span class="ni"><span>🧠</span></span><span class="nav-title">Skills</span></a>
+      <a class="nav-item" href="#awards"><span class="ni"><span>🏆</span></span><span class="nav-title">Awards</span></a>
+      <a class="nav-item" href="#contact"><span class="ni"><span>✉️</span></span><span class="nav-title">Contact</span></a>
     </nav>
   </header>
 
@@ -490,20 +503,34 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
     })
   });
-  // Mobile menu toggle (mobile-only + animated)
+  // Mobile menu toggle (mobile-only + animated + scroll lock)
 const menuBtn = document.getElementById('menu');
 const mnav = document.getElementById('mobile-nav');
 const mq = window.matchMedia('(min-width: 880px)');
-function closeNav(){ mnav.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); }
-function openNav(){ mnav.classList.add('open'); menuBtn.setAttribute('aria-expanded','true'); }
+function lockScroll(on){
+  document.documentElement.style.overflow = on ? 'hidden' : '';
+  document.body.style.overflow = on ? 'hidden' : '';
+}
+function closeNav(){
+  mnav.classList.remove('open');
+  menuBtn.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded','false');
+  menuBtn.ariaLabel = 'Open menu';
+  menuBtn.textContent = '☰';
+  lockScroll(false);
+}
+function openNav(){
+  mnav.classList.add('open');
+  menuBtn.classList.add('open');
+  menuBtn.setAttribute('aria-expanded','true');
+  menuBtn.ariaLabel = 'Close menu';
+  menuBtn.textContent = '✕';
+  lockScroll(true);
+}
 if(menuBtn && mnav){
-  menuBtn.addEventListener('click', ()=>{
-    mnav.classList.contains('open') ? closeNav() : openNav();
-  });
-  // close when a link is tapped or Esc is pressed
+  menuBtn.addEventListener('click', ()=>{ mnav.classList.contains('open') ? closeNav() : openNav(); });
   mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
   document.addEventListener('keyup', (e)=>{ if(e.key==='Escape') closeNav(); });
-  // force-close at desktop widths
   const enforce = ()=>{ if(mq.matches) closeNav(); };
   mq.addEventListener ? mq.addEventListener('change', enforce) : mq.addListener(enforce);
   enforce();
