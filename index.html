@@ -6,22 +6,15 @@
 <title>Ojasva Mishra — Portfolio</title>
 <style>
   :root{
-    /* brighter multi-color palette for a lighter, modern feel */
-    --bg1:#102341; --bg2:#16375f; --bg3:#1a4471; /* lighter base blues */
+    --bg1:#102341; --bg2:#16375f; --bg3:#1a4471;
     --text:#eef6ff; --muted:#9fb4cf; --card:#0f1d37; --ring:rgba(120,210,255,.55);
-    --a1:#63d6ff; /* cyan */
-    --a2:#b99bff; /* softer purple */
-    --a3:#73f3cf; /* mint */
-    --a4:#ffd48a; /* warm amber */
-    --a5:#ff9adf; /* pink */
+    --a1:#63d6ff; --a2:#b99bff; --a3:#73f3cf; --a4:#ffd48a; --a5:#ff9adf;
     --radius:22px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;color:var(--text)}
-  /* Full-page cyan gradient that runs under the entire site */
   body::before{content:"";position:fixed;inset:0;z-index:-3;background:
-    /* brighter, airy gradient mesh with extra cyan pops */
     radial-gradient(1300px 820px at 10% -10%, rgba(255,154,223,.25), transparent 65%),
     radial-gradient(1200px 720px at 90% -20%, rgba(99,214,255,.34), transparent 62%),
     radial-gradient(1200px 600px at 50% 20%, rgba(99,214,255,.22), transparent 60%),
@@ -30,25 +23,29 @@
     radial-gradient(800px 520px at -10% 110%, rgba(255,212,138,.20), transparent 74%),
     linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 42%, var(--bg3) 100%);
   background-repeat:no-repeat;animation:bgfloat 26s ease-in-out infinite alternate}
-  /* Subtle grid on top of the gradient */
   body::after{content:"";position:fixed;inset:0;z-index:-2;opacity:.05;background:
     linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:24px 24px}
 
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
 
-  /* Header */
+  /* Header & Nav */
   header{position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,#142a50cc,#173663cc);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff24;transition:box-shadow .25s ease, background .25s ease}
   header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
   .brand{display:flex;gap:10px;align-items:center}
   .brand-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#0e1b2e;border:1px solid #ffffff22;box-shadow:0 8px 20px rgba(0,0,0,.3)}
   .brand-icon svg{width:24px;height:24px;display:block}
-  /* Mobile menu button */
   .menu{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff12,#ffffff08);color:#eaf1ff}
   .menu:active{transform:translateY(1px)}
   @media(min-width:880px){.menu{display:none}}
-  /* Mobile nav drawer */
+  .links{display:none;gap:10px;align-items:center}
+  @media(min-width:880px){.links{display:flex}}
+  .links a{position:relative;padding:10px 14px;border-radius:14px;border:1px solid transparent;background:
+    linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
+    linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box; color:#dbeaff; opacity:.92; transition:all .2s ease}
+  .links a:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+  .links a.active{color:#fff;box-shadow:0 14px 30px rgba(99,214,255,.22)}
   .mobile-nav{position:fixed;top:calc(64px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:none;flex-direction:column;gap:10px;padding:16px;width:min(94vw,520px);margin:0 auto;border-radius:18px;background:
       radial-gradient(800px 300px at 70% -20%, rgba(99,214,255,.18), transparent 60%),
       radial-gradient(600px 260px at 0% 0%, rgba(122,162,255,.14), transparent 65%),
@@ -56,27 +53,10 @@
     border:1px solid #ffffff2a;backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.35);
     transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
   .mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
-  @media(min-width:880px){#mobile-nav{display:none !important}}
   .mobile-nav .nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,#ffffff14,#ffffff0c);border:1px solid #ffffff22}
-  .mobile-nav .nav-item:hover{background:#ffffff1c}
   .mobile-nav .ni{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:#0f2037;border:1px solid #ffffff22}
-  .mobile-nav .ni span{font-size:16px}
-  .mobile-nav .nav-title{font-weight:600;color:#eaf3ff}
-  .mobile-nav .divider{height:1px;background:#ffffff22;margin:6px 0 2px 0}
-  .mobile-nav a{padding:10px 8px;border-radius:10px;color:#e7f3ff}
-  .mobile-nav a:hover{background:#ffffff12}
-  /* Extra safe padding on mobile */
-  header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-right:calc(20px + env(safe-area-inset-right,0px))}
-  @media(max-width:879px){.hero{padding-top:96px}}
-  .links{display:none;gap:10px;align-items:center}
-  .links a{position:relative;padding:10px 14px;border-radius:14px;border:1px solid transparent;background:
-    linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
-    linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box; color:#dbeaff; opacity:.92; transition:all .2s ease}
-  .links a:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
-  .links a::after{content:"";position:absolute;left:12px;right:12px;bottom:-8px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));opacity:0;transform:translateY(2px);transition:opacity .2s,transform .2s}
-  .links a.active{color:#fff;box-shadow:0 14px 30px rgba(99,214,255,.22)}
-  .links a.active::after{opacity:1;transform:translateY(0)}
-  @media(min-width:880px){.links{display:flex}}
+
+  /* Buttons */
   .btn{display:inline-flex;align-items:center;gap:10px;border-radius:16px;padding:10px 14px;border:1px solid transparent;
     background:linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
                linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box;
@@ -89,39 +69,14 @@
   @media(min-width:980px){.hero{grid-template-columns:340px 1fr;gap:36px}}
   h1{font-size:42px;line-height:1.05;margin:0;background:linear-gradient(90deg,#bfe5ff 0%,#d6c4ff 20%,#ffb6ea 45%,#bdfce7 70%,#bfe5ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 28px rgba(99,214,255,.16)}
   @media(min-width:880px){h1{font-size:64px}}
-  .lead{margin:10px 6px 0 0;color:#cfe4ff;max-width:860px}
   .subtitle{margin:8px 0 0;font-size:18px;color:#bfe0ff}
+  .lead{margin:10px 6px 0 0;color:#cfe4ff;max-width:860px}
   .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-
-  /* Headshot: fixed inline image (no uploader) */
   .headshot{position:relative;width:260px;height:260px;margin:auto;border-radius:50%;padding:6px;background:conic-gradient(from 0deg,#63d6ff,#53b8ff,#51f0bf,#53b8ff,#7aa2ff,#63d6ff)}
-  .headshot .inner{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0b1f33;display:block;background-image:url('ojasvamishra.jpeg');background-size:cover;background-position:92% 20%;}
-  .headshot img{width:100%;height:100%;object-fit:cover;object-position:72% 26%;display:block}
+  .headshot .inner{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0b1f33;display:block;background-image:url('ojasvamishra.jpeg');background-size:cover;background-position:92% 20%}
 
-  /* Feature cards */
-  .features{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  @media(min-width:980px){.features{grid-template-columns:repeat(4,1fr)}}
-  .feature{position:relative;overflow:hidden;padding:16px;border-radius:var(--radius);
-    background:linear-gradient(180deg,#0e1b32cc,#0c172ecc) padding-box,
-               linear-gradient(135deg,var(--a1),var(--a5),var(--a2),var(--a3)) border-box;
-    border:1px solid transparent;transition:transform .25s ease, box-shadow .25s ease, filter .25s ease}
-  .feature:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 1px var(--ring) inset;filter:saturate(1.15)}
-  .feature .tag{position:absolute;top:10px;right:10px;font-size:11px;border-radius:999px;border:1px solid #ffffff33;padding:4px 8px;background:#ffffff18}
-  .fx{position:absolute;inset:-40%;filter:blur(32px);opacity:0;transition:opacity .35s ease}
-  .feature:hover .fx{opacity:.95}
-  .fx.robo{background:radial-gradient(500px 220px at 60% 20%, var(--a1), transparent)}
-  .fx.ai{background:radial-gradient(500px 220px at 60% 20%, #e178ff, transparent)}
-  .fx.auto{background:radial-gradient(500px 220px at 60% 20%, var(--a3), transparent)}
-  .fx.aero{background:radial-gradient(500px 220px at 60% 20%, var(--a2), transparent)}
-  .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:
-    linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
-    linear-gradient(135deg,var(--a1),var(--a5)) border-box; border:1px solid transparent;font-size:20px}
-  .feature h3{margin:10px 0 6px;font-size:16px}
-  .feature p{margin:0;color:#d7e6ff;font-size:13px;line-height:1.45}
-
-  /* Sections */
-  section{padding:52px 0; scroll-margin-top: 96px}
-  @media(min-width:880px){section{scroll-margin-top: 76px}}
+  /* Sections, cards, lists */
+  section{padding:52px 0}
   h2{font-size:24px;margin:0 0 14px;background:linear-gradient(90deg,#cfe8ff,#ffd1ef,#bffbe8);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
   h2::after{content:"";position:absolute;left:0;bottom:-8px;width:120px;height:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));border-radius:2px;opacity:.8}
   .grid-2{display:grid;gap:18px}
@@ -132,14 +87,9 @@
     border-radius:var(--radius);padding:18px;backdrop-filter:blur(4px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
   .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid transparent;
     background:linear-gradient(180deg,#10203a,#0b182f) padding-box,
-    linear-gradient(135deg,var(--a1),var(--a5)) border-box;color:#e9f0ff;font-size:13px}
-  .pill:nth-child(3n+1){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a5),var(--a3)) border-box}
-  .pill:nth-child(3n+2){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a2),var(--a1)) border-box}
-  .pill:nth-child(3n){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a4),var(--a2)) border-box}
+               linear-gradient(135deg,var(--a1),var(--a5)) border-box;color:#e9f0ff;font-size:13px}
   .muted{color:var(--muted);font-size:13px}
   .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-
-  /* Lists */
   .list{display:grid;gap:12px}
   .item{border:1px solid transparent;background:
     linear-gradient(180deg,#0f1d37cc,#0c1630cc) padding-box,
@@ -151,82 +101,90 @@
   .bul{margin:8px 0 0 18px}
   .bul li{margin:4px 0}
 
-  /* Link cue: external link icon + underline */
-  a.ext{position:relative;border-bottom:1px dotted rgba(255,255,255,.45);padding-right:18px}
-  a.ext::after{
-    content:"↗"; /* external link indicator */
-    position:absolute;right:0;top:50%;transform:translateY(-52%);
-    font-size:12px;opacity:.9
-  }
-  a.ext:hover{box-shadow:0 0 0 1px var(--ring) inset}
+  /* Feature grid */
+  .features{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(min-width:980px){.features{grid-template-columns:repeat(4,1fr)}}
+  .feature{position:relative;overflow:hidden;padding:16px;border-radius:var(--radius);
+    background:linear-gradient(180deg,#0e1b32cc,#0c172ecc) padding-box,
+               linear-gradient(135deg,var(--a1),var(--a5),var(--a2),var(--a3)) border-box;
+    border:1px solid transparent;transition:transform .25s ease, box-shadow .25s ease, filter .25s ease}
+  .feature:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 1px var(--ring) inset;filter:saturate(1.15)}
+  .fx{position:absolute;inset:-40%;filter:blur(32px);opacity:0;transition:opacity .35s ease}
+  .feature:hover .fx{opacity:.95}
+  .fx.robo{background:radial-gradient(500px 220px at 60% 20%, var(--a1), transparent)}
+  .fx.ai{background:radial-gradient(500px 220px at 60% 20%, #e178ff, transparent)}
+  .fx.auto{background:radial-gradient(500px 220px at 60% 20%, var(--a3), transparent)}
+  .fx.aero{background:radial-gradient(500px 220px at 60% 20%, var(--a2), transparent)}
+  .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:
+    linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
+    linear-gradient(135deg,var(--a1),var(--a5)) border-box; border:1px solid transparent;font-size:20px}
 
-  /* Tabs */
+  /* Tabs (projects subpage) */
   .tabs{display:inline-flex;border:1px solid #ffffff18;border-radius:12px;padding:4px;background:#ffffff12}
   .tab{border:0;background:transparent;color:#cbd3e5;padding:8px 12px;border-radius:10px;cursor:pointer}
   .tab.active{background:#53b8ff33;color:#bfe7ff}
+
+  /* External link cue */
+  a.ext{position:relative;border-bottom:1px dotted rgba(255,255,255,.45);padding-right:18px}
+  a.ext::after{content:"↗";position:absolute;right:0;top:50%;transform:translateY(-52%);font-size:12px;opacity:.9}
+  a.ext:hover{box-shadow:0 0 0 1px var(--ring) inset}
 
   footer{padding:36px 0;color:#9eb4d0;font-size:12px;text-align:center;border-top:1px solid #ffffff22}
   @keyframes bgfloat{0%{background-position:15% -10%, 90% -20%, 80% 120%, -10% 110%, 0 0}100%{background-position:25% -5%, 80% -15%, 78% 110%, -4% 100%, 0 0}}
 </style>
 </head>
 <body>
+  <!-- Top Nav (routes use #/...) -->
   <header>
     <div class="wrap nav">
       <div class="brand">
-        <div class="brand-icon" aria-hidden="true">
+        <a class="brand-icon" href="#/">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-                <stop stop-color="#63d6ff"/>
-                <stop offset="1" stop-color="#7aa2ff"/>
-              </linearGradient>
-            </defs>
+            <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#63d6ff"/><stop offset="1" stop-color="#7aa2ff"/></linearGradient></defs>
             <rect x="3" y="7" width="18" height="12" rx="3" stroke="url(#g)" stroke-width="1.6"/>
-            <circle cx="9" cy="13" r="2" fill="url(#g)"/>
-            <circle cx="15" cy="13" r="2" fill="url(#g)"/>
+            <circle cx="9" cy="13" r="2" fill="url(#g)"/><circle cx="15" cy="13" r="2" fill="url(#g)"/>
             <rect x="9" y="3" width="6" height="3" rx="1.2" fill="url(#g)"/>
           </svg>
-        </div>
+        </a>
         <strong>Ojasva Mishra</strong>
       </div>
       <button class="menu" id="menu" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">☰</button>
       <nav class="links" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#leadership">Leadership</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#awards">Awards</a>
-        <a href="#contact">Contact</a>
+        <a data-link href="#/about">About</a>
+        <a data-link href="#/experience">Experience</a>
+        <a data-link href="#/leadership">Leadership</a>
+        <a data-link href="#/projects">Projects</a>
+        <a data-link href="#/contact">Contact</a>
       </nav>
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-      <a class="nav-item" href="#about"><span class="ni"><span>ℹ️</span></span><span class="nav-title">About</span></a>
-      <a class="nav-item" href="#experience"><span class="ni"><span>💼</span></span><span class="nav-title">Experience</span></a>
-      <a class="nav-item" href="#leadership"><span class="ni"><span>✨</span></span><span class="nav-title">Leadership</span></a>
-      <a class="nav-item" href="#projects"><span class="ni"><span>🧪</span></span><span class="nav-title">Projects</span></a>
-      <a class="nav-item" href="#skills"><span class="ni"><span>🧠</span></span><span class="nav-title">Skills</span></a>
-      <a class="nav-item" href="#awards"><span class="ni"><span>🏆</span></span><span class="nav-title">Awards</span></a>
-      <a class="nav-item" href="#contact"><span class="ni"><span>✉️</span></span><span class="nav-title">Contact</span></a>
+      <a class="nav-item" href="#/about"><span class="ni"><span>ℹ️</span></span><span class="nav-title">About</span></a>
+      <a class="nav-item" href="#/experience"><span class="ni"><span>💼</span></span><span class="nav-title">Experience</span></a>
+      <a class="nav-item" href="#/leadership"><span class="ni"><span>✨</span></span><span class="nav-title">Leadership</span></a>
+      <a class="nav-item" href="#/projects"><span class="ni"><span>🧪</span></span><span class="nav-title">Projects</span></a>
+      <a class="nav-item" href="#/contact"><span class="ni"><span>✉️</span></span><span class="nav-title">Contact</span></a>
     </nav>
   </header>
 
-  <main class="wrap">
-    <!-- HERO -->
+  <!-- Router outlet -->
+  <main id="app" class="wrap" aria-live="polite"></main>
+
+  <footer>© <span id="yr"></span> Ojasva Mishra</footer>
+
+  <!-- PAGES AS TEMPLATES (no extra files needed) -->
+  <template id="page-home">
     <section class="hero" aria-labelledby="title">
       <div>
-        <div class="headshot">
-          <div class="inner" role="img" aria-label="Ojasva Mishra headshot"></div>
-        </div>
+        <div class="headshot"><div class="inner" role="img" aria-label="Ojasva Mishra headshot"></div></div>
       </div>
       <div>
         <h1 id="title">Robotics • Autonomy • AI • Aerospace</h1>
         <p class="subtitle">AI Robotics Researcher • President, BattleBots • VEX Robotics Competitor</p>
-        <p class="lead">AI robotics researcher focused on controls, autonomy, and human-useful software. Cofounder & CEO at <a href="https://fusionbots.org" target="_blank" rel="noreferrer">Fusion Bots</a>. CTO/Director of Global Programmes on the governing committee at YPSF (UN MGCY).</p>
+        <p class="lead">AI robotics researcher focused on controls, autonomy, and human-useful software. Cofounder & CEO at <a class="ext" href="https://fusionbots.org" target="_blank" rel="noreferrer">Fusion Bots</a>. CTO/Director of Global Programmes on the governing committee at YPSF (UN MGCY).</p>
         <div class="cta">
-          <a class="btn" href="#projects">🚀 See projects</a>
-          <a class="btn" href="#contact">✉️ Contact</a>
-          <a class="btn" href="#socials">🌐 Socials</a>
+          <a class="btn" href="#/projects">🚀 See projects</a>
+          <a class="btn" href="#/contact">✉️ Contact</a>
+          <a class="btn" href="#/about">🌐 About</a>
         </div>
         <div class="row" style="margin-top:10px">
           <span class="pill">🤖 Controls & Autonomy</span>
@@ -235,39 +193,20 @@
           <span class="pill">🛰️ Flight/ARC Sim</span>
         </div>
       </div>
-
-      <!-- Featured Interest Cards (Robotics first) -->
       <div class="features" aria-label="Interests" style="grid-column:1/-1">
-        <a class="feature" href="#projects">
-          <div class="tag">Featured</div>
-          <div class="fx robo" aria-hidden="true"></div>
-          <div class="ic" aria-hidden="true">🛠️</div>
-          <h3>Robotics</h3>
-          <p>Mechanisms, reliability, and closed-loop control — design → build → test with data-driven iteration.</p>
+        <a class="feature" href="#/projects">
+          <div class="tag">Featured</div><div class="fx robo" aria-hidden="true"></div><div class="ic" aria-hidden="true">🛠️</div>
+          <h3>Robotics</h3><p>Mechanisms, reliability, and closed-loop control — design → build → test with data-driven iteration.</p>
         </a>
-        <a class="feature" href="#projects">
-          <div class="fx ai" aria-hidden="true"></div>
-          <div class="ic" aria-hidden="true">🤖</div>
-          <h3>AI</h3>
-          <p>Perception, forecasting, and decision support integrated into real apps and robots.</p>
-        </a>
-        <a class="feature" href="#projects">
-          <div class="fx auto" aria-hidden="true"></div>
-          <div class="ic" aria-hidden="true">🧭</div>
-          <h3>Autonomy</h3>
-          <p>Sensing + feedback + planning for robust behavior under constraints and time pressure.</p>
-        </a>
-        <a class="feature" href="#projects">
-          <div class="fx aero" aria-hidden="true"></div>
-          <div class="ic" aria-hidden="true">✈️</div>
-          <h3>Aerospace</h3>
-          <p>Flight simulation, rocketry CAD, and mission math for safe, stable trajectories.</p>
-        </a>
+        <a class="feature" href="#/projects"><div class="fx ai"></div><div class="ic">🤖</div><h3>AI</h3><p>Perception, forecasting, and decision support integrated into real apps and robots.</p></a>
+        <a class="feature" href="#/projects"><div class="fx auto"></div><div class="ic">🧭</div><h3>Autonomy</h3><p>Sensing + feedback + planning for robust behavior under constraints and time pressure.</p></a>
+        <a class="feature" href="#/projects"><div class="fx aero"></div><div class="ic">✈️</div><h3>Aerospace</h3><p>Flight simulation, rocketry CAD, and mission math for safe, stable trajectories.</p></a>
       </div>
     </section>
+  </template>
 
-    <!-- ABOUT -->
-    <section id="about" aria-labelledby="about-title">
+  <template id="page-about">
+    <section aria-labelledby="about-title">
       <h2 id="about-title">About</h2>
       <div class="grid-2">
         <div class="card">
@@ -277,29 +216,25 @@
         </div>
         <div class="card">
           <strong>Focus Areas</strong>
-          <div class="pill">⚙️ Controls</div>
-          <div class="pill">🧩 Embedded</div>
-          <div class="pill">👁️ Perception</div>
-          <div class="pill">🗺️ Planning</div>
-          <div class="pill">🕸️ Web Apps</div>
-          <div class="pill">📣 Education & Outreach</div>
+          <div class="pill">⚙️ Controls</div><div class="pill">🧩 Embedded</div><div class="pill">👁️ Perception</div><div class="pill">🗺️ Planning</div>
+          <div class="pill">🕸️ Web Apps</div><div class="pill">📣 Education & Outreach</div>
         </div>
       </div>
     </section>
+  </template>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" aria-labelledby="exp-title">
+  <template id="page-experience">
+    <section aria-labelledby="exp-title">
       <h2 id="exp-title">Experience</h2>
       <div class="list">
-
         <div class="item">
           <h3>🧪 Fusion Bots — Founder & CEO</h3>
-          <div class="meta"><span>Jan 2025 – Present</span><span>Startup • Education Robotics</span></div>
+          <div class="meta"><span>Apr 2025 – Present</span><span>Startup • Education Robotics</span></div>
           <ul class="bul">
             <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; demonstrated <strong>revenue growth</strong> and ran workshops that expanded STEM access.</li>
             <li>Recruited and led a team <strong>(6 core + 6 interns)</strong> across product, outreach, and operations; set processes for fulfillment, support, and content.</li>
           </ul>
-          <div class="muted">🔗 <a href="https://fusionbots.org" target="_blank" rel="noreferrer">fusionbots.org</a></div>
+          <div class="muted">🔗 <a class="ext" href="https://fusionbots.org" target="_blank" rel="noreferrer">fusionbots.org</a></div>
         </div>
 
         <div class="item">
@@ -332,35 +267,28 @@
         <div class="item">
           <h3>📘 Kumon Learning Center — Center Assistant/Tutor</h3>
           <div class="meta"><span>2022 – 2023</span><span>Math & English</span></div>
-          <ul class="bul">
-            <li>Taught students ages 4–16; graded work and maintained the data system to track mastery.</li>
-          </ul>
+          <ul class="bul"><li>Taught students ages 4–16; graded work and maintained the data system to track mastery.</li></ul>
         </div>
 
         <div class="item">
           <h3>🎾 Tennis Coach — Paid & Volunteer</h3>
           <div class="meta"><span>2022 – 2025</span></div>
-          <ul class="bul">
-            <li>Taught fundamentals (serves, volleys, strokes) to ages 8–15; ran drills; assisted HS coach; organized sessions.</li>
-          </ul>
+          <ul class="bul"><li>Taught fundamentals (serves, volleys, strokes) to ages 8–15; ran drills; assisted HS coach; organized sessions.</li></ul>
         </div>
 
         <div class="item">
           <h3>♟️ Chess Coach & Creator — Competitor, YouTuber</h3>
           <div class="meta"><span>2014 – Present</span></div>
-          <ul class="bul">
-            <li>1800+ ELO; coached youth players; produced educational content (2k+ subs); competed OTB and online.</li>
-          </ul>
+          <ul class="bul"><li>1800+ ELO; coached youth players; produced educational content (2k+ subs); competed OTB and online.</li></ul>
         </div>
-
       </div>
     </section>
+  </template>
 
-    <!-- LEADERSHIP & ADVOCACY -->
-    <section id="leadership" aria-labelledby="lead-title">
+  <template id="page-leadership">
+    <section aria-labelledby="lead-title">
       <h2 id="lead-title">Leadership & Advocacy</h2>
       <div class="list">
-
         <div class="item">
           <h3>🌍 CTO & Director of Global Programmes — YPSF (UN MGCY)</h3>
           <div class="meta"><span>2024 – Present</span><span>Governing Committee (1 of 13) • ~600 members</span></div>
@@ -373,9 +301,7 @@
         <div class="item">
           <h3>🪲 President — BattleBots Club</h3>
           <div class="meta"><span>Downingtown STEM Academy • 2022 – Present</span></div>
-          <ul class="bul">
-            <li>Lead combat-robot design, manufacturing, programming, and match strategy with emphasis on reliability and rapid field repair.</li>
-          </ul>
+          <ul class="bul"><li>Lead combat-robot design, manufacturing, programming, and match strategy with emphasis on reliability and rapid field repair.</li></ul>
         </div>
 
         <div class="item">
@@ -399,48 +325,38 @@
         <div class="item">
           <h3>📈 CIO/President — Stocks & Investments Club</h3>
           <div class="meta"><span>2023 – Present</span><span>140+ members</span></div>
-          <ul class="bul">
-            <li>Grew membership; ran literacy workshops & competitions; built an AI stock tracker (40+ daily users); 3× personal portfolio.</li>
-          </ul>
+          <ul class="bul"><li>Grew membership; ran literacy workshops & competitions; built an AI stock tracker (40+ daily users); 3× personal portfolio.</li></ul>
         </div>
 
         <div class="item">
           <h3>🎾 Varsity Tennis — Captain & Player</h3>
           <div class="meta"><span>2022 – Present</span></div>
-          <ul class="bul">
-            <li>Team captain (2025–26); led drills & strategy; part of the first DWHS team to districts; playback semifinals.</li>
-          </ul>
+          <ul class="bul"><li>Team captain (2025–26); led drills & strategy; part of the first DWHS team to districts; playback semifinals.</li></ul>
         </div>
 
         <div class="item">
           <h3>🏛️ National Honor Society — Member</h3>
           <div class="meta"><span>2024 – Present</span></div>
-          <ul class="bul">
-            <li>Selected for academics and leadership; completed 20+ service hours supporting school and local projects.</li>
-          </ul>
+          <ul class="bul"><li>Selected for academics and leadership; completed 20+ service hours supporting school and local projects.</li></ul>
         </div>
 
         <div class="item">
           <h3>📚 Library Volunteer — STEM & Literacy Programs</h3>
           <div class="meta"><span>2022</span></div>
-          <ul class="bul">
-            <li>Hosted STEM workshops and literacy programs (50+ youth); taught tech literacy and chess; boosted attendance by 60%.</li>
-          </ul>
+          <ul class="bul"><li>Hosted STEM workshops and literacy programs (50+ youth); taught tech literacy and chess; boosted attendance by 60%.</li></ul>
         </div>
 
         <div class="item">
           <h3>🏅 State Competitor — DECA & HOSA</h3>
           <div class="meta"><span>2022 – 2023</span></div>
-          <ul class="bul">
-            <li>Advanced to states in business and health events; marketing program work and healthcare issues exam qualifier.</li>
-          </ul>
+          <ul class="bul"><li>Advanced to states in business and health events; marketing program work and healthcare issues exam qualifier.</li></ul>
         </div>
-
       </div>
     </section>
+  </template>
 
-    <!-- PROJECTS / TECHNICAL EXPERIENCE -->
-    <section id="projects" aria-labelledby="proj-title">
+  <template id="page-projects">
+    <section aria-labelledby="proj-title">
       <div class="row" style="justify-content:space-between;gap:10px">
         <h2 id="proj-title">Projects & Technical Experience</h2>
         <div class="tabs" role="tablist" aria-label="Project tabs">
@@ -465,65 +381,49 @@
           <div class="item">
             <h3>🛩️ <a class="ext" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noreferrer">Custom Racing Drone w/ Claw</a></h3>
             <div class="meta"><span>Betaflight • ESC integration • PID tuning</span></div>
-            <ul class="bul">
-              <li>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness. Made to complete tasks.</li>
-            </ul>
+            <ul class="bul"><li>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness.</li></ul>
           </div>
 
           <div class="item">
             <h3>🧪 <a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">NitroCapture Pro — Zeolite-Based Nitrogen Capture</a></h3>
-            <div class="meta"><span>Environmental • 3D-printed • Experiment/<span class="ext" style="border-bottom:none;padding-right:0"><a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">Engineering&nbsp;Design</a></span></span></div>
-            <ul class="bul">
-              <li>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li>
-            </ul>
+            <div class="meta"><span>Environmental • 3D-printed • <a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">Engineering&nbsp;Design</a></span></div>
+            <ul class="bul"><li>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li></ul>
           </div>
 
           <div class="item">
             <h3>🧭 Competition Robot</h3>
             <div class="meta"><span>Autonomous + Tele-op • Mechanisms • Controls</span></div>
-            <ul class="bul">
-              <li>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</li>
-            </ul>
+            <ul class="bul"><li>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</li></ul>
           </div>
 
           <div class="item">
             <h3>🧠 Systems Control Challenge</h3>
             <div class="meta"><span>Python • C++ • Feedback control</span></div>
-            <ul class="bul">
-              <li>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</li>
-            </ul>
+            <ul class="bul"><li>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</li></ul>
           </div>
 
           <div class="item">
             <h3>🎮 <a class="ext" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noreferrer">Unity VR Escape Room</a></h3>
             <div class="meta"><span>Unity • C# • Blender assets • Meta Quest</span></div>
-            <ul class="bul">
-              <li>Created an immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</li>
-            </ul>
+            <ul class="bul"><li>Created an immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</li></ul>
           </div>
 
           <div class="item">
             <h3>🛡️ <a class="ext" href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" rel="noreferrer">Tower Defense — Systems Design</a></h3>
             <div class="meta"><span>Game design • Balancing • Documentation</span></div>
-            <ul class="bul">
-              <li>Implemented layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</li>
-            </ul>
+            <ul class="bul"><li>Implemented layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</li></ul>
           </div>
 
           <div class="item">
             <h3>🎲 Modular Board Game System</h3>
             <div class="meta"><span>Mechanics • Replayability</span></div>
-            <ul class="bul">
-              <li>Designed modular rule sets enabling variants and high replay value; emphasized clarity of interaction loops.</li>
-            </ul>
+            <ul class="bul"><li>Designed modular rule sets enabling variants and high replay value; emphasized clarity of interaction loops.</li></ul>
           </div>
 
           <div class="item">
             <h3>📈 AI Stock Tracker & Pre-Market Watchlist</h3>
             <div class="meta"><span>AI/ML • Finance • Web app</span></div>
-            <ul class="bul">
-              <li>Built an AI-assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li>
-            </ul>
+            <ul class="bul"><li>Built an AI-assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li></ul>
           </div>
         </div>
       </div>
@@ -559,13 +459,14 @@
         </div>
       </div>
     </section>
+  </template>
 
-    <!-- CONTACT -->
-    <section id="contact" aria-labelledby="contact-title">
+  <template id="page-contact">
+    <section aria-labelledby="contact-title">
       <h2 id="contact-title">Get in touch</h2>
       <div class="card">
         <p><strong>Ojasva Mishra</strong> • AI Robotics Researcher & Student Engineer</p>
-        <p class="muted">📞 (484) 703-9916 • ✉️ <a href="mailto:ojasvamishra32@gmail.com">ojasvamishra32@gmail.com</a></p>
+        <p class="muted">📞 (484) 703-9916 • ✉️ <a class="ext" href="mailto:ojasvamishra32@gmail.com">ojasvamishra32@gmail.com</a></p>
         <div class="cta" id="socials">
           <a class="btn" href="https://fusionbots.org" target="_blank" rel="noreferrer">🧪 Fusion Bots</a>
           <a class="btn" href="https://www.instagram.com/ojas_mishra32/" target="_blank" rel="noreferrer">📸 Instagram</a>
@@ -574,172 +475,99 @@
         </div>
       </div>
     </section>
-  </main>
-
-  <footer>© <span id="yr"></span> Ojasva Mishra • Single-file, Canvas-ready</footer>
+  </template>
 
 <script>
-  // Year
-  document.getElementById('yr').textContent = new Date().getFullYear();
+/* Year */
+document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // Tabs
-  const tabs = document.querySelectorAll('.tab');
-  const panels = {
-    projects: document.getElementById('panel-projects'),
-    skills: document.getElementById('panel-skills'),
-    awards: document.getElementById('panel-awards')
-  };
-  tabs.forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      tabs.forEach(b=>{b.classList.remove('active'); b.setAttribute('aria-selected','false')});
-      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
-      Object.keys(panels).forEach(k=>{ panels[k].hidden = (k !== btn.dataset.tab); });
-    });
+/* Mobile menu */
+const menuBtn = document.getElementById('menu');
+const mnav = document.getElementById('mobile-nav');
+function lockScroll(on){document.documentElement.style.overflow=document.body.style.overflow=on?'hidden':''}
+function closeNav(){mnav.classList.remove('open');menuBtn.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰';lockScroll(false)}
+function openNav(){mnav.classList.add('open');menuBtn.classList.add('open');menuBtn.setAttribute('aria-expanded','true');menuBtn.textContent='✕';lockScroll(true)}
+if(menuBtn && mnav){
+  menuBtn.addEventListener('click', ()=> mnav.classList.contains('open') ? closeNav() : openNav());
+  mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
+  document.addEventListener('keyup', e=>{ if(e.key==='Escape') closeNav() });
+}
+
+/* Header shadow on scroll */
+(function(){
+  const h = document.querySelector('header');
+  const onScroll = ()=> h && h.classList.toggle('is-scrolled', window.scrollY>8);
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+
+/* --------- HASH ROUTER (multipage in one file) --------- */
+const routes = {
+  '/': 'page-home',
+  '/about': 'page-about',
+  '/experience': 'page-experience',
+  '/leadership': 'page-leadership',
+  '/projects': 'page-projects',
+  '/contact': 'page-contact'
+};
+
+function renderRoute(){
+  const outlet = document.getElementById('app');
+  const hash = (location.hash || '#/').replace('#','');
+  const path = hash || '/';
+  const tplId = routes[path] || routes['/'];
+  const tpl = document.getElementById(tplId);
+  if (!tpl){ outlet.innerHTML = '<section><h2>Not found</h2></section>'; return; }
+  outlet.innerHTML = tpl.innerHTML;
+  window.scrollTo({top:0,behavior:'instant'});
+
+  // Nav active state
+  document.querySelectorAll('nav.links a[data-link]').forEach(a=>{
+    const match = a.getAttribute('href') === '#'+path;
+    a.classList.toggle('active', match);
   });
 
-  // Smooth anchors with sticky-header offset + mobile drawer close + tabs hash support
-  function smoothScrollTo(id){
-    const el = document.querySelector(id);
-    const headerEl = document.querySelector('header');
-    const offset = (headerEl ? headerEl.offsetHeight : 64) + 8;
-    const y = el ? (el.getBoundingClientRect().top + window.scrollY - offset) : 0;
-    window.scrollTo({top: Math.max(y, 0), behavior:'smooth'});
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const id = a.getAttribute('href');
-      // Skills/Awards switch tabs and scroll to Projects section
-      if(id==='#skills' || id==='#awards'){
-        e.preventDefault();
-        if(typeof window.activateTab === 'function') window.activateTab(id.slice(1));
-        const drawer = document.getElementById('mobile-nav');
-        const isOpen = drawer && drawer.classList.contains('open');
-        const go = ()=> smoothScrollTo('#projects');
-        if(isOpen && typeof closeNav === 'function'){ closeNav(); setTimeout(go, 220); } else { go(); }
-        return;
-      }
-      const target = document.querySelector(id);
-      if(target){
-        e.preventDefault();
-        const drawer = document.getElementById('mobile-nav');
-        const isOpen = drawer && drawer.classList.contains('open');
-        if(isOpen && typeof closeNav === 'function'){
-          closeNav();
-          setTimeout(()=> smoothScrollTo(id), 220);
-        } else {
-          smoothScrollTo(id);
-        }
-      }
-    });
-  });
-
-  // Mobile menu toggle + scroll lock
-  const menuBtn = document.getElementById('menu');
-  const mnav = document.getElementById('mobile-nav');
-  const mq = window.matchMedia('(min-width: 880px)');
-  function lockScroll(on){
-    document.documentElement.style.overflow = on ? 'hidden' : '';
-    document.body.style.overflow = on ? 'hidden' : '';
-  }
-  function closeNav(){
-    mnav.classList.remove('open');
-    menuBtn.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded','false');
-    menuBtn.ariaLabel = 'Open menu';
-    menuBtn.textContent = '☰';
-    lockScroll(false);
-  }
-  function openNav(){
-    mnav.classList.add('open');
-    menuBtn.classList.add('open');
-    menuBtn.setAttribute('aria-expanded','true');
-    menuBtn.ariaLabel = 'Close menu';
-    menuBtn.textContent = '✕';
-    lockScroll(true);
-  }
-  if(menuBtn && mnav){
-    menuBtn.addEventListener('click', ()=>{ mnav.classList.contains('open') ? closeNav() : openNav(); });
-    mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
-    document.addEventListener('keyup', (e)=>{ if(e.key==='Escape') closeNav(); });
-    const enforce = ()=>{ if(mq.matches) closeNav(); };
-    mq.addEventListener ? mq.addEventListener('change', enforce) : mq.addListener(enforce);
-    enforce();
-  }
-
-  // Robust Tabs (desktop & mobile)
-  (function(){
-    const btns = Array.from(document.querySelectorAll('.tab'));
+  // If on Projects, wire tabs
+  if (path === '/projects'){
+    const tabs = document.querySelectorAll('.tab');
     const panels = {
       projects: document.getElementById('panel-projects'),
       skills: document.getElementById('panel-skills'),
       awards: document.getElementById('panel-awards')
     };
     function activate(name){
-      btns.forEach(b=>{
+      tabs.forEach(b=>{
         const on = b.dataset.tab === name;
         b.classList.toggle('active', on);
         b.setAttribute('aria-selected', on ? 'true' : 'false');
         b.tabIndex = on ? 0 : -1;
       });
-      Object.keys(panels).forEach(k=>{ if(panels[k]) panels[k].hidden = (k !== name); });
+      Object.keys(panels).forEach(k=> panels[k] && (panels[k].hidden = (k!==name)));
     }
-    window.activateTab = activate; // expose for anchor handler
-    btns.forEach(b=>{
+    tabs.forEach(b=>{
       b.addEventListener('click', ()=> activate(b.dataset.tab));
       b.addEventListener('keydown', e=>{
         if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
           e.preventDefault();
-          const i = btns.indexOf(b);
-          const next = e.key==='ArrowRight' ? (i+1)%btns.length : (i-1+btns.length)%btns.length;
-          btns[next].focus();
-          activate(btns[next].dataset.tab);
+          const arr = Array.from(tabs);
+          const i = arr.indexOf(b);
+          const next = e.key==='ArrowRight' ? (i+1)%arr.length : (i-1+arr.length)%arr.length;
+          arr[next].focus(); activate(arr[next].dataset.tab);
         }
       });
     });
-    const hash = (location.hash||'').replace('#','');
-    if(hash==='skills' || hash==='awards'){ activate(hash); } else { activate('projects'); }
-  })();
+    const hash2 = (location.hash||'').split('?tab=')[1];
+    activate((hash2==='skills'||hash2==='awards')?hash2:'projects');
+  }
+}
 
-  // Header shadow on scroll
-  (function(){
-    const h = document.querySelector('header');
-    const onScroll = ()=> h && h.classList.toggle('is-scrolled', window.scrollY>8);
-    window.addEventListener('scroll', onScroll, {passive:true});
-    onScroll();
-  })();
+window.addEventListener('hashchange', renderRoute);
+window.addEventListener('load', ()=>{
+  // Default to home if someone loads without hash
+  if(!location.hash) location.replace('#/');
+  renderRoute();
+});
 
-  // Desktop nav scrollspy + active highlight (with skills/awards override)
-  (function(){
-    const nav = document.querySelector('nav.links');
-    if(!nav) return;
-    const navLinks = Array.from(nav.querySelectorAll('a[href^="#"]'));
-    const idFor = a => (a.getAttribute('href')||'').replace('#','');
-    function setActive(name){ navLinks.forEach(a=> a.classList.toggle('active', idFor(a)===name)); }
-    let override = null; // 'skills' | 'awards' while on Projects section
-    nav.addEventListener('click', e=>{
-      const a = e.target.closest('a[href^="#"]'); if(!a) return;
-      const id = a.getAttribute('href');
-      if(id==='#skills' || id==='#awards'){ override = id.slice(1); setActive(override); }
-    });
-    const ids = ['about','experience','leadership','projects','contact'];
-    const els = ids.map(id=>document.getElementById(id)).filter(Boolean);
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const id = entry.target.id;
-          if((override==='skills'||override==='awards') && id==='projects'){
-            setActive(override);
-          } else {
-            setActive(id);
-            if(id!=='projects') override=null;
-          }
-        }
-      })
-    },{rootMargin:'-48% 0px -45% 0px',threshold:[0.1,0.4,0.6]});
-    els.forEach(el=>io.observe(el));
-  })();
-
+/* Prevent full reload if user middle-clicks brand to "#/": fine; external links open normally. */
 </script>
 </body>
 </html>
