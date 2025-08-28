@@ -44,41 +44,41 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .brand{display:flex;gap:10px;align-items:center}
   .brand-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#0e1b2e;border:1px solid #ffffff22;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 .brand-icon svg{width:24px;height:24px;display:block}
-/* Mobile menu button */
-.menu{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff12,#ffffff08);color:#eaf1ff}
-.menu:active{transform:translateY(1px)}
-@media(min-width:880px){.menu{display:none}}
-/* Mobile nav drawer */
-.mobile-nav{position:fixed;top:calc(64px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:none;flex-direction:column;gap:10px;padding:16px;width:min(94vw,520px);margin:0 auto;border-radius:18px;background:
+ /* Mobile menu button */
+  .menu{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff12,#ffffff08);color:#eaf1ff}
+  .menu:active{transform:translateY(1px)}
+  @media(min-width:880px){.menu{display:none}}
+  /* Mobile nav drawer */
+  .mobile-nav{position:fixed;top:calc(64px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:none;flex-direction:column;gap:10px;padding:16px;width:min(94vw,520px);margin:0 auto;border-radius:18px;background:
       radial-gradient(800px 300px at 70% -20%, rgba(99,214,255,.18), transparent 60%),
       radial-gradient(600px 260px at 0% 0%, rgba(122,162,255,.14), transparent 65%),
       linear-gradient(180deg,#0b1224f2,#0d1732f2);
   border:1px solid #ffffff2a;backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.35);
   transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
-.mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
-@media(min-width:880px){#mobile-nav{display:none !important}}
-.mobile-nav .nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,#ffffff14,#ffffff0c);border:1px solid #ffffff22}
-.mobile-nav .nav-item:hover{background:#ffffff1c}
-.mobile-nav .ni{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:#0f2037;border:1px solid #ffffff22}
-.mobile-nav .ni span{font-size:16px}
-.mobile-nav .nav-title{font-weight:600;color:#eaf3ff}
-.mobile-nav .divider{height:1px; background:#ffffff22; margin:6px 0 2px 0}
-.mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
-@media(min-width:880px){#mobile-nav{display:none !important}}
-.mobile-nav a{padding:10px 8px;border-radius:10px;color:#e7f3ff}
-.mobile-nav a:hover{background:#ffffff12}
-/* Extra safe padding on mobile */
-header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-right:calc(20px + env(safe-area-inset-right,0px))}
-@media(max-width:879px){.hero{padding-top:96px}}
+  .mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
+  @media(min-width:880px){#mobile-nav{display:none !important}}
+  .mobile-nav .nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,#ffffff14,#ffffff0c);border:1px solid #ffffff22}
+  .mobile-nav .nav-item:hover{background:#ffffff1c}
+  .mobile-nav .ni{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:#0f2037;border:1px solid #ffffff22}
+  .mobile-nav .ni span{font-size:16px}
+  .mobile-nav .nav-title{font-weight:600;color:#eaf3ff}
+  .mobile-nav .divider{height:1px; background:#ffffff22; margin:6px 0 2px 0}
+  .mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
+  @media(min-width:880px){#mobile-nav{display:none !important}}
+  .mobile-nav a{padding:10px 8px;border-radius:10px;color:#e7f3ff}
+  .mobile-nav a:hover{background:#ffffff12}
+  /* Extra safe padding on mobile */
+  header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-right:calc(20px + env(safe-area-inset-right,0px))}
+  @media(max-width:879px){.hero{padding-top:96px}}
   .links{display:none;gap:10px;align-items:center}
-.links a{position:relative;padding:10px 14px;border-radius:14px;border:1px solid transparent;background:
+  .links a{position:relative;padding:10px 14px;border-radius:14px;border:1px solid transparent;background:
   linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
   linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box; color:#dbeaff; opacity:.92; transition:all .2s ease}
-.links a:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
-.links a::after{content:"";position:absolute;left:12px;right:12px;bottom:-8px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));opacity:0;transform:translateY(2px);transition:opacity .2s,transform .2s}
-.links a.active{color:#fff;box-shadow:0 14px 30px rgba(99,214,255,.22)}
-.links a.active::after{opacity:1;transform:translateY(0)}
-@media(min-width:880px){.links{display:flex}}
+  .links a:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+  .links a::after{content:"";position:absolute;left:12px;right:12px;bottom:-8px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));opacity:0;transform:translateY(2px);transition:opacity .2s,transform .2s}
+  .links a.active{color:#fff;box-shadow:0 14px 30px rgba(99,214,255,.22)}
+  .links a.active::after{opacity:1;transform:translateY(0)}
+  @media(min-width:880px){.links{display:flex}}
   .btn{display:inline-flex;align-items:center;gap:10px;border-radius:16px;padding:10px 14px;border:1px solid transparent;
     background:linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
                linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box;
@@ -124,7 +124,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
 
   /* Sections */
   section{padding:52px 0; scroll-margin-top: 96px}
-@media(min-width:880px){section{scroll-margin-top: 76px}}
+  @media(min-width:880px){section{scroll-margin-top: 76px}}
   h2{font-size:24px;margin:0 0 14px;background:linear-gradient(90deg,#cfe8ff,#ffd1ef,#bffbe8);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
   h2::after{content:"";position:absolute;left:0;bottom:-8px;width:120px;height:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));border-radius:2px;opacity:.8}
   .grid-2{display:grid;gap:18px}
@@ -136,9 +136,9 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
   .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid transparent;
   background:linear-gradient(180deg,#10203a,#0b182f) padding-box,
              linear-gradient(135deg,var(--a1),var(--a5)) border-box;color:#e9f0ff;font-size:13px}
-.pill:nth-child(3n+1){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a5),var(--a3)) border-box}
-.pill:nth-child(3n+2){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a2),var(--a1)) border-box}
-.pill:nth-child(3n){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a4),var(--a2)) border-box}
+  .pill:nth-child(3n+1){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a5),var(--a3)) border-box}
+  .pill:nth-child(3n+2){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a2),var(--a1)) border-box}
+  .pill:nth-child(3n){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a4),var(--a2)) border-box}
   .muted{color:var(--muted);font-size:13px}
   .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 
@@ -216,7 +216,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       <div>
         <h1 id="title">Robotics • Autonomy • AI • Aerospace</h1>
         <p class="subtitle">AI Robotics Researcher • President, BattleBots • VEX Robotics Competitor</p>
-        <p class="lead">AI robotics researcher focused on controls, autonomy, and human‑useful software. Cofounder & CEO at <a href="https://fusionbots.org" target="_blank" rel="noreferrer">Fusion Bots</a>. CTO/CPO on the governing committee at YPSF (UN MGCY).</p>
+        <p class="lead">AI robotics researcher focused on controls, autonomy, and human-useful software. Cofounder & CEO at <a href="https://fusionbots.org" target="_blank" rel="noreferrer">Fusion Bots</a>. CTO/Director of Global Programmes on the governing committee at YPSF (UN MGCY).</p>
         <div class="cta">
           <a class="btn" href="#projects">🚀 See projects</a>
           <a class="btn" href="#contact">✉️ Contact</a>
@@ -237,7 +237,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
           <div class="fx robo" aria-hidden="true"></div>
           <div class="ic" aria-hidden="true">🛠️</div>
           <h3>Robotics</h3>
-          <p>Mechanisms, reliability, and closed‑loop control — design → build → test with data‑driven iteration.</p>
+          <p>Mechanisms, reliability, and closed-loop control — design → build → test with data-driven iteration.</p>
         </a>
         <a class="feature" href="#projects">
           <div class="fx ai" aria-hidden="true"></div>
@@ -266,7 +266,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       <div class="grid-2">
         <div class="card">
           <p><strong>Downingtown STEM Academy</strong> — IB Diploma Candidate (Class of 2026). Pathway: Robotics I–III. HL: Math AA, Physics, Economics; SL: German, Literature, TOK. <span class="muted">Weighted GPA 4.35.</span></p>
-          <p>I build end‑to‑end systems: perception and control on hardware, plus full‑stack web apps that people actually use. I value fast feedback loops, clear specs, and measurable results.</p>
+          <p>I build end-to-end systems: perception and control on hardware, plus full-stack web apps that people actually use. I value fast feedback loops, clear specs, and measurable results.</p>
           <p class="muted">3 years Varsity Tennis • Team Captain (2025–26).</p>
         </div>
         <div class="card">
@@ -285,40 +285,74 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
     <section id="experience" aria-labelledby="exp-title">
       <h2 id="exp-title">Experience</h2>
       <div class="list">
+
         <div class="item">
           <h3>🧪 Fusion Bots — Founder & CEO</h3>
-          <div class="meta"><span>May 2025 – Present</span><span>Startup • Education Robotics</span></div>
+          <div class="meta"><span>Apr 2025 – Present</span><span>Startup • Education Robotics</span></div>
           <ul class="bul">
-            <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; grew early revenue (~$5k) and ran workshops that expanded STEM access.</li>
-            <li>Recruited and led intern teams (marketing, software, operations). Built processes for fulfillment, customer support, and content.</li>
+            <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; revenue growth; ran workshops that expanded STEM access.</li>
+            <li>Recruited and led a team (6 core + 6 interns across product, outreach, operations); set processes for fulfillment, support, and content.</li>
           </ul>
-          <div class="muted">🔗 <a href="https://fusionbots.org" target="_blank" rel="noreferrer">fusionbots.org</a></div>
+          <div class="muted">10 hrs/wk, ~48 wks/yr • 🔗 <a href="https://fusionbots.org" target="_blank" rel="noreferrer">fusionbots.org</a></div>
+        </div>
+
+        <div class="item">
+          <h3>⚡ EV Bots Inc — AI Robotics Engineer Intern</h3>
+          <div class="meta"><span>Jul 2025 – Present</span><span>Autonomous EV-Charging Robots</span></div>
+          <ul class="bul">
+            <li>Built/programmed autonomous robots to dock and charge EVs via mobile app; integrated AI for perception and automation.</li>
+            <li>CAD + prototyping; hardware bring-up; test & optimization across software and electronics.</li>
+          </ul>
+          <div class="muted">18 hrs/wk, 52 wks/yr</div>
+        </div>
+
+        <div class="item">
+          <h3>🛩️ Ptero Labs — Intern (UAV Simulation)</h3>
+          <div class="meta"><span>Jul 2025 – Present</span><span>Mission-Grade UAV Sim • AI/ML</span></div>
+          <ul class="bul">
+            <li>Developed flight dynamics & control integration; AI/ML for mission planning and object detection.</li>
+            <li>Performance benchmarking and systems optimization within the simulation stack.</li>
+          </ul>
+          <div class="muted">15 hrs/wk, ~40 wks/yr</div>
         </div>
 
         <div class="item">
           <h3>🧰 iPipeline — Software Development Intern</h3>
           <div class="meta"><span>Summer 2025</span><span>Automation & Frontend</span></div>
           <ul class="bul">
-            <li>Built internal tools for QA automation and code‑workflow efficiency.</li>
+            <li>Built AI-assisted agents and internal tools for QA automation and code-workflow efficiency.</li>
             <li>Shipped UI enhancements and testing pipelines to improve developer velocity.</li>
           </ul>
+          <div class="muted">~24 hrs/wk, 4 wks</div>
         </div>
 
         <div class="item">
-          <h3>📘 Kumon Learning Center — Tutor</h3>
+          <h3>📘 Kumon Learning Center — Center Assistant/Tutor</h3>
           <div class="meta"><span>2022 – 2023</span><span>Math & English</span></div>
           <ul class="bul">
             <li>Taught students ages 4–16; graded work and maintained the data system to track mastery.</li>
           </ul>
+          <div class="muted">9 hrs/wk, ~32 wks/yr</div>
         </div>
 
         <div class="item">
           <h3>🎾 Tennis Coach — Paid & Volunteer</h3>
           <div class="meta"><span>2022 – 2025</span></div>
           <ul class="bul">
-            <li>Taught fundamentals (forehands, backhands, serves, volleys) to ages 8–15; ran drills; assisted head coach; helped new players make the team.</li>
+            <li>Taught fundamentals (serves, volleys, strokes) to ages 8–15; ran drills; assisted HS coach; organized sessions.</li>
           </ul>
+          <div class="muted">~25 hrs/wk, 12 wks/yr</div>
         </div>
+
+        <div class="item">
+          <h3>♟️ Chess Coach & Creator — Competitor, YouTuber</h3>
+          <div class="meta"><span>2014 – Present</span></div>
+          <ul class="bul">
+            <li>1800+ ELO; coached youth players; produced educational content (2k+ subs); competed OTB and online.</li>
+          </ul>
+          <div class="muted">~5 hrs/wk, ~40 wks/yr</div>
+        </div>
+
       </div>
     </section>
 
@@ -326,53 +360,89 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
     <section id="leadership" aria-labelledby="lead-title">
       <h2 id="lead-title">Leadership & Advocacy</h2>
       <div class="list">
+
         <div class="item">
-          <h3>🌍 CTO & CPO — YPSF (UN MGCY)</h3>
+          <h3>🌍 CTO & Director of Global Programmes — YPSF (UN MGCY)</h3>
           <div class="meta"><span>2024 – Present</span><span>Governing Committee (1 of 13) • ~600 members</span></div>
           <ul class="bul">
-            <li>Lead AI literacy and equitable digital‑policy initiatives; co‑develop global programming for youth tech empowerment.</li>
-            <li>Manage 6 program managers and their international fellow teams; set standards and roadmaps for delivery.</li>
+            <li>Lead AI literacy and equitable digital-policy initiatives; co-develop global programming for youth tech empowerment.</li>
+            <li>Manage program managers and international fellow teams; set standards and roadmaps for delivery.</li>
           </ul>
+          <div class="muted">~6 hrs/wk, ~30 wks/yr</div>
         </div>
 
         <div class="item">
           <h3>🪲 President — BattleBots Club</h3>
-          <div class="meta"><span>Downingtown STEM Academy</span></div>
+          <div class="meta"><span>Downingtown STEM Academy • 2022 – Present</span></div>
           <ul class="bul">
-            <li>Lead combat‑robot design, manufacturing, programming, and match strategy with emphasis on reliability and rapid field repair.</li>
+            <li>Lead combat-robot design, manufacturing, programming, and match strategy with emphasis on reliability and rapid field repair.</li>
           </ul>
+          <div class="muted">~8 hrs/wk, ~44 wks/yr</div>
         </div>
 
         <div class="item">
-          <h3>🤖 VEX Robotics — Competitor (State Finalist)</h3>
-          <div class="meta"><span>Design • Build • Programming • Match Strategy</span></div>
+          <h3>🤖 Captain/Lead Programmer — VEX Robotics (State Finalist)</h3>
+          <div class="meta"><span>2019, 2023 – Present</span><span>Design • C++/Python • PID • Auton</span></div>
           <ul class="bul">
-            <li>Developed competition robots emphasizing drive reliability, robust mechanisms, and maintainable code.</li>
-            <li>Collaborated on autonomous routines and tuning; practiced rapid pit‑repair and iterative improvements.</li>
+            <li>Led 6-member team; CAD, modular subsystems, autonomous routines, PID tuning; managed engineering notebook & judging presentations.</li>
+            <li>Built for reliability; coordinated strategy and rapid pit-repair during competition weeks.</li>
           </ul>
-        </div>
-
-        <div class="item">
-          <h3>📈 CIO/President — Stocks & Investments Club</h3>
-          <div class="meta"><span>140+ members</span></div>
-          <ul class="bul">
-            <li>Run financial‑literacy seminars and competitions; built an AI stock tracker that generates daily bullish watchlists.</li>
-          </ul>
+          <div class="muted">~15 hrs/wk (up to 30 near comps), ~40 wks/yr</div>
         </div>
 
         <div class="item">
           <h3>🚀 Founder/President — American Rocketry Challenge Club</h3>
+          <div class="meta"><span>2023 – Present</span></div>
           <ul class="bul">
-            <li>Lead CAD design, flight simulation, and physics/math calculations for safe launch profiles and recovery.</li>
+            <li>Founded 4 teams (40+ members); led CAD of payloads, propulsion analysis, and launch simulations; ensured safety & compliance.</li>
           </ul>
+          <div class="muted">~6 hrs/wk, ~32 wks/yr</div>
+        </div>
+
+        <div class="item">
+          <h3>📈 CIO/President — Stocks & Investments Club</h3>
+          <div class="meta"><span>2023 – Present</span><span>140+ members</span></div>
+          <ul class="bul">
+            <li>Grew membership; ran literacy workshops & competitions; built an AI stock tracker (40+ daily users); 3× personal portfolio.</li>
+          </ul>
+          <div class="muted">~4 hrs/wk, ~38 wks/yr</div>
+        </div>
+
+        <div class="item">
+          <h3>🎾 Varsity Tennis — Captain & Player</h3>
+          <div class="meta"><span>2022 – Present</span></div>
+          <ul class="bul">
+            <li>Team captain (2025–26); led drills & strategy; part of the first DWHS team to districts; playback semifinals.</li>
+          </ul>
+          <div class="muted">~23 hrs/wk, ~18 wks/yr</div>
+        </div>
+
+        <div class="item">
+          <h3>🏛️ National Honor Society — Member</h3>
+          <div class="meta"><span>2024 – Present</span></div>
+          <ul class="bul">
+            <li>Selected for academics and leadership; completed 20+ service hours supporting school and local projects.</li>
+          </ul>
+          <div class="muted">~0.5 hrs/wk, ~40 wks/yr</div>
+        </div>
+
+        <div class="item">
+          <h3>📚 Library Volunteer — STEM & Literacy Programs</h3>
+          <div class="meta"><span>2022</span></div>
+          <ul class="bul">
+            <li>Hosted STEM workshops and literacy programs (50+ youth); taught tech literacy and chess; boosted attendance by 60%.</li>
+          </ul>
+          <div class="muted">~6 hrs/wk, ~10 wks/yr</div>
         </div>
 
         <div class="item">
           <h3>🏅 State Competitor — DECA & HOSA</h3>
           <ul class="bul">
-            <li>Business operations research, presentation, and health science competition experience at the state level.</li>
+            <li>Advanced to states in business and health events; marketing program work and healthcare issues exam qualifier.</li>
           </ul>
+          <div class="muted">~2 hrs/wk, ~40 wks/yr (2022–2023)</div>
         </div>
+
       </div>
     </section>
 
@@ -390,11 +460,11 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       <div id="panel-projects" class="panel" role="tabpanel" aria-labelledby="tab-projects">
         <div class="list">
           <div class="item">
-            <h3>🌳 SAFMS — Smart Agro‑Forest Management System</h3>
-            <div class="meta"><span>React • AI • IoT simulation • Carbon‑credit concept</span></div>
+            <h3>🌳 SAFMS — Smart Agro-Forest Management System</h3>
+            <div class="meta"><span>React • AI • IoT simulation • Carbon-credit concept</span></div>
             <ul class="bul">
               <li>Built a web platform modeling sustainable agriculture with AI insights and a device simulation layer.</li>
-              <li>Prototyped a carbon‑credit trading interface and explored blockchain concepts for traceability.</li>
+              <li>Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</li>
             </ul>
             <div class="muted">🔗 <a href="https://safmstsa.vercel.app" target="_blank" rel="noreferrer">safmstsa.vercel.app</a></div>
           </div>
@@ -403,21 +473,21 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
             <h3>🛩️ Custom Racing Drone w/ Claw</h3>
             <div class="meta"><span>Betaflight • ESC integration • PID tuning</span></div>
             <ul class="bul">
-              <li>Designed and wired a competition‑grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness. Made to complete tasks.</li>
+              <li>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness. Made to complete tasks.</li>
             </ul>
           </div>
 
           <div class="item">
-            <h3>🧪 NitroCapture Pro — Zeolite‑Based Nitrogen Capture</h3>
-            <div class="meta"><span>Environmental • 3D‑printed • Experiment design</span></div>
+            <h3>🧪 NitroCapture Pro — Zeolite-Based Nitrogen Capture</h3>
+            <div class="meta"><span>Environmental • 3D-printed • Experiment design</span></div>
             <ul class="bul">
-              <li>3D‑printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li>
+              <li>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li>
             </ul>
           </div>
 
           <div class="item">
             <h3>🧭 Competition Robot</h3>
-            <div class="meta"><span>Autonomous + Tele‑op • Mechanisms • Controls</span></div>
+            <div class="meta"><span>Autonomous + Tele-op • Mechanisms • Controls</span></div>
             <ul class="bul">
               <li>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</li>
             </ul>
@@ -456,10 +526,10 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
           </div>
 
           <div class="item">
-            <h3>📈 AI Stock Tracker & Pre‑Market Watchlist</h3>
+            <h3>📈 AI Stock Tracker & Pre-Market Watchlist</h3>
             <div class="meta"><span>AI/ML • Finance • Web app</span></div>
             <ul class="bul">
-              <li>Built an AI‑assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li>
+              <li>Built an AI-assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li>
             </ul>
           </div>
         </div>
@@ -489,10 +559,10 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
 
       <div id="panel-awards" class="panel" role="tabpanel" aria-labelledby="tab-awards" hidden>
         <div class="list">
-          <div class="item">🏆 TSA Nationals Competitor (7 events); State Finalist in all entered events; Top‑5 Regional in all events.</div>
+          <div class="item">🏆 TSA Nationals Competitor (8 events); State Finalist in all entered events; Top-5 Regional in all events.</div>
           <div class="item">🤖 VEX Robotics State Finalist; 🏥 DECA & HOSA State Qualifier.</div>
           <div class="item">🧮 CalcUSolve: 1st Place Team, 2nd Place Individual.</div>
-          <div class="item">🎓 National Honor Society; 🗣️ Top‑10 Regional Debate Finalist.</div>
+          <div class="item">🎓 National Honor Society; 🗣️ Top-10 Regional Debate Finalist.</div>
         </div>
       </div>
     </section>
@@ -502,7 +572,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
       <h2 id="contact-title">Get in touch</h2>
       <div class="card">
         <p><strong>Ojasva Mishra</strong> • AI Robotics Researcher & Student Engineer</p>
-        <p class="muted">📞 (484) 703‑9916 • ✉️ <a href="mailto:ojasvamishra32@gmail.com">ojasvamishra32@gmail.com</a></p>
+        <p class="muted">📞 (484) 703-9916 • ✉️ <a href="mailto:ojasvamishra32@gmail.com">ojasvamishra32@gmail.com</a></p>
         <div class="cta" id="socials">
           <a class="btn" href="https://fusionbots.org" target="_blank" rel="noreferrer">🧪 Fusion Bots</a>
           <a class="btn" href="https://www.instagram.com/ojas_mishra32/" target="_blank" rel="noreferrer">📸 Instagram</a>
@@ -513,7 +583,7 @@ header .wrap{padding-left:calc(20px + env(safe-area-inset-left,0px));padding-rig
     </section>
   </main>
 
-  <footer>© <span id="yr"></span> Ojasva Mishra • Single‑file, Canvas‑ready</footer>
+  <footer>© <span id="yr"></span> Ojasva Mishra • Single-file, Canvas-ready</footer>
 
 <script>
   // Year
