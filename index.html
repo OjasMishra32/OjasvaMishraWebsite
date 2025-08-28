@@ -39,12 +39,12 @@
 
   /* Header */
   header{position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,#142a50cc,#173663cc);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff24;transition:box-shadow .25s ease, background .25s ease}
-header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
+  header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
   .brand{display:flex;gap:10px;align-items:center}
   .brand-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#0e1b2e;border:1px solid #ffffff22;box-shadow:0 8px 20px rgba(0,0,0,.3)}
-.brand-icon svg{width:24px;height:24px;display:block}
- /* Mobile menu button */
+  .brand-icon svg{width:24px;height:24px;display:block}
+  /* Mobile menu button */
   .menu{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff12,#ffffff08);color:#eaf1ff}
   .menu:active{transform:translateY(1px)}
   @media(min-width:880px){.menu{display:none}}
@@ -53,8 +53,8 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
       radial-gradient(800px 300px at 70% -20%, rgba(99,214,255,.18), transparent 60%),
       radial-gradient(600px 260px at 0% 0%, rgba(122,162,255,.14), transparent 65%),
       linear-gradient(180deg,#0b1224f2,#0d1732f2);
-  border:1px solid #ffffff2a;backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.35);
-  transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+    border:1px solid #ffffff2a;backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.35);
+    transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
   .mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
   @media(min-width:880px){#mobile-nav{display:none !important}}
   .mobile-nav .nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,#ffffff14,#ffffff0c);border:1px solid #ffffff22}
@@ -62,9 +62,7 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .mobile-nav .ni{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:#0f2037;border:1px solid #ffffff22}
   .mobile-nav .ni span{font-size:16px}
   .mobile-nav .nav-title{font-weight:600;color:#eaf3ff}
-  .mobile-nav .divider{height:1px; background:#ffffff22; margin:6px 0 2px 0}
-  .mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
-  @media(min-width:880px){#mobile-nav{display:none !important}}
+  .mobile-nav .divider{height:1px;background:#ffffff22;margin:6px 0 2px 0}
   .mobile-nav a{padding:10px 8px;border-radius:10px;color:#e7f3ff}
   .mobile-nav a:hover{background:#ffffff12}
   /* Extra safe padding on mobile */
@@ -72,8 +70,8 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   @media(max-width:879px){.hero{padding-top:96px}}
   .links{display:none;gap:10px;align-items:center}
   .links a{position:relative;padding:10px 14px;border-radius:14px;border:1px solid transparent;background:
-  linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
-  linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box; color:#dbeaff; opacity:.92; transition:all .2s ease}
+    linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
+    linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box; color:#dbeaff; opacity:.92; transition:all .2s ease}
   .links a:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
   .links a::after{content:"";position:absolute;left:12px;right:12px;bottom:-8px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));opacity:0;transform:translateY(2px);transition:opacity .2s,transform .2s}
   .links a.active{color:#fff;box-shadow:0 14px 30px rgba(99,214,255,.22)}
@@ -90,7 +88,6 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .hero{padding:64px 0 28px;display:grid;gap:22px;align-items:center}
   @media(min-width:980px){.hero{grid-template-columns:340px 1fr;gap:36px}}
   h1{font-size:42px;line-height:1.05;margin:0;background:linear-gradient(90deg,#bfe5ff 0%,#d6c4ff 20%,#ffb6ea 45%,#bdfce7 70%,#bfe5ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 28px rgba(99,214,255,.16)}
-  @media(min-width:880px){h1{font-size:64px}}
   @media(min-width:880px){h1{font-size:64px}}
   .lead{margin:10px 6px 0 0;color:#cfe4ff;max-width:860px}
   .subtitle{margin:8px 0 0;font-size:18px;color:#bfe0ff}
@@ -132,10 +129,10 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .card{border:1px solid transparent;background:
     linear-gradient(180deg,#0f1d37cc,#0c1630cc) padding-box,
     linear-gradient(135deg,var(--a1),var(--a3)) border-box;
-  border-radius:var(--radius);padding:18px;backdrop-filter:blur(4px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+    border-radius:var(--radius);padding:18px;backdrop-filter:blur(4px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
   .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid transparent;
-  background:linear-gradient(180deg,#10203a,#0b182f) padding-box,
-             linear-gradient(135deg,var(--a1),var(--a5)) border-box;color:#e9f0ff;font-size:13px}
+    background:linear-gradient(180deg,#10203a,#0b182f) padding-box,
+    linear-gradient(135deg,var(--a1),var(--a5)) border-box;color:#e9f0ff;font-size:13px}
   .pill:nth-child(3n+1){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a5),var(--a3)) border-box}
   .pill:nth-child(3n+2){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a2),var(--a1)) border-box}
   .pill:nth-child(3n){background:linear-gradient(180deg,#10203a,#0b182f) padding-box,linear-gradient(135deg,var(--a4),var(--a2)) border-box}
@@ -147,12 +144,21 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .item{border:1px solid transparent;background:
     linear-gradient(180deg,#0f1d37cc,#0c1630cc) padding-box,
     linear-gradient(135deg,var(--a2),var(--a1),var(--a5)) border-box;
-  border-radius:16px;padding:14px;transition:transform .2s ease, box-shadow .2s ease;backdrop-filter:blur(2px)}
+    border-radius:16px;padding:14px;transition:transform .2s ease, box-shadow .2s ease;backdrop-filter:blur(2px)}
   .item:hover{transform:translateY(-3px)}
   .item h3{margin:0 0 6px;font-size:16px}
   .meta{display:flex;gap:12px;flex-wrap:wrap;color:#cbd3e9;font-size:12px}
   .bul{margin:8px 0 0 18px}
   .bul li{margin:4px 0}
+
+  /* Link cue: external link icon + underline */
+  a.ext{position:relative;border-bottom:1px dotted rgba(255,255,255,.45);padding-right:18px}
+  a.ext::after{
+    content:"↗"; /* external link indicator */
+    position:absolute;right:0;top:50%;transform:translateY(-52%);
+    font-size:12px;opacity:.9
+  }
+  a.ext:hover{box-shadow:0 0 0 1px var(--ring) inset}
 
   /* Tabs */
   .tabs{display:inline-flex;border:1px solid #ffffff18;border-radius:12px;padding:4px;background:#ffffff12}
@@ -160,7 +166,7 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
   .tab.active{background:#53b8ff33;color:#bfe7ff}
 
   footer{padding:36px 0;color:#9eb4d0;font-size:12px;text-align:center;border-top:1px solid #ffffff22}
-@keyframes bgfloat{0%{background-position:15% -10%, 90% -20%, 80% 120%, -10% 110%, 0 0}100%{background-position:25% -5%, 80% -15%, 78% 110%, -4% 100%, 0 0}}
+  @keyframes bgfloat{0%{background-position:15% -10%, 90% -20%, 80% 120%, -10% 110%, 0 0}100%{background-position:25% -5%, 80% -15%, 78% 110%, -4% 100%, 0 0}}
 </style>
 </head>
 <body>
@@ -387,6 +393,7 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
           <ul class="bul">
             <li>Founded 4 teams (40+ members); led CAD of payloads, propulsion analysis, and launch simulations; ensured safety & compliance.</li>
           </ul>
+          <div class="muted">🔗 <a class="ext" href="https://arcstem.vercel.app" target="_blank" rel="noreferrer">arcstem.vercel.app</a></div>
         </div>
 
         <div class="item">
@@ -452,11 +459,11 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
               <li>Built a web platform modeling sustainable agriculture with AI insights and a device simulation layer.</li>
               <li>Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</li>
             </ul>
-            <div class="muted">🔗 <a href="https://safmstsa.vercel.app" target="_blank" rel="noreferrer">safmstsa.vercel.app</a></div>
+            <div class="muted">🔗 <a class="ext" href="https://safmstsa.vercel.app" target="_blank" rel="noreferrer">safmstsa.vercel.app</a></div>
           </div>
 
           <div class="item">
-            <h3>🛩️ <a href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noreferrer">Custom Racing Drone w/ Claw</a></h3>
+            <h3>🛩️ <a class="ext" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noreferrer">Custom Racing Drone w/ Claw</a></h3>
             <div class="meta"><span>Betaflight • ESC integration • PID tuning</span></div>
             <ul class="bul">
               <li>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness. Made to complete tasks.</li>
@@ -464,8 +471,8 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
           </div>
 
           <div class="item">
-            <h3>🧪 <a href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">NitroCapture Pro — Zeolite-Based Nitrogen Capture</a></h3>
-            <div class="meta"><span>Environmental • 3D-printed • Experiment/Engineering Design</span></div>
+            <h3>🧪 <a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">NitroCapture Pro — Zeolite-Based Nitrogen Capture</a></h3>
+            <div class="meta"><span>Environmental • 3D-printed • Experiment/<span class="ext" style="border-bottom:none;padding-right:0"><a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">Engineering&nbsp;Design</a></span></span></div>
             <ul class="bul">
               <li>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li>
             </ul>
@@ -488,7 +495,7 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
           </div>
 
           <div class="item">
-            <h3>🎮 <a href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noreferrer">Unity VR Escape Room</a></h3>
+            <h3>🎮 <a class="ext" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noreferrer">Unity VR Escape Room</a></h3>
             <div class="meta"><span>Unity • C# • Blender assets • Meta Quest</span></div>
             <ul class="bul">
               <li>Created an immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</li>
@@ -496,7 +503,7 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
           </div>
 
           <div class="item">
-            <h3>🛡️ <a href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" rel="noreferrer">Tower Defense — Systems Design</a></h3>
+            <h3>🛡️ <a class="ext" href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" rel="noreferrer">Tower Defense — Systems Design</a></h3>
             <div class="meta"><span>Game design • Balancing • Documentation</span></div>
             <ul class="bul">
               <li>Implemented layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</li>
@@ -545,7 +552,7 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
 
       <div id="panel-awards" class="panel" role="tabpanel" aria-labelledby="tab-awards" hidden>
         <div class="list">
-          <div class="item">🏆 TSA Nationals Competitor (8 events); State Finalist in all entered events; Top-5 Regional in all events.</div>
+          <div class="item">🏆 TSA Nationals Competitor (8 events, incl. <a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">Engineering&nbsp;Design</a>); State Finalist in all entered events; Top-5 Regional in all events.</div>
           <div class="item">🤖 VEX Robotics State Finalist; 🏥 DECA & HOSA State Qualifier.</div>
           <div class="item">🧮 CalcUSolve: 1st Place Team, 2nd Place Individual.</div>
           <div class="item">🎓 National Honor Society; 🗣️ Top-10 Regional Debate Finalist.</div>
@@ -574,6 +581,7 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
 <script>
   // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
+
   // Tabs
   const tabs = document.querySelectorAll('.tab');
   const panels = {
@@ -588,149 +596,150 @@ header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
       Object.keys(panels).forEach(k=>{ panels[k].hidden = (k !== btn.dataset.tab); });
     });
   });
+
   // Smooth anchors with sticky-header offset + mobile drawer close + tabs hash support
-function smoothScrollTo(id){
-  const el = document.querySelector(id);
-  const headerEl = document.querySelector('header');
-  const offset = (headerEl ? headerEl.offsetHeight : 64) + 8;
-  const y = el ? (el.getBoundingClientRect().top + window.scrollY - offset) : 0;
-  window.scrollTo({top: Math.max(y, 0), behavior:'smooth'});
-}
-
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', e=>{
-    const id = a.getAttribute('href');
-    // Special handling: header/menu links to Skills/Awards should switch tabs and scroll to Projects section
-    if(id==='#skills' || id==='#awards'){
-      e.preventDefault();
-      if(typeof window.activateTab === 'function') window.activateTab(id.slice(1));
-      const drawer = document.getElementById('mobile-nav');
-      const isOpen = drawer && drawer.classList.contains('open');
-      const go = ()=> smoothScrollTo('#projects');
-      if(isOpen && typeof closeNav === 'function'){ closeNav(); setTimeout(go, 220); } else { go(); }
-      return;
-    }
-    const target = document.querySelector(id);
-    if(target){
-      e.preventDefault();
-      const drawer = document.getElementById('mobile-nav');
-      const isOpen = drawer && drawer.classList.contains('open');
-      if(isOpen && typeof closeNav === 'function'){
-        closeNav();
-        setTimeout(()=> smoothScrollTo(id), 220);
-      } else {
-        smoothScrollTo(id);
-      }
-    }
-  });
-});
-
-// Mobile menu toggle (mobile-only + animated + scroll lock)
-const menuBtn = document.getElementById('menu');
-const mnav = document.getElementById('mobile-nav');
-const mq = window.matchMedia('(min-width: 880px)');
-function lockScroll(on){
-  document.documentElement.style.overflow = on ? 'hidden' : '';
-  document.body.style.overflow = on ? 'hidden' : '';
-}
-function closeNav(){
-  mnav.classList.remove('open');
-  menuBtn.classList.remove('open');
-  menuBtn.setAttribute('aria-expanded','false');
-  menuBtn.ariaLabel = 'Open menu';
-  menuBtn.textContent = '☰';
-  lockScroll(false);
-}
-function openNav(){
-  mnav.classList.add('open');
-  menuBtn.classList.add('open');
-  menuBtn.setAttribute('aria-expanded','true');
-  menuBtn.ariaLabel = 'Close menu';
-  menuBtn.textContent = '✕';
-  lockScroll(true);
-}
-if(menuBtn && mnav){
-  menuBtn.addEventListener('click', ()=>{ mnav.classList.contains('open') ? closeNav() : openNav(); });
-  mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
-  document.addEventListener('keyup', (e)=>{ if(e.key==='Escape') closeNav(); });
-  const enforce = ()=>{ if(mq.matches) closeNav(); };
-  mq.addEventListener ? mq.addEventListener('change', enforce) : mq.addListener(enforce);
-  enforce();
-}
-// Robust Tabs (desktop & mobile)
-(function(){
-  const btns = Array.from(document.querySelectorAll('.tab'));
-  const panels = {
-    projects: document.getElementById('panel-projects'),
-    skills: document.getElementById('panel-skills'),
-    awards: document.getElementById('panel-awards')
-  };
-  function activate(name){
-    btns.forEach(b=>{
-      const on = b.dataset.tab === name;
-      b.classList.toggle('active', on);
-      b.setAttribute('aria-selected', on ? 'true' : 'false');
-      b.tabIndex = on ? 0 : -1;
-    });
-    Object.keys(panels).forEach(k=>{ if(panels[k]) panels[k].hidden = (k !== name); });
+  function smoothScrollTo(id){
+    const el = document.querySelector(id);
+    const headerEl = document.querySelector('header');
+    const offset = (headerEl ? headerEl.offsetHeight : 64) + 8;
+    const y = el ? (el.getBoundingClientRect().top + window.scrollY - offset) : 0;
+    window.scrollTo({top: Math.max(y, 0), behavior:'smooth'});
   }
-  window.activateTab = activate; // expose for anchor handler
-  btns.forEach(b=>{
-    b.addEventListener('click', ()=> activate(b.dataset.tab));
-    b.addEventListener('keydown', e=>{
-      if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      // Skills/Awards switch tabs and scroll to Projects section
+      if(id==='#skills' || id==='#awards'){
         e.preventDefault();
-        const i = btns.indexOf(b);
-        const next = e.key==='ArrowRight' ? (i+1)%btns.length : (i-1+btns.length)%btns.length;
-        btns[next].focus();
-        activate(btns[next].dataset.tab);
+        if(typeof window.activateTab === 'function') window.activateTab(id.slice(1));
+        const drawer = document.getElementById('mobile-nav');
+        const isOpen = drawer && drawer.classList.contains('open');
+        const go = ()=> smoothScrollTo('#projects');
+        if(isOpen && typeof closeNav === 'function'){ closeNav(); setTimeout(go, 220); } else { go(); }
+        return;
       }
-    });
-  });
-  const hash = (location.hash||'').replace('#','');
-  if(hash==='skills' || hash==='awards'){ activate(hash); } else { activate('projects'); }
-})();
-
-// Header shadow on scroll
-(function(){
-  const h = document.querySelector('header');
-  const onScroll = ()=> h && h.classList.toggle('is-scrolled', window.scrollY>8);
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
-})();
-
-// Desktop nav scrollspy + active highlight (with skills/awards override)
-(function(){
-  const nav = document.querySelector('nav.links');
-  if(!nav) return;
-  const navLinks = Array.from(nav.querySelectorAll('a[href^="#"]'));
-  const idFor = a => (a.getAttribute('href')||'').replace('#','');
-  function setActive(name){ navLinks.forEach(a=> a.classList.toggle('active', idFor(a)===name)); }
-  let override = null; // 'skills' | 'awards' while on Projects section
-  nav.addEventListener('click', e=>{
-    const a = e.target.closest('a[href^="#"]'); if(!a) return;
-    const id = a.getAttribute('href');
-    if(id==='#skills' || id==='#awards'){ override = id.slice(1); setActive(override); }
-  });
-  const ids = ['about','experience','leadership','projects','contact'];
-  const els = ids.map(id=>document.getElementById(id)).filter(Boolean);
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const id = entry.target.id;
-        if((override==='skills'||override==='awards') && id==='projects'){
-          setActive(override);
+      const target = document.querySelector(id);
+      if(target){
+        e.preventDefault();
+        const drawer = document.getElementById('mobile-nav');
+        const isOpen = drawer && drawer.classList.contains('open');
+        if(isOpen && typeof closeNav === 'function'){
+          closeNav();
+          setTimeout(()=> smoothScrollTo(id), 220);
         } else {
-          setActive(id);
-          if(id!=='projects') override=null;
+          smoothScrollTo(id);
         }
       }
-    })
-  },{rootMargin:'-48% 0px -45% 0px',threshold:[0.1,0.4,0.6]});
-  els.forEach(el=>io.observe(el));
-})();
+    });
+  });
+
+  // Mobile menu toggle + scroll lock
+  const menuBtn = document.getElementById('menu');
+  const mnav = document.getElementById('mobile-nav');
+  const mq = window.matchMedia('(min-width: 880px)');
+  function lockScroll(on){
+    document.documentElement.style.overflow = on ? 'hidden' : '';
+    document.body.style.overflow = on ? 'hidden' : '';
+  }
+  function closeNav(){
+    mnav.classList.remove('open');
+    menuBtn.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.ariaLabel = 'Open menu';
+    menuBtn.textContent = '☰';
+    lockScroll(false);
+  }
+  function openNav(){
+    mnav.classList.add('open');
+    menuBtn.classList.add('open');
+    menuBtn.setAttribute('aria-expanded','true');
+    menuBtn.ariaLabel = 'Close menu';
+    menuBtn.textContent = '✕';
+    lockScroll(true);
+  }
+  if(menuBtn && mnav){
+    menuBtn.addEventListener('click', ()=>{ mnav.classList.contains('open') ? closeNav() : openNav(); });
+    mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
+    document.addEventListener('keyup', (e)=>{ if(e.key==='Escape') closeNav(); });
+    const enforce = ()=>{ if(mq.matches) closeNav(); };
+    mq.addEventListener ? mq.addEventListener('change', enforce) : mq.addListener(enforce);
+    enforce();
+  }
+
+  // Robust Tabs (desktop & mobile)
+  (function(){
+    const btns = Array.from(document.querySelectorAll('.tab'));
+    const panels = {
+      projects: document.getElementById('panel-projects'),
+      skills: document.getElementById('panel-skills'),
+      awards: document.getElementById('panel-awards')
+    };
+    function activate(name){
+      btns.forEach(b=>{
+        const on = b.dataset.tab === name;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        b.tabIndex = on ? 0 : -1;
+      });
+      Object.keys(panels).forEach(k=>{ if(panels[k]) panels[k].hidden = (k !== name); });
+    }
+    window.activateTab = activate; // expose for anchor handler
+    btns.forEach(b=>{
+      b.addEventListener('click', ()=> activate(b.dataset.tab));
+      b.addEventListener('keydown', e=>{
+        if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
+          e.preventDefault();
+          const i = btns.indexOf(b);
+          const next = e.key==='ArrowRight' ? (i+1)%btns.length : (i-1+btns.length)%btns.length;
+          btns[next].focus();
+          activate(btns[next].dataset.tab);
+        }
+      });
+    });
+    const hash = (location.hash||'').replace('#','');
+    if(hash==='skills' || hash==='awards'){ activate(hash); } else { activate('projects'); }
+  })();
+
+  // Header shadow on scroll
+  (function(){
+    const h = document.querySelector('header');
+    const onScroll = ()=> h && h.classList.toggle('is-scrolled', window.scrollY>8);
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+
+  // Desktop nav scrollspy + active highlight (with skills/awards override)
+  (function(){
+    const nav = document.querySelector('nav.links');
+    if(!nav) return;
+    const navLinks = Array.from(nav.querySelectorAll('a[href^="#"]'));
+    const idFor = a => (a.getAttribute('href')||'').replace('#','');
+    function setActive(name){ navLinks.forEach(a=> a.classList.toggle('active', idFor(a)===name)); }
+    let override = null; // 'skills' | 'awards' while on Projects section
+    nav.addEventListener('click', e=>{
+      const a = e.target.closest('a[href^="#"]'); if(!a) return;
+      const id = a.getAttribute('href');
+      if(id==='#skills' || id==='#awards'){ override = id.slice(1); setActive(override); }
+    });
+    const ids = ['about','experience','leadership','projects','contact'];
+    const els = ids.map(id=>document.getElementById(id)).filter(Boolean);
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const id = entry.target.id;
+          if((override==='skills'||override==='awards') && id==='projects'){
+            setActive(override);
+          } else {
+            setActive(id);
+            if(id!=='projects') override=null;
+          }
+        }
+      })
+    },{rootMargin:'-48% 0px -45% 0px',threshold:[0.1,0.4,0.6]});
+    els.forEach(el=>io.observe(el));
+  })();
 
 </script>
 </body>
 </html>
-
