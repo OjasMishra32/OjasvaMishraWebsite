@@ -134,7 +134,7 @@
 </style>
 </head>
 <body>
-  <!-- Top Nav (routes use #/...) -->
+  <!-- Top Nav: 'Home' replaces 'About' -->
   <header>
     <div class="wrap nav">
       <div class="brand">
@@ -150,7 +150,7 @@
       </div>
       <button class="menu" id="menu" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">☰</button>
       <nav class="links" aria-label="Primary">
-        <a data-link href="#/about">About</a>
+        <a data-link href="#/">Home</a>
         <a data-link href="#/experience">Experience</a>
         <a data-link href="#/leadership">Leadership</a>
         <a data-link href="#/projects">Projects</a>
@@ -158,7 +158,7 @@
       </nav>
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-      <a class="nav-item" href="#/about"><span class="ni"><span>ℹ️</span></span><span class="nav-title">About</span></a>
+      <a class="nav-item" href="#/"><span class="ni"><span>🏠</span></span><span class="nav-title">Home</span></a>
       <a class="nav-item" href="#/experience"><span class="ni"><span>💼</span></span><span class="nav-title">Experience</span></a>
       <a class="nav-item" href="#/leadership"><span class="ni"><span>✨</span></span><span class="nav-title">Leadership</span></a>
       <a class="nav-item" href="#/projects"><span class="ni"><span>🧪</span></span><span class="nav-title">Projects</span></a>
@@ -171,7 +171,8 @@
 
   <footer>© <span id="yr"></span> Ojasva Mishra</footer>
 
-  <!-- PAGES AS TEMPLATES (no extra files needed) -->
+  <!-- PAGES AS TEMPLATES -->
+  <!-- HOME now includes former ABOUT content directly below the hero -->
   <template id="page-home">
     <section class="hero" aria-labelledby="title">
       <div>
@@ -184,7 +185,7 @@
         <div class="cta">
           <a class="btn" href="#/projects">🚀 See projects</a>
           <a class="btn" href="#/contact">✉️ Contact</a>
-          <a class="btn" href="#/about">🌐 About</a>
+          <a class="btn" href="#/leadership">🌐 Leadership</a>
         </div>
         <div class="row" style="margin-top:10px">
           <span class="pill">🤖 Controls & Autonomy</span>
@@ -193,6 +194,7 @@
           <span class="pill">🛰️ Flight/ARC Sim</span>
         </div>
       </div>
+
       <div class="features" aria-label="Interests" style="grid-column:1/-1">
         <a class="feature" href="#/projects">
           <div class="tag">Featured</div><div class="fx robo" aria-hidden="true"></div><div class="ic" aria-hidden="true">🛠️</div>
@@ -203,9 +205,8 @@
         <a class="feature" href="#/projects"><div class="fx aero"></div><div class="ic">✈️</div><h3>Aerospace</h3><p>Flight simulation, rocketry CAD, and mission math for safe, stable trajectories.</p></a>
       </div>
     </section>
-  </template>
 
-  <template id="page-about">
+    <!-- Former ABOUT content appears here on the Home route -->
     <section aria-labelledby="about-title">
       <h2 id="about-title">About</h2>
       <div class="grid-2">
@@ -216,12 +217,18 @@
         </div>
         <div class="card">
           <strong>Focus Areas</strong>
-          <div class="pill">⚙️ Controls</div><div class="pill">🧩 Embedded</div><div class="pill">👁️ Perception</div><div class="pill">🗺️ Planning</div>
-          <div class="pill">🕸️ Web Apps</div><div class="pill">📣 Education & Outreach</div>
+          <div class="pill">⚙️ Controls</div>
+          <div class="pill">🧩 Embedded</div>
+          <div class="pill">👁️ Perception</div>
+          <div class="pill">🗺️ Planning</div>
+          <div class="pill">🕸️ Web Apps</div>
+          <div class="pill">📣 Education & Outreach</div>
         </div>
       </div>
     </section>
   </template>
+
+  <!-- (We no longer need a separate About page template) -->
 
   <template id="page-experience">
     <section aria-labelledby="exp-title">
@@ -500,10 +507,9 @@ if(menuBtn && mnav){
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 })();
 
-/* --------- HASH ROUTER (multipage in one file) --------- */
+/* --------- HASH ROUTER --------- */
 const routes = {
-  '/': 'page-home',
-  '/about': 'page-about',
+  '/': 'page-home',            // Combined Home + About
   '/experience': 'page-experience',
   '/leadership': 'page-leadership',
   '/projects': 'page-projects',
@@ -522,11 +528,11 @@ function renderRoute(){
 
   // Nav active state
   document.querySelectorAll('nav.links a[data-link]').forEach(a=>{
-    const match = a.getAttribute('href') === '#'+path;
+    const match = a.getAttribute('href') === '#'+path || (path==='/' && a.getAttribute('href')==='#/');
     a.classList.toggle('active', match);
   });
 
-  // If on Projects, wire tabs
+  // Projects tabs wiring if needed
   if (path === '/projects'){
     const tabs = document.querySelectorAll('.tab');
     const panels = {
@@ -555,19 +561,16 @@ function renderRoute(){
         }
       });
     });
-    const hash2 = (location.hash||'').split('?tab=')[1];
-    activate((hash2==='skills'||hash2==='awards')?hash2:'projects');
+    const tabHash = (location.hash||'').split('?tab=')[1];
+    activate((tabHash==='skills'||tabHash==='awards')?tabHash:'projects');
   }
 }
 
 window.addEventListener('hashchange', renderRoute);
 window.addEventListener('load', ()=>{
-  // Default to home if someone loads without hash
   if(!location.hash) location.replace('#/');
   renderRoute();
 });
-
-/* Prevent full reload if user middle-clicks brand to "#/": fine; external links open normally. */
 </script>
 </body>
 </html>
