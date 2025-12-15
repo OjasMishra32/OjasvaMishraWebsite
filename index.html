@@ -403,6 +403,23 @@
       100% { background-position: 0% 50%; }
     }
 
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+      box-shadow: 0 0 20px var(--neon-cyan);
+      animation: lineExpand 3s ease-in-out infinite;
+    }
+
+    @keyframes lineExpand {
+      0%, 100% { width: 200px; opacity: 0.8; }
+      50% { width: 400px; opacity: 1; }
+    }
 
     .hero-subtitle {
       font-size: clamp(1.125rem, 2vw, 1.5rem);
@@ -609,14 +626,25 @@
       color: var(--text);
       display: inline-block;
       width: 100%;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      letter-spacing: -0.02em;
     }
 
     .section-title::before {
       display: none;
     }
 
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+      border-radius: 2px;
+      box-shadow: 0 0 20px var(--neon-cyan);
+    }
 
     /* About Section */
     .about-grid {
@@ -1043,13 +1071,31 @@
       border-bottom-color: transparent;
     }
 
-    /* Projects List - Wodniack Style */
-    .projects-list {
-      max-width: 900px;
-      margin: 60px auto 0;
-      padding: 0 40px;
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 35px;
+      margin-top: 60px;
     }
 
+    .project-card {
+      background: rgba(21, 21, 32, 0.6);
+      backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
 
     .project-card::after {
       content: '';
@@ -1069,6 +1115,15 @@
       height: 500px;
     }
 
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 240, 255, 0.25);
+      box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.4),
+        0 0 32px rgba(0, 240, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      background: rgba(21, 21, 32, 0.75);
+    }
 
     .project-card h3 {
       font-size: 1.375rem;
@@ -1353,12 +1408,9 @@
       }
 
       .about-grid,
-      .interests-grid {
+      .interests-grid,
+      .projects-grid {
         grid-template-columns: 1fr;
-      }
-      
-      .projects-list {
-        padding: 0 20px;
       }
 
       .hero-image-container {
@@ -2298,121 +2350,6 @@
       100% { transform: translate(50px, 50px); }
     }
 
-    /* Binary Code Overlay - Wodniack Style */
-    .binary-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 100;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.1);
-      line-height: 1.6;
-      padding: 40px;
-      overflow: hidden;
-    }
-
-    .binary-overlay.active {
-      opacity: 1;
-    }
-
-    .binary-line {
-      position: absolute;
-      white-space: nowrap;
-      animation: binaryFlow 20s linear infinite;
-      opacity: 0;
-    }
-
-    @keyframes binaryFlow {
-      0% {
-        transform: translateY(-100px);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(calc(100vh + 100px));
-        opacity: 0;
-      }
-    }
-
-    /* Scroll Reveal Images - Wodniack Style */
-    .reveal-image {
-      width: 100%;
-      height: auto;
-      max-width: 900px;
-      margin: 100px auto;
-      display: block;
-      opacity: 0;
-      transform: translateY(150px) scale(0.9);
-      transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-      filter: grayscale(100%) blur(10px);
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .reveal-image.revealed {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: grayscale(0%) blur(0px);
-    }
-
-    .reveal-images-section {
-      margin-top: 120px;
-      padding: 0 40px;
-    }
-
-    /* Numbered Project Items - Wodniack Style */
-    .numbered-project {
-      position: relative;
-      padding: 24px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .numbered-project.revealed {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .numbered-project:hover {
-      transform: translateX(20px);
-      border-bottom-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .project-number {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.4);
-      margin-right: 16px;
-      display: inline-block;
-      min-width: 120px;
-    }
-
-    .project-link {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 1.125rem;
-      transition: color 0.3s ease;
-      display: inline-block;
-    }
-
-    .project-link:hover {
-      color: var(--neon-cyan);
-    }
-
     /* Floating Particles Enhanced */
     .particle {
       animation: floatParticle 20s ease-in-out infinite;
@@ -2468,9 +2405,6 @@
 
   <div class="particles" id="particles"></div>
   <div class="grid-overlay"></div>
-  
-  <!-- Binary Code Overlay (Wodniack-style) -->
-  <div class="binary-overlay" id="binaryOverlay"></div>
 
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -2499,13 +2433,14 @@
           <img src="ojasvamishra.jpeg" alt="Ojasva Mishra">
         </div>
         
-        <h1 class="hero-title">AI Robotics Researcher</h1>
+        <h1 class="hero-title">OJASVA MISHRA</h1>
         
-        <p class="hero-subtitle">Coding globally from Pennsylvania. Available for opportunities → <a href="#contact" class="glassbox-link">Hire me</a></p>
+        <p class="hero-subtitle">Robotics • Autonomy • AI • Aerospace</p>
         
         <p class="hero-description">
-          I build autonomous systems and AI solutions. Founder & CEO at <a href="#contact" class="glassbox-link">GlassBox AI</a> — launching soon. 
-          CTO/Director of Global Programmes on the governing committee at YPSF (UN MGCY). Focused on controls, autonomy, and human-useful software.
+          AI robotics researcher focused on controls, autonomy, and human-useful software. 
+          Founder & CEO at <a href="#contact" class="glassbox-link">GlassBox AI</a> — launching soon. 
+          CTO/Director of Global Programmes on the governing committee at YPSF (UN MGCY).
         </p>
 
         <div class="hero-tags">
@@ -2830,59 +2765,86 @@
 
     <!-- Projects Section -->
     <section id="projects" class="section">
-      <h2 class="section-title fade-in-scroll">P R O J E C T S</h2>
+      <h2 class="section-title fade-in-scroll">Projects & Technical Experience</h2>
       
-      <div class="projects-list">
-        <div class="numbered-project fade-in-scroll" data-index="0">
-          <span class="project-number">#3vva-0000/9</span>
-          <a href="https://safmstsa.vercel.app" target="_blank" class="project-link">SAFMS — Smart Agro-Forest Management System</a>
-        </div>
+      <div class="projects-grid">
+        <div class="project-card fade-in-scroll">
+          <h3>SAFMS — Smart Agro-Forest Management System</h3>
+          <div class="project-meta">React • AI • IoT simulation • Carbon-credit concept</div>
+          <ul>
+              <li>Built a web platform modeling sustainable agriculture with AI insights and a device simulation layer.</li>
+              <li>Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</li>
+            </ul>
+          <div style="margin-top: 15px; color: var(--text-dim);"><a href="https://safmstsa.vercel.app" target="_blank">safmstsa.vercel.app</a></div>
+          </div>
 
-        <div class="numbered-project fade-in-scroll" data-index="1">
-          <span class="project-number">#dbq8-0001/9</span>
-          <a href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" class="project-link">Custom Racing Drone w/ Claw</a>
-        </div>
+        <div class="project-card fade-in-scroll">
+          <h3>Custom Racing Drone w/ Claw</h3>
+          <div class="project-meta">Betaflight • ESC integration • PID tuning</div>
+          <ul>
+            <li>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness.</li>
+          </ul>
+          <div style="margin-top: 15px; color: var(--text-dim);"><a href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank">View Documentation</a></div>
+          </div>
 
-        <div class="numbered-project fade-in-scroll" data-index="2">
-          <span class="project-number">#ny2d-0002/9</span>
-          <a href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" class="project-link">NitroCapture Pro — Zeolite-Based Nitrogen Capture</a>
-        </div>
+        <div class="project-card fade-in-scroll">
+          <h3>NitroCapture Pro — Zeolite-Based Nitrogen Capture</h3>
+          <div class="project-meta">Environmental • 3D-printed • Engineering Design</div>
+          <ul>
+            <li>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li>
+          </ul>
+          <div style="margin-top: 15px; color: var(--text-dim);"><a href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank">View Documentation</a></div>
+          </div>
 
-        <div class="numbered-project fade-in-scroll" data-index="3">
-          <span class="project-number">#87va-0003/9</span>
-          <a href="#" class="project-link">Competition Robot</a>
-        </div>
+        <div class="project-card fade-in-scroll">
+            <h3>Competition Robot</h3>
+          <div class="project-meta">Autonomous + Tele-op • Mechanisms • Controls</div>
+          <ul>
+            <li>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</li>
+          </ul>
+          </div>
 
-        <div class="numbered-project fade-in-scroll" data-index="4">
-          <span class="project-number">#t44q-0004/9</span>
-          <a href="#" class="project-link">Systems Control Challenge</a>
-        </div>
+        <div class="project-card fade-in-scroll">
+            <h3>Systems Control Challenge</h3>
+          <div class="project-meta">Python • C++ • Feedback control</div>
+          <ul>
+            <li>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</li>
+          </ul>
+          </div>
 
-        <div class="numbered-project fade-in-scroll" data-index="5">
-          <span class="project-number">#3g5d-0005/9</span>
-          <a href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" class="project-link">Unity VR Escape Room</a>
-        </div>
+        <div class="project-card fade-in-scroll">
+          <h3>Unity VR Escape Room</h3>
+          <div class="project-meta">Unity • C# • Blender assets • Meta Quest</div>
+          <ul>
+            <li>Created an immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</li>
+          </ul>
+          <div style="margin-top: 15px; color: var(--text-dim);"><a href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank">View Documentation</a></div>
+          </div>
 
-        <div class="numbered-project fade-in-scroll" data-index="6">
-          <span class="project-number">#wksl-0006/9</span>
-          <a href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" class="project-link">Tower Defense — Systems Design</a>
-        </div>
+        <div class="project-card fade-in-scroll">
+          <h3>Tower Defense — Systems Design</h3>
+          <div class="project-meta">Game design • Balancing • Documentation</div>
+          <ul>
+            <li>Implemented layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</li>
+          </ul>
+          <div style="margin-top: 15px; color: var(--text-dim);"><a href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank">View Documentation</a></div>
+          </div>
 
-        <div class="numbered-project fade-in-scroll" data-index="7">
-          <span class="project-number">#0qh5-0007/9</span>
-          <a href="#" class="project-link">Modular Board Game System</a>
-        </div>
+        <div class="project-card fade-in-scroll">
+            <h3>Modular Board Game System</h3>
+          <div class="project-meta">Mechanics • Replayability</div>
+          <ul>
+            <li>Designed modular rule sets enabling variants and high replay value; emphasized clarity of interaction loops.</li>
+          </ul>
+          </div>
 
-        <div class="numbered-project fade-in-scroll" data-index="8">
-          <span class="project-number">#y15t-0008/9</span>
-          <a href="#" class="project-link">AI Stock Tracker & Pre-Market Watchlist</a>
-        </div>
-      </div>
-
-      <!-- Scroll Reveal Images Section - Wodniack Style -->
-      <div class="reveal-images-section">
-        <img src="ojasvamishra.jpeg" alt="Ojasva Mishra - Robotics Work" class="reveal-image" data-reveal="0">
-        <img src="ojasvamishra.jpeg" alt="Ojasva Mishra - AI Development" class="reveal-image" data-reveal="1">
+        <div class="project-card fade-in-scroll">
+            <h3>AI Stock Tracker & Pre-Market Watchlist</h3>
+          <div class="project-meta">AI/ML • Finance • Web app</div>
+          <ul>
+            <li>Built an AI-assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li>
+          </ul>
+          </div>
       </div>
 
       <!-- Skills Section within Projects -->
@@ -2940,15 +2902,19 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section">
-      <div class="contact-wrapper fade-in-scroll">
-        <a href="mailto:ojasvamishra32@gmail.com" class="contact-email">ojasvamishra32@gmail.com</a>
-        <div class="contact-links">
-          <a href="https://github.com/OjasMishra32" target="_blank" class="contact-link">GitHub</a>
-          <a href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" class="contact-link">LinkedIn</a>
-          <a href="https://www.instagram.com/ojas_mishra32/" target="_blank" class="contact-link">Instagram</a>
+      <div class="contact-content fade-in-scroll">
+        <h3>Get in Touch</h3>
+        <div class="contact-info">
+          <p><strong>Ojasva Mishra</strong></p>
+          <p>AI Robotics Researcher & Student Engineer</p>
+          <p style="margin-top: 30px;"><a href="tel:4847039916">(484) 703-9916</a></p>
+          <p><a href="mailto:ojasvamishra32@gmail.com">ojasvamishra32@gmail.com</a></p>
         </div>
-        <div class="glassbox-cta">
+        <div class="social-links">
           <a href="#contact" class="btn btn-primary"><span>GlassBox AI — Join Waitlist</span></a>
+          <a href="https://github.com/OjasMishra32" target="_blank" class="btn btn-secondary"><span>GitHub</span></a>
+          <a href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" class="btn btn-secondary"><span>LinkedIn</span></a>
+          <a href="https://www.instagram.com/ojas_mishra32/" target="_blank" class="btn btn-secondary"><span>Instagram</span></a>
         </div>
       </div>
     </section>
@@ -3056,7 +3022,7 @@
     });
 
     // Magnetic hover effect
-    document.querySelectorAll('.btn, .tag, .interest-card, .numbered-project').forEach(element => {
+    document.querySelectorAll('.btn, .tag, .interest-card, .project-card').forEach(element => {
       element.addEventListener('mousemove', (e) => {
         const rect = element.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
@@ -3240,35 +3206,10 @@
       });
     });
 
-    // Advanced section title reveals with letter-by-letter effect
+    // Add text reveal animation to section titles
     document.querySelectorAll('.section-title').forEach(title => {
-      const text = title.textContent;
-      title.textContent = '';
-      title.style.opacity = '1';
-      
-      [...text].forEach((char, index) => {
-        const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(20px)';
-        span.style.display = 'inline-block';
-        span.style.transition = `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.03}s`;
-        title.appendChild(span);
-      });
-      
-      const titleObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('span').forEach(span => {
-              span.style.opacity = '1';
-              span.style.transform = 'translateY(0)';
-            });
-            titleObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      
-      titleObserver.observe(title);
+      title.classList.add('text-reveal');
+      title.style.animationDelay = '0.3s';
     });
 
     // Particle explosion on click
@@ -3586,6 +3527,31 @@
       experienceObserver.observe(card);
     });
 
+    // Enhanced Project Card Animations
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px)';
+      
+      const projectObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+              
+              // Add random animation
+              const animations = ['swoop-in', 'zoom-spin', 'flip-in', 'bounce-drop', 'elastic-pop'];
+              entry.target.classList.add(animations[Math.floor(Math.random() * animations.length)]);
+            }, index * 150);
+            projectObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      projectObserver.observe(card);
+    });
 
     // Add stagger animations to all cards
     document.querySelectorAll('.about-card, .interest-card').forEach((card, index) => {
@@ -3614,136 +3580,7 @@
       if (card.textContent.includes('GlassBox')) {
         card.classList.add('glow-pulse');
       }
-    });
-
-    // Binary Code Overlay System - Wodniack Style
-    function generateBinaryCode() {
-      const binaryOverlay = document.getElementById('binaryOverlay');
-      const chars = '01';
-      const lines = 20;
-      
-      for (let i = 0; i < lines; i++) {
-        const line = document.createElement('div');
-        line.className = 'binary-line';
-        let binaryString = '';
-        
-        for (let j = 0; j < 150; j++) {
-          binaryString += chars[Math.floor(Math.random() * chars.length)] + ' ';
-        }
-        
-        line.textContent = binaryString;
-        line.style.left = Math.random() * 80 + '%';
-        line.style.animationDelay = (i * 0.5) + 's';
-        line.style.animationDuration = (15 + Math.random() * 10) + 's';
-        
-        binaryOverlay.appendChild(line);
-      }
-    }
-
-    // Scroll-triggered binary code display with smooth transitions
-    let binaryVisible = false;
-    let binaryTimeout;
-    window.addEventListener('scroll', () => {
-      clearTimeout(binaryTimeout);
-      binaryTimeout = setTimeout(() => {
-        const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        const binaryOverlay = document.getElementById('binaryOverlay');
-        
-        if (scrollPercent > 0.25 && scrollPercent < 0.75 && !binaryVisible) {
-          binaryOverlay.classList.add('active');
-          binaryVisible = true;
-        } else if ((scrollPercent <= 0.25 || scrollPercent >= 0.75) && binaryVisible) {
-          binaryOverlay.classList.remove('active');
-          binaryVisible = false;
-        }
-      }, 50);
-    }, { passive: true });
-
-    generateBinaryCode();
-
-    // Numbered Project Scroll Reveals - Wodniack Style
-    const numberedProjects = document.querySelectorAll('.numbered-project');
-    numberedProjects.forEach((project, index) => {
-      project.style.opacity = '0';
-      project.style.transform = 'translateX(-50px)';
-      
-      const projectObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateX(0)';
-              entry.target.classList.add('revealed');
-            }, index * 100);
-            projectObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
-      
-      projectObserver.observe(project);
-    });
-
-    // Scroll Reveal Images - Wodniack Style
-    const revealImages = document.querySelectorAll('.reveal-image');
-    revealImages.forEach((img, index) => {
-      const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add('revealed');
-            }, index * 200);
-            imageObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
-      
-      imageObserver.observe(img);
-    });
-
-    // Advanced Scroll Text Reveals
-    const textElements = document.querySelectorAll('.section-title, .hero-title, .hero-subtitle, .hero-description');
-    textElements.forEach((element, index) => {
-      element.style.opacity = '0';
-      element.style.transform = 'translateY(30px)';
-      
-      const textObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.transition = 'all 1s cubic-bezier(0.16, 1, 0.3, 1)';
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }, index * 150);
-            textObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      textObserver.observe(element);
-    });
-
-    // Advanced Scroll Parallax with Smoothness
-    let scrollTicking = false;
-    let lastScrollY = 0;
-    window.addEventListener('scroll', () => {
-      if (!scrollTicking) {
-        window.requestAnimationFrame(() => {
-          const currentScroll = window.pageYOffset;
-          
-          // Smooth parallax for hero elements
-          const heroImage = document.querySelector('.hero-image-container');
-          if (heroImage && currentScroll < window.innerHeight) {
-            const translateY = currentScroll * 0.2;
-            heroImage.style.transform = `translateY(${translateY}px)`;
-          }
-          
-          lastScrollY = currentScroll;
-          scrollTicking = false;
-        });
-        scrollTicking = true;
-      }
-    }, { passive: true });
+});
 </script>
 </body>
 </html>
