@@ -7,6 +7,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    // IMMEDIATE scroll prevention - must run before any rendering
+    (function() {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      document.documentElement.style.overflowY = 'hidden';
+      document.body.style.overflowY = 'hidden';
+      
+      // Prevent scroll during page load
+      window.addEventListener('scroll', function preventScroll(e) {
+        if (!document.body.classList.contains('boot-complete')) {
+          window.scrollTo(0, 0);
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, { passive: false, capture: true });
+    })();
+  </script>
 <style>
     * {
       margin: 0;
@@ -31,6 +50,7 @@
     html {
       scroll-behavior: smooth;
       overflow-x: hidden;
+      scroll-padding-top: 0;
     }
 
     body {
@@ -44,6 +64,19 @@
       font-weight: 400;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-y: hidden;
+    }
+    
+    body.boot-loading {
+      overflow-y: hidden !important;
+      position: fixed !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    
+    body.boot-complete {
+      overflow-y: auto !important;
+      position: relative !important;
     }
 
     /* Matrix Rain Background */
@@ -2944,6 +2977,22 @@
 </style>
 </head>
 <body>
+  <script>
+    // IMMEDIATE scroll to top - must be first thing to prevent glitch
+    (function() {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      document.body.classList.add('boot-loading');
+      
+      // Prevent any scroll during page load
+      window.addEventListener('scroll', function(e) {
+        if (document.body.classList.contains('boot-loading')) {
+          window.scrollTo(0, 0);
+        }
+      }, { passive: false });
+    })();
+  </script>
   <!-- Matrix Rain Canvas -->
   <canvas id="matrix-canvas"></canvas>
 
@@ -3477,11 +3526,13 @@
     }
 
     // Terminal Boot Screen - Simplified and faster
-    // Scroll to top immediately when page loads and prevent scrolling during boot
+    // Ensure we're at the top (already handled by inline script, but double-check)
+    if (!document.body.classList.contains('boot-loading')) {
+      document.body.classList.add('boot-loading');
+    }
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
-    document.body.classList.add('boot-loading');
     
     const bootScreen = document.getElementById('bootScreen');
     
@@ -3509,6 +3560,9 @@
                 bootScreen.style.display = 'none';
                 // Remove scroll lock and ensure we're at the top after boot screen hides
                 document.body.classList.remove('boot-loading');
+                document.body.classList.add('boot-complete');
+                document.documentElement.style.overflowY = 'auto';
+                document.body.style.overflowY = 'auto';
                 window.scrollTo(0, 0);
                 
                 // Animate hero elements in gradually
@@ -3533,6 +3587,9 @@
             bootScreen.style.display = 'none';
             // Remove scroll lock and ensure we're at the top after boot screen hides
             document.body.classList.remove('boot-loading');
+            document.body.classList.add('boot-complete');
+            document.documentElement.style.overflowY = 'auto';
+            document.body.style.overflowY = 'auto';
             window.scrollTo(0, 0);
             
             // Animate hero elements in gradually
