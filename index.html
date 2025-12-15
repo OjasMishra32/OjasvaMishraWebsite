@@ -1458,6 +1458,314 @@
     .magnetic {
       transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     }
+
+    /* Wave Animation */
+    .wave-effect {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wave-effect::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(0, 240, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .wave-effect:hover::after {
+      width: 600px;
+      height: 600px;
+    }
+
+    /* Glitch Effect */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    .glitch-text {
+      animation: glitch 0.3s infinite;
+    }
+
+    .glitch-text:hover {
+      animation: none;
+    }
+
+    /* Staggered Fade In */
+    @keyframes staggerFade {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .stagger-item {
+      opacity: 0;
+      animation: staggerFade 0.6s ease forwards;
+    }
+
+    /* Pulse Glow */
+    @keyframes pulseGlow {
+      0%, 100% {
+      box-shadow: 
+        0 0 20px rgba(0, 240, 255, 0.3),
+        0 0 40px rgba(176, 38, 255, 0.2),
+        inset 0 0 20px rgba(0, 240, 255, 0.1);
+      }
+      50% {
+      box-shadow: 
+        0 0 40px rgba(0, 240, 255, 0.6),
+        0 0 80px rgba(176, 38, 255, 0.4),
+        inset 0 0 40px rgba(0, 240, 255, 0.2);
+      }
+    }
+
+    .pulse-glow {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    /* Matrix Rain Effect Background */
+    .matrix-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    /* Gradient Text Shimmer */
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .shimmer-text {
+      background: linear-gradient(
+        90deg,
+        var(--neon-cyan) 0%,
+        var(--neon-purple) 25%,
+        var(--neon-pink) 50%,
+        var(--neon-purple) 75%,
+        var(--neon-cyan) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+
+    /* 3D Flip Card */
+    .flip-card {
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Rotating Border */
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .rotating-border {
+      position: relative;
+      border-radius: 20px;
+      padding: 3px;
+      background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink), var(--neon-cyan));
+      background-size: 400% 400%;
+      animation: rotate 3s linear infinite, gradientShift 8s ease infinite;
+    }
+
+    /* Ripple Effect */
+    @keyframes ripple {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    .ripple-effect {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ripple-effect::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: translate(-50%, -50%);
+      animation: ripple 0.6s ease-out;
+      opacity: 0;
+    }
+
+    .ripple-effect:active::before {
+      animation: ripple 0.6s ease-out;
+    }
+
+    /* Morphing Blob */
+    @keyframes morph {
+      0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      }
+      50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      }
+    }
+
+    .morphing-blob {
+      animation: morph 8s ease-in-out infinite;
+    }
+
+    /* Text Reveal */
+    @keyframes textReveal {
+      from {
+        clip-path: inset(0 100% 0 0);
+      }
+      to {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    .text-reveal {
+      animation: textReveal 1s ease-out forwards;
+    }
+
+    /* Scale on Scroll */
+    .scale-on-scroll {
+      transition: transform 0.3s ease;
+    }
+
+    .scale-on-scroll.visible {
+      transform: scale(1.05);
+    }
+
+    /* Glassmorphism Enhancement */
+    .glass-enhanced {
+      background: rgba(21, 21, 32, 0.4);
+      backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    /* Neon Flicker */
+    @keyframes neonFlicker {
+      0%, 100% { opacity: 1; filter: brightness(1); }
+      41.99% { opacity: 1; filter: brightness(1); }
+      42% { opacity: 0.78; filter: brightness(0.8); }
+      42.5% { opacity: 1; filter: brightness(1); }
+      43% { opacity: 0.78; filter: brightness(0.8); }
+      43.5% { opacity: 1; filter: brightness(1.2); }
+      50% { opacity: 1; filter: brightness(1); }
+      52% { opacity: 0.78; filter: brightness(0.8); }
+      54% { opacity: 1; filter: brightness(1.2); }
+      56% { opacity: 1; filter: brightness(1); }
+      57% { opacity: 0.78; filter: brightness(0.8); }
+      57.5% { opacity: 1; filter: brightness(1); }
+      58% { opacity: 0.78; filter: brightness(0.8); }
+      58.5% { opacity: 1; filter: brightness(1.2); }
+    }
+
+    .neon-flicker {
+      animation: neonFlicker 3s infinite;
+    }
+
+    /* Floating Animation */
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(2deg); }
+      66% { transform: translateY(-10px) rotate(-2deg); }
+    }
+
+    .floating-animation {
+      animation: floating 6s ease-in-out infinite;
+    }
+
+    /* Particle Explosion */
+    .particle-explosion {
+      position: fixed;
+      pointer-events: none;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--vx, 0), var(--vy, 0)) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Gradient Border Animation */
+    .gradient-border-animated {
+      position: relative;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(45deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    .gradient-border-animated::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border-radius: 18px;
+      background: var(--dark-2);
+      z-index: -1;
+    }
+
+    /* GlassBox Link */
+    .glassbox-link {
+      color: var(--neon-cyan);
+      text-decoration: none;
+      border-bottom: 1px solid var(--neon-cyan);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .glassbox-link:hover {
+      text-shadow: 0 0 10px var(--neon-cyan);
+      border-bottom-color: transparent;
+      color: var(--neon-purple);
+    }
   </style>
 </head>
 <body>
@@ -1512,7 +1820,7 @@
         
         <p class="hero-description">
           AI robotics researcher focused on controls, autonomy, and human-useful software. 
-          Cofounder & CEO at <a href="https://fusionbots.org" target="_blank">Fusion Bots</a>. 
+          Founder & CEO at <a href="#contact" class="glassbox-link">GlassBox AI</a> — launching soon. 
           CTO/Director of Global Programmes on the governing committee at YPSF (UN MGCY).
         </p>
 
@@ -1545,12 +1853,16 @@
         <div class="about-card fade-in-scroll">
           <h3>Focus Areas</h3>
           <div class="tags-container">
-            <div class="tag"><span>⚙️ Controls</span></div>
-            <div class="tag"><span>🧩 Embedded</span></div>
-            <div class="tag"><span>👁️ Perception</span></div>
-            <div class="tag"><span>🗺️ Planning</span></div>
-            <div class="tag"><span>🕸️ Web Apps</span></div>
-            <div class="tag"><span>📣 Education & Outreach</span></div>
+            <div class="tag"><span>💻 Computer Science</span></div>
+            <div class="tag"><span>🤖 Robotics</span></div>
+            <div class="tag"><span>💰 Finance & Investing</span></div>
+            <div class="tag"><span>✈️ Aerospace</span></div>
+            <div class="tag"><span>🧠 AI & Machine Learning</span></div>
+            <div class="tag"><span>🧭 Autonomy</span></div>
+            <div class="tag"><span>⚙️ Control Systems</span></div>
+            <div class="tag"><span>📊 PID Control</span></div>
+            <div class="tag"><span>🗺️ Perception & Mapping</span></div>
+            <div class="tag"><span>👁️ Computer Vision</span></div>
           </div>
         </div>
       </div>
@@ -1589,22 +1901,6 @@
       <div class="timeline">
         <div class="timeline-item fade-in-scroll" style="--index: 0">
           <div class="timeline-card">
-            <h3>🧪 Fusion Bots — Founder & CEO</h3>
-            <div class="timeline-meta">
-              <span>Jan 2025 – Present</span>
-              <span>•</span>
-              <span>Startup • Education Robotics</span>
-            </div>
-            <ul>
-              <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; demonstrated <strong>revenue growth</strong> and ran workshops that expanded STEM access.</li>
-              <li>Recruited and led a team <strong>(6 core + 6 interns)</strong> across product, outreach, and operations; set processes for fulfillment, support, and content.</li>
-            </ul>
-            <div style="margin-top: 15px; color: var(--text-dim);">🔗 <a href="https://fusionbots.org" target="_blank">fusionbots.org</a></div>
-          </div>
-        </div>
-
-        <div class="timeline-item fade-in-scroll" style="--index: 1">
-          <div class="timeline-card">
             <h3>⚡ EV Bots Inc — AI Robotics Engineer Intern</h3>
             <div class="timeline-meta">
               <span>Jul 2025 – Present</span>
@@ -1618,7 +1914,7 @@
           </div>
         </div>
 
-        <div class="timeline-item fade-in-scroll" style="--index: 2">
+        <div class="timeline-item fade-in-scroll" style="--index: 1">
           <div class="timeline-card">
             <h3>🛩️ Ptero Labs — Intern (UAV Simulation)</h3>
             <div class="timeline-meta">
@@ -1633,7 +1929,7 @@
           </div>
         </div>
 
-        <div class="timeline-item fade-in-scroll" style="--index: 3">
+        <div class="timeline-item fade-in-scroll" style="--index: 2">
           <div class="timeline-card">
             <h3>🧰 iPipeline — Software Development Intern</h3>
             <div class="timeline-meta">
@@ -1645,6 +1941,22 @@
               <li>Built AI-assisted agents and internal tools for QA automation and code-workflow efficiency.</li>
               <li>Shipped UI enhancements and testing pipelines to improve developer velocity.</li>
             </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in-scroll" style="--index: 3">
+          <div class="timeline-card">
+            <h3>🔮 GlassBox AI — Founder & CEO</h3>
+            <div class="timeline-meta">
+              <span>2025 – Present</span>
+              <span>•</span>
+              <span>AI Startup • Coming Soon</span>
+            </div>
+            <ul>
+              <li>Building next-generation AI solutions. Currently accepting waitlist signups for early access.</li>
+              <li>Revolutionizing how AI integrates with enterprise systems through innovative technology.</li>
+            </ul>
+            <div style="margin-top: 15px; color: var(--text-dim);">🔗 <a href="#contact">Join Waitlist</a></div>
           </div>
         </div>
 
@@ -1664,6 +1976,22 @@
 
         <div class="timeline-item fade-in-scroll" style="--index: 5">
           <div class="timeline-card">
+            <h3>🧪 Fusion Bots — Founder & CEO</h3>
+            <div class="timeline-meta">
+              <span>Jan 2025 – Present</span>
+              <span>•</span>
+              <span>Startup • Education Robotics</span>
+            </div>
+            <ul>
+              <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; demonstrated <strong>revenue growth</strong> and ran workshops that expanded STEM access.</li>
+              <li>Recruited and led a team <strong>(6 core + 6 interns)</strong> across product, outreach, and operations; set processes for fulfillment, support, and content.</li>
+            </ul>
+            <div style="margin-top: 15px; color: var(--text-dim);">🔗 <a href="https://fusionbots.org" target="_blank">fusionbots.org</a></div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in-scroll" style="--index: 6">
+          <div class="timeline-card">
             <h3>🎾 Tennis Coach — Paid & Volunteer</h3>
             <div class="timeline-meta">
               <span>2022 – 2025</span>
@@ -1674,7 +2002,7 @@
           </div>
         </div>
 
-        <div class="timeline-item fade-in-scroll" style="--index: 6">
+        <div class="timeline-item fade-in-scroll" style="--index: 7">
           <div class="timeline-card">
             <h3>♟️ Chess Coach & Creator — Competitor, YouTuber</h3>
             <div class="timeline-meta">
@@ -1960,10 +2288,10 @@
           <p>✉️ <a href="mailto:ojasvamishra32@gmail.com">ojasvamishra32@gmail.com</a></p>
         </div>
         <div class="social-links">
-          <a href="https://fusionbots.org" target="_blank" class="btn btn-primary"><span>🧪 Fusion Bots</span></a>
-          <a href="https://www.instagram.com/ojas_mishra32/" target="_blank" class="btn btn-secondary"><span>📸 Instagram</span></a>
+          <a href="#contact" class="btn btn-primary"><span>🔮 GlassBox AI — Join Waitlist</span></a>
           <a href="https://github.com/OjasMishra32" target="_blank" class="btn btn-secondary"><span>💻 GitHub</span></a>
           <a href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" class="btn btn-secondary"><span>🔗 LinkedIn</span></a>
+          <a href="https://www.instagram.com/ojas_mishra32/" target="_blank" class="btn btn-secondary"><span>📸 Instagram</span></a>
         </div>
       </div>
     </section>
@@ -2132,6 +2460,174 @@
         }
       });
     }, 5000);
+
+    // Add shimmer effect to hero title
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+      heroTitle.classList.add('shimmer-text');
+    }
+
+    // Staggered animation for tags
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach((tag, index) => {
+      tag.style.animationDelay = `${index * 0.1}s`;
+      tag.classList.add('stagger-item');
+    });
+
+    // Add pulse glow to GlassBox AI cards
+    const glassboxCards = document.querySelectorAll('.timeline-card:has(h3:contains("GlassBox"))');
+    document.querySelectorAll('.timeline-card').forEach(card => {
+      if (card.textContent.includes('GlassBox')) {
+        card.classList.add('pulse-glow');
+      }
+    });
+
+    // Wave effect on buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.classList.add('wave-effect');
+    });
+
+    // Enhanced particle system with more particles
+    function createEnhancedParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const extraParticles = 50;
+      
+      for (let i = 0; i < extraParticles; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 30 + 's';
+        particle.style.animationDuration = (Math.random() * 20 + 20) + 's';
+        
+        const colors = ['var(--neon-cyan)', 'var(--neon-purple)', 'var(--neon-pink)', 'var(--neon-green)', 'var(--neon-orange)'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.background = randomColor;
+        particle.style.boxShadow = `0 0 15px ${randomColor}, 0 0 30px ${randomColor}`;
+        particle.style.width = (Math.random() * 3 + 2) + 'px';
+        particle.style.height = particle.style.width;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+    setTimeout(createEnhancedParticles, 1000);
+
+    // Add floating animation to interest icons
+    document.querySelectorAll('.interest-icon').forEach((icon, index) => {
+      icon.style.animationDelay = `${index * 0.2}s`;
+      icon.classList.add('floating-animation');
+    });
+
+    // Add morphing blob effect to orbs
+    document.querySelectorAll('.orb').forEach(orb => {
+      orb.classList.add('morphing-blob');
+    });
+
+    // Enhanced scroll-based animations
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+          
+          // Rotate elements based on scroll
+          document.querySelectorAll('.interest-card').forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            if (rect.top < windowHeight && rect.bottom > 0) {
+              const progress = (windowHeight - rect.top) / windowHeight;
+              const rotation = (progress - 0.5) * 10;
+              card.style.transform = `translateY(${(progress - 0.5) * 20}px) rotate(${rotation}deg)`;
+            }
+          });
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // Neon flicker effect on random elements
+    setInterval(() => {
+      const elements = document.querySelectorAll('.tag, .btn-primary, h3');
+      const randomEl = elements[Math.floor(Math.random() * elements.length)];
+      if (randomEl) {
+        randomEl.classList.add('neon-flicker');
+        setTimeout(() => {
+          randomEl.classList.remove('neon-flicker');
+        }, 3000);
+      }
+    }, 8000);
+
+    // Add gradient border to GlassBox AI button
+    document.querySelectorAll('.btn').forEach(btn => {
+      if (btn.textContent.includes('GlassBox')) {
+        btn.classList.add('gradient-border-animated');
+      }
+    });
+
+    // Enhanced cursor trail with colors
+    document.addEventListener('mousemove', (e) => {
+      const colors = ['rgba(0, 240, 255,', 'rgba(176, 38, 255,', 'rgba(255, 0, 110,', 'rgba(57, 255, 20,'];
+      cursorTrails.forEach((trail, index) => {
+        if (index === 0) {
+          trail.targetX = e.clientX;
+          trail.targetY = e.clientY;
+          const colorIndex = Math.floor(Math.random() * colors.length);
+          trail.element.style.background = `${colors[colorIndex]} ${1 - index / trailCount})`;
+        } else {
+          trail.targetX = cursorTrails[index - 1].x;
+          trail.targetY = cursorTrails[index - 1].y;
+        }
+      });
+    });
+
+    // Add text reveal animation to section titles
+    document.querySelectorAll('.section-title').forEach(title => {
+      title.classList.add('text-reveal');
+      title.style.animationDelay = '0.3s';
+    });
+
+    // Particle explosion on click
+    document.addEventListener('click', (e) => {
+      const colors = ['var(--neon-cyan)', 'var(--neon-purple)', 'var(--neon-pink)', 'var(--neon-green)'];
+      
+      for (let i = 0; i < 10; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle-explosion';
+        particle.style.left = e.clientX + 'px';
+        particle.style.top = e.clientY + 'px';
+        particle.style.width = '6px';
+        particle.style.height = '6px';
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.position = 'fixed';
+        particle.style.zIndex = '10000';
+        particle.style.animation = 'explode 0.6s ease-out forwards';
+        particle.style.animationDelay = (i * 0.05) + 's';
+        
+        const angle = (Math.PI * 2 * i) / 10;
+        const velocity = 50;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity;
+        
+        particle.style.setProperty('--vx', vx + 'px');
+        particle.style.setProperty('--vy', vy + 'px');
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+          particle.remove();
+        }, 600);
+      }
+    });
+
+    // Add enhanced glassmorphism to cards
+    document.querySelectorAll('.card, .timeline-card, .project-card, .about-card').forEach(card => {
+      card.classList.add('glass-enhanced');
+    });
   </script>
 </body>
 </html>
