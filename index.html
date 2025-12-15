@@ -4379,10 +4379,7 @@
       }, duration);
     }
 
-    // Show welcome notification
-    setTimeout(() => {
-      showNotification('> SYSTEM INITIALIZED', 2000);
-    }, 3000);
+    // Welcome notification removed per user request
 
     // Data Visualization Bars
     function createDataBars(container) {
@@ -4463,20 +4460,19 @@
 
     // Interactive Terminal Commands
     document.addEventListener('keydown', (e) => {
-      // Press 'H' for help
+      // Press 'H' for help - notification removed per user request
       if (e.key === 'h' || e.key === 'H') {
         if (e.ctrlKey || e.metaKey) {
           e.preventDefault();
-          showNotification('> HELP: Press ESC for menu, H for help, C for contact', 3000);
+          // Help notification removed
         }
       }
       
-      // Press 'C' for contact
+      // Press 'C' for contact - notification removed per user request
       if (e.key === 'c' || e.key === 'C') {
         if (e.ctrlKey || e.metaKey) {
           e.preventDefault();
           document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-          showNotification('> NAVIGATING TO CONTACT SECTION', 2000);
         }
       }
     });
@@ -4513,26 +4509,7 @@
       }
     }, 5000);
 
-    // Terminal Command Prompt Simulation - Removed "LOADING PROFILE DATA" and "ACCESSING PORTFOLIO" popups per user request
-    function simulateTerminalCommands() {
-      const commands = [
-        '> SYSTEM READY',
-        '> INITIALIZING INTERFACE...',
-        '> CONNECTION ESTABLISHED'
-      ];
-      
-      let commandIndex = 0;
-      setInterval(() => {
-        if (commandIndex < commands.length && Math.random() > 0.5) {
-          showNotification(commands[commandIndex], 2000);
-          commandIndex++;
-          if (commandIndex >= commands.length) {
-            commandIndex = 0;
-          }
-        }
-      }, 8000);
-    }
-    simulateTerminalCommands();
+    // Terminal Command Prompt Simulation - Removed per user request (all popup notifications removed)
 
     // Advanced Hover Effects with Particles
     document.querySelectorAll('.btn, .tag').forEach(element => {
@@ -4745,25 +4722,23 @@
       }
     }, { passive: true });
 
-    // Terminal Command Execution Simulation
+    // Terminal Command Execution Simulation - notifications removed per user request
     function executeCommand(command) {
       const commands = {
-        'help': () => showNotification('> Available commands: help, about, experience, projects, contact', 3000),
+        'help': () => {
+          // Help command - notification removed
+        },
         'about': () => {
           document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-          showNotification('> Navigating to ABOUT section', 2000);
         },
         'experience': () => {
           document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });
-          showNotification('> Navigating to EXPERIENCE section', 2000);
         },
         'projects': () => {
           document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-          showNotification('> Navigating to PROJECTS section', 2000);
         },
         'contact': () => {
           document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-          showNotification('> Navigating to CONTACT section', 2000);
         }
       };
       
@@ -4775,13 +4750,13 @@
       return false;
     }
 
-    // Terminal Input Handler (for future terminal interface)
+    // Terminal Input Handler (for future terminal interface) - notifications removed per user request
     function handleTerminalInput(input) {
       if (input.trim() === '') return;
       
       const command = input.trim().split(' ')[0];
       if (!executeCommand(command)) {
-        showNotification(`> Command not found: ${command}. Type 'help' for available commands`, 3000);
+        // Command not found notification removed
       }
     }
 
@@ -4808,17 +4783,16 @@
     }
     monitorPerformance();
 
-    // Terminal Easter Eggs
+    // Terminal Easter Eggs - notifications removed per user request
     const easterEggs = {
       'matrix': () => {
-        showNotification('> Welcome to the Matrix...', 3000);
-        // Could trigger special matrix effect
+        // Matrix effect - notification removed
       },
       'hack': () => {
-        showNotification('> Access granted. System compromised.', 3000);
+        // Hack effect - notification removed
       },
       'sudo': () => {
-        showNotification('> Root access denied. Insufficient permissions.', 3000);
+        // Sudo effect - notification removed
       }
     };
 
@@ -4898,46 +4872,26 @@
       }
       
       showHelp() {
-        const helpText = `
-> Available Commands:
-  help       - Show this help message
-  clear      - Clear terminal
-  about      - Navigate to about section
-  experience - Navigate to experience section
-  projects   - Navigate to projects section
-  contact    - Navigate to contact section
-  status     - Show system status
-  matrix     - Activate matrix effect
-        `;
-        showNotification(helpText, 5000);
+        // Help command - notification removed per user request
       }
       
       clear() {
-        showNotification('> Terminal cleared', 2000);
+        // Clear command - notification removed per user request
       }
       
       navigateTo(section) {
         const element = document.getElementById(section);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
-          showNotification(`> Navigating to ${section.toUpperCase()} section`, 2000);
         }
       }
       
       showStatus() {
-        const status = `
-> System Status:
-  CPU: ${Math.floor(Math.random() * 30 + 20)}%
-  Memory: ${Math.floor(Math.random() * 40 + 30)}%
-  Network: Active
-  Uptime: 24:15:32
-        `;
-        showNotification(status, 4000);
+        // Status command - notification removed per user request
       }
       
       matrixEffect() {
-        showNotification('> Matrix effect activated', 2000);
-        // Could trigger enhanced matrix effect
+        // Matrix effect - notification removed per user request
       }
       
       execute(command) {
@@ -5147,22 +5101,9 @@
       }
     }
 
-    // Terminal Sound Effects (visual only, no audio)
+    // Terminal Sound Effects (visual only, no audio) - notifications removed per user request
     function playVisualEffect(effectType) {
-      switch(effectType) {
-        case 'success':
-          showNotification('> ✓ Operation successful', 2000);
-          break;
-        case 'error':
-          showNotification('> ✗ Operation failed', 2000);
-          break;
-        case 'warning':
-          showNotification('> ⚠ Warning detected', 2000);
-          break;
-        case 'info':
-          showNotification('> ℹ Information', 2000);
-          break;
-      }
+      // All visual effect notifications removed per user request
     }
 
     // System Health Monitor
