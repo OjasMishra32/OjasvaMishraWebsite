@@ -175,6 +175,14 @@
       justify-content: center;
       flex-wrap: wrap;
       box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    nav.loaded {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     nav a {
@@ -246,6 +254,14 @@
     .hero-image-container {
       margin-bottom: 25px;
       position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .hero-image-container.loaded {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero-image-container img {
@@ -290,6 +306,14 @@
       letter-spacing: 4px;
       animation: titleGlow 3s ease-in-out infinite;
       position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .hero-title.loaded {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     @keyframes titleGlow {
@@ -313,6 +337,14 @@
       margin-bottom: 20px;
       font-weight: 500;
       letter-spacing: 2px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .hero-subtitle.loaded {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero-description {
@@ -321,6 +353,14 @@
       margin: 0 auto 25px;
       color: var(--text-dim);
       line-height: 1.7;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .hero-description.loaded {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero-description a {
@@ -343,6 +383,14 @@
       flex-wrap: wrap;
       justify-content: center;
       margin-bottom: 25px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .hero-tags.loaded {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .tag {
@@ -385,6 +433,14 @@
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .hero-buttons.loaded {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .btn {
@@ -2899,7 +2955,6 @@
     <div class="boot-text">INITIALIZING SYSTEM...</div>
     <div class="boot-command">> CONNECTING TO SERVER...</div>
     <div class="boot-command">> LOADING PROFILE DATA...</div>
-    <div class="boot-command">> ACCESSING PORTFOLIO...</div>
     <div class="boot-command">> SYSTEM READY</div>
       </div>
 
@@ -3455,6 +3510,9 @@
                 // Remove scroll lock and ensure we're at the top after boot screen hides
                 document.body.classList.remove('boot-loading');
                 window.scrollTo(0, 0);
+                
+                // Animate hero elements in gradually
+                animateHeroElements();
               }, 500);
             }
           }, 800); // Shorter delay: 800ms instead of 1000ms
@@ -3476,12 +3534,56 @@
             // Remove scroll lock and ensure we're at the top after boot screen hides
             document.body.classList.remove('boot-loading');
             window.scrollTo(0, 0);
+            
+            // Animate hero elements in gradually
+            animateHeroElements();
           }, 300);
         }
       }, 4000); // Much faster: 4 seconds instead of 10
     } else {
       // If boot screen doesn't exist, ensure it's hidden
       console.warn('Boot screen element not found');
+    }
+
+    // Animate hero elements gradually after boot screen
+    function animateHeroElements() {
+      const nav = document.querySelector('nav');
+      const heroImage = document.querySelector('.hero-image-container');
+      const heroTitle = document.querySelector('.hero-title');
+      const heroSubtitle = document.querySelector('.hero-subtitle');
+      const heroDescription = document.querySelector('.hero-description');
+      const heroTags = document.querySelector('.hero-tags');
+      const heroButtons = document.querySelector('.hero-buttons');
+      
+      // Animate navigation first
+      setTimeout(() => {
+        if (nav) nav.classList.add('loaded');
+      }, 50);
+      
+      // Animate in sequence with staggered delays
+      setTimeout(() => {
+        if (heroImage) heroImage.classList.add('loaded');
+      }, 200);
+      
+      setTimeout(() => {
+        if (heroTitle) heroTitle.classList.add('loaded');
+      }, 500);
+      
+      setTimeout(() => {
+        if (heroSubtitle) heroSubtitle.classList.add('loaded');
+      }, 800);
+      
+      setTimeout(() => {
+        if (heroDescription) heroDescription.classList.add('loaded');
+      }, 1100);
+      
+      setTimeout(() => {
+        if (heroTags) heroTags.classList.add('loaded');
+      }, 1400);
+      
+      setTimeout(() => {
+        if (heroButtons) heroButtons.classList.add('loaded');
+      }, 1700);
     }
 
     // Scroll Progress Bar
@@ -4354,10 +4456,9 @@
       }
     }, 5000);
 
-    // Terminal Command Prompt Simulation - Removed "LOADING PROFILE DATA" popup per user request
+    // Terminal Command Prompt Simulation - Removed "LOADING PROFILE DATA" and "ACCESSING PORTFOLIO" popups per user request
     function simulateTerminalCommands() {
       const commands = [
-        '> ACCESSING PORTFOLIO...',
         '> SYSTEM READY',
         '> INITIALIZING INTERFACE...',
         '> CONNECTION ESTABLISHED'
