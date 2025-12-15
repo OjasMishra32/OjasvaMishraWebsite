@@ -58,7 +58,7 @@
       pointer-events: none;
     }
 
-    /* Terminal Boot Screen */
+    /* Terminal Boot Screen - Centered Full Screen */
     .boot-screen {
       position: fixed;
       inset: 0;
@@ -70,6 +70,7 @@
       align-items: center;
       font-family: 'JetBrains Mono', monospace;
       color: var(--hacker-green);
+      text-align: center;
     }
 
     .boot-screen.hidden {
@@ -2349,21 +2350,7 @@
       text-shadow: 0 0 10px var(--hacker-green);
     }
 
-    /* System Monitor */
-    .system-monitor {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 12px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .monitor-item {
-      background: rgba(0, 0, 0, 0.7);
-      border: 1px solid var(--hacker-green);
-      padding: 12px;
-      border-radius: 4px;
-      text-align: center;
-    }
+    /* System Monitor - REMOVED per user request */
 
     /* Time on Earth Counter */
     .time-on-earth {
@@ -2489,18 +2476,7 @@
       transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    .monitor-label {
-      color: var(--hacker-green-dim);
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-    }
-
-    .monitor-value {
-      color: var(--hacker-green);
-      font-size: 1.5rem;
-      text-shadow: 0 0 10px var(--hacker-green);
-      font-weight: 700;
-    }
+    /* Monitor label/value styles - REMOVED per user request */
 
     /* Terminal Window Manager */
     .window-manager {
@@ -3250,8 +3226,8 @@
 
     // Slither.io-Style Game System
     let gameScore = 0;
-    let trailLength = 15; // Start with smaller, more compact trail
-    const baseTrailCount = 15;
+    let trailLength = 2; // Start with 2 circles as requested
+    const baseTrailCount = 2;
     const minSegmentSize = 4; // Smaller minimum size
     const maxSegmentSize = 8; // Smaller maximum size
     
@@ -3265,9 +3241,11 @@
     `;
     document.body.appendChild(gameScoreDisplay);
 
-    // Advanced Cursor Trail System (Slither.io style - Compact)
+    // Advanced Cursor Trail System (Slither.io style - Exact Path Following)
     const cursorTrails = [];
     const segmentSpacing = 12; // Spacing between segments for more compact look
+    const pathHistory = []; // Store cursor path history for exact following
+    const maxPathHistory = 100; // Maximum path points to store
     
     function createTrailSegment(size, opacity, index) {
       const trail = document.createElement('div');
@@ -3279,8 +3257,21 @@
       trail.style.borderColor = `rgba(0, 255, 65, ${opacity})`;
       trail.style.boxShadow = `0 0 ${size * 0.3}px rgba(0, 255, 65, ${opacity})`;
       trail.style.background = `rgba(0, 255, 65, ${opacity * 0.2})`;
+      trail.style.position = 'fixed';
+      trail.style.pointerEvents = 'none';
       document.body.appendChild(trail);
-      return { element: trail, x: 0, y: 0, targetX: 0, targetY: 0, size: size };
+      
+      // Initialize with current mouse position to prevent top-left glitch
+      const initialX = window.innerWidth / 2;
+      const initialY = window.innerHeight / 2;
+      
+      return { 
+        element: trail, 
+        x: initialX, 
+        y: initialY, 
+        pathIndex: 0, // Index in path history
+        size: size 
+      };
     }
     
     function updateTrailLength() {
@@ -3288,58 +3279,80 @@
       cursorTrails.forEach(trail => trail.element.remove());
       cursorTrails.length = 0;
       
-      // Create new trails based on current length - more compact
+      // Create new trails based on current length
       for (let i = 0; i < trailLength; i++) {
-        const sizeProgress = i / trailLength;
+        const sizeProgress = i / Math.max(trailLength, 1);
         const size = maxSegmentSize - (sizeProgress * (maxSegmentSize - minSegmentSize));
-        const opacity = (1 - sizeProgress * 0.5) * 0.6; // More transparent, less visible
-        cursorTrails.push(createTrailSegment(size, opacity, i));
+        const opacity = (1 - sizeProgress * 0.5) * 0.6;
+        const segment = createTrailSegment(size, opacity, i);
+        segment.pathIndex = Math.max(0, pathHistory.length - (i * Math.floor(segmentSpacing / 2)));
+        cursorTrails.push(segment);
       }
     }
     
+    // Initialize with center position to prevent glitch
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    
+    // Initialize path history with current position
+    for (let i = 0; i < maxPathHistory; i++) {
+      pathHistory.push({ x: mouseX, y: mouseY });
+    }
+    
     updateTrailLength();
-
-    let mouseX = 0;
-    let mouseY = 0;
 
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       
-      cursorTrails.forEach((trail, index) => {
-        if (index === 0) {
-          trail.targetX = e.clientX;
-          trail.targetY = e.clientY;
-        } else {
-          trail.targetX = cursorTrails[index - 1].x;
-          trail.targetY = cursorTrails[index - 1].y;
-        }
-      });
+      // Add current position to path history
+      pathHistory.push({ x: mouseX, y: mouseY });
+      
+      // Keep history size manageable
+      if (pathHistory.length > maxPathHistory) {
+        pathHistory.shift();
+      }
+      
+      // Update head position immediately (exact following)
+      if (cursorTrails.length > 0) {
+        cursorTrails[0].x = mouseX;
+        cursorTrails[0].y = mouseY;
+        cursorTrails[0].pathIndex = pathHistory.length - 1;
+      }
     });
 
     function animateCursorTrails() {
       cursorTrails.forEach((trail, index) => {
-        // More compact spacing - segments stay closer together
-        const speed = 0.2 + (index * 0.02); // Faster, tighter following
-        trail.x += (trail.targetX - trail.x) * speed;
-        trail.y += (trail.targetY - trail.y) * speed;
-        
-        // Add spacing offset for more compact look
-        if (index > 0) {
+        if (index === 0) {
+          // Head follows cursor exactly - already updated in mousemove
+          trail.element.style.left = trail.x - trail.size / 2 + 'px';
+          trail.element.style.top = trail.y - trail.size / 2 + 'px';
+        } else {
+          // Body segments follow the path history exactly
           const prevTrail = cursorTrails[index - 1];
-          const dx = trail.x - prevTrail.x;
-          const dy = trail.y - prevTrail.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const targetPathIndex = Math.max(0, prevTrail.pathIndex - Math.floor(segmentSpacing / 2));
           
-          if (distance > segmentSpacing) {
-            const angle = Math.atan2(dy, dx);
-            trail.x = prevTrail.x + Math.cos(angle) * segmentSpacing;
-            trail.y = prevTrail.y + Math.sin(angle) * segmentSpacing;
+          if (targetPathIndex < pathHistory.length) {
+            const targetPoint = pathHistory[targetPathIndex];
+            trail.x = targetPoint.x;
+            trail.y = targetPoint.y;
+            trail.pathIndex = targetPathIndex;
+          } else {
+            // Fallback: follow previous segment
+            const dx = prevTrail.x - trail.x;
+            const dy = prevTrail.y - trail.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance > segmentSpacing) {
+              const angle = Math.atan2(dy, dx);
+              trail.x = prevTrail.x - Math.cos(angle) * segmentSpacing;
+              trail.y = prevTrail.y - Math.sin(angle) * segmentSpacing;
+            }
           }
+          
+          trail.element.style.left = trail.x - trail.size / 2 + 'px';
+          trail.element.style.top = trail.y - trail.size / 2 + 'px';
         }
-        
-        trail.element.style.left = trail.x - trail.element.offsetWidth / 2 + 'px';
-        trail.element.style.top = trail.y - trail.element.offsetHeight / 2 + 'px';
       });
       requestAnimationFrame(animateCursorTrails);
     }
@@ -3797,45 +3810,7 @@
       return commandHistory[historyIndex] || '';
     }
 
-    // System Monitor
-    function createSystemMonitor() {
-      const monitor = document.createElement('div');
-      monitor.className = 'system-monitor';
-      monitor.style.position = 'fixed';
-      monitor.style.top = '80px';
-      monitor.style.left = '20px';
-      monitor.style.zIndex = '1000';
-      monitor.style.maxWidth = '250px';
-      
-      const metrics = [
-        { label: 'UPTIME', value: '24:15:32' },
-        { label: 'REQUESTS', value: '1,234' },
-        { label: 'BANDWIDTH', value: '2.4 GB' },
-        { label: 'LATENCY', value: '12ms' }
-      ];
-      
-      metrics.forEach(metric => {
-        const monitorItem = document.createElement('div');
-        monitorItem.className = 'monitor-item';
-        monitorItem.innerHTML = `
-          <div class="monitor-label">${metric.label}</div>
-          <div class="monitor-value">${metric.value}</div>
-        `;
-        monitor.appendChild(monitorItem);
-      });
-      
-      document.body.appendChild(monitor);
-      
-      // Update metrics periodically
-      setInterval(() => {
-        const requestsValue = monitor.querySelectorAll('.monitor-value')[1];
-        if (requestsValue) {
-          const current = parseInt(requestsValue.textContent.replace(/,/g, ''));
-          requestsValue.textContent = (current + Math.floor(Math.random() * 5)).toLocaleString();
-        }
-      }, 2000);
-    }
-    createSystemMonitor();
+    // System Monitor - REMOVED per user request
 
     // Terminal Window Effects
     document.querySelectorAll('.keynote-card, .project-card, .about-card').forEach(card => {
