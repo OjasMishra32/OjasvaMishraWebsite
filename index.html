@@ -3405,31 +3405,48 @@
 
     // Terminal Boot Screen
     const bootScreen = document.getElementById('bootScreen');
-    const bootCommands = bootScreen.querySelectorAll('.boot-command');
     
-    let commandIndex = 0;
-    function showNextCommand() {
-      if (commandIndex < bootCommands.length) {
-        bootCommands[commandIndex].classList.add('active');
-        commandIndex++;
-        setTimeout(showNextCommand, 800);
-      } else {
-        setTimeout(() => {
-          bootScreen.classList.add('hidden');
-        }, 1000);
+    if (bootScreen) {
+      const bootCommands = bootScreen.querySelectorAll('.boot-command');
+      
+      let commandIndex = 0;
+      function showNextCommand() {
+        if (commandIndex < bootCommands.length) {
+          bootCommands[commandIndex].classList.add('active');
+          commandIndex++;
+          setTimeout(showNextCommand, 800);
+        } else {
+          setTimeout(() => {
+            if (bootScreen) {
+              bootScreen.classList.add('hidden');
+            }
+          }, 1000);
+        }
       }
+      
+      setTimeout(showNextCommand, 1000);
+      
+      // Fallback: Always hide boot screen after maximum 10 seconds
+      setTimeout(() => {
+        if (bootScreen && !bootScreen.classList.contains('hidden')) {
+          bootScreen.classList.add('hidden');
+        }
+      }, 10000);
+    } else {
+      // If boot screen doesn't exist, ensure it's hidden
+      console.warn('Boot screen element not found');
     }
-    
-    setTimeout(showNextCommand, 1000);
 
     // Scroll Progress Bar
     const scrollProgress = document.getElementById('scrollProgress');
-    window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      scrollProgress.style.width = scrolled + '%';
-    });
+    if (scrollProgress) {
+      window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + '%';
+      });
+    }
 
     // Smooth Scroll for Navigation
     document.querySelectorAll('nav a').forEach(link => {
@@ -3465,17 +3482,19 @@
     const keynoteItems = document.querySelectorAll('.keynote-item');
     const scrollIndicator = document.getElementById('scrollIndicator');
     
-    // Create scroll indicator dots
-    keynoteItems.forEach((item, index) => {
-      const dot = document.createElement('div');
-      dot.className = 'scroll-dot';
-      dot.setAttribute('data-index', index);
-      scrollIndicator.appendChild(dot);
-      
-      dot.addEventListener('click', () => {
-        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Create scroll indicator dots (only if scrollIndicator exists)
+    if (scrollIndicator && keynoteItems.length > 0) {
+      keynoteItems.forEach((item, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'scroll-dot';
+        dot.setAttribute('data-index', index);
+        scrollIndicator.appendChild(dot);
+        
+        dot.addEventListener('click', () => {
+          item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
       });
-    });
+    }
 
     // Keynote-style reveal observer
     const keynoteObserver = new IntersectionObserver((entries) => {
@@ -3487,16 +3506,18 @@
           setTimeout(() => {
             item.classList.add('revealed');
             
-            // Update scroll indicator
-            const dots = scrollIndicator.querySelectorAll('.scroll-dot');
-            dots.forEach((dot, i) => {
-              if (i === index) {
-                dot.classList.add('active');
-              } else if (i < index) {
-                dot.classList.remove('active');
-                dot.style.opacity = '0.5';
-              }
-            });
+            // Update scroll indicator (only if it exists)
+            if (scrollIndicator) {
+              const dots = scrollIndicator.querySelectorAll('.scroll-dot');
+              dots.forEach((dot, i) => {
+                if (i === index) {
+                  dot.classList.add('active');
+                } else if (i < index) {
+                  dot.classList.remove('active');
+                  dot.style.opacity = '0.5';
+                }
+              });
+            }
           }, 100);
         }
       });
@@ -3521,10 +3542,12 @@
           const viewportCenter = scrollTop + window.innerHeight / 2;
           
           if (itemTop <= viewportCenter && itemTop + itemRect.height > viewportCenter) {
-            const dots = scrollIndicator.querySelectorAll('.scroll-dot');
-            dots.forEach((dot, i) => {
-              dot.classList.toggle('active', i === index);
-            });
+            if (scrollIndicator) {
+              const dots = scrollIndicator.querySelectorAll('.scroll-dot');
+              dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+              });
+            }
           }
         });
       }
@@ -4326,30 +4349,37 @@
 
     // Terminal Window Resize Handler
     window.addEventListener('resize', () => {
-      // Recalculate matrix canvas
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Recalculate matrix canvas (only if it exists and not mobile)
+      if (!isMobile) {
+        const canvas = document.getElementById('matrix-canvas');
+        if (canvas) {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+      }
       
       // Recalculate binary columns
-      const newColumnCount = Math.floor(window.innerWidth / 20);
-      const currentColumns = binaryContainer.querySelectorAll('.binary-column').length;
-      
-      if (newColumnCount !== currentColumns) {
-        binaryContainer.innerHTML = '';
-        for (let i = 0; i < newColumnCount; i++) {
-          const column = document.createElement('div');
-          column.className = 'binary-column';
-          column.style.left = (i * 20) + 'px';
-          column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-          column.style.animationDelay = Math.random() * 2 + 's';
-          
-          let binaryText = '';
-          for (let j = 0; j < 30; j++) {
-            binaryText += binaryChars[Math.floor(Math.random() * binaryChars.length)] + '<br>';
+      if (binaryContainer) {
+        const newColumnCount = Math.floor(window.innerWidth / 20);
+        const currentColumns = binaryContainer.querySelectorAll('.binary-column').length;
+        
+        if (newColumnCount !== currentColumns) {
+          binaryContainer.innerHTML = '';
+          for (let i = 0; i < newColumnCount; i++) {
+            const column = document.createElement('div');
+            column.className = 'binary-column';
+            column.style.left = (i * 20) + 'px';
+            column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            column.style.animationDelay = Math.random() * 2 + 's';
+            
+            let binaryText = '';
+            for (let j = 0; j < 30; j++) {
+              binaryText += binaryChars[Math.floor(Math.random() * binaryChars.length)] + '<br>';
+            }
+            column.innerHTML = binaryText;
+            
+            binaryContainer.appendChild(column);
           }
-          column.innerHTML = binaryText;
-          
-          binaryContainer.appendChild(column);
         }
       }
     });
@@ -4498,8 +4528,10 @@
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = (scrolled / maxScroll) * 100;
       
-      // Update progress bar
-      scrollProgress.style.width = scrollPercent + '%';
+      // Update progress bar (only if it exists)
+      if (scrollProgress) {
+        scrollProgress.style.width = scrollPercent + '%';
+      }
       
       // Create particles at scroll milestones
       if (scrollPercent % 25 === 0 && scrollPercent > 0) {
@@ -4858,7 +4890,10 @@
     // Enhanced Matrix Effect
     function enhanceMatrixEffect() {
       const matrixCanvas = document.getElementById('matrix-canvas');
+      if (!matrixCanvas) return;
+      
       const ctx = matrixCanvas.getContext('2d');
+      if (!ctx) return;
       
       // Increase matrix density
       const fontSize = 12;
