@@ -999,40 +999,379 @@
       transform: translateY(0);
     }
 
-    /* Responsive */
+    /* Mobile Optimization - Complete Redesign */
     @media (max-width: 768px) {
+      /* Hide Slither.io game elements on mobile */
+      .cursor-trail,
+      .game-pellet,
+      .game-score,
+      .score-display {
+        display: none !important;
+      }
+
+      /* Reduce background effects on mobile */
+      .binary-rain,
+      .data-stream,
+      .circuit-board,
+      .neon-grid,
+      .hex-grid,
+      .terminal-lines {
+        opacity: 0.02 !important;
+      }
+
+      /* Navigation - Mobile Optimized */
       nav {
-        padding: 15px 20px;
-        gap: 20px;
+        padding: 12px 15px;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        backdrop-filter: blur(15px);
+        background: rgba(0, 0, 0, 0.95);
       }
 
       nav a {
-        font-size: 0.8rem;
-        padding: 6px 12px;
+        font-size: 0.75rem;
+        padding: 8px 14px;
+        border: 1px solid var(--hacker-green);
+        border-radius: 4px;
+      }
+
+      /* Container - Better spacing */
+      .container {
+        padding: 90px 20px 40px;
+        max-width: 100%;
+      }
+
+      /* Hero Section - Mobile Optimized */
+      .hero {
+        min-height: 80vh;
+        padding: 30px 15px;
+      }
+
+      .hero-image-container {
+        margin-bottom: 20px;
+      }
+
+      .hero-image-container img {
+        width: 150px;
+        height: 150px;
+        border-width: 2px;
       }
 
       .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+      }
+
+      .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        padding: 0 10px;
+      }
+
+      .hero-tags {
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .tag {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+      }
+
+      .hero-buttons {
+        gap: 12px;
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 0.85rem;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Section Styles - Mobile */
+      .section {
+        padding: 40px 0;
       }
 
       .section-title {
-        font-size: 2rem;
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+        padding: 0 15px;
       }
 
-      .container {
-        padding: 100px 20px 30px;
-      }
-
+      /* About Section - Mobile */
       .about-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 25px;
+      }
+
+      .about-card {
+        padding: 20px;
+        margin: 0 10px;
+      }
+
+      .about-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+      }
+
+      .about-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+
+      .tags-container {
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      /* Interests Grid - Mobile */
+      .interests-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 25px;
+        padding: 0 10px;
+      }
+
+      .interest-card {
+        padding: 20px;
+      }
+
+      .interest-icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+      }
+
+      .interest-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+      }
+
+      .interest-card p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+
+      /* Experience Section - Mobile */
+      .keynote-item {
+        margin-bottom: 40px;
+        padding: 0 10px;
       }
 
       .keynote-card {
-        padding: 30px;
+        padding: 20px;
+        margin: 0;
       }
 
+      .keynote-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+        line-height: 1.3;
+      }
+
+      .keynote-meta {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+        gap: 10px;
+        flex-direction: column;
+      }
+
+      .keynote-card li {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        padding-left: 20px;
+      }
+
+      /* Projects Section - Mobile */
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 25px;
+        padding: 0 10px;
+      }
+
+      .project-card {
+        padding: 20px;
+      }
+
+      .project-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .project-meta {
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+      }
+
+      .project-card li {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin-bottom: 8px;
+        padding-left: 18px;
+      }
+
+      /* Skills Section - Mobile */
+      .skills-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 25px;
+        padding: 0 10px;
+      }
+
+      .skill-category {
+        padding: 18px;
+      }
+
+      .skill-category h4 {
+        font-size: 1rem;
+        margin-bottom: 12px;
+      }
+
+      .skills-tags {
+        gap: 8px;
+      }
+
+      .skill-tag {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+
+      /* Contact Section - Mobile */
+      .contact-content {
+        padding: 0 15px;
+      }
+
+      .contact-content h3 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+      }
+
+      .contact-info {
+        padding: 20px;
+        margin-bottom: 25px;
+      }
+
+      .contact-info p {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+
+      .social-links {
+        gap: 12px;
+      }
+
+      /* Footer - Mobile */
+      footer {
+        padding: 25px 20px;
+        font-size: 0.85rem;
+      }
+
+      /* Scroll Indicator - Hide on mobile */
       .scroll-indicator {
-        right: 20px;
+        display: none;
+      }
+
+      /* System Status - Mobile */
+      .system-status {
+        display: none;
+      }
+
+      /* Time on Earth - Mobile */
+      .time-on-earth {
+        bottom: 10px !important;
+        left: 10px !important;
+        font-size: 0.7rem !important;
+        padding: 8px 12px !important;
+      }
+
+      .time-on-earth-label {
+        font-size: 0.6rem !important;
+        margin-bottom: 4px !important;
+      }
+
+      .time-on-earth-value {
+        font-size: 0.9rem !important;
+      }
+
+      /* Boot Screen - Mobile */
+      .boot-screen {
+        padding: 20px;
+      }
+
+      .boot-text {
+        font-size: 1rem;
+        margin-bottom: 15px;
+      }
+
+      .boot-command {
+        font-size: 0.8rem;
+        margin: 4px 0;
+      }
+
+      /* Reduce animations on mobile for performance */
+      .particle,
+      .particle-system {
+        display: none;
+      }
+
+      /* Matrix Canvas - Hide on mobile */
+      #matrix-canvas {
+        display: none;
+      }
+    }
+
+    /* Extra Small Mobile Devices */
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.6rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      .hero-image-container img {
+        width: 120px;
+        height: 120px;
+      }
+
+      .container {
+        padding: 85px 15px 35px;
+      }
+
+      nav a {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+      }
+
+      .keynote-card h3 {
+        font-size: 1.2rem;
+      }
+
+      .about-card,
+      .project-card,
+      .keynote-card {
+        padding: 15px;
       }
     }
 
@@ -3017,48 +3356,52 @@
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Matrix Rain Effect
-    const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?";
-    const matrixArray = matrix.split("");
-    
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    
-    const drops = [];
-    for (let x = 0; x < columns; x++) {
-      drops[x] = 1;
-    }
-    
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      ctx.fillStyle = '#00ff41';
-      ctx.font = fontSize + 'px JetBrains Mono';
-      
-      for (let i = 0; i < drops.length; i++) {
-        const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    // Matrix Rain Effect (Desktop Only)
+    if (!isMobile) {
+      const canvas = document.getElementById('matrix-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
         
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?";
+        const matrixArray = matrix.split("");
+        
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+          drops[x] = 1;
         }
-        drops[i]++;
+        
+        function drawMatrix() {
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          
+          ctx.fillStyle = '#00ff41';
+          ctx.font = fontSize + 'px JetBrains Mono';
+          
+          for (let i = 0; i < drops.length; i++) {
+            const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+              drops[i] = 0;
+            }
+            drops[i]++;
+          }
+        }
+        
+        setInterval(drawMatrix, 35);
+        
+        window.addEventListener('resize', () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        });
       }
     }
-    
-    setInterval(drawMatrix, 35);
-    
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
 
     // Terminal Boot Screen
     const bootScreen = document.getElementById('bootScreen');
@@ -3229,24 +3572,29 @@
       title.classList.add('text-shimmer');
     });
 
-    // Slither.io-Style Game System
+    // Mobile Detection - Disable Slither.io game on mobile
+    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Slither.io-Style Game System (Desktop Only)
     let gameScore = 0;
     let trailLength = 2; // Start with 2 circles as requested
     const baseTrailCount = 2;
     const minSegmentSize = 4; // Smaller minimum size
     const maxSegmentSize = 8; // Smaller maximum size
     
-    // Create game score display
-    const gameScoreDisplay = document.createElement('div');
-    gameScoreDisplay.className = 'game-score';
-    gameScoreDisplay.innerHTML = `
-      <div class="game-score-label">SCORE</div>
-      <div class="game-score-value" id="scoreValue">0</div>
-      <div class="game-length">L: <span id="lengthValue">${trailLength}</span></div>
-    `;
-    document.body.appendChild(gameScoreDisplay);
+    // Create game score display (Desktop Only)
+    if (!isMobile) {
+      const gameScoreDisplay = document.createElement('div');
+      gameScoreDisplay.className = 'game-score';
+      gameScoreDisplay.innerHTML = `
+        <div class="game-score-label">SCORE</div>
+        <div class="game-score-value" id="scoreValue">0</div>
+        <div class="game-length">L: <span id="lengthValue">${trailLength}</span></div>
+      `;
+      document.body.appendChild(gameScoreDisplay);
+    }
 
-    // Advanced Cursor Trail System (Slither.io style - Exact Path Following)
+    // Advanced Cursor Trail System (Slither.io style - Exact Path Following) - Desktop Only
     const cursorTrails = [];
     const segmentSpacing = 12; // Spacing between segments for more compact look
     const pathHistory = []; // Store cursor path history for exact following
@@ -3304,29 +3652,32 @@
       pathHistory.push({ x: mouseX, y: mouseY });
     }
     
-    updateTrailLength();
+    if (!isMobile) {
+      updateTrailLength();
 
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      
-      // Add current position to path history
-      pathHistory.push({ x: mouseX, y: mouseY });
-      
-      // Keep history size manageable
-      if (pathHistory.length > maxPathHistory) {
-        pathHistory.shift();
-      }
-      
-      // Update head position immediately (exact following)
-      if (cursorTrails.length > 0) {
-        cursorTrails[0].x = mouseX;
-        cursorTrails[0].y = mouseY;
-        cursorTrails[0].pathIndex = pathHistory.length - 1;
-      }
-    });
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Add current position to path history
+        pathHistory.push({ x: mouseX, y: mouseY });
+        
+        // Keep history size manageable
+        if (pathHistory.length > maxPathHistory) {
+          pathHistory.shift();
+        }
+        
+        // Update head position immediately (exact following)
+        if (cursorTrails.length > 0) {
+          cursorTrails[0].x = mouseX;
+          cursorTrails[0].y = mouseY;
+          cursorTrails[0].pathIndex = pathHistory.length - 1;
+        }
+      });
+    }
 
     function animateCursorTrails() {
+      if (isMobile) return;
       cursorTrails.forEach((trail, index) => {
         if (index === 0) {
           // Head follows cursor exactly - already updated in mousemove
@@ -3361,16 +3712,21 @@
       });
       requestAnimationFrame(animateCursorTrails);
     }
-    animateCursorTrails();
+    if (!isMobile) {
+      animateCursorTrails();
+    }
 
-    // Game Pellets System
+    // Game Pellets System (Desktop Only)
     const gamePellets = [];
-    const pelletContainer = document.createElement('div');
-    pelletContainer.style.position = 'fixed';
-    pelletContainer.style.inset = '0';
-    pelletContainer.style.pointerEvents = 'none';
-    pelletContainer.style.zIndex = '9998';
-    document.body.appendChild(pelletContainer);
+    let pelletContainer = null;
+    if (!isMobile) {
+      pelletContainer = document.createElement('div');
+      pelletContainer.style.position = 'fixed';
+      pelletContainer.style.inset = '0';
+      pelletContainer.style.pointerEvents = 'none';
+      pelletContainer.style.zIndex = '9998';
+      document.body.appendChild(pelletContainer);
+    }
 
     // Track last pellet position for closer spacing
     let lastPelletX = window.innerWidth / 2;
@@ -3378,6 +3734,8 @@
     const minPelletDistance = 150; // Minimum distance between pellets (reduced from random)
     
     function createPellet() {
+      if (isMobile || !pelletContainer) return null;
+      
       const pellet = document.createElement('div');
       pellet.className = 'game-pellet';
       
@@ -3440,17 +3798,19 @@
       return pelletData;
     }
 
-    // Create initial pellets closer together
-    for (let i = 0; i < 50; i++) {
-      setTimeout(() => createPellet(), i * 150);
-    }
-
-    // Keep creating new pellets more frequently
-    setInterval(() => {
-      if (gamePellets.length < 50) {
-        createPellet();
+    // Create initial pellets closer together (Desktop Only)
+    if (!isMobile) {
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => createPellet(), i * 150);
       }
-    }, 1500);
+
+      // Keep creating new pellets more frequently
+      setInterval(() => {
+        if (gamePellets.length < 50) {
+          createPellet();
+        }
+      }, 1500);
+    }
 
     // Pellet floating animation
     const style = document.createElement('style');
@@ -3472,9 +3832,9 @@
     `;
     document.head.appendChild(style);
 
-    // Collision Detection and Collection
+    // Collision Detection and Collection (Desktop Only)
     function checkCollisions() {
-      if (cursorTrails.length === 0) return;
+      if (isMobile || cursorTrails.length === 0) return;
       
       const head = cursorTrails[0];
       const headX = head.x;
@@ -3528,15 +3888,20 @@
       });
     }
 
-    // Game loop
+    // Game loop (Desktop Only)
     function gameLoop() {
-      checkCollisions();
-      requestAnimationFrame(gameLoop);
+      if (!isMobile) {
+        checkCollisions();
+        requestAnimationFrame(gameLoop);
+      }
     }
-    gameLoop();
+    if (!isMobile) {
+      gameLoop();
+    }
 
-    // Update pellet positions for floating animation
+    // Update pellet positions for floating animation (Desktop Only)
     function updatePelletPositions() {
+      if (isMobile) return;
       gamePellets.forEach(pellet => {
         if (!pellet.collected) {
           const rect = pellet.element.getBoundingClientRect();
@@ -3546,7 +3911,9 @@
       });
       requestAnimationFrame(updatePelletPositions);
     }
-    updatePelletPositions();
+    if (!isMobile) {
+      updatePelletPositions();
+    }
 
     // Advanced Particle System
     const particleContainer = document.createElement('div');
@@ -3567,14 +3934,16 @@
       }, 5000);
     }
 
-    // Create particles on mouse move
-    let particleTimer = 0;
-    document.addEventListener('mousemove', (e) => {
-      particleTimer++;
-      if (particleTimer % 5 === 0) {
-        createParticle(e.clientX, e.clientY);
-      }
-    });
+    // Create particles on mouse move (Desktop Only)
+    if (!isMobile) {
+      let particleTimer = 0;
+      document.addEventListener('mousemove', (e) => {
+        particleTimer++;
+        if (particleTimer % 5 === 0) {
+          createParticle(e.clientX, e.clientY);
+        }
+      });
+    }
 
     // Binary Rain Effect
     const binaryContainer = document.createElement('div');
