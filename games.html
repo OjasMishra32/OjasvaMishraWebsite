@@ -92,7 +92,7 @@
       display: block;
       width: 100%;
       height: 600px;
-      background: linear-gradient(180deg, #001122 0%, #000000 100%);
+      background: #000000;
       cursor: pointer;
     }
 
@@ -111,7 +111,7 @@
     }
 
     .game-overlay {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9);
       padding: 40px;
       border: 3px solid var(--hacker-green);
       border-radius: 10px;
@@ -259,6 +259,7 @@
         <div class="overlay-subtitle">
           Press SPACE or CLICK to jump<br>
           Avoid obstacles and spikes<br>
+          Yellow pads give extra bounce!<br>
           Complete all 3 levels!
         </div>
         <button class="btn" onclick="startGame()">START GAME</button>
@@ -306,99 +307,140 @@
     window.addEventListener('resize', resizeCanvas);
     
     // Game state
-    let gameState = 'menu'; // menu, playing, gameOver, levelComplete, allComplete
+    let gameState = 'menu';
     let currentLevel = 1;
     let score = 0;
     let bestScore = parseInt(localStorage.getItem('geometryDashBest') || '0');
-    let gameSpeed = 5;
+    let gameSpeed = 4.7; // Geometry Dash speed
     
-    // Player
+    // Player cube - Geometry Dash style
     const player = {
-      x: 100,
+      x: 80,
       y: 0,
-      width: 30,
-      height: 30,
+      size: 30,
       velocityY: 0,
-      gravity: 0.8,
-      jumpPower: -15,
+      gravity: 0.94, // Geometry Dash gravity
+      jumpPower: -12.5, // Geometry Dash jump power
+      rotation: 0,
+      rotationSpeed: 5,
       onGround: false,
+      wasOnGround: false,
       color: '#00ff41'
     };
     
     // Ground
     const ground = {
       y: 0,
-      height: 40
+      height: 50
     };
     
-    // Obstacles and spikes
-    let obstacles = [];
-    let spikes = [];
+    // Game objects
+    let blocks = []; // Normal blocks
+    let jumpPads = []; // Yellow jump pads
+    let groundSpikes = []; // Spikes on ground
+    let ceilingSpikes = []; // Spikes on ceiling
     
-    // Level definitions
+    // Level definitions - Geometry Dash style
     const levels = [
-      // Level 1 - Easy
+      // Level 1 - Stereo Madness style
       {
-        obstacles: [
-          { x: 400, width: 50, height: 100 },
-          { x: 600, width: 50, height: 120 },
-          { x: 800, width: 50, height: 80 },
-          { x: 1000, width: 50, height: 100 },
-          { x: 1200, width: 50, height: 90 }
+        blocks: [
+          { x: 400, width: 40, height: 120 },
+          { x: 600, width: 40, height: 100 },
+          { x: 800, width: 40, height: 140 },
+          { x: 1000, width: 40, height: 110 },
+          { x: 1200, width: 40, height: 130 },
+          { x: 1400, width: 40, height: 100 }
         ],
-        spikes: [
-          { x: 500, width: 30 },
-          { x: 700, width: 30 },
-          { x: 900, width: 30 },
-          { x: 1100, width: 30 }
+        jumpPads: [
+          { x: 500 },
+          { x: 700 },
+          { x: 900 },
+          { x: 1100 }
         ],
-        length: 1500
-      },
-      // Level 2 - Medium
-      {
-        obstacles: [
-          { x: 350, width: 50, height: 100 },
-          { x: 500, width: 50, height: 140 },
-          { x: 650, width: 50, height: 90 },
-          { x: 800, width: 50, height: 130 },
-          { x: 950, width: 50, height: 110 },
-          { x: 1100, width: 50, height: 120 },
-          { x: 1250, width: 50, height: 100 }
+        groundSpikes: [
+          { x: 450, width: 30 },
+          { x: 650, width: 30 },
+          { x: 850, width: 30 },
+          { x: 1050, width: 30 }
         ],
-        spikes: [
-          { x: 425, width: 30 },
-          { x: 575, width: 30 },
-          { x: 725, width: 30 },
-          { x: 875, width: 30 },
-          { x: 1025, width: 30 },
-          { x: 1175, width: 30 }
-        ],
-        length: 1600
-      },
-      // Level 3 - Hard
-      {
-        obstacles: [
-          { x: 300, width: 50, height: 100 },
-          { x: 450, width: 50, height: 150 },
-          { x: 600, width: 50, height: 90 },
-          { x: 750, width: 50, height: 140 },
-          { x: 900, width: 50, height: 110 },
-          { x: 1050, width: 50, height: 130 },
-          { x: 1200, width: 50, height: 100 },
-          { x: 1350, width: 50, height: 120 },
-          { x: 1500, width: 50, height: 110 }
-        ],
-        spikes: [
-          { x: 375, width: 30 },
-          { x: 525, width: 30 },
-          { x: 675, width: 30 },
-          { x: 825, width: 30 },
-          { x: 975, width: 30 },
-          { x: 1125, width: 30 },
-          { x: 1275, width: 30 },
-          { x: 1425, width: 30 }
-        ],
+        ceilingSpikes: [],
         length: 1800
+      },
+      // Level 2 - Back on Track style
+      {
+        blocks: [
+          { x: 350, width: 40, height: 100 },
+          { x: 500, width: 40, height: 150 },
+          { x: 650, width: 40, height: 90 },
+          { x: 800, width: 40, height: 130 },
+          { x: 950, width: 40, height: 110 },
+          { x: 1100, width: 40, height: 140 },
+          { x: 1250, width: 40, height: 100 },
+          { x: 1400, width: 40, height: 120 }
+        ],
+        jumpPads: [
+          { x: 425 },
+          { x: 575 },
+          { x: 725 },
+          { x: 875 },
+          { x: 1025 },
+          { x: 1175 }
+        ],
+        groundSpikes: [
+          { x: 475, width: 30 },
+          { x: 625, width: 30 },
+          { x: 775, width: 30 },
+          { x: 925, width: 30 },
+          { x: 1075, width: 30 }
+        ],
+        ceilingSpikes: [
+          { x: 550, width: 30 },
+          { x: 800, width: 30 }
+        ],
+        length: 2000
+      },
+      // Level 3 - Polargeist style (harder)
+      {
+        blocks: [
+          { x: 300, width: 40, height: 100 },
+          { x: 450, width: 40, height: 160 },
+          { x: 600, width: 40, height: 80 },
+          { x: 750, width: 40, height: 150 },
+          { x: 900, width: 40, height: 110 },
+          { x: 1050, width: 40, height: 140 },
+          { x: 1200, width: 40, height: 100 },
+          { x: 1350, width: 40, height: 130 },
+          { x: 1500, width: 40, height: 120 },
+          { x: 1650, width: 40, height: 110 }
+        ],
+        jumpPads: [
+          { x: 375 },
+          { x: 525 },
+          { x: 675 },
+          { x: 825 },
+          { x: 975 },
+          { x: 1125 },
+          { x: 1275 },
+          { x: 1425 }
+        ],
+        groundSpikes: [
+          { x: 400, width: 30 },
+          { x: 550, width: 30 },
+          { x: 700, width: 30 },
+          { x: 850, width: 30 },
+          { x: 1000, width: 30 },
+          { x: 1150, width: 30 },
+          { x: 1300, width: 30 }
+        ],
+        ceilingSpikes: [
+          { x: 500, width: 30 },
+          { x: 750, width: 30 },
+          { x: 1000, width: 30 },
+          { x: 1250, width: 30 },
+          { x: 1500, width: 30 }
+        ],
+        length: 2200
       }
     ];
     
@@ -412,20 +454,24 @@
     
     // Initialize player
     function initPlayer() {
-      player.y = ground.y - player.height;
+      player.y = ground.y - player.size;
       player.velocityY = 0;
+      player.rotation = 0;
       player.onGround = true;
+      player.wasOnGround = true;
     }
     
     // Load level
     function loadLevel(levelNum) {
       const level = levels[levelNum - 1];
-      obstacles = level.obstacles.map(obs => ({ ...obs }));
-      spikes = level.spikes.map(spike => ({ ...spike }));
+      blocks = level.blocks.map(b => ({ ...b }));
+      jumpPads = level.jumpPads.map(j => ({ ...j }));
+      groundSpikes = level.groundSpikes.map(s => ({ ...s }));
+      ceilingSpikes = level.ceilingSpikes.map(s => ({ ...s }));
       cameraX = 0;
       levelProgress = 0;
       initPlayer();
-      gameSpeed = 5 + (levelNum - 1) * 1.5; // Speed increases with level
+      gameSpeed = 4.7 + (levelNum - 1) * 0.5;
     }
     
     // Jump
@@ -433,6 +479,7 @@
       if (player.onGround && gameState === 'playing') {
         player.velocityY = player.jumpPower;
         player.onGround = false;
+        player.rotationSpeed = 5;
       }
     }
     
@@ -440,15 +487,26 @@
     function updatePlayer() {
       if (gameState !== 'playing') return;
       
+      player.wasOnGround = player.onGround;
+      
       // Apply gravity
       player.velocityY += player.gravity;
       player.y += player.velocityY;
       
+      // Rotate cube
+      if (!player.onGround) {
+        player.rotation += player.rotationSpeed;
+        if (player.rotation >= 360) player.rotation -= 360;
+      }
+      
       // Ground collision
-      if (player.y + player.height >= ground.y) {
-        player.y = ground.y - player.height;
+      if (player.y + player.size >= ground.y) {
+        player.y = ground.y - player.size;
         player.velocityY = 0;
         player.onGround = true;
+        player.rotation = Math.round(player.rotation / 90) * 90; // Snap to 90 degree increments on ground
+      } else {
+        player.onGround = false;
       }
       
       // Ceiling collision
@@ -456,9 +514,24 @@
         player.y = 0;
         player.velocityY = 0;
       }
+      
+      // Check jump pad collision
+      for (let pad of jumpPads) {
+        const padX = pad.x - cameraX;
+        const padY = ground.y - 20;
+        const padSize = 40;
+        
+        if (player.x + player.size > padX && player.x < padX + padSize &&
+            player.y + player.size > padY && player.y < padY + padSize &&
+            player.onGround && !player.wasOnGround) {
+          player.velocityY = -18; // Extra bounce from jump pad
+          player.onGround = false;
+          break;
+        }
+      }
     }
     
-    // Update camera and obstacles
+    // Update camera and world
     function updateWorld() {
       if (gameState !== 'playing') return;
       
@@ -477,33 +550,56 @@
       if (gameState !== 'playing') return;
       
       const playerLeft = player.x;
-      const playerRight = player.x + player.width;
+      const playerRight = player.x + player.size;
       const playerTop = player.y;
-      const playerBottom = player.y + player.height;
+      const playerBottom = player.y + player.size;
       
-      // Check obstacle collisions
-      for (let obs of obstacles) {
-        const obsLeft = obs.x - cameraX;
-        const obsRight = obs.x - cameraX + obs.width;
-        const obsTop = ground.y - obs.height;
-        const obsBottom = ground.y;
+      // Check block collisions
+      for (let block of blocks) {
+        const blockLeft = block.x - cameraX;
+        const blockRight = block.x - cameraX + block.width;
+        const blockTop = ground.y - block.height;
+        const blockBottom = ground.y;
         
-        if (playerRight > obsLeft && playerLeft < obsRight &&
-            playerBottom > obsTop && playerTop < obsBottom) {
+        if (playerRight > blockLeft && playerLeft < blockRight &&
+            playerBottom > blockTop && playerTop < blockBottom) {
           gameOver();
           return;
         }
       }
       
-      // Check spike collisions
-      for (let spike of spikes) {
-        const spikeLeft = spike.x - cameraX;
-        const spikeRight = spike.x - cameraX + spike.width;
-        const spikeTop = ground.y - 30;
-        const spikeBottom = ground.y;
+      // Check ground spike collisions
+      for (let spike of groundSpikes) {
+        const spikeX = spike.x - cameraX;
+        const spikeWidth = spike.width;
+        const spikeY = ground.y - 30;
         
-        if (playerRight > spikeLeft && playerLeft < spikeRight &&
-            playerBottom > spikeTop && playerTop < spikeBottom) {
+        // Triangle collision check
+        const spikeCenterX = spikeX + spikeWidth / 2;
+        const distX = Math.abs((player.x + player.size / 2) - spikeCenterX);
+        const distY = (player.y + player.size) - spikeY;
+        
+        if (distX < spikeWidth / 2 + player.size / 2 && 
+            distY < 30 && distY > 0 &&
+            (player.y + player.size) > spikeY) {
+          gameOver();
+          return;
+        }
+      }
+      
+      // Check ceiling spike collisions
+      for (let spike of ceilingSpikes) {
+        const spikeX = spike.x - cameraX;
+        const spikeWidth = spike.width;
+        const spikeY = 30;
+        
+        const spikeCenterX = spikeX + spikeWidth / 2;
+        const distX = Math.abs((player.x + player.size / 2) - spikeCenterX);
+        const distY = spikeY - player.y;
+        
+        if (distX < spikeWidth / 2 + player.size / 2 && 
+            distY < 30 && distY > 0 &&
+            player.y < spikeY + 30) {
           gameOver();
           return;
         }
@@ -513,7 +609,7 @@
     // Update score
     function updateScore() {
       if (gameState === 'playing') {
-        score = Math.floor(levelProgress / 10) + (currentLevel - 1) * 1000;
+        score = Math.floor(levelProgress / 10) + (currentLevel - 1) * 2000;
         if (score > bestScore) {
           bestScore = score;
           localStorage.setItem('geometryDashBest', bestScore.toString());
@@ -531,15 +627,16 @@
     
     // Draw functions
     function drawBackground() {
-      // Gradient background
+      // Dark background with gradient
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, '#001122');
+      gradient.addColorStop(0, '#0a0a1a');
+      gradient.addColorStop(0.5, '#050510');
       gradient.addColorStop(1, '#000000');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Grid lines
-      ctx.strokeStyle = 'rgba(0, 255, 65, 0.1)';
+      // Subtle grid
+      ctx.strokeStyle = 'rgba(0, 255, 65, 0.05)';
       ctx.lineWidth = 1;
       for (let i = 0; i < canvas.width; i += 50) {
         ctx.beginPath();
@@ -550,64 +647,153 @@
     }
     
     function drawGround() {
-      ctx.fillStyle = '#00ff41';
+      // Ground base
+      ctx.fillStyle = '#1a1a2e';
       ctx.fillRect(0, ground.y, canvas.width, ground.height);
       
+      // Ground top line
+      ctx.strokeStyle = '#00ff41';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(0, ground.y);
+      ctx.lineTo(canvas.width, ground.y);
+      ctx.stroke();
+      
       // Ground glow
-      ctx.shadowBlur = 20;
+      ctx.shadowBlur = 15;
       ctx.shadowColor = '#00ff41';
-      ctx.fillRect(0, ground.y, canvas.width, 2);
+      ctx.stroke();
       ctx.shadowBlur = 0;
     }
     
     function drawPlayer() {
-      ctx.fillStyle = player.color;
-      ctx.shadowBlur = 15;
+      ctx.save();
+      
+      // Rotate around center
+      const centerX = player.x + player.size / 2;
+      const centerY = player.y + player.size / 2;
+      ctx.translate(centerX, centerY);
+      ctx.rotate((player.rotation * Math.PI) / 180);
+      
+      // Draw cube with glow
+      ctx.shadowBlur = 20;
       ctx.shadowColor = player.color;
-      ctx.fillRect(player.x, player.y, player.width, player.height);
+      ctx.fillStyle = player.color;
+      ctx.fillRect(-player.size / 2, -player.size / 2, player.size, player.size);
       ctx.shadowBlur = 0;
       
-      // Player face
+      // Cube outline
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(-player.size / 2, -player.size / 2, player.size, player.size);
+      
+      // Cube face (always visible)
       ctx.fillStyle = '#000000';
-      ctx.fillRect(player.x + 8, player.y + 8, 6, 6);
-      ctx.fillRect(player.x + 16, player.y + 8, 6, 6);
-      ctx.fillRect(player.x + 8, player.y + 20, 14, 4);
+      const eyeSize = 4;
+      const eyeY = -player.size / 2 + 8;
+      ctx.fillRect(-player.size / 2 + 6, eyeY, eyeSize, eyeSize);
+      ctx.fillRect(-player.size / 2 + player.size - 10, eyeY, eyeSize, eyeSize);
+      
+      // Mouth
+      ctx.fillRect(-player.size / 2 + 8, -player.size / 2 + player.size - 12, player.size - 16, 3);
+      
+      ctx.restore();
     }
     
-    function drawObstacles() {
-      ctx.fillStyle = '#ff0040';
-      for (let obs of obstacles) {
-        const x = obs.x - cameraX;
-        if (x > -obs.width && x < canvas.width) {
-          ctx.fillRect(x, ground.y - obs.height, obs.width, obs.height);
+    function drawBlocks() {
+      for (let block of blocks) {
+        const x = block.x - cameraX;
+        if (x > -block.width && x < canvas.width) {
+          // Block shadow
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+          ctx.fillRect(x + 2, ground.y - block.height + 2, block.width, block.height);
           
-          // Obstacle glow
+          // Block main
+          ctx.fillStyle = '#ff0040';
+          ctx.fillRect(x, ground.y - block.height, block.width, block.height);
+          
+          // Block outline
+          ctx.strokeStyle = '#cc0033';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(x, ground.y - block.height, block.width, block.height);
+          
+          // Block glow
           ctx.shadowBlur = 10;
           ctx.shadowColor = '#ff0040';
-          ctx.fillRect(x, ground.y - obs.height, obs.width, 3);
+          ctx.fillRect(x, ground.y - block.height, block.width, 3);
           ctx.shadowBlur = 0;
         }
       }
     }
     
-    function drawSpikes() {
+    function drawJumpPads() {
+      for (let pad of jumpPads) {
+        const x = pad.x - cameraX;
+        const y = ground.y - 20;
+        const size = 40;
+        
+        if (x > -size && x < canvas.width) {
+          // Jump pad glow
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = '#ffff00';
+          
+          // Yellow jump pad
+          ctx.fillStyle = '#ffff00';
+          ctx.fillRect(x, y, size, 20);
+          
+          // Jump pad outline
+          ctx.strokeStyle = '#ffaa00';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(x, y, size, 20);
+          
+          // Jump pad arrows
+          ctx.fillStyle = '#000000';
+          for (let i = 0; i < 3; i++) {
+            ctx.beginPath();
+            ctx.moveTo(x + 8 + i * 12, y + 15);
+            ctx.lineTo(x + 12 + i * 12, y + 10);
+            ctx.lineTo(x + 16 + i * 12, y + 15);
+            ctx.closePath();
+            ctx.fill();
+          }
+          
+          ctx.shadowBlur = 0;
+        }
+      }
+    }
+    
+    function drawSpikes(spikes, isCeiling) {
       ctx.fillStyle = '#ff0040';
       for (let spike of spikes) {
         const x = spike.x - cameraX;
-        if (x > -spike.width && x < canvas.width) {
-          const spikeHeight = 30;
+        const width = spike.width;
+        const height = 30;
+        
+        if (x > -width && x < canvas.width) {
+          const y = isCeiling ? 0 : ground.y - height;
+          
           ctx.beginPath();
-          ctx.moveTo(x, ground.y);
-          ctx.lineTo(x + spike.width / 2, ground.y - spikeHeight);
-          ctx.lineTo(x + spike.width, ground.y);
+          if (isCeiling) {
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + width / 2, y + height);
+            ctx.lineTo(x + width, y);
+          } else {
+            ctx.moveTo(x, y + height);
+            ctx.lineTo(x + width / 2, y);
+            ctx.lineTo(x + width, y + height);
+          }
           ctx.closePath();
-          ctx.fill();
           
           // Spike glow
           ctx.shadowBlur = 10;
           ctx.shadowColor = '#ff0040';
           ctx.fill();
           ctx.shadowBlur = 0;
+          
+          // Spike outline
+          ctx.strokeStyle = '#cc0033';
+          ctx.lineWidth = 2;
+          ctx.stroke();
         }
       }
     }
@@ -617,11 +803,17 @@
         const currentLevelData = levels[currentLevel - 1];
         const progress = Math.min(levelProgress / currentLevelData.length, 1);
         
-        ctx.fillStyle = 'rgba(0, 255, 65, 0.3)';
-        ctx.fillRect(0, canvas.height - 5, canvas.width * progress, 5);
+        // Progress bar background
+        ctx.fillStyle = 'rgba(0, 255, 65, 0.2)';
+        ctx.fillRect(0, canvas.height - 8, canvas.width, 8);
         
+        // Progress bar
         ctx.fillStyle = '#00ff41';
-        ctx.fillRect(canvas.width * progress - 2, canvas.height - 8, 4, 8);
+        ctx.fillRect(0, canvas.height - 8, canvas.width * progress, 8);
+        
+        // Progress indicator
+        ctx.fillStyle = '#00ff88';
+        ctx.fillRect(canvas.width * progress - 3, canvas.height - 12, 6, 12);
       }
     }
     
@@ -703,13 +895,10 @@
     
     // Game loop
     function gameLoop() {
-      // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Draw background
       drawBackground();
       
-      // Update and draw game elements
       if (gameState === 'playing') {
         updatePlayer();
         updateWorld();
@@ -717,10 +906,11 @@
         updateScore();
       }
       
-      // Draw game elements
       drawGround();
-      drawObstacles();
-      drawSpikes();
+      drawBlocks();
+      drawJumpPads();
+      drawSpikes(groundSpikes, false);
+      drawSpikes(ceilingSpikes, true);
       drawPlayer();
       drawProgress();
       
@@ -735,4 +925,3 @@
   </script>
 </body>
 </html>
-
