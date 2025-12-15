@@ -146,6 +146,12 @@
       background: #00ff41;
       color: #000000;
     }
+
+    @media (max-width: 768px) {
+      #gameCanvas {
+        height: 400px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -153,7 +159,7 @@
   
   <div class="game-container">
     <div class="game-header">
-      <div class="game-title">GEOMETRY DASH</div>
+      <div class="game-title">GEOMETRY DASH — STEREO MADNESS</div>
       <div class="game-stats">
         <span>SCORE: <span id="scoreDisplay">0</span></span>
         <span>BEST: <span id="bestDisplay">0</span></span>
@@ -192,7 +198,6 @@
     (function() {
       'use strict';
       
-      // Canvas setup
       const canvas = document.getElementById('gameCanvas');
       const ctx = canvas.getContext('2d');
       
@@ -202,14 +207,14 @@
       const GAME_SPEED = 4.7;
       const PLAYER_SIZE = 30;
       const GROUND_HEIGHT = 50;
+      const LEVEL_LENGTH = 4000;
       
-      // State
+      // Game state
       let gameState = 'menu';
       let score = 0;
       let bestScore = parseInt(localStorage.getItem('gdBest') || '0');
       let cameraX = 0;
       let levelProgress = 0;
-      const LEVEL_LENGTH = 4000;
       
       // Initialize canvas
       function initCanvas() {
@@ -224,15 +229,20 @@
       initCanvas();
       window.addEventListener('resize', initCanvas);
       
-      // Ground Y position
-      const GROUND_Y = canvas.height - GROUND_HEIGHT;
-      const PLAYER_START_X = 100;
-      const PLAYER_START_Y = GROUND_Y - PLAYER_SIZE;
+      // Get ground Y position
+      function getGroundY() {
+        return canvas.height - GROUND_HEIGHT;
+      }
+      
+      // Get player start position
+      function getPlayerStartY() {
+        return getGroundY() - PLAYER_SIZE;
+      }
       
       // Player
       const player = {
-        x: PLAYER_START_X,
-        y: PLAYER_START_Y,
+        x: 100,
+        y: getPlayerStartY(),
         size: PLAYER_SIZE,
         velocityY: 0,
         rotation: 0,
@@ -280,8 +290,8 @@
       
       // Initialize player
       function initPlayer() {
-        player.x = PLAYER_START_X;
-        player.y = PLAYER_START_Y;
+        player.x = 100;
+        player.y = getPlayerStartY();
         player.velocityY = 0;
         player.rotation = 0;
         player.onGround = true;
@@ -307,22 +317,29 @@
       function updatePlayer() {
         if (gameState !== 'playing') return;
         
+        const groundY = getGroundY();
+        
+        // Apply gravity
         player.velocityY += GRAVITY;
         player.y += player.velocityY;
         
+        // Rotate cube when in air
         if (!player.onGround) {
           player.rotation += player.rotationSpeed;
           if (player.rotation >= 360) player.rotation -= 360;
         } else {
+          // Snap to 90 degree increments on ground
           player.rotation = Math.round(player.rotation / 90) * 90;
         }
         
-        if (player.y + player.size >= GROUND_Y) {
-          player.y = GROUND_Y - player.size;
+        // Ground collision
+        if (player.y + player.size >= groundY) {
+          player.y = groundY - player.size;
           player.velocityY = 0;
           player.onGround = true;
         }
         
+        // Ceiling collision
         if (player.y < 0) {
           player.y = 0;
           player.velocityY = 0;
@@ -334,7 +351,7 @@
         
         for (let pad of jumpPads) {
           const padX = pad.x - cameraX;
-          const padY = GROUND_Y - 20;
+          const padY = groundY - 20;
           
           if (playerCenterX > padX && playerCenterX < padX + 40 &&
               playerBottom >= padY && playerBottom <= padY + 20 &&
@@ -350,11 +367,11 @@
       function updateCamera() {
         if (gameState !== 'playing') return;
         
-        const targetX = player.x - 200;
-        cameraX += (targetX - cameraX) * 0.1;
+        // Move camera forward with game speed
         cameraX += GAME_SPEED;
         levelProgress = cameraX;
         
+        // Check level complete
         if (levelProgress >= LEVEL_LENGTH) {
           completeLevel();
         }
@@ -364,6 +381,7 @@
       function checkCollisions() {
         if (gameState !== 'playing') return;
         
+        const groundY = getGroundY();
         const playerLeft = player.x;
         const playerRight = player.x + player.size;
         const playerTop = player.y;
@@ -372,7 +390,7 @@
         // Block collisions
         for (let block of blocks) {
           const blockX = block.x - cameraX;
-          const blockY = GROUND_Y - block.height;
+          const blockY = groundY - block.height;
           
           if (playerRight > blockX && playerLeft < blockX + block.width &&
               playerBottom > blockY && playerTop < blockY + block.height) {
@@ -384,7 +402,7 @@
         // Spike collisions
         for (let spike of groundSpikes) {
           const spikeX = spike.x - cameraX;
-          const spikeY = GROUND_Y - 30;
+          const spikeY = groundY - 30;
           const spikeCenterX = spikeX + 15;
           const playerCenterX = player.x + player.size / 2;
           const distX = Math.abs(playerCenterX - spikeCenterX);
@@ -420,17 +438,19 @@
       }
       
       function drawGround() {
+        const groundY = getGroundY();
         ctx.fillStyle = '#1a1a2e';
-        ctx.fillRect(0, GROUND_Y, canvas.width, GROUND_HEIGHT);
+        ctx.fillRect(0, groundY, canvas.width, GROUND_HEIGHT);
         ctx.strokeStyle = '#00ff41';
         ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.moveTo(0, GROUND_Y);
-        ctx.lineTo(canvas.width, GROUND_Y);
+        ctx.moveTo(0, groundY);
+        ctx.lineTo(canvas.width, groundY);
         ctx.stroke();
       }
       
       function drawPlayer() {
+        const groundY = getGroundY();
         ctx.save();
         const centerX = player.x - cameraX + player.size / 2;
         const centerY = player.y + player.size / 2;
@@ -452,40 +472,54 @@
       }
       
       function drawBlocks() {
+        const groundY = getGroundY();
         ctx.fillStyle = '#ff0040';
         for (let block of blocks) {
           const x = block.x - cameraX;
           if (x > -block.width && x < canvas.width) {
-            ctx.fillRect(x, GROUND_Y - block.height, block.width, block.height);
+            ctx.fillRect(x, groundY - block.height, block.width, block.height);
             ctx.strokeStyle = '#cc0033';
             ctx.lineWidth = 2;
-            ctx.strokeRect(x, GROUND_Y - block.height, block.width, block.height);
+            ctx.strokeRect(x, groundY - block.height, block.width, block.height);
           }
         }
       }
       
       function drawJumpPads() {
+        const groundY = getGroundY();
         for (let pad of jumpPads) {
           const x = pad.x - cameraX;
           if (x > -40 && x < canvas.width) {
             ctx.fillStyle = '#ffff00';
-            ctx.fillRect(x, GROUND_Y - 20, 40, 20);
+            ctx.fillRect(x, groundY - 20, 40, 20);
             ctx.strokeStyle = '#ffaa00';
             ctx.lineWidth = 2;
-            ctx.strokeRect(x, GROUND_Y - 20, 40, 20);
+            ctx.strokeRect(x, groundY - 20, 40, 20);
+            
+            // Draw arrows
+            ctx.fillStyle = '#000000';
+            for (let i = 0; i < 3; i++) {
+              ctx.beginPath();
+              ctx.moveTo(x + 8 + i * 12, groundY - 5);
+              ctx.lineTo(x + 12 + i * 12, groundY - 10);
+              ctx.lineTo(x + 16 + i * 12, groundY - 5);
+              ctx.closePath();
+              ctx.fill();
+            }
           }
         }
       }
       
       function drawSpikes() {
+        const groundY = getGroundY();
         ctx.fillStyle = '#ff0040';
         for (let spike of groundSpikes) {
           const x = spike.x - cameraX;
           if (x > -30 && x < canvas.width) {
             ctx.beginPath();
-            ctx.moveTo(x, GROUND_Y);
-            ctx.lineTo(x + 15, GROUND_Y - 30);
-            ctx.lineTo(x + 30, GROUND_Y);
+            ctx.moveTo(x, groundY);
+            ctx.lineTo(x + 15, groundY - 30);
+            ctx.lineTo(x + 30, groundY);
             ctx.closePath();
             ctx.fill();
           }
