@@ -743,6 +743,16 @@
       flex-direction: column;
       gap: 10px;
       z-index: 100;
+      margin-right: 240px; /* Make room for game score */
+    }
+
+    @media (max-width: 1400px) {
+      .scroll-indicator {
+        margin-right: 0;
+      }
+      .game-score {
+        top: 150px;
+      }
     }
 
     .scroll-dot {
@@ -1115,6 +1125,71 @@
       z-index: 9999;
       box-shadow: 0 0 20px var(--hacker-green);
       transition: transform 0.1s ease;
+      background: rgba(0, 255, 65, 0.3);
+    }
+
+    /* Game Pellets */
+    .game-pellet {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--hacker-green);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--hacker-green), 0 0 30px var(--hacker-green);
+      pointer-events: none;
+      z-index: 9998;
+      animation: pelletPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pelletPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 15px var(--hacker-green), 0 0 30px var(--hacker-green);
+      }
+      50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+        box-shadow: 0 0 25px var(--hacker-green), 0 0 50px var(--hacker-green);
+      }
+    }
+
+    /* Game Score Display */
+    .game-score {
+      position: fixed;
+      top: 100px;
+      right: 30px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 2px solid var(--hacker-green);
+      border-radius: 8px;
+      padding: 15px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--hacker-green);
+      text-shadow: 0 0 10px var(--hacker-green);
+      box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+      z-index: 10001;
+      min-width: 200px;
+    }
+
+    .game-score-label {
+      font-size: 0.75rem;
+      color: var(--hacker-green-dim);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .game-score-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'Orbitron', monospace;
+      text-shadow: 0 0 20px var(--hacker-green);
+    }
+
+    .game-length {
+      font-size: 0.85rem;
+      color: var(--hacker-green-dim);
+      margin-top: 8px;
     }
 
     /* Hexagon Grid Background */
@@ -2491,7 +2566,7 @@
     <div class="boot-command">> LOADING PROFILE DATA...</div>
     <div class="boot-command">> ACCESSING PORTFOLIO...</div>
     <div class="boot-command">> SYSTEM READY</div>
-  </div>
+      </div>
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -2503,14 +2578,14 @@
     <a href="#experience">EXPERIENCE</a>
     <a href="#projects">PROJECTS</a>
     <a href="#contact">CONTACT</a>
-  </nav>
+      </nav>
 
   <div class="container">
     <!-- Hero Section -->
     <section id="home" class="hero">
       <div class="hero-image-container">
         <img src="ojasvamishra.jpeg" alt="Ojasva Mishra">
-      </div>
+    </div>
       
       <h1 class="hero-title">OJASVA MISHRA</h1>
       
@@ -2532,7 +2607,7 @@
       <div class="hero-buttons">
         <a href="#projects" class="btn btn-primary"><span>VIEW PROJECTS</span></a>
         <a href="#contact" class="btn btn-secondary"><span>GET IN TOUCH</span></a>
-      </div>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -2569,7 +2644,7 @@
           <div class="interest-icon">01</div>
           <h3>ROBOTICS</h3>
           <p>Mechanisms, reliability, and closed-loop control — design → build → test with data-driven iteration.</p>
-        </div>
+      </div>
 
         <div class="interest-card fade-in-scroll">
           <div class="interest-icon">02</div>
@@ -2608,9 +2683,9 @@
               <span>Autonomous EV-Charging Robots</span>
             </div>
             <ul>
-              <li>Built/programmed autonomous robots to dock and charge EVs via mobile app; integrated AI for perception and automation.</li>
-              <li>CAD + prototyping; hardware bring-up; test & optimization across software and electronics.</li>
-            </ul>
+            <li>Built/programmed autonomous robots to dock and charge EVs via mobile app; integrated AI for perception and automation.</li>
+            <li>CAD + prototyping; hardware bring-up; test & optimization across software and electronics.</li>
+          </ul>
           </div>
         </div>
 
@@ -2624,9 +2699,9 @@
               <span>Mission-Grade UAV Sim • AI/ML</span>
             </div>
             <ul>
-              <li>Developed flight dynamics & control integration; AI/ML for mission planning and object detection.</li>
-              <li>Performance benchmarking and systems optimization within the simulation stack.</li>
-            </ul>
+            <li>Developed flight dynamics & control integration; AI/ML for mission planning and object detection.</li>
+            <li>Performance benchmarking and systems optimization within the simulation stack.</li>
+          </ul>
           </div>
         </div>
 
@@ -2640,10 +2715,10 @@
               <span>Automation & Frontend</span>
             </div>
             <ul>
-              <li>Built AI-assisted agents and internal tools for QA automation and code-workflow efficiency.</li>
-              <li>Shipped UI enhancements and testing pipelines to improve developer velocity.</li>
-            </ul>
-          </div>
+            <li>Built AI-assisted agents and internal tools for QA automation and code-workflow efficiency.</li>
+            <li>Shipped UI enhancements and testing pipelines to improve developer velocity.</li>
+          </ul>
+        </div>
         </div>
 
         <div class="keynote-item" data-index="3">
@@ -2671,13 +2746,13 @@
               <span>Jan 2025 – Present</span>
               <span>•</span>
               <span>Startup • Education Robotics</span>
-            </div>
+        </div>
             <ul>
               <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; demonstrated <strong>revenue growth</strong> and ran workshops that expanded STEM access.</li>
               <li>Recruited and led a team <strong>(6 core + 6 interns)</strong> across product, outreach, and operations; set processes for fulfillment, support, and content.</li>
             </ul>
             <div><a href="https://fusionbots.org" target="_blank">fusionbots.org →</a></div>
-          </div>
+      </div>
         </div>
 
         <div class="keynote-item" data-index="5">
@@ -2690,9 +2765,9 @@
               <span>Governing Committee (1 of 13) • ~600 members</span>
             </div>
             <ul>
-              <li>Lead AI literacy and equitable digital-policy initiatives; co-develop global programming for youth tech empowerment.</li>
-              <li>Manage program managers and international fellow teams; set standards and roadmaps for delivery.</li>
-            </ul>
+            <li>Lead AI literacy and equitable digital-policy initiatives; co-develop global programming for youth tech empowerment.</li>
+            <li>Manage program managers and international fellow teams; set standards and roadmaps for delivery.</li>
+          </ul>
           </div>
         </div>
 
@@ -2719,9 +2794,9 @@
               <span>Design • C++/Python • PID • Auton</span>
             </div>
             <ul>
-              <li>Led 6-member team; CAD, modular subsystems, autonomous routines, PID tuning; managed engineering notebook & judging presentations.</li>
-              <li>Built for reliability; coordinated strategy and rapid pit-repair during competition weeks.</li>
-            </ul>
+            <li>Led 6-member team; CAD, modular subsystems, autonomous routines, PID tuning; managed engineering notebook & judging presentations.</li>
+            <li>Built for reliability; coordinated strategy and rapid pit-repair during competition weeks.</li>
+          </ul>
           </div>
         </div>
 
@@ -2733,10 +2808,10 @@
               <span>2023 – Present</span>
             </div>
             <ul>
-              <li>Founded 4 teams (40+ members); led CAD of payloads, propulsion analysis, and launch simulations; ensured safety & compliance.</li>
-            </ul>
+            <li>Founded 4 teams (40+ members); led CAD of payloads, propulsion analysis, and launch simulations; ensured safety & compliance.</li>
+          </ul>
             <div><a href="https://arcstem.vercel.app" target="_blank">arcstem.vercel.app →</a></div>
-          </div>
+        </div>
         </div>
 
         <div class="keynote-item" data-index="9">
@@ -2747,7 +2822,7 @@
               <span>2023 – Present</span>
               <span>•</span>
               <span>140+ members</span>
-            </div>
+        </div>
             <ul>
               <li>Grew membership; ran literacy workshops & competitions; built an AI stock tracker (40+ daily users); 3× personal portfolio.</li>
             </ul>
@@ -2775,11 +2850,11 @@
             <h3>TENNIS COACH — PAID & VOLUNTEER</h3>
             <div class="keynote-meta">
               <span>2022 – 2025</span>
-            </div>
+        </div>
             <ul>
               <li>Taught fundamentals (serves, volleys, strokes) to ages 8–15; ran drills; assisted HS coach; organized sessions.</li>
             </ul>
-          </div>
+      </div>
         </div>
 
         <div class="keynote-item" data-index="12">
@@ -2788,11 +2863,11 @@
             <h3>CHESS COACH & CREATOR — COMPETITOR, YOUTUBER</h3>
             <div class="keynote-meta">
               <span>2014 – Present</span>
-            </div>
+        </div>
             <ul>
               <li>1800+ ELO; coached youth players; produced educational content (2k+ subs); competed OTB and online.</li>
             </ul>
-          </div>
+      </div>
         </div>
       </div>
     </section>
@@ -2806,11 +2881,11 @@
           <h3>SAFMS — SMART AGRO-FOREST MANAGEMENT SYSTEM</h3>
           <div class="project-meta">React • AI • IoT simulation • Carbon-credit concept</div>
           <ul>
-            <li>Built a web platform modeling sustainable agriculture with AI insights and a device simulation layer.</li>
-            <li>Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</li>
-          </ul>
+              <li>Built a web platform modeling sustainable agriculture with AI insights and a device simulation layer.</li>
+              <li>Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</li>
+            </ul>
           <div><a href="https://safmstsa.vercel.app" target="_blank">safmstsa.vercel.app →</a></div>
-        </div>
+          </div>
 
         <div class="project-card fade-in-scroll">
           <h3>CUSTOM RACING DRONE W/ CLAW</h3>
@@ -2819,7 +2894,7 @@
             <li>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness.</li>
           </ul>
           <div><a href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank">VIEW DOCUMENTATION →</a></div>
-        </div>
+          </div>
 
         <div class="project-card fade-in-scroll">
           <h3>NITROCAPTURE PRO — ZEOLITE-BASED NITROGEN CAPTURE</h3>
@@ -2828,7 +2903,7 @@
             <li>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li>
           </ul>
           <div><a href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank">VIEW DOCUMENTATION →</a></div>
-        </div>
+          </div>
 
         <div class="project-card fade-in-scroll">
           <h3>COMPETITION ROBOT</h3>
@@ -2836,7 +2911,7 @@
           <ul>
             <li>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</li>
           </ul>
-        </div>
+          </div>
 
         <div class="project-card fade-in-scroll">
           <h3>SYSTEMS CONTROL CHALLENGE</h3>
@@ -2844,7 +2919,7 @@
           <ul>
             <li>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</li>
           </ul>
-        </div>
+          </div>
 
         <div class="project-card fade-in-scroll">
           <h3>UNITY VR ESCAPE ROOM</h3>
@@ -2853,7 +2928,7 @@
             <li>Created an immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</li>
           </ul>
           <div><a href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank">VIEW DOCUMENTATION →</a></div>
-        </div>
+          </div>
 
         <div class="project-card fade-in-scroll">
           <h3>TOWER DEFENSE — SYSTEMS DESIGN</h3>
@@ -2862,7 +2937,7 @@
             <li>Implemented layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</li>
           </ul>
           <div><a href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank">VIEW DOCUMENTATION →</a></div>
-        </div>
+          </div>
 
         <div class="project-card fade-in-scroll">
           <h3>MODULAR BOARD GAME SYSTEM</h3>
@@ -2870,7 +2945,7 @@
           <ul>
             <li>Designed modular rule sets enabling variants and high replay value; emphasized clarity of interaction loops.</li>
           </ul>
-        </div>
+          </div>
 
         <div class="project-card fade-in-scroll">
           <h3>AI STOCK TRACKER & PRE-MARKET WATCHLIST</h3>
@@ -2878,7 +2953,7 @@
           <ul>
             <li>Built an AI-assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li>
           </ul>
-        </div>
+          </div>
       </div>
 
       <!-- Skills Section -->
@@ -2894,8 +2969,8 @@
               <div class="skill-tag"><span>Betaflight</span></div>
               <div class="skill-tag"><span>ESC/PID Tuning</span></div>
               <div class="skill-tag"><span>Control Theory</span></div>
-            </div>
-          </div>
+        </div>
+      </div>
 
           <div class="skill-category fade-in-scroll">
             <h4>CAD & SIMULATION</h4>
@@ -2905,8 +2980,8 @@
               <div class="skill-tag"><span>RockSim</span></div>
               <div class="skill-tag"><span>OpenRocket</span></div>
               <div class="skill-tag"><span>Revit</span></div>
-            </div>
-          </div>
+        </div>
+      </div>
 
           <div class="skill-category fade-in-scroll">
             <h4>PROGRAMMING</h4>
@@ -3174,21 +3249,52 @@
       title.classList.add('text-shimmer');
     });
 
-    // Advanced Cursor Trail System
-    const cursorTrails = [];
-    const trailCount = 30;
+    // Slither.io-Style Game System
+    let gameScore = 0;
+    let trailLength = 30;
+    const baseTrailCount = 30;
     
-    for (let i = 0; i < trailCount; i++) {
+    // Create game score display
+    const gameScoreDisplay = document.createElement('div');
+    gameScoreDisplay.className = 'game-score';
+    gameScoreDisplay.innerHTML = `
+      <div class="game-score-label">SCORE</div>
+      <div class="game-score-value" id="scoreValue">0</div>
+      <div class="game-length">Length: <span id="lengthValue">${trailLength}</span></div>
+    `;
+    document.body.appendChild(gameScoreDisplay);
+
+    // Advanced Cursor Trail System (Slither.io style)
+    const cursorTrails = [];
+    
+    function createTrailSegment(size, opacity, index) {
       const trail = document.createElement('div');
       trail.className = 'cursor-trail';
-      trail.style.width = (20 - i * 0.5) + 'px';
-      trail.style.height = (20 - i * 0.5) + 'px';
-      trail.style.opacity = (1 - i / trailCount) * 0.6;
-      trail.style.borderColor = `rgba(0, 255, 65, ${1 - i / trailCount})`;
-      trail.style.boxShadow = `0 0 ${10 + i * 2}px rgba(0, 255, 65, ${1 - i / trailCount})`;
+      trail.style.width = size + 'px';
+      trail.style.height = size + 'px';
+      trail.style.opacity = opacity;
+      trail.style.borderColor = `rgba(0, 255, 65, ${opacity})`;
+      trail.style.boxShadow = `0 0 ${size * 0.5}px rgba(0, 255, 65, ${opacity})`;
+      trail.style.background = `rgba(0, 255, 65, ${opacity * 0.3})`;
       document.body.appendChild(trail);
-      cursorTrails.push({ element: trail, x: 0, y: 0, targetX: 0, targetY: 0 });
+      return { element: trail, x: 0, y: 0, targetX: 0, targetY: 0, size: size };
     }
+    
+    function updateTrailLength() {
+      // Remove existing trails
+      cursorTrails.forEach(trail => trail.element.remove());
+      cursorTrails.length = 0;
+      
+      // Create new trails based on current length
+      for (let i = 0; i < trailLength; i++) {
+        const sizeProgress = i / trailLength;
+        const size = 20 - (sizeProgress * 10); // Head is 20px, tail shrinks to 10px
+        const opacity = (1 - sizeProgress) * 0.8;
+        cursorTrails.push(createTrailSegment(size, opacity, i));
+      }
+    }
+    
+    updateTrailLength();
 
     let mouseX = 0;
     let mouseY = 0;
@@ -3210,7 +3316,7 @@
 
     function animateCursorTrails() {
       cursorTrails.forEach((trail, index) => {
-        const speed = 0.15 + (index * 0.02);
+        const speed = 0.15 + (index * 0.015);
         trail.x += (trail.targetX - trail.x) * speed;
         trail.y += (trail.targetY - trail.y) * speed;
         
@@ -3220,6 +3326,164 @@
       requestAnimationFrame(animateCursorTrails);
     }
     animateCursorTrails();
+
+    // Game Pellets System
+    const gamePellets = [];
+    const pelletContainer = document.createElement('div');
+    pelletContainer.style.position = 'fixed';
+    pelletContainer.style.inset = '0';
+    pelletContainer.style.pointerEvents = 'none';
+    pelletContainer.style.zIndex = '9998';
+    document.body.appendChild(pelletContainer);
+
+    function createPellet() {
+      const pellet = document.createElement('div');
+      pellet.className = 'game-pellet';
+      pellet.style.left = Math.random() * window.innerWidth + 'px';
+      pellet.style.top = Math.random() * window.innerHeight + 'px';
+      
+      // Animate pellet floating
+      const floatX = (Math.random() - 0.5) * 200;
+      const floatY = (Math.random() - 0.5) * 200;
+      pellet.style.animation = `pelletFloat ${5 + Math.random() * 5}s ease-in-out infinite`;
+      pellet.style.setProperty('--float-x', floatX + 'px');
+      pellet.style.setProperty('--float-y', floatY + 'px');
+      
+      pelletContainer.appendChild(pellet);
+      
+      const pelletData = {
+        element: pellet,
+        x: parseFloat(pellet.style.left),
+        y: parseFloat(pellet.style.top),
+        radius: 4,
+        collected: false
+      };
+      
+      gamePellets.push(pelletData);
+      
+      // Remove pellet after some time if not collected
+      setTimeout(() => {
+        if (!pelletData.collected && pellet.parentNode) {
+          pellet.style.opacity = '0';
+          pellet.style.transform = 'scale(0)';
+          setTimeout(() => {
+            pellet.remove();
+            const index = gamePellets.indexOf(pelletData);
+            if (index > -1) gamePellets.splice(index, 1);
+          }, 300);
+        }
+      }, 15000);
+      
+      return pelletData;
+    }
+
+    // Create initial pellets
+    for (let i = 0; i < 50; i++) {
+      setTimeout(() => createPellet(), i * 200);
+    }
+
+    // Keep creating new pellets
+    setInterval(() => {
+      if (gamePellets.length < 50) {
+        createPellet();
+      }
+    }, 2000);
+
+    // Pellet floating animation
+    const style = document.createElement('style');
+    style.textContent += `
+      @keyframes pelletFloat {
+        0%, 100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(var(--float-x), var(--float-y)) scale(1.1);
+        }
+        50% {
+          transform: translate(calc(var(--float-x) * 0.5), calc(var(--float-y) * -0.5)) scale(0.9);
+        }
+        75% {
+          transform: translate(calc(var(--float-x) * -0.5), calc(var(--float-y) * 0.5)) scale(1.05);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Collision Detection and Collection
+    function checkCollisions() {
+      if (cursorTrails.length === 0) return;
+      
+      const head = cursorTrails[0];
+      const headX = head.x;
+      const headY = head.y;
+      const headRadius = head.size / 2;
+      
+      gamePellets.forEach((pellet, index) => {
+        if (pellet.collected) return;
+        
+        const pelletRect = pellet.element.getBoundingClientRect();
+        const pelletX = pelletRect.left + pelletRect.width / 2;
+        const pelletY = pelletRect.top + pelletRect.height / 2;
+        const pelletRadius = pellet.radius;
+        
+        const distance = Math.sqrt(
+          Math.pow(headX - pelletX, 2) + Math.pow(headY - pelletY, 2)
+        );
+        
+        if (distance < headRadius + pelletRadius) {
+          // Collect pellet
+          pellet.collected = true;
+          gameScore += 10;
+          trailLength = Math.min(trailLength + 1, 100); // Max 100 segments
+          
+          // Update score display
+          document.getElementById('scoreValue').textContent = gameScore;
+          document.getElementById('lengthValue').textContent = trailLength;
+          
+          // Animate pellet collection
+          pellet.element.style.transform = 'scale(2)';
+          pellet.element.style.opacity = '0';
+          pellet.element.style.transition = 'all 0.3s ease';
+          
+          // Add new trail segment
+          updateTrailLength();
+          
+          // Remove pellet
+          setTimeout(() => {
+            pellet.element.remove();
+            gamePellets.splice(index, 1);
+            
+            // Create new pellet elsewhere
+            setTimeout(() => createPellet(), 500);
+          }, 300);
+          
+          // Particle explosion effect
+          for (let i = 0; i < 5; i++) {
+            createParticle(pelletX, pelletY);
+          }
+        }
+      });
+    }
+
+    // Game loop
+    function gameLoop() {
+      checkCollisions();
+      requestAnimationFrame(gameLoop);
+    }
+    gameLoop();
+
+    // Update pellet positions for floating animation
+    function updatePelletPositions() {
+      gamePellets.forEach(pellet => {
+        if (!pellet.collected) {
+          const rect = pellet.element.getBoundingClientRect();
+          pellet.x = rect.left + rect.width / 2;
+          pellet.y = rect.top + rect.height / 2;
+        }
+      });
+      requestAnimationFrame(updatePelletPositions);
+    }
+    updatePelletPositions();
 
     // Advanced Particle System
     const particleContainer = document.createElement('div');
@@ -4067,7 +4331,7 @@
     document.addEventListener('keydown', (e) => {
       // Ctrl/Cmd + K for terminal
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
+          e.preventDefault();
         const terminalWindow = windowManager.createWindow(
           'TERMINAL',
           `
