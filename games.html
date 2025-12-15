@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNBLOCKED GAMES — GEOMETRY DASH</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --hacker-green: #00ff41;
+      --hacker-green-dark: #00cc33;
+      --hacker-green-bright: #00ff88;
+      --hacker-bg: #000000;
+      --text: #00ff41;
+      --glitch-red: #ff0040;
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--hacker-bg);
+      color: var(--text);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .game-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 3px solid var(--hacker-green);
+      box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .game-header {
+      padding: 15px 20px;
+      background: rgba(0, 255, 65, 0.1);
+      border-bottom: 2px solid var(--hacker-green);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .game-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px var(--hacker-green);
+    }
+
+    .game-stats {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .stat-label {
+      opacity: 0.7;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      color: var(--hacker-green-bright);
+    }
+
+    #gameCanvas {
+      display: block;
+      width: 100%;
+      height: 600px;
+      background: linear-gradient(180deg, #001122 0%, #000000 100%);
+      cursor: pointer;
+    }
+
+    .game-ui {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .game-overlay {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 40px;
+      border: 3px solid var(--hacker-green);
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(0, 255, 65, 0.5);
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .overlay-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px var(--hacker-green);
+    }
+
+    .overlay-subtitle {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: transparent;
+      border: 2px solid var(--hacker-green);
+      color: var(--hacker-green);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      pointer-events: auto;
+      margin: 5px;
+    }
+
+    .btn:hover {
+      background: var(--hacker-green);
+      color: var(--hacker-bg);
+      box-shadow: 0 0 20px var(--hacker-green);
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .controls-hint {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      opacity: 0.6;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .back-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      color: var(--hacker-green);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border: 1px solid var(--hacker-green);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: var(--hacker-green);
+      color: var(--hacker-bg);
+      box-shadow: 0 0 10px var(--hacker-green);
+    }
+
+    @media (max-width: 768px) {
+      #gameCanvas {
+        height: 400px;
+      }
+
+      .game-header {
+        padding: 10px 15px;
+      }
+
+      .game-title {
+        font-size: 1rem;
+      }
+
+      .game-stats {
+        font-size: 0.8rem;
+        gap: 10px;
+      }
+
+      .overlay-title {
+        font-size: 1.5rem;
+      }
+
+      .overlay-subtitle {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-link">← BACK</a>
+  
+  <div class="game-container">
+    <div class="game-header">
+      <div class="game-title">GEOMETRY DASH</div>
+      <div class="game-stats">
+        <div class="stat">
+          <span class="stat-label">LEVEL:</span>
+          <span class="stat-value" id="levelDisplay">1</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">SCORE:</span>
+          <span class="stat-value" id="scoreDisplay">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">BEST:</span>
+          <span class="stat-value" id="bestDisplay">0</span>
+        </div>
+      </div>
+    </div>
+    
+    <canvas id="gameCanvas"></canvas>
+    
+    <div class="game-ui">
+      <div id="startScreen" class="game-overlay">
+        <div class="overlay-title">GEOMETRY DASH</div>
+        <div class="overlay-subtitle">
+          Press SPACE or CLICK to jump<br>
+          Avoid obstacles and spikes<br>
+          Complete all 3 levels!
+        </div>
+        <button class="btn" onclick="startGame()">START GAME</button>
+      </div>
+      
+      <div id="gameOverScreen" class="game-overlay hidden">
+        <div class="overlay-title">GAME OVER</div>
+        <div class="overlay-subtitle" id="gameOverText"></div>
+        <button class="btn" onclick="restartLevel()">RETRY</button>
+        <button class="btn" onclick="showStartScreen()">MENU</button>
+      </div>
+      
+      <div id="levelCompleteScreen" class="game-overlay hidden">
+        <div class="overlay-title">LEVEL COMPLETE!</div>
+        <div class="overlay-subtitle" id="levelCompleteText"></div>
+        <button class="btn" onclick="nextLevel()">NEXT LEVEL</button>
+        <button class="btn" onclick="showStartScreen()">MENU</button>
+      </div>
+      
+      <div id="allCompleteScreen" class="game-overlay hidden">
+        <div class="overlay-title">ALL LEVELS COMPLETE!</div>
+        <div class="overlay-subtitle">Congratulations! You've mastered Geometry Dash!</div>
+        <button class="btn" onclick="restartGame()">PLAY AGAIN</button>
+        <button class="btn" onclick="showStartScreen()">MENU</button>
+      </div>
+    </div>
+    
+    <div class="controls-hint">SPACE or CLICK to JUMP</div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set canvas size
+    function resizeCanvas() {
+      const container = canvas.parentElement;
+      canvas.width = container.clientWidth;
+      canvas.height = 600;
+      if (window.innerWidth <= 768) {
+        canvas.height = 400;
+      }
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Game state
+    let gameState = 'menu'; // menu, playing, gameOver, levelComplete, allComplete
+    let currentLevel = 1;
+    let score = 0;
+    let bestScore = parseInt(localStorage.getItem('geometryDashBest') || '0');
+    let gameSpeed = 5;
+    
+    // Player
+    const player = {
+      x: 100,
+      y: 0,
+      width: 30,
+      height: 30,
+      velocityY: 0,
+      gravity: 0.8,
+      jumpPower: -15,
+      onGround: false,
+      color: '#00ff41'
+    };
+    
+    // Ground
+    const ground = {
+      y: 0,
+      height: 40
+    };
+    
+    // Obstacles and spikes
+    let obstacles = [];
+    let spikes = [];
+    
+    // Level definitions
+    const levels = [
+      // Level 1 - Easy
+      {
+        obstacles: [
+          { x: 400, width: 50, height: 100 },
+          { x: 600, width: 50, height: 120 },
+          { x: 800, width: 50, height: 80 },
+          { x: 1000, width: 50, height: 100 },
+          { x: 1200, width: 50, height: 90 }
+        ],
+        spikes: [
+          { x: 500, width: 30 },
+          { x: 700, width: 30 },
+          { x: 900, width: 30 },
+          { x: 1100, width: 30 }
+        ],
+        length: 1500
+      },
+      // Level 2 - Medium
+      {
+        obstacles: [
+          { x: 350, width: 50, height: 100 },
+          { x: 500, width: 50, height: 140 },
+          { x: 650, width: 50, height: 90 },
+          { x: 800, width: 50, height: 130 },
+          { x: 950, width: 50, height: 110 },
+          { x: 1100, width: 50, height: 120 },
+          { x: 1250, width: 50, height: 100 }
+        ],
+        spikes: [
+          { x: 425, width: 30 },
+          { x: 575, width: 30 },
+          { x: 725, width: 30 },
+          { x: 875, width: 30 },
+          { x: 1025, width: 30 },
+          { x: 1175, width: 30 }
+        ],
+        length: 1600
+      },
+      // Level 3 - Hard
+      {
+        obstacles: [
+          { x: 300, width: 50, height: 100 },
+          { x: 450, width: 50, height: 150 },
+          { x: 600, width: 50, height: 90 },
+          { x: 750, width: 50, height: 140 },
+          { x: 900, width: 50, height: 110 },
+          { x: 1050, width: 50, height: 130 },
+          { x: 1200, width: 50, height: 100 },
+          { x: 1350, width: 50, height: 120 },
+          { x: 1500, width: 50, height: 110 }
+        ],
+        spikes: [
+          { x: 375, width: 30 },
+          { x: 525, width: 30 },
+          { x: 675, width: 30 },
+          { x: 825, width: 30 },
+          { x: 975, width: 30 },
+          { x: 1125, width: 30 },
+          { x: 1275, width: 30 },
+          { x: 1425, width: 30 }
+        ],
+        length: 1800
+      }
+    ];
+    
+    let cameraX = 0;
+    let levelProgress = 0;
+    
+    // Initialize ground
+    function initGround() {
+      ground.y = canvas.height - ground.height;
+    }
+    
+    // Initialize player
+    function initPlayer() {
+      player.y = ground.y - player.height;
+      player.velocityY = 0;
+      player.onGround = true;
+    }
+    
+    // Load level
+    function loadLevel(levelNum) {
+      const level = levels[levelNum - 1];
+      obstacles = level.obstacles.map(obs => ({ ...obs }));
+      spikes = level.spikes.map(spike => ({ ...spike }));
+      cameraX = 0;
+      levelProgress = 0;
+      initPlayer();
+      gameSpeed = 5 + (levelNum - 1) * 1.5; // Speed increases with level
+    }
+    
+    // Jump
+    function jump() {
+      if (player.onGround && gameState === 'playing') {
+        player.velocityY = player.jumpPower;
+        player.onGround = false;
+      }
+    }
+    
+    // Update player
+    function updatePlayer() {
+      if (gameState !== 'playing') return;
+      
+      // Apply gravity
+      player.velocityY += player.gravity;
+      player.y += player.velocityY;
+      
+      // Ground collision
+      if (player.y + player.height >= ground.y) {
+        player.y = ground.y - player.height;
+        player.velocityY = 0;
+        player.onGround = true;
+      }
+      
+      // Ceiling collision
+      if (player.y < 0) {
+        player.y = 0;
+        player.velocityY = 0;
+      }
+    }
+    
+    // Update camera and obstacles
+    function updateWorld() {
+      if (gameState !== 'playing') return;
+      
+      cameraX += gameSpeed;
+      levelProgress = cameraX;
+      
+      // Check level complete
+      const currentLevelData = levels[currentLevel - 1];
+      if (levelProgress >= currentLevelData.length) {
+        completeLevel();
+      }
+    }
+    
+    // Check collisions
+    function checkCollisions() {
+      if (gameState !== 'playing') return;
+      
+      const playerLeft = player.x;
+      const playerRight = player.x + player.width;
+      const playerTop = player.y;
+      const playerBottom = player.y + player.height;
+      
+      // Check obstacle collisions
+      for (let obs of obstacles) {
+        const obsLeft = obs.x - cameraX;
+        const obsRight = obs.x - cameraX + obs.width;
+        const obsTop = ground.y - obs.height;
+        const obsBottom = ground.y;
+        
+        if (playerRight > obsLeft && playerLeft < obsRight &&
+            playerBottom > obsTop && playerTop < obsBottom) {
+          gameOver();
+          return;
+        }
+      }
+      
+      // Check spike collisions
+      for (let spike of spikes) {
+        const spikeLeft = spike.x - cameraX;
+        const spikeRight = spike.x - cameraX + spike.width;
+        const spikeTop = ground.y - 30;
+        const spikeBottom = ground.y;
+        
+        if (playerRight > spikeLeft && playerLeft < spikeRight &&
+            playerBottom > spikeTop && playerTop < spikeBottom) {
+          gameOver();
+          return;
+        }
+      }
+    }
+    
+    // Update score
+    function updateScore() {
+      if (gameState === 'playing') {
+        score = Math.floor(levelProgress / 10) + (currentLevel - 1) * 1000;
+        if (score > bestScore) {
+          bestScore = score;
+          localStorage.setItem('geometryDashBest', bestScore.toString());
+        }
+        updateUI();
+      }
+    }
+    
+    // Update UI
+    function updateUI() {
+      document.getElementById('levelDisplay').textContent = currentLevel;
+      document.getElementById('scoreDisplay').textContent = score;
+      document.getElementById('bestDisplay').textContent = bestScore;
+    }
+    
+    // Draw functions
+    function drawBackground() {
+      // Gradient background
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      gradient.addColorStop(0, '#001122');
+      gradient.addColorStop(1, '#000000');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Grid lines
+      ctx.strokeStyle = 'rgba(0, 255, 65, 0.1)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i < canvas.width; i += 50) {
+        ctx.beginPath();
+        ctx.moveTo(i - (cameraX % 50), 0);
+        ctx.lineTo(i - (cameraX % 50), canvas.height);
+        ctx.stroke();
+      }
+    }
+    
+    function drawGround() {
+      ctx.fillStyle = '#00ff41';
+      ctx.fillRect(0, ground.y, canvas.width, ground.height);
+      
+      // Ground glow
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = '#00ff41';
+      ctx.fillRect(0, ground.y, canvas.width, 2);
+      ctx.shadowBlur = 0;
+    }
+    
+    function drawPlayer() {
+      ctx.fillStyle = player.color;
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = player.color;
+      ctx.fillRect(player.x, player.y, player.width, player.height);
+      ctx.shadowBlur = 0;
+      
+      // Player face
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(player.x + 8, player.y + 8, 6, 6);
+      ctx.fillRect(player.x + 16, player.y + 8, 6, 6);
+      ctx.fillRect(player.x + 8, player.y + 20, 14, 4);
+    }
+    
+    function drawObstacles() {
+      ctx.fillStyle = '#ff0040';
+      for (let obs of obstacles) {
+        const x = obs.x - cameraX;
+        if (x > -obs.width && x < canvas.width) {
+          ctx.fillRect(x, ground.y - obs.height, obs.width, obs.height);
+          
+          // Obstacle glow
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = '#ff0040';
+          ctx.fillRect(x, ground.y - obs.height, obs.width, 3);
+          ctx.shadowBlur = 0;
+        }
+      }
+    }
+    
+    function drawSpikes() {
+      ctx.fillStyle = '#ff0040';
+      for (let spike of spikes) {
+        const x = spike.x - cameraX;
+        if (x > -spike.width && x < canvas.width) {
+          const spikeHeight = 30;
+          ctx.beginPath();
+          ctx.moveTo(x, ground.y);
+          ctx.lineTo(x + spike.width / 2, ground.y - spikeHeight);
+          ctx.lineTo(x + spike.width, ground.y);
+          ctx.closePath();
+          ctx.fill();
+          
+          // Spike glow
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = '#ff0040';
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+    }
+    
+    function drawProgress() {
+      if (gameState === 'playing') {
+        const currentLevelData = levels[currentLevel - 1];
+        const progress = Math.min(levelProgress / currentLevelData.length, 1);
+        
+        ctx.fillStyle = 'rgba(0, 255, 65, 0.3)';
+        ctx.fillRect(0, canvas.height - 5, canvas.width * progress, 5);
+        
+        ctx.fillStyle = '#00ff41';
+        ctx.fillRect(canvas.width * progress - 2, canvas.height - 8, 4, 8);
+      }
+    }
+    
+    // Game state functions
+    function startGame() {
+      currentLevel = 1;
+      score = 0;
+      loadLevel(currentLevel);
+      gameState = 'playing';
+      document.getElementById('startScreen').classList.add('hidden');
+      document.getElementById('gameOverScreen').classList.add('hidden');
+      document.getElementById('levelCompleteScreen').classList.add('hidden');
+      document.getElementById('allCompleteScreen').classList.add('hidden');
+      updateUI();
+    }
+    
+    function restartGame() {
+      currentLevel = 1;
+      score = 0;
+      startGame();
+    }
+    
+    function showStartScreen() {
+      gameState = 'menu';
+      document.getElementById('startScreen').classList.remove('hidden');
+      document.getElementById('gameOverScreen').classList.add('hidden');
+      document.getElementById('levelCompleteScreen').classList.add('hidden');
+      document.getElementById('allCompleteScreen').classList.add('hidden');
+      updateUI();
+    }
+    
+    function gameOver() {
+      gameState = 'gameOver';
+      document.getElementById('gameOverText').textContent = 
+        `Score: ${score} | Level: ${currentLevel}`;
+      document.getElementById('gameOverScreen').classList.remove('hidden');
+    }
+    
+    function restartLevel() {
+      loadLevel(currentLevel);
+      gameState = 'playing';
+      document.getElementById('gameOverScreen').classList.add('hidden');
+      updateUI();
+    }
+    
+    function completeLevel() {
+      gameState = 'levelComplete';
+      if (currentLevel < 3) {
+        document.getElementById('levelCompleteText').textContent = 
+          `Level ${currentLevel} Complete! Ready for Level ${currentLevel + 1}?`;
+        document.getElementById('levelCompleteScreen').classList.remove('hidden');
+      } else {
+        gameState = 'allComplete';
+        document.getElementById('allCompleteScreen').classList.remove('hidden');
+      }
+    }
+    
+    function nextLevel() {
+      currentLevel++;
+      loadLevel(currentLevel);
+      gameState = 'playing';
+      document.getElementById('levelCompleteScreen').classList.add('hidden');
+      updateUI();
+    }
+    
+    // Event listeners
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        jump();
+      }
+    });
+    
+    canvas.addEventListener('click', jump);
+    canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      jump();
+    });
+    
+    // Game loop
+    function gameLoop() {
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw background
+      drawBackground();
+      
+      // Update and draw game elements
+      if (gameState === 'playing') {
+        updatePlayer();
+        updateWorld();
+        checkCollisions();
+        updateScore();
+      }
+      
+      // Draw game elements
+      drawGround();
+      drawObstacles();
+      drawSpikes();
+      drawPlayer();
+      drawProgress();
+      
+      requestAnimationFrame(gameLoop);
+    }
+    
+    // Initialize
+    initGround();
+    initPlayer();
+    updateUI();
+    gameLoop();
+  </script>
+</body>
+</html>
+

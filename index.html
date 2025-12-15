@@ -248,6 +248,32 @@
       transform: translateX(5px);
     }
 
+    nav a.games-btn {
+      font-size: 1.2rem;
+      position: relative;
+    }
+
+    nav a.games-btn::before {
+      content: '> UNBLOCKED GAMES';
+      position: absolute;
+      left: 50%;
+      top: -40px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      font-size: 0.7rem;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 5px 10px;
+      border: 1px solid var(--hacker-green);
+      border-radius: 4px;
+    }
+
+    nav a.games-btn:hover::before {
+      opacity: 1;
+    }
+
     nav a::after {
       content: '';
       position: absolute;
@@ -3018,6 +3044,7 @@
     <a href="#experience">EXPERIENCE</a>
     <a href="#projects">PROJECTS</a>
     <a href="#contact">CONTACT</a>
+    <a href="games.html" class="games-btn" title="Unblocked Games">🎮</a>
       </nav>
 
   <div class="container">
