@@ -1,576 +1,1216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ojasva Mishra — Portfolio</title>
-<style>
-  :root{
-    --bg1:#102341; --bg2:#16375f; --bg3:#1a4471;
-    --text:#eef6ff; --muted:#9fb4cf; --card:#0f1d37; --ring:rgba(120,210,255,.55);
-    --a1:#63d6ff; --a2:#b99bff; --a3:#73f3cf; --a4:#ffd48a; --a5:#ff9adf;
-    --radius:22px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;color:var(--text)}
-  body::before{content:"";position:fixed;inset:0;z-index:-3;background:
-    radial-gradient(1300px 820px at 10% -10%, rgba(255,154,223,.25), transparent 65%),
-    radial-gradient(1200px 720px at 90% -20%, rgba(99,214,255,.34), transparent 62%),
-    radial-gradient(1200px 600px at 50% 20%, rgba(99,214,255,.22), transparent 60%),
-    radial-gradient(900px 420px at 35% 85%, rgba(99,214,255,.14), transparent 62%),
-    radial-gradient(900px 520px at 80% 120%, rgba(115,243,207,.22), transparent 65%),
-    radial-gradient(800px 520px at -10% 110%, rgba(255,212,138,.20), transparent 74%),
-    linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 42%, var(--bg3) 100%);
-  background-repeat:no-repeat;animation:bgfloat 26s ease-in-out infinite alternate}
-  body::after{content:"";position:fixed;inset:0;z-index:-2;opacity:.05;background:
-    linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:24px 24px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ojasva Mishra — AI Robotics Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+    :root {
+      --primary: #00d4ff;
+      --secondary: #7b2ff7;
+      --accent: #ff006e;
+      --accent2: #ffbe0b;
+      --accent3: #fb5607;
+      --dark: #0a0e27;
+      --dark2: #141b3d;
+      --dark3: #1e2749;
+      --light: #f0f9ff;
+      --text: #e0e7ff;
+      --text-muted: #a5b4fc;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
 
-  /* Header & Nav */
-  header{position:sticky;top:0;z-index:1000;background:linear-gradient(90deg,#142a50cc,#173663cc);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff24;transition:box-shadow .25s ease, background .25s ease}
-  header.is-scrolled{box-shadow:0 12px 34px rgba(0,0,0,.28)}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-  .brand{display:flex;gap:10px;align-items:center}
-  .brand-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#0e1b2e;border:1px solid #ffffff22;box-shadow:0 8px 20px rgba(0,0,0,.3)}
-  .brand-icon svg{width:24px;height:24px;display:block}
-  .menu{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;border:1px solid #ffffff22;background:linear-gradient(180deg,#ffffff12,#ffffff08);color:#eaf1ff}
-  .menu:active{transform:translateY(1px)}
-  @media(min-width:880px){.menu{display:none}}
-  .links{display:none;gap:10px;align-items:center}
-  @media(min-width:880px){.links{display:flex}}
-  .links a{position:relative;padding:10px 14px;border-radius:14px;border:1px solid transparent;background:
-    linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
-    linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box; color:#dbeaff; opacity:.92; transition:all .2s ease}
-  .links a:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.25)}
-  .links a.active{color:#fff;box-shadow:0 14px 30px rgba(99,214,255,.22)}
-  .mobile-nav{position:fixed;top:calc(64px + env(safe-area-inset-top,0px));left:0;right:0;z-index:35;display:none;flex-direction:column;gap:10px;padding:16px;width:min(94vw,520px);margin:0 auto;border-radius:18px;background:
-      radial-gradient(800px 300px at 70% -20%, rgba(99,214,255,.18), transparent 60%),
-      radial-gradient(600px 260px at 0% 0%, rgba(122,162,255,.14), transparent 65%),
-      linear-gradient(180deg,#0b1224f2,#0d1732f2);
-    border:1px solid #ffffff2a;backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.35);
-    transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
-  .mobile-nav.open{display:flex;transform:translateY(0);opacity:1;pointer-events:auto}
-  .mobile-nav .nav-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,#ffffff14,#ffffff0c);border:1px solid #ffffff22}
-  .mobile-nav .ni{width:28px;height:28px;border-radius:10px;display:grid;place-items:center;background:#0f2037;border:1px solid #ffffff22}
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
 
-  /* Buttons */
-  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:16px;padding:10px 14px;border:1px solid transparent;
-    background:linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
-               linear-gradient(135deg,var(--a1),var(--a5),var(--a2)) border-box;
-    color:#eaf1ff;transition:transform .2s ease, box-shadow .2s ease, background .2s;box-shadow:0 8px 22px rgba(0,0,0,.25)}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(99,214,255,.25),0 0 0 1px var(--ring) inset;background:linear-gradient(180deg,#0f213a,#0d1a33) padding-box,
-               linear-gradient(135deg,var(--a5),var(--a1),var(--a2)) border-box}
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-  /* Hero */
-  .hero{padding:64px 0 28px;display:grid;gap:22px;align-items:center}
-  @media(min-width:980px){.hero{grid-template-columns:340px 1fr;gap:36px}}
-  h1{font-size:42px;line-height:1.05;margin:0;background:linear-gradient(90deg,#bfe5ff 0%,#d6c4ff 20%,#ffb6ea 45%,#bdfce7 70%,#bfe5ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 28px rgba(99,214,255,.16)}
-  @media(min-width:880px){h1{font-size:64px}}
-  .subtitle{margin:8px 0 0;font-size:18px;color:#bfe0ff}
-  .lead{margin:10px 6px 0 0;color:#cfe4ff;max-width:860px}
-  .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-  .headshot{position:relative;width:260px;height:260px;margin:auto;border-radius:50%;padding:6px;background:conic-gradient(from 0deg,#63d6ff,#53b8ff,#51f0bf,#53b8ff,#7aa2ff,#63d6ff)}
-  .headshot .inner{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0b1f33;display:block;background-image:url('ojasvamishra.jpeg');background-size:cover;background-position:92% 20%}
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
 
-  /* Sections, cards, lists */
-  section{padding:52px 0}
-  h2{font-size:24px;margin:0 0 14px;background:linear-gradient(90deg,#cfe8ff,#ffd1ef,#bffbe8);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
-  h2::after{content:"";position:absolute;left:0;bottom:-8px;width:120px;height:2px;background:linear-gradient(90deg,var(--a1),var(--a5),var(--a3));border-radius:2px;opacity:.8}
-  .grid-2{display:grid;gap:18px}
-  @media(min-width:980px){.grid-2{grid-template-columns:2fr 1fr}}
-  .card{border:1px solid transparent;background:
-    linear-gradient(180deg,#0f1d37cc,#0c1630cc) padding-box,
-    linear-gradient(135deg,var(--a1),var(--a3)) border-box;
-    border-radius:var(--radius);padding:18px;backdrop-filter:blur(4px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:1px solid transparent;
-    background:linear-gradient(180deg,#10203a,#0b182f) padding-box,
-               linear-gradient(135deg,var(--a1),var(--a5)) border-box;color:#e9f0ff;font-size:13px}
-  .muted{color:var(--muted);font-size:13px}
-  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-  .list{display:grid;gap:12px}
-  .item{border:1px solid transparent;background:
-    linear-gradient(180deg,#0f1d37cc,#0c1630cc) padding-box,
-    linear-gradient(135deg,var(--a2),var(--a1),var(--a5)) border-box;
-    border-radius:16px;padding:14px;transition:transform .2s ease, box-shadow .2s ease;backdrop-filter:blur(2px)}
-  .item:hover{transform:translateY(-3px)}
-  .item h3{margin:0 0 6px;font-size:16px}
-  .meta{display:flex;gap:12px;flex-wrap:wrap;color:#cbd3e9;font-size:12px}
-  .bul{margin:8px 0 0 18px}
-  .bul li{margin:4px 0}
+    .bg-animation::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+      animation: rotate 30s linear infinite;
+    }
 
-  /* Feature grid */
-  .features{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  @media(min-width:980px){.features{grid-template-columns:repeat(4,1fr)}}
-  .feature{position:relative;overflow:hidden;padding:16px;border-radius:var(--radius);
-    background:linear-gradient(180deg,#0e1b32cc,#0c172ecc) padding-box,
-               linear-gradient(135deg,var(--a1),var(--a5),var(--a2),var(--a3)) border-box;
-    border:1px solid transparent;transition:transform .25s ease, box-shadow .25s ease, filter .25s ease}
-  .feature:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 1px var(--ring) inset;filter:saturate(1.15)}
-  .fx{position:absolute;inset:-40%;filter:blur(32px);opacity:0;transition:opacity .35s ease}
-  .feature:hover .fx{opacity:.95}
-  .fx.robo{background:radial-gradient(500px 220px at 60% 20%, var(--a1), transparent)}
-  .fx.ai{background:radial-gradient(500px 220px at 60% 20%, #e178ff, transparent)}
-  .fx.auto{background:radial-gradient(500px 220px at 60% 20%, var(--a3), transparent)}
-  .fx.aero{background:radial-gradient(500px 220px at 60% 20%, var(--a2), transparent)}
-  .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:
-    linear-gradient(180deg,#0f1f36,#0c1830) padding-box,
-    linear-gradient(135deg,var(--a1),var(--a5)) border-box; border:1px solid transparent;font-size:20px}
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-  /* Tabs (projects subpage) */
-  .tabs{display:inline-flex;border:1px solid #ffffff18;border-radius:12px;padding:4px;background:#ffffff12}
-  .tab{border:0;background:transparent;color:#cbd3e5;padding:8px 12px;border-radius:10px;cursor:pointer}
-  .tab.active{background:#53b8ff33;color:#bfe7ff}
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 15s infinite ease-in-out;
+    }
 
-  /* External link cue */
-  a.ext{position:relative;border-bottom:1px dotted rgba(255,255,255,.45);padding-right:18px}
-  a.ext::after{content:"↗";position:absolute;right:0;top:50%;transform:translateY(-52%);font-size:12px;opacity:.9}
-  a.ext:hover{box-shadow:0 0 0 1px var(--ring) inset}
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      50% { transform: translate(100px, -100px) scale(1.5); opacity: 0.6; }
+    }
 
-  footer{padding:36px 0;color:#9eb4d0;font-size:12px;text-align:center;border-top:1px solid #ffffff22}
-  @keyframes bgfloat{0%{background-position:15% -10%, 90% -20%, 80% 120%, -10% 110%, 0 0}100%{background-position:25% -5%, 80% -15%, 78% 110%, -4% 100%, 0 0}}
-</style>
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 14, 39, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(10, 14, 39, 0.95);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .mobile-menu span {
+      width: 25px;
+      height: 3px;
+      background: var(--text);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 8rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 1400px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 8s ease infinite;
+      background-size: 200% 200%;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-text .subtitle {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .hero-text .description {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      animation: floatImage 6s ease-in-out infinite;
+    }
+
+    @keyframes floatImage {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+
+    .image-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+      border-radius: 50%;
+      opacity: 0.3;
+      filter: blur(30px);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.1); opacity: 0.5; }
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(99, 102, 241, 0.3);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    /* Cards */
+    .card {
+      background: rgba(30, 39, 73, 0.5);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 24px;
+      padding: 2rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    /* Grid Layouts */
+    .grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    /* Experience/Leadership Items */
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .timeline-meta {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .timeline-item li {
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-item li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    /* Tags/Pills */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.4rem 1rem;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      background: rgba(99, 102, 241, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Skills Grid */
+    .skill-category {
+      margin-bottom: 2rem;
+    }
+
+    .skill-category h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    /* Contact Section */
+    .contact-info {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
+
+      .image-wrapper {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    /* Scroll Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, var(--secondary), var(--accent));
+    }
+
+    /* Page Sections */
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 0.8rem 2rem;
+      background: transparent;
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      color: var(--text);
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .tab.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-color: transparent;
+      color: white;
+    }
+
+    .tab:hover {
+      border-color: var(--primary);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+  </style>
 </head>
 <body>
-  <!-- Top Nav: 'Home' replaces 'About' -->
-  <header>
-    <div class="wrap nav">
-      <div class="brand">
-        <a class="brand-icon" href="#/">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#63d6ff"/><stop offset="1" stop-color="#7aa2ff"/></linearGradient></defs>
-            <rect x="3" y="7" width="18" height="12" rx="3" stroke="url(#g)" stroke-width="1.6"/>
-            <circle cx="9" cy="13" r="2" fill="url(#g)"/><circle cx="15" cy="13" r="2" fill="url(#g)"/>
-            <rect x="9" y="3" width="6" height="3" rx="1.2" fill="url(#g)"/>
-          </svg>
-        </a>
-        <strong>Ojasva Mishra</strong>
+  <div class="bg-animation"></div>
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">Ojasva Mishra</div>
+      <ul class="nav-links">
+        <li><a href="#home" data-nav>Home</a></li>
+        <li><a href="#experience" data-nav>Experience</a></li>
+        <li><a href="#leadership" data-nav>Leadership</a></li>
+        <li><a href="#projects" data-nav>Projects</a></li>
+        <li><a href="#contact" data-nav>Contact</a></li>
+      </ul>
+      <div class="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <button class="menu" id="menu" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">☰</button>
-      <nav class="links" aria-label="Primary">
-        <a data-link href="#/">Home</a>
-        <a data-link href="#/experiences">Experiences</a>
-        <a data-link href="#/leadership">Leadership</a>
-        <a data-link href="#/projects">Projects</a>
-        <a data-link href="#/contact">Contact</a>
-      </nav>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-      <a class="nav-item" href="#/"><span class="ni"><span>🏠</span></span><span class="nav-title">Home</span></a>
-      <a class="nav-item" href="#/experience"><span class="ni"><span>💼</span></span><span class="nav-title">Experience</span></a>
-      <a class="nav-item" href="#/leadership"><span class="ni"><span>✨</span></span><span class="nav-title">Leadership</span></a>
-      <a class="nav-item" href="#/projects"><span class="ni"><span>🧪</span></span><span class="nav-title">Projects</span></a>
-      <a class="nav-item" href="#/contact"><span class="ni"><span>✉️</span></span><span class="nav-title">Contact</span></a>
-    </nav>
-  </header>
+  </nav>
 
-  <!-- Router outlet -->
-  <main id="app" class="wrap" aria-live="polite"></main>
-
-  <footer>© <span id="yr"></span> Ojasva Mishra</footer>
-
-  <!-- PAGES AS TEMPLATES -->
-  <!-- HOME now includes former ABOUT content directly below the hero -->
-  <template id="page-home">
-    <section class="hero" aria-labelledby="title">
-      <div>
-        <div class="headshot"><div class="inner" role="img" aria-label="Ojasva Mishra headshot"></div></div>
-      </div>
-      <div>
-        <h1 id="title">Robotics • Autonomy • AI • Aerospace</h1>
-        <p class="subtitle">AI Robotics Researcher • President, BattleBots • VEX Robotics Competitor</p>
-        <p class="lead">AI robotics researcher focused on controls, autonomy, and human-useful software. Cofounder & CEO at <a class="ext" href="https://fusionbots.org" target="_blank" rel="noreferrer">Fusion Bots</a>. CTO/Director of Global Programmes on the governing committee at YPSF (UN MGCY).</p>
-        <div class="cta">
-          <a class="btn" href="#/projects">🚀 See projects</a>
-          <a class="btn" href="#/contact">✉️ Contact</a>
-          <a class="btn" href="#/leadership">🌐 Leadership</a>
-        </div>
-        <div class="row" style="margin-top:10px">
-          <span class="pill">🤖 Controls & Autonomy</span>
-          <span class="pill">🧠 AI Robotics Research</span>
-          <span class="pill">🔧 Rapid Prototyping</span>
-          <span class="pill">🛰️ Flight/ARC Sim</span>
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="page-section active">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Robotics • Autonomy • AI • Aerospace</h1>
+            <p class="subtitle">AI Robotics Researcher • President, BattleBots • VEX Robotics Competitor</p>
+            <p class="description">
+              AI robotics researcher focused on controls, autonomy, and human-useful software. 
+              Cofounder & CEO at <a href="https://fusionbots.org" target="_blank" style="color: var(--primary);">Fusion Bots</a>. 
+              CTO/Director of Global Programmes on the governing committee at YPSF (UN MGCY).
+            </p>
+            <div class="cta-buttons">
+              <a href="#projects" class="btn btn-primary" data-nav>🚀 View Projects</a>
+              <a href="#contact" class="btn btn-secondary" data-nav>✉️ Get in Touch</a>
+            </div>
+            <div class="tags" style="margin-top: 2rem;">
+              <span class="tag">🤖 Controls & Autonomy</span>
+              <span class="tag">🧠 AI Robotics Research</span>
+              <span class="tag">🔧 Rapid Prototyping</span>
+              <span class="tag">🛰️ Flight/ARC Sim</span>
+            </div>
+          </div>
+          <div class="hero-image">
+            <div class="image-wrapper">
+              <img src="ojasvamishra.jpeg" alt="Ojasva Mishra">
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="features" aria-label="Interests" style="grid-column:1/-1">
-        <a class="feature" href="#/projects">
-          <div class="tag">Featured</div><div class="fx robo" aria-hidden="true"></div><div class="ic" aria-hidden="true">🛠️</div>
-          <h3>Robotics</h3><p>Mechanisms, reliability, and closed-loop control — design → build → test with data-driven iteration.</p>
-        </a>
-        <a class="feature" href="#/projects"><div class="fx ai"></div><div class="ic">🤖</div><h3>AI</h3><p>Perception, forecasting, and decision support integrated into real apps and robots.</p></a>
-        <a class="feature" href="#/projects"><div class="fx auto"></div><div class="ic">🧭</div><h3>Autonomy</h3><p>Sensing + feedback + planning for robust behavior under constraints and time pressure.</p></a>
-        <a class="feature" href="#/projects"><div class="fx aero"></div><div class="ic">✈️</div><h3>Aerospace</h3><p>Flight simulation, rocketry CAD, and mission math for safe, stable trajectories.</p></a>
+      <!-- About Section -->
+      <section style="padding-top: 0;">
+        <h2 class="section-title">About</h2>
+        <div class="grid grid-2">
+          <div class="card fade-in">
+            <h3>Education</h3>
+            <p><strong>Downingtown STEM Academy</strong> — IB Diploma Candidate (Class of 2026). Pathway: Robotics I–III. HL: Math AA, Physics, Economics; SL: German, Literature, TOK. <span style="color: var(--text-muted);">Weighted GPA 4.35.</span></p>
+            <p style="margin-top: 1rem;">I build end-to-end systems: perception and control on hardware, plus full-stack web apps that people actually use. I value fast feedback loops, clear specs, and measurable results.</p>
+            <p style="margin-top: 1rem; color: var(--text-muted);">3 years Varsity Tennis • 4 Years (2025–26).</p>
+          </div>
+          <div class="card fade-in">
+            <h3>Focus Areas</h3>
+            <div class="tags">
+              <span class="tag">⚙️ Controls</span>
+              <span class="tag">🧩 Embedded</span>
+              <span class="tag">👁️ Perception</span>
+              <span class="tag">🗺️ Planning</span>
+              <span class="tag">🕸️ Web Apps</span>
+              <span class="tag">📣 Education & Outreach</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interests Grid -->
+        <div class="grid grid-4" style="margin-top: 3rem;">
+          <div class="card fade-in">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🛠️</div>
+            <h3>Robotics</h3>
+            <p>Mechanisms, reliability, and closed-loop control — design → build → test with data-driven iteration.</p>
+          </div>
+          <div class="card fade-in">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🤖</div>
+            <h3>AI</h3>
+            <p>Perception, forecasting, and decision support integrated into real apps and robots.</p>
+          </div>
+          <div class="card fade-in">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🧭</div>
+            <h3>Autonomy</h3>
+            <p>Sensing + feedback + planning for robust behavior under constraints and time pressure.</p>
+          </div>
+          <div class="card fade-in">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">✈️</div>
+            <h3>Aerospace</h3>
+            <p>Flight simulation, rocketry CAD, and mission math for safe, stable trajectories.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="page-section">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline-item fade-in">
+        <h3>🧪 Fusion Bots — Founder & CEO</h3>
+        <div class="timeline-meta">Jan 2025 – Present • Startup • Education Robotics</div>
+        <ul>
+          <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; demonstrated <strong>revenue growth</strong> and ran workshops that expanded STEM access.</li>
+          <li>Recruited and led a team <strong>(6 core + 6 interns)</strong> across product, outreach, and operations; set processes for fulfillment, support, and content.</li>
+        </ul>
+        <div style="margin-top: 1rem; color: var(--text-muted);">🔗 <a href="https://fusionbots.org" target="_blank" style="color: var(--primary);">fusionbots.org</a></div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>⚡ EV Bots Inc — AI Robotics Engineer Intern</h3>
+        <div class="timeline-meta">Jul 2025 – Present • Autonomous EV-Charging Robots</div>
+        <ul>
+          <li>Built/programmed autonomous robots to dock and charge EVs via mobile app; integrated AI for perception and automation.</li>
+          <li>CAD + prototyping; hardware bring-up; test & optimization across software and electronics.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🛩️ Ptero Labs — Intern (UAV Simulation)</h3>
+        <div class="timeline-meta">Jul 2025 – Present • Mission-Grade UAV Sim • AI/ML</div>
+        <ul>
+          <li>Developed flight dynamics & control integration; AI/ML for mission planning and object detection.</li>
+          <li>Performance benchmarking and systems optimization within the simulation stack.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🧰 iPipeline — Software Development Intern</h3>
+        <div class="timeline-meta">Summer 2025 • Automation & Frontend</div>
+        <ul>
+          <li>Built AI-assisted agents and internal tools for QA automation and code-workflow efficiency.</li>
+          <li>Shipped UI enhancements and testing pipelines to improve developer velocity.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>📘 Kumon Learning Center — Center Assistant/Tutor</h3>
+        <div class="timeline-meta">2022 – 2023 • Math & English</div>
+        <ul>
+          <li>Taught students ages 4–16; graded work and maintained the data system to track mastery.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🎾 Tennis Coach — Paid & Volunteer</h3>
+        <div class="timeline-meta">2022 – 2025</div>
+        <ul>
+          <li>Taught fundamentals (serves, volleys, strokes) to ages 8–15; ran drills; assisted HS coach; organized sessions.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>♟️ Chess Coach & Creator — Competitor, YouTuber</h3>
+        <div class="timeline-meta">2014 – Present</div>
+        <ul>
+          <li>1800+ ELO; coached youth players; produced educational content (2k+ subs); competed OTB and online.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- Former ABOUT content appears here on the Home route -->
-    <section aria-labelledby="about-title">
-      <h2 id="about-title">About</h2>
-      <div class="grid-2">
-        <div class="card">
-          <p><strong>Downingtown STEM Academy</strong> — IB Diploma Candidate (Class of 2026). Pathway: Robotics I–III. HL: Math AA, Physics, Economics; SL: German, Literature, TOK. <span class="muted">Weighted GPA 4.35.</span></p>
-          <p>I build end-to-end systems: perception and control on hardware, plus full-stack web apps that people actually use. I value fast feedback loops, clear specs, and measurable results.</p>
-          <p class="muted">3 years Varsity Tennis • 4 Years (2025–26).</p>
-        </div>
-        <div class="card">
-          <strong>Focus Areas</strong>
-          <div class="pill">⚙️ Controls</div>
-          <div class="pill">🧩 Embedded</div>
-          <div class="pill">👁️ Perception</div>
-          <div class="pill">🗺️ Planning</div>
-          <div class="pill">🕸️ Web Apps</div>
-          <div class="pill">📣 Education & Outreach</div>
-        </div>
+    <!-- Leadership Section -->
+    <section id="leadership" class="page-section">
+      <h2 class="section-title">Leadership & Advocacy</h2>
+      <div class="timeline-item fade-in">
+        <h3>🌍 CTO & Director of Global Programmes — YPSF (UN MGCY)</h3>
+        <div class="timeline-meta">2024 – Present • Governing Committee (1 of 13) • ~600 members</div>
+        <ul>
+          <li>Lead AI literacy and equitable digital-policy initiatives; co-develop global programming for youth tech empowerment.</li>
+          <li>Manage program managers and international fellow teams; set standards and roadmaps for delivery.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🪲 President — BattleBots Club</h3>
+        <div class="timeline-meta">Downingtown STEM Academy • 2022 – Present</div>
+        <ul>
+          <li>Lead combat-robot design, manufacturing, programming, and match strategy with emphasis on reliability and rapid field repair.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🤖 Lead Programmer — VEX Robotics (State Finalist)</h3>
+        <div class="timeline-meta">2019, 2023 – Present • Design • C++/Python • PID • Auton</div>
+        <ul>
+          <li>Led 6-member team; CAD, modular subsystems, autonomous routines, PID tuning; managed engineering notebook & judging presentations.</li>
+          <li>Built for reliability; coordinated strategy and rapid pit-repair during competition weeks.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🚀 Founder/President — American Rocketry Challenge Club</h3>
+        <div class="timeline-meta">2023 – Present</div>
+        <ul>
+          <li>Founded 4 teams (40+ members); led CAD of payloads, propulsion analysis, and launch simulations; ensured safety & compliance.</li>
+        </ul>
+        <div style="margin-top: 1rem; color: var(--text-muted);">🔗 <a href="https://arcstem.vercel.app" target="_blank" style="color: var(--primary);">arcstem.vercel.app</a></div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>📈 CIO/President — Stocks & Investments Club</h3>
+        <div class="timeline-meta">2023 – Present • 140+ members</div>
+        <ul>
+          <li>Grew membership; ran literacy workshops & competitions; built an AI stock tracker (40+ daily users); 3× personal portfolio.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🎾 Varsity Tennis Player</h3>
+        <div class="timeline-meta">2022 – Present</div>
+        <ul>
+          <li>Led drills & strategy; part of the first DWHS team to districts; playback semifinals.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🏛️ National Honor Society — Member</h3>
+        <div class="timeline-meta">2024 – Present</div>
+        <ul>
+          <li>Selected for academics and leadership; completed 20+ service hours supporting school and local projects.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>📚 Library Volunteer — STEM & Literacy Programs</h3>
+        <div class="timeline-meta">2022</div>
+        <ul>
+          <li>Hosted STEM workshops and literacy programs (50+ youth); taught tech literacy and chess; boosted attendance by 60%.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <h3>🏅 State Competitor — DECA & HOSA</h3>
+        <div class="timeline-meta">2022 – 2023</div>
+        <ul>
+          <li>Advanced to states in business and health events; marketing program work and healthcare issues exam qualifier.</li>
+        </ul>
       </div>
     </section>
-  </template>
 
-  <!-- (We no longer need a separate About page template) -->
-
-  <template id="page-experience">
-    <section aria-labelledby="exp-title">
-      <h2 id="exp-title">Experience</h2>
-      <div class="list">
-        <div class="item">
-          <h3>🧪 Fusion Bots — Founder & CEO</h3>
-          <div class="meta"><span>Jan 2025 – Present</span><span>Startup • Education Robotics</span></div>
-          <ul class="bul">
-            <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront; demonstrated <strong>revenue growth</strong> and ran workshops that expanded STEM access.</li>
-            <li>Recruited and led a team <strong>(6 core + 6 interns)</strong> across product, outreach, and operations; set processes for fulfillment, support, and content.</li>
-          </ul>
-          <div class="muted">🔗 <a class="ext" href="https://fusionbots.org" target="_blank" rel="noreferrer">fusionbots.org</a></div>
-        </div>
-
-        <div class="item">
-          <h3>⚡ EV Bots Inc — AI Robotics Engineer Intern</h3>
-          <div class="meta"><span>Jul 2025 – Present</span><span>Autonomous EV-Charging Robots</span></div>
-          <ul class="bul">
-            <li>Built/programmed autonomous robots to dock and charge EVs via mobile app; integrated AI for perception and automation.</li>
-            <li>CAD + prototyping; hardware bring-up; test & optimization across software and electronics.</li>
-          </ul>
-        </div>
-
-        <div class="item">
-          <h3>🛩️ Ptero Labs — Intern (UAV Simulation)</h3>
-          <div class="meta"><span>Jul 2025 – Present</span><span>Mission-Grade UAV Sim • AI/ML</span></div>
-          <ul class="bul">
-            <li>Developed flight dynamics & control integration; AI/ML for mission planning and object detection.</li>
-            <li>Performance benchmarking and systems optimization within the simulation stack.</li>
-          </ul>
-        </div>
-
-        <div class="item">
-          <h3>🧰 iPipeline — Software Development Intern</h3>
-          <div class="meta"><span>Summer 2025</span><span>Automation & Frontend</span></div>
-          <ul class="bul">
-            <li>Built AI-assisted agents and internal tools for QA automation and code-workflow efficiency.</li>
-            <li>Shipped UI enhancements and testing pipelines to improve developer velocity.</li>
-          </ul>
-        </div>
-
-        <div class="item">
-          <h3>📘 Kumon Learning Center — Center Assistant/Tutor</h3>
-          <div class="meta"><span>2022 – 2023</span><span>Math & English</span></div>
-          <ul class="bul"><li>Taught students ages 4–16; graded work and maintained the data system to track mastery.</li></ul>
-        </div>
-
-        <div class="item">
-          <h3>🎾 Tennis Coach — Paid & Volunteer</h3>
-          <div class="meta"><span>2022 – 2025</span></div>
-          <ul class="bul"><li>Taught fundamentals (serves, volleys, strokes) to ages 8–15; ran drills; assisted HS coach; organized sessions.</li></ul>
-        </div>
-
-        <div class="item">
-          <h3>♟️ Chess Coach & Creator — Competitor, YouTuber</h3>
-          <div class="meta"><span>2014 – Present</span></div>
-          <ul class="bul"><li>1800+ ELO; coached youth players; produced educational content (2k+ subs); competed OTB and online.</li></ul>
-        </div>
-      </div>
-    </section>
-  </template>
-
-  <template id="page-leadership">
-    <section aria-labelledby="lead-title">
-      <h2 id="lead-title">Leadership & Advocacy</h2>
-      <div class="list">
-        <div class="item">
-          <h3>🌍 CTO & Director of Global Programmes — YPSF (UN MGCY)</h3>
-          <div class="meta"><span>2024 – Present</span><span>Governing Committee (1 of 13) • ~600 members</span></div>
-          <ul class="bul">
-            <li>Lead AI literacy and equitable digital-policy initiatives; co-develop global programming for youth tech empowerment.</li>
-            <li>Manage program managers and international fellow teams; set standards and roadmaps for delivery.</li>
-          </ul>
-        </div>
-
-        <div class="item">
-          <h3>🪲 President — BattleBots Club</h3>
-          <div class="meta"><span>Downingtown STEM Academy • 2022 – Present</span></div>
-          <ul class="bul"><li>Lead combat-robot design, manufacturing, programming, and match strategy with emphasis on reliability and rapid field repair.</li></ul>
-        </div>
-
-        <div class="item">
-          <h3>🤖 Captain/Lead Programmer — VEX Robotics (State Finalist)</h3>
-          <div class="meta"><span>2019, 2023 – Present</span><span>Design • C++/Python • PID • Auton</span></div>
-          <ul class="bul">
-            <li>Led 6-member team; CAD, modular subsystems, autonomous routines, PID tuning; managed engineering notebook & judging presentations.</li>
-            <li>Built for reliability; coordinated strategy and rapid pit-repair during competition weeks.</li>
-          </ul>
-        </div>
-
-        <div class="item">
-          <h3>🚀 Founder/President — American Rocketry Challenge Club</h3>
-          <div class="meta"><span>2023 – Present</span></div>
-          <ul class="bul">
-            <li>Founded 4 teams (40+ members); led CAD of payloads, propulsion analysis, and launch simulations; ensured safety & compliance.</li>
-          </ul>
-          <div class="muted">🔗 <a class="ext" href="https://arcstem.vercel.app" target="_blank" rel="noreferrer">arcstem.vercel.app</a></div>
-        </div>
-
-        <div class="item">
-          <h3>📈 CIO/President — Stocks & Investments Club</h3>
-          <div class="meta"><span>2023 – Present</span><span>140+ members</span></div>
-          <ul class="bul"><li>Grew membership; ran literacy workshops & competitions; built an AI stock tracker (40+ daily users); 3× personal portfolio.</li></ul>
-        </div>
-
-        <div class="item">
-          <h3>🎾 Varsity Tennis Player</h3>
-          <div class="meta"><span>2022 – Present</span></div>
-          <ul class="bul"><li>Team captain (2025–26); led drills & strategy; part of the first DWHS team to districts; playback semifinals.</li></ul>
-        </div>
-
-        <div class="item">
-          <h3>🏛️ National Honor Society — Member</h3>
-          <div class="meta"><span>2024 – Present</span></div>
-          <ul class="bul"><li>Selected for academics and leadership; completed 20+ service hours supporting school and local projects.</li></ul>
-        </div>
-
-        <div class="item">
-          <h3>📚 Library Volunteer — STEM & Literacy Programs</h3>
-          <div class="meta"><span>2022</span></div>
-          <ul class="bul"><li>Hosted STEM workshops and literacy programs (50+ youth); taught tech literacy and chess; boosted attendance by 60%.</li></ul>
-        </div>
-
-        <div class="item">
-          <h3>🏅 State Competitor — DECA & HOSA</h3>
-          <div class="meta"><span>2022 – 2023</span></div>
-          <ul class="bul"><li>Advanced to states in business and health events; marketing program work and healthcare issues exam qualifier.</li></ul>
-        </div>
-      </div>
-    </section>
-  </template>
-
-  <template id="page-projects">
-    <section aria-labelledby="proj-title">
-      <div class="row" style="justify-content:space-between;gap:10px">
-        <h2 id="proj-title">Projects & Technical Experience</h2>
-        <div class="tabs" role="tablist" aria-label="Project tabs">
-          <button id="tab-projects" class="tab active" role="tab" aria-selected="true" data-tab="projects">Projects</button>
-          <button id="tab-skills" class="tab" role="tab" aria-selected="false" data-tab="skills">Skills</button>
-          <button id="tab-awards" class="tab" role="tab" aria-selected="false" data-tab="awards">Awards</button>
-        </div>
+    <!-- Projects Section -->
+    <section id="projects" class="page-section">
+      <h2 class="section-title">Projects & Technical Experience</h2>
+      
+      <div class="tabs">
+        <button class="tab active" data-tab="projects">Projects</button>
+        <button class="tab" data-tab="skills">Skills</button>
+        <button class="tab" data-tab="awards">Awards</button>
       </div>
 
-      <div id="panel-projects" class="panel" role="tabpanel" aria-labelledby="tab-projects">
-        <div class="list">
-          <div class="item">
+      <div id="panel-projects" class="tab-panel active">
+        <div class="grid grid-2">
+          <div class="card fade-in">
             <h3>🌳 SAFMS — Smart Agro-Forest Management System</h3>
-            <div class="meta"><span>React • AI • IoT simulation • Carbon-credit concept</span></div>
-            <ul class="bul">
+            <div class="timeline-meta">React • AI • IoT simulation • Carbon-credit concept</div>
+            <ul>
               <li>Built a web platform modeling sustainable agriculture with AI insights and a device simulation layer.</li>
               <li>Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</li>
             </ul>
-            <div class="muted">🔗 <a class="ext" href="https://safmstsa.vercel.app" target="_blank" rel="noreferrer">safmstsa.vercel.app</a></div>
+            <div style="margin-top: 1rem; color: var(--text-muted);">🔗 <a href="https://safmstsa.vercel.app" target="_blank" style="color: var(--primary);">safmstsa.vercel.app</a></div>
           </div>
 
-          <div class="item">
-            <h3>🛩️ <a class="ext" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noreferrer">Custom Racing Drone w/ Claw</a></h3>
-            <div class="meta"><span>Betaflight • ESC integration • PID tuning</span></div>
-            <ul class="bul"><li>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness.</li></ul>
+          <div class="card fade-in">
+            <h3>🛩️ Custom Racing Drone w/ Claw</h3>
+            <div class="timeline-meta">Betaflight • ESC integration • PID tuning</div>
+            <ul>
+              <li>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness.</li>
+            </ul>
+            <div style="margin-top: 1rem; color: var(--text-muted);">🔗 <a href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" style="color: var(--primary);">View Documentation</a></div>
           </div>
 
-          <div class="item">
-            <h3>🧪 <a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">NitroCapture Pro — Zeolite-Based Nitrogen Capture</a></h3>
-            <div class="meta"><span>Environmental • 3D-printed • <a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">Engineering&nbsp;Design</a></span></div>
-            <ul class="bul"><li>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li></ul>
+          <div class="card fade-in">
+            <h3>🧪 NitroCapture Pro — Zeolite-Based Nitrogen Capture</h3>
+            <div class="timeline-meta">Environmental • 3D-printed • Engineering Design</div>
+            <ul>
+              <li>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; executed iterative experiments and analysis.</li>
+            </ul>
+            <div style="margin-top: 1rem; color: var(--text-muted);">🔗 <a href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" style="color: var(--primary);">View Documentation</a></div>
           </div>
 
-          <div class="item">
+          <div class="card fade-in">
             <h3>🧭 Competition Robot</h3>
-            <div class="meta"><span>Autonomous + Tele-op • Mechanisms • Controls</span></div>
-            <ul class="bul"><li>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</li></ul>
+            <div class="timeline-meta">Autonomous + Tele-op • Mechanisms • Controls</div>
+            <ul>
+              <li>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</li>
+            </ul>
           </div>
 
-          <div class="item">
+          <div class="card fade-in">
             <h3>🧠 Systems Control Challenge</h3>
-            <div class="meta"><span>Python • C++ • Feedback control</span></div>
-            <ul class="bul"><li>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</li></ul>
+            <div class="timeline-meta">Python • C++ • Feedback control</div>
+            <ul>
+              <li>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</li>
+            </ul>
           </div>
 
-          <div class="item">
-            <h3>🎮 <a class="ext" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noreferrer">Unity VR Escape Room</a></h3>
-            <div class="meta"><span>Unity • C# • Blender assets • Meta Quest</span></div>
-            <ul class="bul"><li>Created an immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</li></ul>
+          <div class="card fade-in">
+            <h3>🎮 Unity VR Escape Room</h3>
+            <div class="timeline-meta">Unity • C# • Blender assets • Meta Quest</div>
+            <ul>
+              <li>Created an immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</li>
+            </ul>
+            <div style="margin-top: 1rem; color: var(--text-muted);">🔗 <a href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" style="color: var(--primary);">View Documentation</a></div>
           </div>
 
-          <div class="item">
-            <h3>🛡️ <a class="ext" href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" rel="noreferrer">Tower Defense — Systems Design</a></h3>
-            <div class="meta"><span>Game design • Balancing • Documentation</span></div>
-            <ul class="bul"><li>Implemented layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</li></ul>
+          <div class="card fade-in">
+            <h3>🛡️ Tower Defense — Systems Design</h3>
+            <div class="timeline-meta">Game design • Balancing • Documentation</div>
+            <ul>
+              <li>Implemented layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</li>
+            </ul>
+            <div style="margin-top: 1rem; color: var(--text-muted);">🔗 <a href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" style="color: var(--primary);">View Documentation</a></div>
           </div>
 
-          <div class="item">
+          <div class="card fade-in">
             <h3>🎲 Modular Board Game System</h3>
-            <div class="meta"><span>Mechanics • Replayability</span></div>
-            <ul class="bul"><li>Designed modular rule sets enabling variants and high replay value; emphasized clarity of interaction loops.</li></ul>
+            <div class="timeline-meta">Mechanics • Replayability</div>
+            <ul>
+              <li>Designed modular rule sets enabling variants and high replay value; emphasized clarity of interaction loops.</li>
+            </ul>
           </div>
 
-          <div class="item">
+          <div class="card fade-in">
             <h3>📈 AI Stock Tracker & Pre-Market Watchlist</h3>
-            <div class="meta"><span>AI/ML • Finance • Web app</span></div>
-            <ul class="bul"><li>Built an AI-assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li></ul>
+            <div class="timeline-meta">AI/ML • Finance • Web app</div>
+            <ul>
+              <li>Built an AI-assisted tracker that generates daily bullish watchlists and tracks performance with a modern UI.</li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <div id="panel-skills" class="panel" role="tabpanel" aria-labelledby="tab-skills" hidden>
-        <div class="card">
-          <strong>Hardware & Robotics</strong>
-          <div class="pill">🤖 VEX</div><div class="pill">🧰 Arduino</div><div class="pill">🛩️ FPV Drones</div><div class="pill">🧿 Betaflight</div><div class="pill">⚖️ ESC/PID Tuning</div><div class="pill">🧠 Control Theory</div>
-          <div class="row" style="height:8px"></div>
-          <strong>CAD & Simulation</strong>
-          <div class="pill">🧩 Fusion 360</div><div class="pill">📐 Onshape</div><div class="pill">🛰️ RockSim</div><div class="pill">🚀 OpenRocket</div><div class="pill">🏗️ Revit</div>
-          <div class="row" style="height:8px"></div>
-          <strong>Programming</strong>
-          <div class="pill">🐍 Python</div><div class="pill">🧱 C++</div><div class="pill">🟨 JavaScript</div><div class="pill">🎮 C# (Unity)</div><div class="pill">🧷 HTML/CSS</div>
-          <div class="row" style="height:8px"></div>
-          <strong>Frameworks/Tools</strong>
-          <div class="pill">⚛️ React</div><div class="pill">🎛️ Unity</div><div class="pill">🌬️ Tailwind</div><div class="pill">✨ Framer Motion</div><div class="pill">🔧 Git</div><div class="pill">🌀 Blender</div>
-          <div class="row" style="height:8px"></div>
-          <strong>Other</strong>
-          <div class="pill">🧱 3D Printing</div><div class="pill">🔦 Laser Engraving</div><div class="pill">🛠️ CNC</div><div class="pill">🧩 CuraSlicer</div><div class="pill">📝 Technical Writing</div><div class="pill">🎤 Public Speaking</div><div class="pill">🛍️ Shopify</div><div class="pill">🎻 Violin</div><div class="pill">🎹 Piano</div>
-          <div class="row" style="height:8px"></div>
-          <strong>Investing</strong>
-          <div class="pill">🏛️ Wharton Challenge</div><div class="pill">📈 Tripled Portfolio</div><div class="pill">🧮 Options</div><div class="pill">⚡ Day Trading</div>
+      <div id="panel-skills" class="tab-panel">
+        <div class="card fade-in">
+          <div class="skill-category">
+            <h4>Hardware & Robotics</h4>
+            <div class="tags">
+              <span class="tag">🤖 VEX</span>
+              <span class="tag">🧰 Arduino</span>
+              <span class="tag">🛩️ FPV Drones</span>
+              <span class="tag">🧿 Betaflight</span>
+              <span class="tag">⚖️ ESC/PID Tuning</span>
+              <span class="tag">🧠 Control Theory</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h4>CAD & Simulation</h4>
+            <div class="tags">
+              <span class="tag">🧩 Fusion 360</span>
+              <span class="tag">📐 Onshape</span>
+              <span class="tag">🛰️ RockSim</span>
+              <span class="tag">🚀 OpenRocket</span>
+              <span class="tag">🏗️ Revit</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h4>Programming</h4>
+            <div class="tags">
+              <span class="tag">🐍 Python</span>
+              <span class="tag">🧱 C++</span>
+              <span class="tag">🟨 JavaScript</span>
+              <span class="tag">🎮 C# (Unity)</span>
+              <span class="tag">🧷 HTML/CSS</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h4>Frameworks/Tools</h4>
+            <div class="tags">
+              <span class="tag">⚛️ React</span>
+              <span class="tag">🎛️ Unity</span>
+              <span class="tag">🌬️ Tailwind</span>
+              <span class="tag">✨ Framer Motion</span>
+              <span class="tag">🔧 Git</span>
+              <span class="tag">🌀 Blender</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h4>Other</h4>
+            <div class="tags">
+              <span class="tag">🧱 3D Printing</span>
+              <span class="tag">🔦 Laser Engraving</span>
+              <span class="tag">🛠️ CNC</span>
+              <span class="tag">🧩 CuraSlicer</span>
+              <span class="tag">📝 Technical Writing</span>
+              <span class="tag">🎤 Public Speaking</span>
+              <span class="tag">🛍️ Shopify</span>
+              <span class="tag">🎻 Violin</span>
+              <span class="tag">🎹 Piano</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h4>Investing</h4>
+            <div class="tags">
+              <span class="tag">🏛️ Wharton Challenge</span>
+              <span class="tag">📈 Tripled Portfolio</span>
+              <span class="tag">🧮 Options</span>
+              <span class="tag">⚡ Day Trading</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div id="panel-awards" class="panel" role="tabpanel" aria-labelledby="tab-awards" hidden>
-        <div class="list">
-          <div class="item">🏆 TSA Nationals Competitor (8 events, incl. <a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noreferrer">Engineering&nbsp;Design</a>); State Finalist in all entered events; Top-5 Regional in all events.</div>
-          <div class="item">🤖 VEX Robotics State Finalist; 🏥 DECA & HOSA State Qualifier.</div>
-          <div class="item">🧮 CalcUSolve: 1st Place Team, 2nd Place Individual.</div>
-          <div class="item">🎓 National Honor Society; 🗣️ Top-10 Regional Debate Finalist.</div>
+      <div id="panel-awards" class="tab-panel">
+        <div class="grid grid-2">
+          <div class="card fade-in">
+            <h3>🏆 TSA Nationals Competitor</h3>
+            <p>8 events, including Engineering Design. State Finalist in all entered events; Top-5 Regional in all events.</p>
+            <div style="margin-top: 1rem; color: var(--text-muted);">🔗 <a href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" style="color: var(--primary);">View Documentation</a></div>
+          </div>
+
+          <div class="card fade-in">
+            <h3>🤖 VEX Robotics State Finalist</h3>
+            <p>State Finalist in VEX Robotics competition. Also State Qualifier in DECA & HOSA.</p>
+          </div>
+
+          <div class="card fade-in">
+            <h3>🧮 CalcUSolve</h3>
+            <p>1st Place Team, 2nd Place Individual.</p>
+          </div>
+
+          <div class="card fade-in">
+            <h3>🎓 Academic Achievements</h3>
+            <p>National Honor Society member. Top-10 Regional Debate Finalist.</p>
+          </div>
         </div>
       </div>
     </section>
-  </template>
 
-  <template id="page-contact">
-    <section aria-labelledby="contact-title">
-      <h2 id="contact-title">Get in touch</h2>
-      <div class="card">
-        <p><strong>Ojasva Mishra</strong> • AI Robotics Researcher & Student Engineer</p>
-        <p class="muted">📞 (484) 703-9916 • ✉️ <a class="ext" href="mailto:ojasvamishra32@gmail.com">ojasvamishra32@gmail.com</a></p>
-        <div class="cta" id="socials">
-          <a class="btn" href="https://fusionbots.org" target="_blank" rel="noreferrer">🧪 Fusion Bots</a>
-          <a class="btn" href="https://www.instagram.com/ojas_mishra32/" target="_blank" rel="noreferrer">📸 Instagram</a>
-          <a class="btn" href="https://github.com/OjasMishra32" target="_blank" rel="noreferrer">💻 GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" rel="noreferrer">🔗 LinkedIn</a>
+    <!-- Contact Section -->
+    <section id="contact" class="page-section">
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="card" style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <h3>Ojasva Mishra</h3>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">AI Robotics Researcher & Student Engineer</p>
+        <div class="contact-info">
+          <p>📞 <a href="tel:4847039916" style="color: var(--primary);">(484) 703-9916</a></p>
+          <p>✉️ <a href="mailto:ojasvamishra32@gmail.com" style="color: var(--primary);">ojasvamishra32@gmail.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="https://fusionbots.org" target="_blank" class="btn btn-primary">🧪 Fusion Bots</a>
+          <a href="https://www.instagram.com/ojas_mishra32/" target="_blank" class="btn btn-secondary">📸 Instagram</a>
+          <a href="https://github.com/OjasMishra32" target="_blank" class="btn btn-secondary">💻 GitHub</a>
+          <a href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" class="btn btn-secondary">🔗 LinkedIn</a>
         </div>
       </div>
     </section>
-  </template>
+  </main>
 
-<script>
-/* Year */
-document.getElementById('yr').textContent = new Date().getFullYear();
+  <footer>
+    <p>© <span id="year"></span> Ojasva Mishra. All rights reserved.</p>
+  </footer>
 
-/* Mobile menu */
-const menuBtn = document.getElementById('menu');
-const mnav = document.getElementById('mobile-nav');
-function lockScroll(on){document.documentElement.style.overflow=document.body.style.overflow=on?'hidden':''}
-function closeNav(){mnav.classList.remove('open');menuBtn.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰';lockScroll(false)}
-function openNav(){mnav.classList.add('open');menuBtn.classList.add('open');menuBtn.setAttribute('aria-expanded','true');menuBtn.textContent='✕';lockScroll(true)}
-if(menuBtn && mnav){
-  menuBtn.addEventListener('click', ()=> mnav.classList.contains('open') ? closeNav() : openNav());
-  mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
-  document.addEventListener('keyup', e=>{ if(e.key==='Escape') closeNav() });
-}
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-/* Header shadow on scroll */
-(function(){
-  const h = document.querySelector('header');
-  const onScroll = ()=> h && h.classList.toggle('is-scrolled', window.scrollY>8);
-  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-})();
-
-/* --------- HASH ROUTER --------- */
-const routes = {
-  '/': 'page-home',            // Combined Home + About
-  '/experience': 'page-experience',
-  '/leadership': 'page-leadership',
-  '/projects': 'page-projects',
-  '/contact': 'page-contact'
-};
-
-function renderRoute(){
-  const outlet = document.getElementById('app');
-  const hash = (location.hash || '#/').replace('#','');
-  const path = hash || '/';
-  const tplId = routes[path] || routes['/'];
-  const tpl = document.getElementById(tplId);
-  if (!tpl){ outlet.innerHTML = '<section><h2>Not found</h2></section>'; return; }
-  outlet.innerHTML = tpl.innerHTML;
-  window.scrollTo({top:0,behavior:'instant'});
-
-  // Nav active state
-  document.querySelectorAll('nav.links a[data-link]').forEach(a=>{
-    const match = a.getAttribute('href') === '#'+path || (path==='/' && a.getAttribute('href')==='#/');
-    a.classList.toggle('active', match);
-  });
-
-  // Projects tabs wiring if needed
-  if (path === '/projects'){
-    const tabs = document.querySelectorAll('.tab');
-    const panels = {
-      projects: document.getElementById('panel-projects'),
-      skills: document.getElementById('panel-skills'),
-      awards: document.getElementById('panel-awards')
-    };
-    function activate(name){
-      tabs.forEach(b=>{
-        const on = b.dataset.tab === name;
-        b.classList.toggle('active', on);
-        b.setAttribute('aria-selected', on ? 'true' : 'false');
-        b.tabIndex = on ? 0 : -1;
-      });
-      Object.keys(panels).forEach(k=> panels[k] && (panels[k].hidden = (k!==name)));
+    // Create animated particles
+    function createParticles() {
+      const bgAnimation = document.querySelector('.bg-animation');
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        bgAnimation.appendChild(particle);
+      }
     }
-    tabs.forEach(b=>{
-      b.addEventListener('click', ()=> activate(b.dataset.tab));
-      b.addEventListener('keydown', e=>{
-        if(e.key==='ArrowRight' || e.key==='ArrowLeft'){
-          e.preventDefault();
-          const arr = Array.from(tabs);
-          const i = arr.indexOf(b);
-          const next = e.key==='ArrowRight' ? (i+1)%arr.length : (i-1+arr.length)%arr.length;
-          arr[next].focus(); activate(arr[next].dataset.tab);
+    createParticles();
+
+    // Navigation scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[data-nav]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          // Show the section
+          document.querySelectorAll('.page-section').forEach(section => {
+            section.classList.remove('active');
+          });
+          targetSection.classList.add('active');
+          
+          // Scroll to top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          
+          // Update URL
+          history.pushState(null, null, `#${targetId}`);
         }
       });
     });
-    const tabHash = (location.hash||'').split('?tab=')[1];
-    activate((tabHash==='skills'||tabHash==='awards')?tabHash:'projects');
-  }
-}
 
-window.addEventListener('hashchange', renderRoute);
-window.addEventListener('load', ()=>{
-  if(!location.hash) location.replace('#/');
-  renderRoute();
-});
-</script>
+    // Handle hash on load
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.substring(1) || 'home';
+      const targetSection = document.getElementById(hash);
+      if (targetSection) {
+        document.querySelectorAll('.page-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        targetSection.classList.add('active');
+      }
+    });
+
+    // Handle browser back/forward
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.substring(1) || 'home';
+      const targetSection = document.getElementById(hash);
+      if (targetSection) {
+        document.querySelectorAll('.page-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        targetSection.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Tab functionality
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.getAttribute('data-tab');
+        
+        // Update tab active state
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Update panel visibility
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+          panel.classList.remove('active');
+        });
+        document.getElementById(`panel-${tabName}`).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
