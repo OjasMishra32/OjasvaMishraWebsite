@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/animejs@4/+esm" />
 <style>
   /* =========================================================
      RESET + TOKENS
@@ -873,6 +874,552 @@
   footer a:hover { color: var(--text); }
   footer .links { display: flex; gap: 22px; flex-wrap: wrap; }
 
+  /* =========================================================
+     HERO ENHANCEMENTS — full-width name, feature card below
+     ========================================================= */
+  .hero { display: flex; flex-direction: column; }
+  .hero-inner { display: block; }
+  .hero-top { margin-bottom: clamp(40px, 6vw, 80px); }
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.85fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: end;
+  }
+  .hero-text { min-width: 0; }
+  .hero-feature {
+    position: relative;
+    aspect-ratio: 4/5;
+    width: 100%;
+    max-width: 380px;
+    margin-left: auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line-2);
+    background: var(--bg-1);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    animation: heroFeatIn 1.4s var(--ease-out) .55s forwards;
+  }
+  @keyframes heroFeatIn { to { opacity: 1; transform: none; } }
+  .hero-feature .ph {
+    position: absolute; inset: 0;
+    background-image: url('ojasvamishra.jpeg');
+    background-size: cover;
+    background-position: center 22%;
+    filter: contrast(1.05) saturate(1.05);
+    transform: scale(1.08);
+    transition: transform 1.6s var(--ease-out);
+  }
+  .hero-feature:hover .ph { transform: scale(1.12); }
+  .hero-feature::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.55) 75%, rgba(0,0,0,0.85) 100%);
+  }
+  .hero-feature .pill {
+    position: absolute; left: 18px; top: 18px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 12px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--text);
+  }
+  .hero-feature .body {
+    position: absolute; left: 24px; right: 24px; bottom: 24px;
+    color: var(--text);
+  }
+  .hero-feature .body .k {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-2); margin-bottom: 8px;
+  }
+  .hero-feature .body .h {
+    font-size: clamp(1.4rem, 2vw, 1.9rem);
+    font-weight: 600; letter-spacing: -0.025em; line-height: 1.05;
+  }
+  .hero-feature .body .h .serif {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+  }
+  .hero-feature .body .stack {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-top: 14px;
+    color: var(--text-2);
+    font-size: 13px;
+  }
+  .hero-feature .body .stack b { color: var(--text); font-weight: 600; }
+  @media (max-width: 880px) {
+    .hero-bottom { grid-template-columns: 1fr; }
+    .hero-feature { max-width: 480px; margin: 28px auto 0; aspect-ratio: 4/5; }
+  }
+
+  /* =========================================================
+     UF cinematic moment
+     ========================================================= */
+  .uf-shell {
+    position: relative;
+    min-height: 100svh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 var(--pad);
+    overflow: hidden;
+  }
+  .uf-shell::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(40% 50% at 50% 35%, rgba(255,255,255,0.06), transparent 70%),
+      radial-gradient(60% 80% at 50% 100%, rgba(255,200,80,0.04), transparent 70%);
+    pointer-events: none;
+  }
+  .uf-inner {
+    position: relative;
+    text-align: center;
+    max-width: 1100px;
+  }
+  .uf-eyebrow {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--text-3); margin-bottom: 32px;
+    display: inline-flex; align-items: center; gap: 16px;
+  }
+  .uf-eyebrow::before, .uf-eyebrow::after {
+    content: ""; display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--text-4);
+  }
+  .uf-name {
+    font-size: clamp(3rem, 9vw, 8.5rem);
+    font-weight: 600;
+    line-height: 0.95; letter-spacing: -0.04em;
+    margin-bottom: 28px;
+  }
+  .uf-name .ser {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+  }
+  .uf-sub {
+    font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+    color: var(--text-2); line-height: 1.4;
+    max-width: 760px; margin: 0 auto 56px;
+  }
+  .uf-sub b { color: var(--text); font-weight: 600; }
+  .uf-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 56px);
+    max-width: 880px; margin: 0 auto;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+  .uf-stat .n {
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 600; letter-spacing: -0.04em; line-height: 1;
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+  }
+  .uf-stat .l {
+    margin-top: 10px;
+    font-size: 13px; color: var(--text-3);
+    letter-spacing: 0.04em; line-height: 1.45;
+  }
+  @media (max-width: 720px) {
+    .uf-stats { grid-template-columns: 1fr; gap: 28px; }
+    .uf-stats .uf-stat { padding-top: 24px; border-top: 1px solid var(--line); }
+    .uf-stats .uf-stat:first-child { padding-top: 0; border-top: none; }
+  }
+
+  /* =========================================================
+     TWINLY HERO PANEL
+     ========================================================= */
+  .now-card.featured {
+    border: 1px solid var(--line-2);
+  }
+  .now-card.featured .body {
+    grid-template-columns: 1.05fr 1fr;
+    padding: clamp(36px, 6vw, 80px);
+    gap: clamp(28px, 4vw, 60px);
+  }
+  .now-card.featured .text h3 {
+    font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+  }
+  .now-card.featured .text .lede-q {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    color: var(--text-2);
+    margin: -8px 0 22px;
+    line-height: 1.35;
+  }
+  .now-card.featured .visual {
+    aspect-ratio: 4/3;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--line-2);
+    background: #0a0a0c;
+  }
+  .now-card.featured .visual::before { display: none; }
+  .embed-frame {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+  }
+  .embed-chrome {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    background: rgba(20,20,22,0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    font-size: 12px; color: var(--text-3);
+    letter-spacing: 0.02em;
+    z-index: 2;
+  }
+  .embed-chrome .dots {
+    display: inline-flex; gap: 6px; margin-right: 6px;
+  }
+  .embed-chrome .dots i {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--bg-3); display: block;
+  }
+  .embed-chrome .url {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font);
+    font-size: 12px;
+    color: var(--text-2);
+  }
+  .embed-chrome .ext {
+    color: var(--text-3); font-weight: 500;
+  }
+  .embed-stage {
+    position: relative; flex: 1; overflow: hidden;
+    background: #fff;
+  }
+  .embed-stage iframe {
+    position: absolute; left: 0; top: 0;
+    width: calc(100% / var(--scale, 0.6));
+    height: calc(100% / var(--scale, 0.6));
+    transform: scale(var(--scale, 0.6));
+    transform-origin: top left;
+    border: 0;
+    pointer-events: none;
+  }
+  .embed-stage .veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+  }
+
+  /* =========================================================
+     CRACKED — numbers banner
+     ========================================================= */
+  .cracked-shell {
+    padding: clamp(80px, 10vw, 140px) 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+  }
+  .cracked-head {
+    text-align: left; max-width: 1100px;
+    margin-bottom: 64px;
+  }
+  .cracked-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .cracked-cell {
+    padding: 36px 32px 36px 0;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .cracked-cell:last-child { border-right: 0; }
+  .cracked-cell:nth-child(n+1) { padding-left: 0; }
+  .cracked-cell:nth-child(n+2) { padding-left: 32px; }
+  .cracked-cell .n {
+    font-size: clamp(2.6rem, 5vw, 4.4rem);
+    font-weight: 600; letter-spacing: -0.04em; line-height: 1;
+    color: var(--text);
+  }
+  .cracked-cell .n .ser {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+  }
+  .cracked-cell .l {
+    margin-top: 14px;
+    font-size: 13px; color: var(--text-3); line-height: 1.5;
+    max-width: 200px;
+  }
+  .cracked-cell .l b { color: var(--text); font-weight: 600; }
+  @media (max-width: 880px) {
+    .cracked-grid { grid-template-columns: repeat(2, 1fr); }
+    .cracked-cell:nth-child(2) { border-right: 0; }
+    .cracked-cell:nth-child(n+3) { border-top: 1px solid var(--line); padding-top: 36px; }
+  }
+  @media (max-width: 520px) {
+    .cracked-grid { grid-template-columns: 1fr; }
+    .cracked-cell { border-right: 0; padding-left: 0 !important; padding-right: 0; }
+    .cracked-cell:nth-child(n+2) { border-top: 1px solid var(--line); padding-top: 32px; }
+  }
+
+  /* =========================================================
+     LIVE BUILDS gallery
+     ========================================================= */
+  .builds-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .build {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--bg-1);
+    transition: transform .6s var(--ease-out), border-color .25s;
+    display: flex; flex-direction: column;
+  }
+  .build:hover { transform: translateY(-3px); border-color: var(--line-2); }
+  .build .frame {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: #000;
+  }
+  .build .meta {
+    padding: 22px 26px 26px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+  }
+  .build .meta .info h3 {
+    font-size: 1.05rem; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 4px;
+  }
+  .build .meta .info p {
+    font-size: 13px; color: var(--text-3); line-height: 1.5; max-width: 380px;
+  }
+  .build .meta .visit {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 500;
+    color: var(--text-2);
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    padding: 8px 14px;
+    transition: color .25s, border-color .25s, background .25s;
+  }
+  .build:hover .meta .visit {
+    color: var(--text);
+    border-color: var(--line-3);
+    background: rgba(255,255,255,0.04);
+  }
+  @media (max-width: 720px) {
+    .builds-grid { grid-template-columns: 1fr; }
+  }
+
+  /* =========================================================
+     SECTION HAIRLINE (decorative draw)
+     ========================================================= */
+  .section-hairline {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--pad);
+    transform: translateY(8px);
+  }
+
+  /* =========================================================
+     ROCKET LAUNCH frame — replaces ARC iframe
+     Pure-CSS cinematic loop, no fake illustrative glyphs.
+     ========================================================= */
+  .rocket {
+    position: relative; width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse 70% 35% at 50% 100%, rgba(255,159,10,0.22), transparent 70%),
+      radial-gradient(ellipse 90% 60% at 50% 95%, rgba(191,90,242,0.10), transparent 70%),
+      linear-gradient(180deg, #000010 0%, #03051a 50%, #0a0d28 100%);
+    overflow: hidden;
+  }
+  .rocket .horizon {
+    position: absolute; left: 0; right: 0; bottom: 14%;
+    height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  }
+  .rocket .hud {
+    position: absolute; top: 14px; left: 16px; right: 16px;
+    display: flex; justify-content: space-between;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); font-weight: 500;
+    z-index: 3;
+  }
+  .rocket .hud .l { display: flex; align-items: center; gap: 8px; }
+  .rocket .hud .l::before {
+    content: ""; width: 6px; height: 6px; background: var(--accent-4);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-4);
+    animation: rocketBeacon 1.4s ease-in-out infinite;
+  }
+  @keyframes rocketBeacon { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+
+  .rocket .stars i {
+    position: absolute; width: 1.5px; height: 1.5px;
+    background: #fff; border-radius: 50%;
+    opacity: var(--o, 0.5);
+    animation: twinkle var(--d, 3s) ease-in-out infinite;
+    animation-delay: var(--ad, 0s);
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: var(--o, 0.5); transform: scale(1); }
+    50%     { opacity: 0.05; transform: scale(0.6); }
+  }
+
+  /* The trail + tip travel together via a wrapper that translates upward */
+  .rocket .ship {
+    position: absolute; left: 50%; bottom: 14%;
+    transform: translate3d(-50%, 0, 0);
+    animation: rocketRise 6s cubic-bezier(0.55, 0, 0.35, 1) infinite;
+    will-change: transform;
+  }
+  @keyframes rocketRise {
+    0%       { transform: translate3d(-50%, 0%, 0); }
+    8%       { transform: translate3d(-50%, -2%, 0); }   /* ignition / hold */
+    100%     { transform: translate3d(-50%, -120%, 0); }
+  }
+
+  .rocket .ship .body {
+    position: relative;
+    width: 6px; height: 22px;
+    background: linear-gradient(180deg, #fff, #d8dfee 60%, #8b96b3);
+    border-radius: 3px 3px 1px 1px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.25);
+  }
+  .rocket .ship .body::before {
+    /* nose cone */
+    content: ""; position: absolute;
+    top: -7px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-bottom: 7px solid #fff;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.4));
+  }
+  .rocket .ship .body::after {
+    /* fins */
+    content: ""; position: absolute; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 12px; height: 4px;
+    background: linear-gradient(180deg, transparent 50%, #fff 50%);
+    clip-path: polygon(0 100%, 30% 0, 70% 0, 100% 100%);
+  }
+
+  .rocket .ship .flame {
+    position: absolute; left: 50%; top: calc(100% + 1px);
+    transform: translateX(-50%);
+    width: 8px; height: 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,159,10,0.95) 45%, rgba(255,55,95,0.0));
+    border-radius: 50% 50% 60% 60%;
+    filter: blur(0.4px);
+    transform-origin: top center;
+    animation: flameFlick 0.12s ease-in-out infinite alternate;
+  }
+  @keyframes flameFlick {
+    0%   { transform: translateX(-50%) scaleY(1)   scaleX(1); }
+    100% { transform: translateX(-50%) scaleY(1.25) scaleX(0.85); }
+  }
+
+  .rocket .ship .trail {
+    position: absolute; left: 50%; top: 100%;
+    transform: translateX(-50%);
+    width: 1px; height: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,159,10,0.5) 40%, transparent);
+    animation: rocketTrail 6s cubic-bezier(0.55, 0, 0.35, 1) infinite;
+  }
+  @keyframes rocketTrail {
+    0%   { height: 0; opacity: .85; }
+    8%   { height: 8px; }
+    50%  { height: 50%; opacity: .85; }
+    100% { height: 60%; opacity: 0; }
+  }
+
+  .rocket .pad {
+    position: absolute; left: 50%; bottom: calc(14% - 6px);
+    transform: translateX(-50%);
+    width: 50px; height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18) 30%, rgba(255,255,255,0.18) 70%, transparent);
+    border-radius: 2px;
+  }
+  .rocket .smoke {
+    position: absolute; left: 50%; bottom: 6%;
+    transform: translateX(-50%);
+    width: 90px; height: 60px;
+    background: radial-gradient(ellipse 50% 60% at 50% 70%, rgba(255,255,255,0.12), transparent 70%);
+    filter: blur(8px);
+    animation: smokePulse 6s cubic-bezier(0.55, 0, 0.35, 1) infinite;
+  }
+  @keyframes smokePulse {
+    0%, 8% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+    18%    { opacity: 1; transform: translateX(-50%) scale(1.2); }
+    60%    { opacity: 0.4; transform: translateX(-50%) scale(1.6); }
+    100%   { opacity: 0; transform: translateX(-50%) scale(2.2); }
+  }
+
+  /* =========================================================
+     BRAND CARD frame — for builds whose iframes are unreliable
+     ========================================================= */
+  .brandframe {
+    position: relative; width: 100%; height: 100%;
+    overflow: hidden;
+    background:
+      radial-gradient(70% 50% at 30% 0%, rgba(255,159,10,0.18), transparent 60%),
+      radial-gradient(70% 60% at 100% 100%, rgba(255,55,95,0.16), transparent 60%),
+      linear-gradient(180deg, #14080a 0%, #0a0a0c 60%, #050505 100%);
+    padding: 32px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .brandframe::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%);
+    pointer-events: none;
+  }
+  .brandframe .top {
+    position: relative; z-index: 1;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-3); font-weight: 500;
+  }
+  .brandframe .word {
+    position: relative; z-index: 1;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    font-weight: 600; letter-spacing: -0.04em; line-height: 0.95;
+    color: var(--text);
+  }
+  .brandframe .word .ser {
+    font-family: var(--font-serif); font-style: italic; font-weight: 400;
+    color: var(--text-2);
+  }
+  .brandframe .row {
+    position: relative; z-index: 1;
+    display: flex; gap: 18px; flex-wrap: wrap;
+  }
+  .brandframe .row .pill {
+    padding: 6px 12px;
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    font-size: 11px; letter-spacing: 0.06em;
+    color: var(--text-2);
+  }
+
+  /* =========================================================
+     IMPROVED reveal — slight scale to add cinematic quality
+     ========================================================= */
+  .reveal-up { opacity: 0; transform: translateY(36px); transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out); }
+  .reveal-up.in { opacity: 1; transform: none; }
+
+  .reveal-scale {
+    opacity: 0; transform: scale(0.96) translateY(20px);
+    transition: opacity 1.4s var(--ease-out), transform 1.4s var(--ease-out);
+  }
+  .reveal-scale.in { opacity: 1; transform: none; }
+
   /* Reduced motion --------------------------------------- */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -909,42 +1456,53 @@
 <!-- ============================== HERO ============================== -->
 <header id="top" class="hero">
   <div class="hero-inner">
-    <span class="eyebrow">Available for collaboration · Class of 2026</span>
-
-    <h1 class="h-display hero-name"><span class="stagger" data-text="Ojasva Mishra"></span></h1>
-
-    <p class="hero-tagline reveal delay-2">
-      I build <span class="accent">robots, autonomy, and AI</span> — from autonomous EV-charging robots and UAV simulation
-      to <span class="accent">Twinly</span>, an AI startup turning résumés into interactive digital twins.
-      Also founding <span class="accent">Fusion Bots</span>.
-    </p>
-
-    <div class="hero-cta reveal delay-3">
-      <a class="btn btn-primary magnetic" href="#now">
-        <span class="inner">See what I'm building <span class="arrow">→</span></span>
-      </a>
-      <a class="btn btn-secondary magnetic" href="#contact">
-        <span class="inner">Get in touch</span>
-      </a>
+    <div class="hero-top">
+      <span class="eyebrow">Class of 2026 · Heading to University of Florida</span>
+      <h1 class="h-display hero-name"><span class="stagger" data-text="Ojasva Mishra"></span></h1>
     </div>
 
-    <div class="hero-meta reveal delay-4">
-      <div class="hero-meta-item">
-        <div class="k">Currently</div>
-        <div class="v">AI Robotics Intern · EV Bots &amp; Ptero Labs</div>
+    <div class="hero-bottom">
+      <div class="hero-text">
+        <p class="hero-tagline reveal-up delay-2">
+          Founder of <span class="accent">Twinly</span> — an AI startup turning résumés into interactive digital twins recruiters interview 24/7.
+          Currently shipping autonomy at <span class="accent">EV Bots</span> and UAV simulation at <span class="accent">Ptero Labs</span>,
+          while building <span class="accent">Fusion Bots</span>.
+        </p>
+
+        <div class="hero-cta reveal-up delay-3">
+          <a class="btn btn-primary magnetic" href="https://twinly.tech" target="_blank" rel="noopener">
+            <span class="inner">Visit Twinly <span class="arrow">→</span></span>
+          </a>
+          <a class="btn btn-secondary magnetic" href="#now">
+            <span class="inner">What I'm building</span>
+          </a>
+        </div>
+
+        <div class="hero-meta reveal-up delay-4">
+          <div class="hero-meta-item">
+            <div class="k">Founder</div>
+            <div class="v">Twinly · Fusion Bots</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="k">Interning</div>
+            <div class="v">EV Bots · Ptero Labs</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="k">Next</div>
+            <div class="v">UF · CE + MS Finance</div>
+          </div>
+        </div>
       </div>
-      <div class="hero-meta-item">
-        <div class="k">Founder</div>
-        <div class="v">Twinly · Fusion Bots</div>
-      </div>
-      <div class="hero-meta-item">
-        <div class="k">Based</div>
-        <div class="v">Pennsylvania, USA</div>
-      </div>
-      <div class="hero-meta-item">
-        <div class="k">Focus</div>
-        <div class="v">Controls · Perception · Planning</div>
-      </div>
+
+      <aside class="hero-feature" aria-hidden="true">
+        <div class="ph"></div>
+        <span class="pill">Class of 2030 · UF</span>
+        <div class="body">
+          <div class="k">Next chapter</div>
+          <div class="h">Computer Engineering<br/>+ <span class="serif">Master of Finance</span></div>
+          <div class="stack"><b>1 of 40</b><span>combined-degree cohort · 4 years</span></div>
+        </div>
+      </aside>
     </div>
   </div>
 
@@ -973,6 +1531,69 @@
     <span class="marquee-item">Rapid Prototyping <span class="sep">/</span></span>
   </div>
 </div>
+
+<!-- Decorative hairline draws between hero and UF section -->
+<div class="section-hairline" aria-hidden="true">
+  <svg viewBox="0 0 1200 24" preserveAspectRatio="none" width="100%" height="24">
+    <path d="M0 12 L1200 12" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none" />
+  </svg>
+</div>
+
+<!-- ============================== UF CINEMATIC ============================== -->
+<section class="uf-shell" aria-labelledby="uf-h">
+  <div class="uf-inner">
+    <div class="uf-eyebrow reveal-up">Next chapter — Fall 2026</div>
+    <h2 id="uf-h" class="uf-name reveal-up delay-1">
+      <span class="stagger" data-text="University of Florida"></span>
+    </h2>
+    <p class="uf-sub reveal-up delay-2">
+      Pursuing a <b>Computer Engineering</b> bachelor&rsquo;s and a <b>Master of Finance</b>,
+      completing both in <b>four years</b> through a select combined-degree cohort.
+    </p>
+    <div class="uf-stats">
+      <div class="uf-stat reveal-up delay-2">
+        <div class="n"><span class="ser">1 of 40</span></div>
+        <div class="l">Selected — combined-degree cohort</div>
+      </div>
+      <div class="uf-stat reveal-up delay-3">
+        <div class="n">2 degrees</div>
+        <div class="l">B.S. Computer Engineering<br/>M.S. Finance</div>
+      </div>
+      <div class="uf-stat reveal-up delay-4">
+        <div class="n">4 years</div>
+        <div class="l">Compressed timeline,<br/>full course load</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CRACKED — numbers ============================== -->
+<section class="cracked-shell">
+  <div class="container">
+    <div class="cracked-head reveal-up">
+      <span class="eyebrow">By the work</span>
+      <h2 class="h-1" style="margin-top: 24px;">Numbers that <span class="serif">actually mean</span> something.</h2>
+    </div>
+    <div class="cracked-grid">
+      <div class="cracked-cell reveal-up">
+        <div class="n"><span class="ser">1 of 40</span></div>
+        <div class="l">Selected for the <b>UF combined-degree cohort</b> (CE + MS Finance, 4 years)</div>
+      </div>
+      <div class="cracked-cell reveal-up delay-1">
+        <div class="n">5 ventures</div>
+        <div class="l">Founder or operator across <b>Twinly</b>, Fusion Bots, ARC, BattleBots, Stocks &amp; Investments</div>
+      </div>
+      <div class="cracked-cell reveal-up delay-2">
+        <div class="n">2 internships</div>
+        <div class="l">Shipping autonomy at <b>EV Bots</b> &amp; UAV simulation at <b>Ptero Labs</b> in parallel</div>
+      </div>
+      <div class="cracked-cell reveal-up delay-3">
+        <div class="n">1800<span class="ser">+</span></div>
+        <div class="l">Chess ELO · 2k YouTube subs · State Finalist · 1 of 13 in YPSF (UN MGCY) governing committee</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============================== ABOUT ============================== -->
 <section id="about" class="sec">
@@ -1006,9 +1627,9 @@
 
       <div class="card edu reveal delay-2">
         <h3>Education</h3>
-        <div class="big">Downingtown STEM Academy</div>
-        <p style="margin-top:10px">IB Diploma Candidate · HL Math AA, Physics, Economics · SL German, Literature, TOK</p>
-        <p class="muted" style="font-size:13px;margin-top:14px">Weighted GPA 4.35 · 3 yrs Varsity Tennis</p>
+        <div class="big">University of Florida</div>
+        <p style="margin-top:10px">B.S. Computer Engineering + M.S. Finance &mdash; <b>1 of 40</b> in a combined-degree cohort completing both in <b>4 years</b>. Class of 2030.</p>
+        <p class="muted" style="font-size:13px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)">Now: Downingtown STEM Academy · IB Diploma · GPA 4.35 · Class of 2026</p>
       </div>
 
       <div class="card focus reveal delay-3">
@@ -1072,29 +1693,37 @@
     <div class="now-track">
 
       <div class="now-frame">
-        <article class="now-card">
+        <article class="now-card featured">
           <div class="hue"></div>
           <div class="body">
             <div class="text">
-              <span class="tag">Founding</span>
+              <span class="tag">Founder · Live</span>
               <h3>Twinly</h3>
-              <p class="serif" style="font-size:1.15rem;color:var(--text-2);margin-bottom:18px">&ldquo;Your résumé, now alive.&rdquo;</p>
+              <p class="lede-q">&ldquo;Your résumé, now alive.&rdquo;</p>
               <p>An AI startup that turns static résumés into interactive digital twins recruiters can interview 24/7.
                 Real-time GitHub &amp; LinkedIn sync, proprietary NLP for technical domains, custom tone-of-voice mapping,
-                and full data sovereignty.</p>
+                and full data sovereignty for the candidate.</p>
               <div class="meta">
                 <span><b>Role</b> · Founder</span>
                 <span><b>Product</b> · Live</span>
-                <span><b>Site</b> · twinly-ai.vercel.app</span>
+                <span><b>Stack</b> · NLP · GitHub/LinkedIn sync</span>
               </div>
-              <a class="btn btn-secondary magnetic" href="https://twinly-ai.vercel.app" target="_blank" rel="noopener">
+              <a class="btn btn-primary magnetic" href="https://twinly.tech" target="_blank" rel="noopener">
                 <span class="inner">Visit Twinly <span class="arrow">→</span></span>
               </a>
             </div>
-            <div class="visual" aria-hidden="true">
-              <div class="top"><span>01 — Twinly</span><span>2025 →</span></div>
-              <div class="num">01</div>
-              <div class="wm">your résumé, now alive.</div>
+            <div class="visual">
+              <div class="embed-frame">
+                <div class="embed-chrome">
+                  <span class="dots"><i></i><i></i><i></i></span>
+                  <span class="url">twinly.tech</span>
+                  <span class="ext">↗</span>
+                </div>
+                <div class="embed-stage">
+                  <iframe data-embed="https://twinly.tech" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Twinly live preview" tabindex="-1"></iframe>
+                  <div class="veil"></div>
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -1179,6 +1808,119 @@
   </div>
 </section>
 
+<!-- ============================== LIVE BUILDS ============================== -->
+<section id="builds" class="sec">
+  <div class="container">
+    <div class="sec-head reveal-up">
+      <span class="eyebrow">Live builds</span>
+      <h2 class="h-1" style="margin-top: 24px;">Real products at <span class="serif">real URLs</span>.</h2>
+      <p class="lede">Each panel below is the actual deployed site &mdash; loaded live, not mocked.</p>
+    </div>
+
+    <div class="builds-grid">
+      <a class="build reveal-scale" href="https://twinly.tech" target="_blank" rel="noopener">
+        <div class="frame">
+          <div class="embed-frame">
+            <div class="embed-chrome">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span class="url">twinly.tech</span>
+              <span class="ext">↗</span>
+            </div>
+            <div class="embed-stage" style="--scale: 0.45">
+              <iframe data-embed="https://twinly.tech" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Twinly preview" tabindex="-1"></iframe>
+              <div class="veil"></div>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="info">
+            <h3>Twinly</h3>
+            <p>An AI startup turning résumés into interactive digital twins recruiters can interview 24/7.</p>
+          </div>
+          <span class="visit">Visit <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="build reveal-scale delay-1" href="https://safmstsa.vercel.app" target="_blank" rel="noopener">
+        <div class="frame">
+          <div class="embed-frame">
+            <div class="embed-chrome">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span class="url">safmstsa.vercel.app</span>
+              <span class="ext">↗</span>
+            </div>
+            <div class="embed-stage" style="--scale: 0.45">
+              <iframe data-embed="https://safmstsa.vercel.app" loading="lazy" sandbox="allow-scripts allow-same-origin" title="SAFMS preview" tabindex="-1"></iframe>
+              <div class="veil"></div>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="info">
+            <h3>SAFMS</h3>
+            <p>Smart Agro-Forest Management System &mdash; AI insights, IoT sim, and a carbon-credit prototype.</p>
+          </div>
+          <span class="visit">Visit <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="build reveal-scale" href="https://arcstem.vercel.app" target="_blank" rel="noopener">
+        <div class="frame">
+          <div class="rocket" aria-hidden="true">
+            <div class="hud">
+              <span class="l">Live · ARC</span>
+              <span class="r">T-0:00 — Liftoff</span>
+            </div>
+            <div class="stars" id="rocketStars"></div>
+            <div class="horizon"></div>
+            <div class="pad"></div>
+            <div class="smoke"></div>
+            <div class="ship">
+              <div class="trail"></div>
+              <div class="body"></div>
+              <div class="flame"></div>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="info">
+            <h3>American Rocketry Challenge</h3>
+            <p>Founded the ARC chapter at Downingtown STEM &mdash; 4 teams, 40+ members, payload CAD &amp; launch sims.</p>
+          </div>
+          <span class="visit">Visit <span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="build reveal-scale delay-1" href="https://fusionbots.org" target="_blank" rel="noopener">
+        <div class="frame">
+          <div class="brandframe" aria-hidden="true">
+            <div class="top">
+              <span>Founder &amp; CEO</span>
+              <span>Jan 2025 →</span>
+            </div>
+            <div>
+              <div class="word">Fusion<br/>Bots<span class="ser">.</span></div>
+              <p style="position:relative;z-index:1;color:var(--text-2);max-width:340px;margin-top:14px;font-size:14px;line-height:1.5;font-family:var(--font-serif);font-style:italic">Robotics, made&nbsp;accessible.</p>
+            </div>
+            <div class="row">
+              <span class="pill">6 core + 6 interns</span>
+              <span class="pill">Shopify · React</span>
+              <span class="pill">Revenue-positive</span>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div class="info">
+            <h3>Fusion Bots</h3>
+            <p>Storefront and curriculum for the education-robotics startup I founded &mdash; Shopify + custom React.</p>
+          </div>
+          <span class="visit">Visit <span class="arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ============================== EXPERIENCE TIMELINE ============================== -->
 <section id="experience" class="sec">
   <div class="container">
@@ -1189,6 +1931,19 @@
     </div>
 
     <div class="timeline" id="timeline">
+
+      <div class="tl-item reveal">
+        <span class="dot"></span>
+        <div class="tl-card">
+          <div class="tl-when">Fall 2026 — 2030</div>
+          <h3 class="tl-role">B.S. Computer Engineering + M.S. Finance <span class="at">· University of Florida</span></h3>
+          <div class="tl-meta"><b>1 of 40</b> · Combined-degree cohort · 4 years</div>
+          <ul>
+            <li>Selected for a <b>highly competitive combined-degree cohort</b> completing both a B.S. in Computer Engineering and an M.S. in Finance in four years.</li>
+            <li>Continuing the through-line of my work: engineering the build, financing the bet, and learning to operate at the seam.</li>
+          </ul>
+        </div>
+      </div>
 
       <div class="tl-item reveal">
         <span class="dot"></span>
@@ -1221,12 +1976,12 @@
         <div class="tl-card">
           <div class="tl-when">2025 — Present</div>
           <h3 class="tl-role">Founder <span class="at">· Twinly</span></h3>
-          <div class="tl-meta">AI startup · Live · twinly-ai.vercel.app</div>
+          <div class="tl-meta">AI startup · Live · twinly.tech</div>
           <ul>
             <li>Building <b>Twinly</b> — an AI startup turning static résumés into interactive digital twins recruiters can interview 24/7.</li>
             <li>Real-time GitHub &amp; LinkedIn sync, proprietary NLP optimized for technical fields, and full data sovereignty for the candidate.</li>
           </ul>
-          <a class="ext" href="https://twinly-ai.vercel.app" target="_blank" rel="noopener">twinly-ai.vercel.app <span class="arrow">→</span></a>
+          <a class="ext" href="https://twinly.tech" target="_blank" rel="noopener">twinly.tech <span class="arrow">→</span></a>
         </div>
       </div>
 
@@ -1349,6 +2104,18 @@
           <h3 class="tl-role">Chess Coach &amp; Creator <span class="at">· Competitor · YouTuber</span></h3>
           <ul>
             <li>1800+ ELO; coached youth players; produced educational content (2k+ subs); competed OTB and online.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <span class="dot"></span>
+        <div class="tl-card">
+          <div class="tl-when">2022 — 2026</div>
+          <h3 class="tl-role">IB Diploma Candidate <span class="at">· Downingtown STEM Academy</span></h3>
+          <div class="tl-meta">Robotics I–III pathway · HL Math AA, Physics, Economics · GPA 4.35</div>
+          <ul>
+            <li>3 years Varsity Tennis; founded clubs in robotics, rocketry, and finance; led a maker-heavy pathway emphasizing controls, perception, and embedded systems.</li>
           </ul>
         </div>
       </div>
@@ -1589,7 +2356,56 @@
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal, .reveal-up, .reveal-scale').forEach(el => io.observe(el));
+
+  /* ---------------- Rocket starfield ---------------- */
+  const starHost = document.getElementById('rocketStars');
+  if (starHost) {
+    const N = 36;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < N; i++) {
+      const s = document.createElement('i');
+      const x = Math.random() * 100;
+      const y = Math.random() * 88; // keep stars above horizon
+      const o = (0.25 + Math.random() * 0.55).toFixed(2);
+      const d = (2 + Math.random() * 3.5).toFixed(2);
+      const ad = (Math.random() * 4).toFixed(2);
+      const sz = (0.8 + Math.random() * 1.4).toFixed(2);
+      s.style.cssText = `left:${x}%;top:${y}%;--o:${o};--d:${d}s;--ad:${ad}s;width:${sz}px;height:${sz}px;`;
+      frag.appendChild(s);
+    }
+    starHost.appendChild(frag);
+  }
+
+  /* ---------------- Lazy iframe embeds ---------------- */
+  const embedIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const f = e.target;
+      const src = f.dataset.embed;
+      if (src && !f.src) f.src = src;
+      embedIO.unobserve(f);
+    });
+  }, { threshold: 0.05, rootMargin: '300px 0px' });
+  document.querySelectorAll('iframe[data-embed]').forEach(f => embedIO.observe(f));
+
+  /* ---------------- Hero feature card depth ---------------- */
+  const featureCard = document.querySelector('.hero-feature');
+  if (featureCard && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const ph = featureCard.querySelector('.ph');
+    let raf = 0;
+    document.addEventListener('scroll', () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const r = featureCard.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const t = Math.max(-1, Math.min(1, (r.top + r.height/2 - vh/2) / vh));
+        if (ph) ph.style.transform = `scale(1.08) translateY(${(t * 22).toFixed(2)}px)`;
+        featureCard.style.transform = `translateY(${(t * 8).toFixed(2)}px)`;
+        raf = 0;
+      });
+    }, { passive: true });
+  }
 
   /* ---------------- Number count-up ---------------- */
   const numIO = new IntersectionObserver(entries => {
@@ -1728,5 +2544,114 @@
 
 })();
 </script>
+
+<!-- ============================== ANIME.JS MOTION LAYER ============================== -->
+<script type="module">
+  // anime.js v4 — text split + spring stagger + scroll observers
+  import { animate, stagger, onScroll, createSpring, text }
+    from 'https://cdn.jsdelivr.net/npm/animejs@4/+esm';
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Bail out cleanly if the user doesn't want motion
+    document.querySelectorAll('[data-anime]').forEach(el => el.removeAttribute('data-anime'));
+  } else {
+
+  /* ---------------- Hero name: char spring stagger ----------------
+     Replaces the manual .stagger animation with anime.js for crisper
+     spring physics + finer per-char control. */
+  const heroNameEl = document.querySelector('.hero-name');
+  if (heroNameEl) {
+    // Strip the manual stagger DOM the existing IIFE built (if any)
+    const existing = heroNameEl.querySelector('.stagger');
+    if (existing) {
+      existing.classList.remove('in');
+      existing.textContent = existing.dataset.text || existing.textContent;
+    }
+    const split = text.split(heroNameEl, { chars: { wrap: 'clip' } });
+    animate(split.chars, {
+      y: ['110%', '0%'],
+      ease: createSpring({ stiffness: 110, damping: 14, mass: 0.9 }),
+      duration: 1300,
+      delay: stagger(38, { start: 240 }),
+    });
+  }
+
+  /* ---------------- UF marquee headline: char stagger on scroll ---------------- */
+  const ufNameEl = document.querySelector('.uf-name .stagger');
+  if (ufNameEl) {
+    ufNameEl.classList.remove('in');
+    ufNameEl.textContent = ufNameEl.dataset.text || ufNameEl.textContent;
+    const split = text.split(ufNameEl, { chars: { wrap: 'clip' } });
+    animate(split.chars, {
+      y: ['110%', '0%'],
+      opacity: [0, 1],
+      ease: createSpring({ stiffness: 100, damping: 14, mass: 1 }),
+      duration: 1500,
+      delay: stagger(28),
+      autoplay: onScroll({ target: ufNameEl, enter: 'bottom-=15%', once: true })
+    });
+  }
+
+  /* ---------------- Section H1s: word stagger reveal on scroll ---------------- */
+  document.querySelectorAll('.h-1').forEach(h => {
+    if (h.closest('.uf-shell')) return; // already handled
+    const split = text.split(h, { words: { wrap: 'clip' }, lines: false });
+    animate(split.words, {
+      y: ['110%', '0%'],
+      opacity: [0, 1],
+      ease: createSpring({ stiffness: 95, damping: 16, mass: 1 }),
+      duration: 1400,
+      delay: stagger(70),
+      autoplay: onScroll({ target: h, enter: 'bottom-=12%', once: true })
+    });
+  });
+
+  /* ---------------- Animated count-up for cracked-cell numbers ---------------- */
+  document.querySelectorAll('.cracked-cell .n[data-n]').forEach(el => {
+    const target = parseFloat(el.dataset.n);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    if (Number.isNaN(target)) return;
+    const obj = { v: 0 };
+    animate(obj, {
+      v: target,
+      duration: 1600,
+      ease: 'out(3)',
+      onUpdate: () => { el.firstChild.textContent = prefix + Math.round(obj.v).toLocaleString() + suffix; },
+      autoplay: onScroll({ target: el, enter: 'bottom-=10%', once: true })
+    });
+  });
+
+  /* ---------------- Decorative SVG hairline draw at the hero/UF boundary ---------------- */
+  const hairline = document.querySelector('.section-hairline path');
+  if (hairline) {
+    const len = hairline.getTotalLength();
+    hairline.style.strokeDasharray = String(len);
+    hairline.style.strokeDashoffset = String(len);
+    animate(hairline, {
+      strokeDashoffset: [len, 0],
+      duration: 1800,
+      ease: 'out(3)',
+      autoplay: onScroll({ target: hairline, enter: 'bottom-=10%', once: true })
+    });
+  }
+
+  /* ---------------- Build cards: subtle staggered scale-in on scroll ---------------- */
+  const buildCards = document.querySelectorAll('#builds .build');
+  if (buildCards.length) {
+    animate(buildCards, {
+      opacity: [0, 1],
+      y: [24, 0],
+      scale: [0.985, 1],
+      ease: createSpring({ stiffness: 90, damping: 16 }),
+      duration: 1300,
+      delay: stagger(120),
+      autoplay: onScroll({ target: '#builds .builds-grid', enter: 'bottom-=10%', once: true })
+    });
+  }
+
+  }
+</script>
+
 </body>
 </html>
