@@ -1,0 +1,1 @@
+import{g as s,j as t,N as r}from"./index-Bk5CntVq.js";import"./pdfjs-D8OQaKIu.js";function c(){const{subjectSlug:e}=s({strict:!1});return e?t.jsx(r,{to:"/ib/$subject/predicted-papers",params:{subject:e},replace:!0}):t.jsx(r,{to:"/predicted-papers",replace:!0})}export{c as component};
