@@ -6,7 +6,7 @@ research intern at the [CMU Robotics Institute](https://www.ri.cmu.edu/)
 under Prof. Min Xu and Dr. Xiaolong Wu, and founder of
 [Twinly](https://twinly.tech) — a personal AI twin.
 
-YC Startup School 2026. Heading to Carnegie Mellon in fall 2026.
+YC Startup School 2026. Heading to the University of Florida in fall 2026 for a B.S. in Computer Engineering + Master's in Finance (4-year combined pathway, full merit).
 
 Currently:
 - Founding AI Platform Engineer (full-time), **Drift** — godrift.ai
