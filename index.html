@@ -752,52 +752,79 @@
   }
 
   /* ============================================================
-     TSA NATIONALS — compact 2-col grid
+     TSA NATIONALS — editorial directory
      ============================================================ */
   .tsa { background: var(--paper); border-top: 1px solid var(--line); }
-  .tsa-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-top: 1px solid var(--line);
+  .tsa-head { display: grid; gap: 14px; margin-bottom: clamp(36px, 5vh, 56px); max-width: 760px; }
+  .tsa-head h2 {
+    font-size: clamp(1.8rem, 3.6vw, 3rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
   }
-  .tsa-item {
-    padding: 26px 28px 26px 0;
+  .tsa-head h2 .it { font-family: var(--display); font-style: italic; font-weight: 400; }
+  .tsa-head .lede { font-size: 1.05rem; color: var(--ink-3); max-width: 60ch; }
+
+  .tsa-list { border-top: 1px solid var(--line); }
+  .tsa-row {
+    display: grid;
+    grid-template-columns: 48px 200px 1fr auto;
+    gap: 32px;
+    align-items: baseline;
+    padding: 26px 0;
     border-bottom: 1px solid var(--line);
-    display: grid; gap: 6px; align-content: start;
     position: relative;
     transition: padding .55s var(--ease);
   }
-  .tsa-item:nth-child(even) {
-    padding-left: 32px;
-    border-left: 1px solid var(--line);
+  .tsa-row:hover { padding-left: 14px; }
+  .tsa-row .num {
+    font-size: 12.5px; color: var(--ink-4);
+    letter-spacing: -0.005em; font-weight: 500;
   }
-  .tsa-item:hover { padding-top: 22px; padding-bottom: 30px; }
-  .tsa-item .ev {
-    font-size: 12.5px; color: var(--ink-3);
+  .tsa-row .cat {
+    font-family: var(--serif); font-style: italic;
+    font-size: 16px; color: var(--ink-3);
+    letter-spacing: -0.008em;
+  }
+  .tsa-row .body { display: grid; gap: 4px; }
+  .tsa-row .title {
+    font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+    font-weight: 500; letter-spacing: -0.022em; line-height: 1.2;
+    color: var(--ink);
+  }
+  .tsa-row .desc {
+    font-size: 14px; color: var(--ink-2);
+    letter-spacing: -0.008em; line-height: 1.45;
+    max-width: 60ch;
+  }
+  .tsa-row .link {
+    font-size: 13px; color: var(--ink-3);
     font-weight: 500; letter-spacing: -0.005em;
-  }
-  .tsa-item h4 {
-    font-size: 1.05rem; font-weight: 500; letter-spacing: -0.018em;
-    line-height: 1.22;
-  }
-  .tsa-item p {
-    color: var(--ink-2); font-size: 13.5px; line-height: 1.5; letter-spacing: -0.008em;
-    margin-top: 2px;
-  }
-  .tsa-item .link {
-    margin-top: 8px;
-    font-size: 12.5px; color: var(--ink-3);
-    font-weight: 500; letter-spacing: -0.005em;
+    white-space: nowrap;
     display: inline-flex; align-items: center; gap: 6px;
     transition: color .25s;
   }
-  .tsa-item:hover .link { color: var(--ink); }
-  .tsa-item .link .arr { transition: transform .4s var(--ease); display: inline-block; }
-  .tsa-item:hover .link .arr { transform: translate(3px, -3px); }
-  @media (max-width: 720px) {
-    .tsa-grid { grid-template-columns: 1fr; }
-    .tsa-item:nth-child(even) { padding-left: 0; border-left: 0; }
-    .tsa-item { padding-right: 0; }
+  .tsa-row:hover .link { color: var(--ink); }
+  .tsa-row .link .arr { transition: transform .4s var(--ease); display: inline-block; }
+  .tsa-row:hover .link .arr { transform: translate(3px, -3px); }
+
+  @media (max-width: 900px) {
+    .tsa-row {
+      grid-template-columns: 40px 1fr auto;
+      gap: 20px;
+    }
+    .tsa-row .cat {
+      grid-column: 2;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+    .tsa-row .body { grid-column: 2; }
+    .tsa-row .num { grid-row: 1 / span 2; }
+    .tsa-row .link { grid-column: 3; grid-row: 1; align-self: start; }
+  }
+  @media (max-width: 600px) {
+    .tsa-row { grid-template-columns: 32px 1fr; gap: 14px; }
+    .tsa-row .link { grid-column: 2; margin-top: 6px; }
   }
 
   /* ============================================================
@@ -1287,62 +1314,83 @@
 <!-- ============================== TSA NATIONALS ============================== -->
 <section class="tsa sec" id="tsa" style="padding-top: 0;">
   <div class="wrap">
-    <div class="sec-head r-fade">
+    <div class="tsa-head r-fade">
       <span class="label">TSA · National Competitor</span>
-      <h1 class="h-1">Eight events, all <span class="it">placement</span>.</h1>
-      <p class="lede" style="margin-top: 10px;">
-        A swing through the Technology Student Association nationals — robotics, simulation,
-        engineering, environmental, finance, game design. Pieces I built and competed with.
+      <h2>A national slate of <span class="it">eight events</span>.</h2>
+      <p class="lede">
+        Robotics, simulation, engineering, environmental, finance, game design.
+        Pieces I built and competed with.
       </p>
     </div>
 
-    <div class="tsa-grid r-fade d1">
-      <a class="tsa-item" href="https://safmstsa.vercel.app" target="_blank" rel="noopener">
-        <div class="ev">01 · Software Development</div>
-        <h4>SAFMS — Smart Agro-Forest Management System</h4>
-        <p>AI/IoT modeling web app for agroforestry carbon trading. React + blockchain.</p>
+    <div class="tsa-list r-fade d1">
+      <a class="tsa-row" href="https://safmstsa.vercel.app" target="_blank" rel="noopener">
+        <span class="num">01</span>
+        <span class="cat">Software Development</span>
+        <div class="body">
+          <div class="title">SAFMS — Smart Agro-Forest Management System</div>
+          <div class="desc">AI/IoT modeling web app for agroforestry carbon trading. React + blockchain.</div>
+        </div>
         <span class="link">safmstsa.vercel.app <span class="arr">↗</span></span>
       </a>
 
-      <a class="tsa-item" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noopener">
-        <div class="ev">02 · Drone Challenge</div>
-        <h4>Custom FPV Drone</h4>
-        <p>Engineered and tuned a Betaflight FPV drone with custom CAD and wiring.</p>
+      <a class="tsa-row" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noopener">
+        <span class="num">02</span>
+        <span class="cat">Drone Challenge</span>
+        <div class="body">
+          <div class="title">Custom FPV Drone</div>
+          <div class="desc">Engineered and tuned a Betaflight FPV drone with custom CAD and wiring.</div>
+        </div>
         <span class="link">Portfolio <span class="arr">↗</span></span>
       </a>
 
-      <a class="tsa-item" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noopener">
-        <div class="ev">03 · Engineering Design</div>
-        <h4>NitroCapture — Zeolite Nitrogen-Capture Domes</h4>
-        <p>3D-printed dome reducing agricultural nitrogen runoff. Iterative experiments and analysis.</p>
+      <a class="tsa-row" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noopener">
+        <span class="num">03</span>
+        <span class="cat">Engineering Design</span>
+        <div class="body">
+          <div class="title">NitroCapture — Zeolite Nitrogen-Capture Domes</div>
+          <div class="desc">3D-printed dome reducing agricultural nitrogen runoff. Iterative experiments and analysis.</div>
+        </div>
         <span class="link">Portfolio <span class="arr">↗</span></span>
       </a>
 
-      <div class="tsa-item">
-        <div class="ev">04 · Systems Control</div>
-        <h4>Onsite Autonomous Control</h4>
-        <p>Coded autonomous control systems live in Python and C++ under timed constraints.</p>
-        <span class="link">Nationals event <span class="arr">→</span></span>
+      <div class="tsa-row">
+        <span class="num">04</span>
+        <span class="cat">Systems Control</span>
+        <div class="body">
+          <div class="title">Onsite Autonomous Control</div>
+          <div class="desc">Coded autonomous control systems live in Python and C++ under timed constraints.</div>
+        </div>
+        <span class="link">Nationals event</span>
       </div>
 
-      <div class="tsa-item">
-        <div class="ev">05 · Robotics</div>
-        <h4>Autonomous + Drivable Robot</h4>
-        <p>Built and programmed an object-manipulating robot for autonomous and tele-op runs.</p>
-        <span class="link">Nationals event <span class="arr">→</span></span>
+      <div class="tsa-row">
+        <span class="num">05</span>
+        <span class="cat">Robotics</span>
+        <div class="body">
+          <div class="title">Autonomous + Drivable Robot</div>
+          <div class="desc">Built and programmed an object-manipulating robot for autonomous and tele-op runs.</div>
+        </div>
+        <span class="link">Nationals event</span>
       </div>
 
-      <a class="tsa-item" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noopener">
-        <div class="ev">06 · VR Visualization</div>
-        <h4>Unity 6 VR Escape Room</h4>
-        <p>Fully playable escape room on Meta Quest — custom assets, comfort-tuned, progressive challenge.</p>
+      <a class="tsa-row" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noopener">
+        <span class="num">06</span>
+        <span class="cat">VR Visualization</span>
+        <div class="body">
+          <div class="title">Unity 6 VR Escape Room</div>
+          <div class="desc">Fully playable escape room on Meta Quest — custom assets, comfort-tuned, progressive challenge.</div>
+        </div>
         <span class="link">Portfolio <span class="arr">↗</span></span>
       </a>
 
-      <a class="tsa-item" href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" rel="noopener">
-        <div class="ev">07 · Video Game Design</div>
-        <h4>Tower Defense</h4>
-        <p>Tower defense in Unity (C#) with custom Blender + pixel-art assets, readable code, balanced curves.</p>
+      <a class="tsa-row" href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" rel="noopener">
+        <span class="num">07</span>
+        <span class="cat">Video Game Design</span>
+        <div class="body">
+          <div class="title">Tower Defense</div>
+          <div class="desc">Tower defense in Unity (C#) with custom Blender + pixel-art assets — balanced curves, readable code.</div>
+        </div>
         <span class="link">Portfolio <span class="arr">↗</span></span>
       </a>
     </div>
