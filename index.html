@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#ece7da" />
-<meta name="description" content="Ojasva Mishra — founder of Twinly, a personal AI operator. Engineer working at the seam of AI, autonomy, and robotics." />
-<meta property="og:title" content="Ojasva Mishra — Founder, Twinly" />
-<meta property="og:description" content="Founder of Twinly, a personal AI operator that knows how you work." />
+<meta name="description" content="Ojasva Mishra — AI Platform Engineer at Drift (Claude Code for robotics, Antler-backed). Research at CMU Robotics Institute (two IEEE papers under review). Founder of Twinly. YC Startup School 2026." />
+<meta property="og:title" content="Ojasva Mishra — Drift · CMU · Twinly" />
+<meta property="og:description" content="AI Platform Engineer (founding team) at Drift — Claude Code for robotics. Research at CMU Robotics Institute. Founder of Twinly. YC Startup School 2026." />
 <meta property="og:image" content="ojasvamishra.jpeg" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -530,23 +530,99 @@
     position: relative;
     border-radius: 18px;
     overflow: hidden;
-    background: var(--paper-2);
+    background: var(--ink);
     border: 1px solid rgba(236,231,218,0.1);
     box-shadow: 0 40px 100px rgba(0,0,0,0.5);
     aspect-ratio: 16/11;
     min-height: 340px;
   }
+  /* Render the embedded site at desktop viewport (2x parent), then
+     scale down 0.5 so its layout fits without horizontal clipping. */
   .twinly-preview iframe {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0;
+    width: 200%; height: 200%;
     border: 0;
-    background: var(--paper);
+    transform: scale(0.5);
+    transform-origin: top left;
+    background: var(--ink);
+    pointer-events: none;
   }
+  .twinly-preview::after {
+    content: ""; position: absolute; inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+    border-radius: 18px;
+  }
+  /* Hover surface for interaction (since iframe is pointer-events:none) */
+  .twinly-preview .open-overlay {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; align-items: flex-end; justify-content: flex-start;
+    padding: 18px;
+    background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.5));
+    opacity: 0; transition: opacity .4s var(--ease);
+    color: var(--paper); font-size: 13px; font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .twinly-preview .open-overlay span { display: inline-flex; align-items: center; gap: 8px; }
+  .twinly-preview:hover .open-overlay { opacity: 1; }
   .twinly-preview::after {
     content: ""; position: absolute; inset: 0;
     pointer-events: none;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
     border-radius: 18px;
+  }
+
+  /* ============================================================
+     PUBLICATIONS
+     ============================================================ */
+  .pubs { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .pub-list {
+    display: grid; gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .pub {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 32px;
+    align-items: baseline;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding .55s var(--ease);
+  }
+  .pub:hover { padding-left: 14px; }
+  .pub .num {
+    font-size: 13px; color: var(--ink-3);
+    font-weight: 500; letter-spacing: -0.005em;
+  }
+  .pub .title {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2.1vw, 1.7rem);
+    line-height: 1.18;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    max-width: 56ch;
+  }
+  .pub .meta {
+    margin-top: 10px;
+    color: var(--ink-3); font-size: 14px; letter-spacing: -0.005em;
+    line-height: 1.45;
+  }
+  .pub .meta b { color: var(--ink-2); font-weight: 500; }
+  .pub .meta em { font-style: italic; color: var(--ink-2); }
+  .pub .venue {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    font-size: 12.5px; font-weight: 500;
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+  @media (max-width: 800px) {
+    .pub { grid-template-columns: 1fr; gap: 8px; }
+    .pub .venue { justify-self: start; margin-top: 8px; }
   }
 
   /* ============================================================
@@ -673,6 +749,55 @@
     .pcard { grid-column: span 2; }
     .pcard.feat { grid-column: span 4; }
     .pcard.feat ~ .pcard:first-of-type { grid-column: span 2; }
+  }
+
+  /* ============================================================
+     TSA NATIONALS — compact 2-col grid
+     ============================================================ */
+  .tsa { background: var(--paper); border-top: 1px solid var(--line); }
+  .tsa-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--line);
+  }
+  .tsa-item {
+    padding: 26px 28px 26px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid; gap: 6px; align-content: start;
+    position: relative;
+    transition: padding .55s var(--ease);
+  }
+  .tsa-item:nth-child(even) {
+    padding-left: 32px;
+    border-left: 1px solid var(--line);
+  }
+  .tsa-item:hover { padding-top: 22px; padding-bottom: 30px; }
+  .tsa-item .ev {
+    font-size: 12.5px; color: var(--ink-3);
+    font-weight: 500; letter-spacing: -0.005em;
+  }
+  .tsa-item h4 {
+    font-size: 1.05rem; font-weight: 500; letter-spacing: -0.018em;
+    line-height: 1.22;
+  }
+  .tsa-item p {
+    color: var(--ink-2); font-size: 13.5px; line-height: 1.5; letter-spacing: -0.008em;
+    margin-top: 2px;
+  }
+  .tsa-item .link {
+    margin-top: 8px;
+    font-size: 12.5px; color: var(--ink-3);
+    font-weight: 500; letter-spacing: -0.005em;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color .25s;
+  }
+  .tsa-item:hover .link { color: var(--ink); }
+  .tsa-item .link .arr { transition: transform .4s var(--ease); display: inline-block; }
+  .tsa-item:hover .link .arr { transform: translate(3px, -3px); }
+  @media (max-width: 720px) {
+    .tsa-grid { grid-template-columns: 1fr; }
+    .tsa-item:nth-child(even) { padding-left: 0; border-left: 0; }
+    .tsa-item { padding-right: 0; }
   }
 
   /* ============================================================
@@ -845,6 +970,7 @@
     <span>Ojasva&nbsp;Mishra</span>
   </a>
   <div class="links">
+    <a href="#publications">Research</a>
     <a href="#work">Work</a>
     <a href="#projects">Projects</a>
     <a href="#trajectory">Trajectory</a>
@@ -873,31 +999,33 @@
     <div class="hero-grid">
       <div>
         <p class="hero-statement r-fade d1">
-          Founder of <span class="em">Twinly</span>, a personal AI operator that knows
-          how you work. Engineer at the seam of <span class="it">AI, autonomy, and robotics</span>.
+          Founding AI Platform Engineer at <span class="em">Drift</span> — we built
+          <span class="it">Claude Code for robotics</span>. Research at <span class="em">CMU
+          Robotics Institute</span>. Founder of <span class="em">Twinly</span>.
+          <span class="muted">YC Startup School 2026.</span>
         </p>
 
         <div class="hero-actions r-fade d2">
-          <a class="btn btn-primary magnetic" href="https://twinly.tech" target="_blank" rel="noopener">
-            Visit Twinly <span class="arr">↗</span>
+          <a class="btn btn-primary magnetic" href="https://godrift.ai" target="_blank" rel="noopener">
+            See Drift <span class="arr">↗</span>
           </a>
-          <a class="btn btn-ghost magnetic" href="#work">
-            See the work <span class="arr">↓</span>
+          <a class="btn btn-ghost magnetic" href="#publications">
+            Research <span class="arr">↓</span>
           </a>
         </div>
 
         <div class="hero-snap r-fade d3">
           <div>
-            <div class="k">Founder</div>
-            <div class="v">Twinly · Fusion Bots</div>
+            <div class="k">Full-time</div>
+            <div class="v">AI Platform Engineer · <a href="https://godrift.ai" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line-2);">Drift</a></div>
           </div>
           <div>
-            <div class="k">Engineering</div>
-            <div class="v">EV Bots · Ptero Labs</div>
+            <div class="k">Research</div>
+            <div class="v">CMU Robotics Institute</div>
           </div>
           <div>
-            <div class="k">Next</div>
-            <div class="v">CE + MS Finance, UF</div>
+            <div class="k">2026</div>
+            <div class="v">YC Startup School · CMU</div>
           </div>
         </div>
       </div>
@@ -908,7 +1036,7 @@
         </div>
         <div class="portrait-caption">
           <span>Ojasva, 2026</span>
-          <span class="it">on the way to Florida</span>
+          <span class="it">Drift · CMU · Twinly</span>
         </div>
       </div>
     </div>
@@ -931,36 +1059,36 @@
     <div class="now-list r-fade d1">
       <div class="now-row">
         <span class="what">
-          Shipping <a href="https://twinly.tech" target="_blank" rel="noopener">Twinly</a>
-          <span class="role">— personal AI operator</span>
+          Founding AI Platform Engineer at <a href="https://godrift.ai" target="_blank" rel="noopener">Drift</a>
+          <span class="role">— Claude Code for robotics, Antler-backed, #5 Product of the Day on PH launch</span>
+        </span>
+        <span class="when">Full-time</span>
+      </div>
+      <div class="now-row">
+        <span class="what">
+          Research Intern at <a href="https://www.ri.cmu.edu/" target="_blank" rel="noopener">CMU Robotics Institute</a>
+          <span class="role">— Prof. Min Xu &amp; Dr. Xiaolong Wu · two IEEE papers under review</span>
+        </span>
+        <span class="when">2025 →</span>
+      </div>
+      <div class="now-row">
+        <span class="what">
+          Founder of <a href="https://twinly.tech" target="_blank" rel="noopener">Twinly</a>
+          <span class="role">— personal AI twin · trained on your writing, speaks in your voice</span>
         </span>
         <span class="when">2026 →</span>
       </div>
       <div class="now-row">
         <span class="what">
-          Autonomy at EV&nbsp;Bots Inc.
-          <span class="role">— AI Robotics Engineer Intern</span>
+          <a href="https://www.startupschool.org/" target="_blank" rel="noopener">YC Startup School 2026</a>
+          <span class="role">— admitted cohort</span>
         </span>
-        <span class="when">2025 →</span>
+        <span class="when">2026</span>
       </div>
       <div class="now-row">
         <span class="what">
-          UAV simulation at Ptero&nbsp;Labs
-          <span class="role">— Software Intern</span>
-        </span>
-        <span class="when">2025 →</span>
-      </div>
-      <div class="now-row">
-        <span class="what">
-          Growing Fusion&nbsp;Bots
-          <span class="role">— STEM access for younger engineers</span>
-        </span>
-        <span class="when">2025 →</span>
-      </div>
-      <div class="now-row">
-        <span class="what">
-          Preparing for UF
-          <span class="role">— combined CE + Master&rsquo;s in Finance</span>
+          Heading to <span style="font-weight:600">Carnegie Mellon</span>
+          <span class="role">— starting fall 2026</span>
         </span>
         <span class="when">Fall 2026</span>
       </div>
@@ -976,8 +1104,8 @@
         <span class="label">Featured · Founder</span>
         <h2>Twinly</h2>
         <p class="lede">
-          A personal AI operator that knows how you work — your context, your
-          tools, your taste. Built to act on your behalf, not just chat with you.
+          A personal AI twin — trained on your writing, speaks in your voice.
+          Stop managing your life; <span class="it">anything you can do, Twinly can</span>.
         </p>
 
         <div class="meta">
@@ -1009,8 +1137,59 @@
         </div>
       </div>
 
-      <div class="twinly-preview" aria-label="Live preview of twinly.tech">
+      <a class="twinly-preview" href="https://twinly.tech" target="_blank" rel="noopener" aria-label="Open twinly.tech">
         <iframe data-embed="https://twinly.tech" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Twinly live preview" tabindex="-1"></iframe>
+        <span class="open-overlay"><span>Open twinly.tech ↗</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PUBLICATIONS ============================== -->
+<section class="pubs sec" id="publications">
+  <div class="wrap">
+    <div class="sec-head r-fade">
+      <span class="label">Research · Carnegie Mellon Robotics Institute</span>
+      <h1 class="h-1">First-author on two <span class="it">IEEE</span> papers, both under review.</h1>
+      <p class="lede" style="margin-top: 10px;">
+        With Prof. Min Xu and Dr. Xiaolong Wu at the
+        <a href="https://www.ri.cmu.edu/" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line-2);">CMU Robotics Institute</a>
+        — joint control, safety filtering, and demonstrations on the Franka Emika Panda.
+      </p>
+    </div>
+
+    <div class="pub-list r-fade d1">
+      <div class="pub">
+        <span class="num">Paper 01</span>
+        <div>
+          <div class="title">Constraint-Aware Discrete-Time PID Gain Optimization for Robotic Joint Control Under Actuator Saturation</div>
+          <div class="meta">
+            <b>Mishra, O.</b>, Wu, X., Xu, M. — arXiv preprint · CMU Robotics Institute. Optimizes discrete-time PID gains for robotic joints under hard actuator saturation, with safety guarantees.
+          </div>
+        </div>
+        <span class="venue">Under review · IEEE TRO</span>
+      </div>
+
+      <div class="pub">
+        <span class="num">Paper 02</span>
+        <div>
+          <div class="title">SCIG++: Risk-Limiting Conformal Safety Filtering for Attack-Resilient Robotic Joint Control Under Saturation</div>
+          <div class="meta">
+            <b>Mishra, O.</b>, Wu, X., Xu, M. — conformal safety filter for adversary-resilient joint control; algorithms <em>demonstrated on the Franka Emika Panda</em> arm.
+          </div>
+        </div>
+        <span class="venue">Under review · IEEE IROS</span>
+      </div>
+
+      <div class="pub">
+        <span class="num">Ongoing</span>
+        <div>
+          <div class="title">Multi-modal SLAM path planning with PID forestructure implementation</div>
+          <div class="meta">
+            Research with Dr. Xiaolong Wu — bridging perception, planning, and controlled actuation on a real robot platform.
+          </div>
+        </div>
+        <span class="venue">CMU · in progress</span>
       </div>
     </div>
   </div>
@@ -1025,36 +1204,21 @@
     </div>
 
     <div class="work-list r-fade d1">
+      <a class="work-row" href="https://godrift.ai" target="_blank" rel="noopener">
+        <span class="role">Founding AI Platform Engineer <span class="org">· <span class="it">Drift</span></span></span>
+        <span class="desc">Antler-backed AI copilot for robotics simulation (ROS2, Gazebo, Ignition). Hit #5 Product of the Day on Product Hunt at launch.</span>
+        <span class="arrow-cell">godrift.ai <span class="arr">↗</span></span>
+      </a>
+      <a class="work-row" href="https://www.ri.cmu.edu/" target="_blank" rel="noopener">
+        <span class="role">Research Intern <span class="org">· <span class="it">CMU Robotics Institute</span></span></span>
+        <span class="desc">Prof. Min Xu &amp; Dr. Xiaolong Wu. First-author on two IEEE papers under review (TRO, IROS) on PID gain optimization and safety filtering.</span>
+        <span class="arrow-cell">ri.cmu.edu <span class="arr">↗</span></span>
+      </a>
       <a class="work-row" href="https://twinly.tech" target="_blank" rel="noopener">
         <span class="role">Founder <span class="org">· <span class="it">Twinly</span></span></span>
-        <span class="desc">Building a personal AI operator that knows how its user works.</span>
+        <span class="desc">A personal AI twin — trained on your writing, speaks in your voice.</span>
         <span class="arrow-cell">twinly.tech <span class="arr">↗</span></span>
       </a>
-      <div class="work-row">
-        <span class="role">AI Robotics Engineer Intern <span class="org">· <span class="it">EV Bots Inc.</span></span></span>
-        <span class="desc">Autonomy stack for next-generation electric-vehicle robotics.</span>
-        <span class="arrow-cell">2025 → <span class="arr">→</span></span>
-      </div>
-      <div class="work-row">
-        <span class="role">Software Intern <span class="org">· <span class="it">Ptero Labs</span></span></span>
-        <span class="desc">High-fidelity UAV simulation for mission-grade flight software.</span>
-        <span class="arrow-cell">2025 → <span class="arr">→</span></span>
-      </div>
-      <div class="work-row">
-        <span class="role">Founder &amp; CEO <span class="org">· <span class="it">Fusion Bots</span></span></span>
-        <span class="desc">A program lowering the barrier to building real robots for younger engineers.</span>
-        <span class="arrow-cell">2025 → <span class="arr">→</span></span>
-      </div>
-      <div class="work-row">
-        <span class="role">President <span class="org">· <span class="it">BattleBots Club</span></span></span>
-        <span class="desc">Leading a high-school combat-robotics program — design, fabrication, drive.</span>
-        <span class="arrow-cell">2023 → <span class="arr">→</span></span>
-      </div>
-      <div class="work-row">
-        <span class="role">Software Development Intern <span class="org">· <span class="it">iPipeline</span></span></span>
-        <span class="desc">Built internal tooling at a financial-services platform company.</span>
-        <span class="arrow-cell">2024 <span class="arr">→</span></span>
-      </div>
     </div>
   </div>
 </section>
@@ -1068,69 +1232,119 @@
     </div>
 
     <div class="proj-grid">
-      <a class="pcard feat r-fade" href="https://safmstsa.vercel.app" target="_blank" rel="noopener">
+      <a class="pcard feat r-fade" href="https://chromewebstore.google.com/detail/quickcitepro/fpngnpgmmpimnlaejklabjelhhoeibpd" target="_blank" rel="noopener">
         <div class="idx">01 / Featured</div>
-        <h3>SAFMS — Smart Agro-Forest Management System</h3>
-        <div class="stack">React · AI insights · IoT simulation · Carbon-credit concept</div>
-        <p>A web platform modeling sustainable agriculture with AI insights and a device-simulation layer. Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</p>
-        <span class="out">safmstsa.vercel.app <span class="arr">↗</span></span>
+        <h3>QuickCitePro</h3>
+        <div class="stack">Chrome extension · Research tooling</div>
+        <p>Solves a real research pain point — adopted by professors and lab teammates. One-click citation generation that fits how researchers actually work.</p>
+        <span class="out">chromewebstore.google.com <span class="arr">↗</span></span>
       </a>
 
       <div class="pcard r-fade d1">
-        <div class="idx">02</div>
-        <h3>AI Stock Assistant</h3>
-        <div class="stack">JavaScript · LLM signals · Finance</div>
-        <p>An AI-assisted tracker generating daily watchlists and tracking performance with a modern UI.</p>
-        <span class="out">github.com/OjasMishra32 <span class="arr">↗</span></span>
+        <div class="idx">02 · Past venture</div>
+        <h3>GlassBoxAI</h3>
+        <div class="stack">Computer vision · Multimodal · $20K pre-seed</div>
+        <p>Interview-integrity platform using real-time eye-tracking, facial landmarks, and voice pattern analysis to detect AI-assisted answers (ChatGPT, Cluely) live over Zoom or Meet. Won Startup in a Weekend Philly — sole high schooler vs 200+ from UPenn, Drexel, MIT.</p>
+        <span class="out">Won $20K pre-seed <span class="arr">→</span></span>
       </div>
 
-      <a class="pcard r-fade d2" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noopener">
+      <a class="pcard r-fade d2" href="https://youtube.com/watch?v=-k4Ks9YATTI" target="_blank" rel="noopener">
         <div class="idx">03</div>
-        <h3>Custom Racing Drone w/ Claw</h3>
-        <div class="stack">Betaflight · ESC integration · PID tuning</div>
-        <p>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness.</p>
-        <span class="out">View documentation <span class="arr">↗</span></span>
+        <h3>Kinetix</h3>
+        <div class="stack">Computer vision · Biomechanics · Meta Quest</div>
+        <p>AI-powered physical therapy and athletic training coach — real-time joint-angle biomechanics, voice feedback, and Meta Quest integration.</p>
+        <span class="out">Watch demo <span class="arr">↗</span></span>
       </a>
 
-      <a class="pcard r-fade d3" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noopener">
+      <div class="pcard r-fade d3">
         <div class="idx">04</div>
-        <h3>NitroCapture Pro</h3>
-        <div class="stack">Environmental · 3D-printed · Zeolite chemistry</div>
-        <p>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions. Iterative design, real-world experiments, data analysis.</p>
-        <span class="out">View documentation <span class="arr">↗</span></span>
-      </a>
+        <h3>PreventaAI</h3>
+        <div class="stack">SwiftUI · Firebase · iOS · Health</div>
+        <p>Proactive AI healthcare app shipped to the App Store — medication tracker, AI assistant, visual scanner. A user reported it helped catch severe tuberculosis earlier than standard screening.</p>
+        <span class="out">Live on the App Store <span class="arr">→</span></span>
+      </div>
 
       <div class="pcard r-fade">
         <div class="idx">05</div>
-        <h3>Autonomous Competition Robot</h3>
-        <div class="stack">Autonomous + tele-op · Mechanisms · Controls</div>
-        <p>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</p>
-        <span class="out">VEX state finalist <span class="arr">→</span></span>
+        <h3>Eyesight</h3>
+        <div class="stack">LiDAR · CoreML · Offline inference</div>
+        <p>Accessibility app for visually-impaired users — obstacle detection and real-time narration of surroundings, all on-device. Currently in TestFlight beta.</p>
+        <span class="out">TestFlight beta <span class="arr">→</span></span>
       </div>
 
-      <a class="pcard r-fade d1" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noopener">
+      <div class="pcard r-fade d1">
         <div class="idx">06</div>
-        <h3>Unity VR Escape Room</h3>
-        <div class="stack">Unity · C# · Blender · Meta Quest</div>
-        <p>An immersive VR puzzle experience with custom assets, tuned for comfort and progressive challenge.</p>
-        <span class="out">View documentation <span class="arr">↗</span></span>
+        <h3>AI Robo-Trader</h3>
+        <div class="stack">Python · Quant signals · SPY 0DTE options</div>
+        <p>An AI-driven trader analyzing SPY for 0DTE options trades. <b>300%+ returns over two years</b> — running live. Built as CIO of the Stocks &amp; Investments Club.</p>
+        <span class="out">300%+ over 2y <span class="arr">→</span></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================== TSA NATIONALS ============================== -->
+<section class="tsa sec" id="tsa" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="sec-head r-fade">
+      <span class="label">TSA · National Competitor</span>
+      <h1 class="h-1">Eight events, all <span class="it">placement</span>.</h1>
+      <p class="lede" style="margin-top: 10px;">
+        A swing through the Technology Student Association nationals — robotics, simulation,
+        engineering, environmental, finance, game design. Pieces I built and competed with.
+      </p>
+    </div>
+
+    <div class="tsa-grid r-fade d1">
+      <a class="tsa-item" href="https://safmstsa.vercel.app" target="_blank" rel="noopener">
+        <div class="ev">01 · Software Development</div>
+        <h4>SAFMS — Smart Agro-Forest Management System</h4>
+        <p>AI/IoT modeling web app for agroforestry carbon trading. React + blockchain.</p>
+        <span class="link">safmstsa.vercel.app <span class="arr">↗</span></span>
       </a>
 
-      <div class="pcard r-fade d2">
-        <div class="idx">07</div>
-        <h3>Preventa</h3>
-        <div class="stack">Swift · iOS · Health tooling</div>
-        <p>An iOS application focused on early-warning health workflows.</p>
-        <span class="out">github.com/OjasMishra32 <span class="arr">↗</span></span>
+      <a class="tsa-item" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noopener">
+        <div class="ev">02 · Drone Challenge</div>
+        <h4>Custom FPV Drone</h4>
+        <p>Engineered and tuned a Betaflight FPV drone with custom CAD and wiring.</p>
+        <span class="link">Portfolio <span class="arr">↗</span></span>
+      </a>
+
+      <a class="tsa-item" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noopener">
+        <div class="ev">03 · Engineering Design</div>
+        <h4>NitroCapture — Zeolite Nitrogen-Capture Domes</h4>
+        <p>3D-printed dome reducing agricultural nitrogen runoff. Iterative experiments and analysis.</p>
+        <span class="link">Portfolio <span class="arr">↗</span></span>
+      </a>
+
+      <div class="tsa-item">
+        <div class="ev">04 · Systems Control</div>
+        <h4>Onsite Autonomous Control</h4>
+        <p>Coded autonomous control systems live in Python and C++ under timed constraints.</p>
+        <span class="link">Nationals event <span class="arr">→</span></span>
       </div>
 
-      <div class="pcard r-fade d3">
-        <div class="idx">08</div>
-        <h3>Systems Control Challenge</h3>
-        <div class="stack">Python · C++ · Feedback control</div>
-        <p>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</p>
-        <span class="out">Internal write-up <span class="arr">→</span></span>
+      <div class="tsa-item">
+        <div class="ev">05 · Robotics</div>
+        <h4>Autonomous + Drivable Robot</h4>
+        <p>Built and programmed an object-manipulating robot for autonomous and tele-op runs.</p>
+        <span class="link">Nationals event <span class="arr">→</span></span>
       </div>
+
+      <a class="tsa-item" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noopener">
+        <div class="ev">06 · VR Visualization</div>
+        <h4>Unity 6 VR Escape Room</h4>
+        <p>Fully playable escape room on Meta Quest — custom assets, comfort-tuned, progressive challenge.</p>
+        <span class="link">Portfolio <span class="arr">↗</span></span>
+      </a>
+
+      <a class="tsa-item" href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" rel="noopener">
+        <div class="ev">07 · Video Game Design</div>
+        <h4>Tower Defense</h4>
+        <p>Tower defense in Unity (C#) with custom Blender + pixel-art assets, readable code, balanced curves.</p>
+        <span class="link">Portfolio <span class="arr">↗</span></span>
+      </a>
     </div>
   </div>
 </section>
@@ -1157,8 +1371,8 @@
       <span class="word"><span>matter.</span></span>
     </h2>
     <div class="footer">
-      <span><b>Five months</b> until I leave for the University of Florida — combined Computer Engineering + Master&rsquo;s in Finance.</span>
-      <span>Until then: shipping Twinly, autonomy at EV Bots, simulation at Ptero Labs.</span>
+      <span>Full-time <b>founding AI Platform Engineer at Drift</b> — we built Claude Code for robotics. Research at <b>CMU Robotics Institute</b> — two IEEE papers under review.</span>
+      <span>Founding <b>Twinly</b> in parallel. <b>YC Startup School 2026.</b> Starting at <b>Carnegie Mellon</b> in the fall.</span>
     </div>
   </div>
 </section>
@@ -1173,13 +1387,26 @@
 
     <div class="traj-list r-fade d1">
       <div class="traj-row">
-        <div class="when">2026 → 2030</div>
+        <div class="when">2026 →</div>
         <div>
-          <h3>B.S. Computer Engineering + Master&rsquo;s in Finance <span class="at">· <span class="it">University of Florida</span></span></h3>
-          <div class="meta">Combined-degree cohort · 1 of 40 · four years</div>
+          <h3>Founding AI Platform Engineer <span class="at">· <a href="https://godrift.ai" target="_blank" rel="noopener" class="it" style="border-bottom:1px solid var(--line-2);">Drift</a></span></h3>
+          <div class="meta">Antler-backed · godrift.ai</div>
           <ul>
-            <li>Selected for UF&rsquo;s combined CE + MS-Finance program — engineering depth with a quantitative-finance overlay.</li>
-            <li>Plan to keep operating Twinly and contracting on autonomy in parallel through undergrad.</li>
+            <li>We built <b>Claude Code for robotics</b> — natural-language setup, debugging, and execution of robot simulations (ROS2, Gazebo, Ignition).</li>
+            <li>Hit #5 Product of the Day on Product Hunt at launch. Platform now used by thousands of engineers.</li>
+            <li>Joined as founding AI engineer after meeting the founders at NexHacks.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traj-row">
+        <div class="when">2025 →</div>
+        <div>
+          <h3>Research Intern <span class="at">· <a href="https://www.ri.cmu.edu/" target="_blank" rel="noopener" class="it" style="border-bottom:1px solid var(--line-2);">CMU Robotics Institute</a></span></h3>
+          <div class="meta">With Prof. Min Xu and Dr. Xiaolong Wu</div>
+          <ul>
+            <li>First-author on <b>two IEEE papers</b>: <em>Constraint-Aware Discrete-Time PID Gain Optimization</em> (under review at IEEE TRO) and <em>SCIG++: Risk-Limiting Conformal Safety Filtering</em> (under review at IEEE IROS).</li>
+            <li>Algorithms demonstrated on the <b>Franka Emika Panda</b> arm. Ongoing multi-modal SLAM path planning work.</li>
           </ul>
         </div>
       </div>
@@ -1187,70 +1414,92 @@
       <div class="traj-row">
         <div class="when">2026 →</div>
         <div>
-          <h3>Founder <span class="at">· <span class="it">Twinly</span></span></h3>
-          <div class="meta">Personal AI operator — twinly.tech</div>
+          <h3>Founder <span class="at">· <a href="https://twinly.tech" target="_blank" rel="noopener" class="it" style="border-bottom:1px solid var(--line-2);">Twinly</a></span></h3>
+          <div class="meta">Personal AI twin — twinly.tech</div>
           <ul>
-            <li>Designing and building a product around the idea that an AI should know how <em>you</em> work, not the median person.</li>
-            <li>Owning product, design, and engineering. Lean stack, fast iteration, small early-access cohort.</li>
+            <li>A personal AI twin — trained on your writing, speaks in your voice. <em>Anything you can do, Twinly can.</em></li>
+            <li>Owning product, design, and engineering end-to-end.</li>
           </ul>
         </div>
       </div>
 
       <div class="traj-row">
-        <div class="when">2025 →</div>
+        <div class="when">2026</div>
+        <div>
+          <h3>YC Startup School 2026 <span class="at">· <span class="it">Y Combinator</span></span></h3>
+          <div class="meta">Admitted cohort</div>
+          <ul>
+            <li>Selected for the 2026 cohort — used to push Twinly and sharpen the founder side.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traj-row">
+        <div class="when">2024 — 2025</div>
+        <div>
+          <h3>Co-Founder &amp; CEO <span class="at">· <span class="it">GlassBoxAI</span></span> <span style="font-size:0.65em; color:var(--ink-3); font-weight:400; margin-left:8px;">(past)</span></h3>
+          <div class="meta">$20K pre-seed · Startup in a Weekend Philly winner · later moved on</div>
+          <ul>
+            <li>Interview-integrity platform: real-time eye-tracking, facial landmarks, voice patterns to detect AI-assisted answers (ChatGPT, Cluely) live over Zoom/Meet.</li>
+            <li>Won Startup in a Weekend Philly as the <b>sole high schooler</b> among 200+ university competitors (UPenn, Drexel, MIT). Raised <b>$20K pre-seed</b>. Closed it down to focus on Drift and Twinly.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traj-row">
+        <div class="when">2024 →</div>
+        <div>
+          <h3>CTO <span class="at">· <a href="https://ypsforum.org" target="_blank" rel="noopener" class="it" style="border-bottom:1px solid var(--line-2);">YPSF (UN MGCY NGO)</a></span></h3>
+          <div class="meta">Youth Publications &amp; Socioeconomic Forum · 500+ global members</div>
+          <ul>
+            <li>Led global AI literacy programs spanning 15+ countries.</li>
+            <li>Presented at UN HLPF, UNGA, and related conferences.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traj-row">
+        <div class="when">2025</div>
         <div>
           <h3>AI Robotics Engineer Intern <span class="at">· <span class="it">EV Bots Inc.</span></span></h3>
-          <div class="meta">Autonomy stack for next-generation EV robotics</div>
+          <div class="meta">Autonomous EV charging robots · Multiple provisional patents</div>
           <ul>
-            <li>Working on the perception/planning layer for an autonomous EV-charging robot.</li>
-            <li>Bridging research-grade ML with shipping firmware constraints.</li>
+            <li>Shipped the first fully-working autonomous EV-charging robot prototype after iterating across mechanical, electronics, and controls.</li>
+            <li>Designed CAD for a drone charging-dock system targeting swarm-delivery fleets.</li>
           </ul>
         </div>
       </div>
 
       <div class="traj-row">
-        <div class="when">2025 →</div>
+        <div class="when">2025 — 2026</div>
         <div>
-          <h3>Software Intern <span class="at">· <span class="it">Ptero Labs</span></span></h3>
+          <h3>Engineering Intern <span class="at">· <span class="it">Ptero Labs</span></span></h3>
           <div class="meta">Mission-grade UAV simulation</div>
           <ul>
-            <li>Helping build a high-fidelity simulation environment for unmanned-aerial flight software.</li>
-            <li>Touching the seam between flight controls, physics, and rendering pipelines.</li>
+            <li>Built a mission-grade UAV simulator in Unreal Engine with AI/ML for mission planning and object detection.</li>
+            <li>Performance-benchmarked simulation software now used by Penn for active research.</li>
           </ul>
         </div>
       </div>
 
       <div class="traj-row">
-        <div class="when">2025 →</div>
-        <div>
-          <h3>Founder &amp; CEO <span class="at">· <span class="it">Fusion Bots</span></span></h3>
-          <div class="meta">STEM access for younger engineers</div>
-          <ul>
-            <li>Launched a program that lowers the cost and complexity of starting a serious robotics project in middle / high school.</li>
-            <li>Curriculum, parts kits, and mentorship — designed to remove the &ldquo;where do I even start&rdquo; bottleneck.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="traj-row">
-        <div class="when">2024</div>
+        <div class="when">2025</div>
         <div>
           <h3>Software Development Intern <span class="at">· <span class="it">iPipeline</span></span></h3>
-          <div class="meta">Internal tooling at a financial-services platform</div>
+          <div class="meta">Financial-services platform</div>
           <ul>
-            <li>Shipped against a real codebase, with real reviews, real deadlines, real ops.</li>
-            <li>First taste of production engineering culture.</li>
+            <li>Built automation testing frameworks and AI-driven agents; deployed internal tools at scale.</li>
           </ul>
         </div>
       </div>
 
       <div class="traj-row">
-        <div class="when">2023 →</div>
+        <div class="when">2026 →</div>
         <div>
-          <h3>President <span class="at">· <span class="it">BattleBots Club</span></span></h3>
-          <div class="meta">High-school combat-robotics program</div>
+          <h3>B.S. Computer Engineering <span class="at">· <span class="it">Carnegie Mellon University</span></span></h3>
+          <div class="meta">Starting Fall 2026</div>
           <ul>
-            <li>Lead a team across design, fabrication, electronics, drive — and the politics of running a club.</li>
+            <li>Plan to keep operating Drift, Twinly, and CMU research in parallel.</li>
           </ul>
         </div>
       </div>
@@ -1259,10 +1508,11 @@
         <div class="when">2022 → 2026</div>
         <div>
           <h3>IB Diploma Candidate <span class="at">· <span class="it">Downingtown STEM Academy</span></span></h3>
-          <div class="meta">HL Math AA, Physics, Economics · GPA 4.35</div>
+          <div class="meta">GPA 4.45 / 4.0 weighted · Robotics I–III pathway</div>
           <ul>
-            <li>3 years varsity tennis; founded clubs in robotics, rocketry, and finance.</li>
-            <li>Lead programmer at VEX Robotics — state finalist.</li>
+            <li>IB HL Math AA, Physics, Economics, Design Tech · IB SL German, Literature, TOK.</li>
+            <li>4 years varsity tennis — led team drills, reached Districts for the first time in school history.</li>
+            <li>Founded clubs in robotics, rocketry, and finance.</li>
           </ul>
         </div>
       </div>
@@ -1307,6 +1557,7 @@
   <div class="nav-foot">
     <a href="#now">Now</a>
     <a href="#twinly">Twinly</a>
+    <a href="#publications">Research</a>
     <a href="#work">Work</a>
     <a href="#projects">Projects</a>
     <a href="#trajectory">Trajectory</a>
