@@ -1,8 +1,16 @@
-# OjasvaMishraWebsite
-Introduction
-Hi, I’m Ojasva Mishra — an AI Robotics Researcher, President of the BattleBots Club, and VEX Robotics competitor. This website is my home base for everything I build at the intersection of Robotics, Autonomy, AI, and Aerospace. You’ll find highlights from my projects (from competition robots and FPV drones to SAFMS and a VR escape room), leadership and advocacy work (including Fusion Bots and YPSF/UN MGCY), and a snapshot of my skills and awards.
+# ojasvamishra.me
 
-I’m an IB Diploma candidate at Downingtown STEM Academy (Class of 2026) focused on controls, embedded systems, perception, and planning. I’ve interned in software at iPipeline, founded Fusion Bots to expand access to STEM, and I love rapid prototyping—design → build → test with data-driven iteration.
+Personal site of Ojasva Mishra — founder of [Twinly](https://twinly.tech),
+a personal AI operator. Engineer working at the seam of AI, autonomy, and
+robotics.
 
-If you’re interested in collaborating, sponsoring a build, or just geeking out about robots, reach out anytime.
-Contact: ojasvamishra32@gmail.com • IG: @ojas_mishra32 • GitHub: OjasMishra32 • LinkedIn: Ojasva Mishra
+Currently:
+- Founder, **Twinly** — twinly.tech
+- AI Robotics Engineer Intern, **EV Bots Inc.**
+- Software Intern, **Ptero Labs** (UAV simulation)
+- Founder & CEO, **Fusion Bots**
+
+Next: B.S. Computer Engineering + Master's in Finance at the University of
+Florida (combined-degree cohort, Class of 2030).
+
+Contact: ojasvamishra32@gmail.com · [LinkedIn](https://www.linkedin.com/in/ojasva-mishra-657b89352/) · [GitHub](https://github.com/OjasMishra32) · [Instagram](https://www.instagram.com/ojas_mishra32/)

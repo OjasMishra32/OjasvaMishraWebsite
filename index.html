@@ -2,2363 +2,1268 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
-<meta name="theme-color" content="#000000" />
-<meta name="description" content="Ojasva Mishra — engineer building robots, autonomy, and AI. Founder of Twinly and Fusion Bots. AI robotics intern at EV Bots and Ptero Labs." />
-<meta property="og:title" content="Ojasva Mishra — Robotics, Autonomy, AI" />
-<meta property="og:description" content="Engineer building robots, autonomy, and AI. Founder of Twinly and Fusion Bots." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#ece7da" />
+<meta name="description" content="Ojasva Mishra — founder of Twinly, a personal AI operator. Engineer working at the seam of AI, autonomy, and robotics." />
+<meta property="og:title" content="Ojasva Mishra — Founder, Twinly" />
+<meta property="og:description" content="Founder of Twinly, a personal AI operator that knows how you work." />
 <meta property="og:image" content="ojasvamishra.jpeg" />
 <meta property="og:type" content="website" />
-<title>Ojasva Mishra — Robotics, Autonomy, AI</title>
+<meta name="twitter:card" content="summary_large_image" />
+<title>Ojasva Mishra — Founder, Twinly</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preload" as="image" href="ojasvamishra.jpeg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/animejs@4/+esm" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap" rel="stylesheet" />
 <style>
-  /* =========================================================
+  /* ============================================================
      RESET + TOKENS
-     ========================================================= */
-  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    /* Apple-inspired neutrals */
-    --bg:        #000000;
-    --bg-1:      #0a0a0c;
-    --bg-2:      #131316;
-    --bg-3:      #1c1c20;
-    --bg-4:      #28282d;
+    --paper:    #ece7da;
+    --paper-2:  #e3dccb;
+    --paper-3:  #d6ccb5;
+    --paper-4:  #c4b89c;
 
-    --text:      #f5f5f7;
-    --text-2:    #c7c7cc;
-    --text-3:    #8e8e93;
-    --text-4:    #545458;
+    --ink:      #16140e;
+    --ink-2:    #3a3528;
+    --ink-3:    #6c6450;
+    --ink-4:    #9f9881;
 
-    --line:      rgba(255,255,255,0.08);
-    --line-2:    rgba(255,255,255,0.14);
-    --line-3:    rgba(255,255,255,0.22);
+    --line:     rgba(22,20,14,0.10);
+    --line-2:   rgba(22,20,14,0.18);
+    --line-3:   rgba(22,20,14,0.32);
 
-    --accent:    #0a84ff;       /* Apple blue */
-    --accent-2:  #bf5af2;       /* Apple purple */
-    --accent-3:  #ff375f;       /* Apple pink */
-    --accent-4:  #ff9f0a;       /* Apple orange */
-    --accent-5:  #30d158;       /* Apple green */
-    --accent-6:  #64d2ff;       /* Apple cyan */
+    --accent:   #c4421e;
+    --paper-tint: rgba(196,66,30,0.04);
 
-    /* Type — Apple SF stack with Inter fallback */
-    --font:      -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-                 "Inter", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
-    --font-serif:"Instrument Serif", "Iowan Old Style", "Georgia", serif;
+    --sans:  "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --display: "Fraunces", "Instrument Serif", Georgia, serif;
 
-    /* Springs */
-    --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-    --ease-apple:cubic-bezier(0.4, 0, 0.2, 1);
+    --ease:    cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-2:  cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-q:  cubic-bezier(0.85, 0, 0.15, 1);
 
-    /* Layout */
-    --maxw:      1280px;
-    --pad:       clamp(20px, 4vw, 48px);
-    --radius:    22px;
-    --radius-lg: 32px;
+    --maxw:    1320px;
+    --pad:     clamp(20px, 4vw, 56px);
   }
 
   html {
-    background: var(--bg);
-    color-scheme: dark;
+    background: var(--paper);
+    color-scheme: light;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
-
   body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.45;
+    letter-spacing: -0.011em;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "ss01", "cv11";
-    letter-spacing: -0.01em;
+    font-feature-settings: "ss01", "cv11", "cv02";
   }
-
-  ::selection { background: rgba(10, 132, 255, 0.4); color: #fff; }
-
+  ::selection { background: var(--ink); color: var(--paper); }
   a { color: inherit; text-decoration: none; }
-  img { display: block; max-width: 100%; }
+  img, svg { display: block; max-width: 100%; }
+  button { background: none; border: none; cursor: pointer; font: inherit; color: inherit; }
 
-  /* =========================================================
-     AURORA / AMBIENT BACKDROP
-     Sits fixed behind everything; animates very slowly.
-     ========================================================= */
-  .aurora {
-    position: fixed; inset: 0; z-index: -2;
-    background:
-      radial-gradient(60vmax 60vmax at 8% 0%,   rgba(10,132,255,0.22), transparent 60%),
-      radial-gradient(50vmax 50vmax at 90% 18%, rgba(191,90,242,0.18), transparent 60%),
-      radial-gradient(55vmax 55vmax at 70% 90%, rgba(255,55,95,0.12),  transparent 60%),
-      radial-gradient(40vmax 40vmax at 10% 95%, rgba(100,210,255,0.14),transparent 60%),
-      var(--bg);
-    filter: saturate(110%);
-    animation: aurora-drift 40s linear infinite alternate;
-  }
-  @keyframes aurora-drift {
-    0%   { transform: translate3d(0,0,0)   scale(1); }
-    50%  { transform: translate3d(2%,-2%,0) scale(1.05); }
-    100% { transform: translate3d(-2%,2%,0) scale(1.02); }
-  }
-
-  /* Subtle film grain — adds Apple-like depth */
+  /* Subtle paper texture — barely visible, no pattern feel */
   .grain {
-    position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    opacity: 0.025; mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+    position: fixed; inset: 0; z-index: 1;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 
-  /* Tone the aurora down so it feels ambient, not "AI mesh gradient" */
-  .aurora {
-    opacity: 0.55;
-  }
-
-  /* =========================================================
-     CUSTOM CURSOR (desktop only)
-     ========================================================= */
+  /* ============================================================
+     CUSTOM CURSOR
+     ============================================================ */
   .cursor {
-    position: fixed; top: 0; left: 0;
-    width: 36px; height: 36px;
-    border: 1px solid rgba(255,255,255,0.45);
+    position: fixed; top: 0; left: 0; z-index: 9000;
+    width: 10px; height: 10px;
     border-radius: 50%;
-    pointer-events: none; z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: width .35s var(--ease-out), height .35s var(--ease-out),
-                background-color .35s var(--ease-out), border-color .35s var(--ease-out),
-                opacity .25s ease;
+    background: var(--ink);
+    pointer-events: none;
     mix-blend-mode: difference;
-    will-change: transform;
+    transition: width .35s var(--ease), height .35s var(--ease), opacity .25s ease;
   }
-  .cursor.hover {
-    width: 64px; height: 64px;
-    background: rgba(255,255,255,0.95);
-    border-color: rgba(255,255,255,0.95);
-  }
+  .cursor.hover { width: 56px; height: 56px; }
   .cursor.hidden { opacity: 0; }
+  body.cursor-on, body.cursor-on * { cursor: none !important; }
   @media (max-width: 900px), (pointer: coarse) {
     .cursor { display: none; }
+    body.cursor-on, body.cursor-on * { cursor: auto !important; }
   }
-  body.cursor-on, body.cursor-on * { cursor: none !important; }
 
-  /* =========================================================
-     NAV — frosted glass pill
-     ========================================================= */
-  .nav-wrap {
-    position: fixed; top: 18px; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: center;
-    pointer-events: none;
-    transition: top .4s var(--ease-out);
-  }
+  /* ============================================================
+     NAV
+     ============================================================ */
   .nav {
-    pointer-events: auto;
-    display: flex; align-items: center; gap: 4px;
-    padding: 8px;
-    background: rgba(20,20,22,0.55);
-    backdrop-filter: saturate(180%) blur(22px);
-    -webkit-backdrop-filter: saturate(180%) blur(22px);
-    border: 1px solid var(--line-2);
-    border-radius: 999px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    transform: translateY(-12px);
-    opacity: 0;
-    animation: navIn 1.2s var(--ease-out) .8s forwards;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px var(--pad);
+    background: linear-gradient(to bottom, rgba(236,231,218,0.92), rgba(236,231,218,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: padding .4s var(--ease), background .4s var(--ease), border-color .4s;
+    border-bottom: 1px solid transparent;
   }
-  @keyframes navIn { to { transform: translateY(0); opacity: 1; } }
-
-  .nav .brand {
-    font-weight: 600; font-size: 14px; letter-spacing: -0.01em;
-    padding: 8px 14px; color: var(--text);
-    display: flex; align-items: center; gap: 8px;
+  .nav.scrolled {
+    padding-top: 12px; padding-bottom: 12px;
+    background: rgba(236,231,218,0.92);
+    border-bottom-color: var(--line);
   }
-  .nav .brand .mark {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--text-3);
-    margin-right: 4px;
-  }
-  .nav-links { display: flex; gap: 2px; }
-  .nav a.link {
-    padding: 8px 14px; font-size: 14px; font-weight: 500;
-    color: var(--text-2); border-radius: 999px;
-    transition: color .25s, background .25s;
-  }
-  .nav a.link:hover { color: var(--text); background: rgba(255,255,255,0.06); }
-  .nav .cta {
-    padding: 8px 16px; font-size: 14px; font-weight: 600;
-    background: var(--text); color: #000;
-    border-radius: 999px;
-    transition: transform .35s var(--ease-out), background .25s;
-  }
-  .nav .cta:hover { background: #fff; transform: translateY(-1px); }
-  @media (max-width: 720px) { .nav-links, .nav .cta { display: none; } .nav .brand { padding: 6px 12px; } }
-
-  /* =========================================================
-     LAYOUT HELPERS
-     ========================================================= */
-  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
-  section { position: relative; }
-  .eyebrow {
+  .nav .mark {
     display: inline-flex; align-items: center; gap: 12px;
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--text-3);
+    font-weight: 500; font-size: 15px;
+    letter-spacing: -0.018em;
   }
-  .eyebrow::before {
-    content: ""; display: inline-block;
-    width: 28px; height: 1px;
-    background: var(--text-4);
+  .nav .mark .av {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: url("ojasvamishra.jpeg") center/cover var(--paper-3);
+    border: 1px solid var(--line-2);
+    transition: transform .5s var(--ease);
+  }
+  .nav .mark:hover .av { transform: scale(1.1); }
+  .nav .links { display: flex; gap: 2px; }
+  .nav .links a {
+    padding: 8px 14px; border-radius: 999px;
+    font-size: 14px; color: var(--ink-2); font-weight: 500;
+    transition: color .25s ease, background .25s ease;
+  }
+  .nav .links a:hover { color: var(--ink); background: rgba(22,20,14,0.05); }
+  .nav .cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 999px;
+    background: var(--ink); color: var(--paper);
+    font-size: 14px; font-weight: 500; letter-spacing: -0.005em;
+    transition: transform .4s var(--ease), background .3s;
+  }
+  .nav .cta:hover { background: var(--accent); transform: translateY(-1px); }
+  .nav .cta .arr { display: inline-block; transition: transform .4s var(--ease); }
+  .nav .cta:hover .arr { transform: translate(3px, -3px); }
+  @media (max-width: 760px) {
+    .nav .links { display: none; }
   }
 
-  .h-display {
-    font-size: clamp(3.4rem, 12vw, 12rem);
-    font-weight: 700;
-    line-height: 0.92;
+  /* ============================================================
+     LAYOUT + TYPE
+     ============================================================ */
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); position: relative; z-index: 2; }
+  section { position: relative; }
+
+  .label {
+    display: inline-block;
+    font-size: 13px; font-weight: 500;
+    color: var(--ink-3);
+    letter-spacing: -0.005em;
+  }
+
+  .display {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: clamp(3.4rem, 12vw, 11rem);
+    line-height: 0.94;
     letter-spacing: -0.045em;
   }
+  .display .it {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+  }
+
   .h-1 {
-    font-size: clamp(2.4rem, 6.2vw, 5.5rem);
-    font-weight: 600;
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    font-size: clamp(2.2rem, 5.6vw, 4.6rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.032em;
+  }
+  .h-1 .it {
+    font-family: var(--display); font-style: italic; font-weight: 400;
   }
   .h-2 {
-    font-size: clamp(1.6rem, 3vw, 2.6rem);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.025em;
+    font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.022em;
   }
-  .h-3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
+  .h-3 { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; }
   .lede {
-    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-    color: var(--text-2);
+    font-size: clamp(1.05rem, 1.5vw, 1.32rem);
+    color: var(--ink-2);
+    line-height: 1.5;
+    letter-spacing: -0.012em;
     font-weight: 400;
-    line-height: 1.45;
+    max-width: 60ch;
+  }
+  .serif {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
     letter-spacing: -0.015em;
   }
-  .muted { color: var(--text-3); }
-  .serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
+  .muted { color: var(--ink-3); }
 
-  /* Reveal primitives ------------------------------------- */
-  .reveal { opacity: 0; transform: translate3d(0, 28px, 0); transition: opacity 1s var(--ease-out), transform 1s var(--ease-out); }
-  .reveal.in { opacity: 1; transform: none; }
-  .reveal.delay-1 { transition-delay: .08s; }
-  .reveal.delay-2 { transition-delay: .16s; }
-  .reveal.delay-3 { transition-delay: .24s; }
-  .reveal.delay-4 { transition-delay: .32s; }
-  .reveal.delay-5 { transition-delay: .40s; }
-  .reveal.delay-6 { transition-delay: .48s; }
-
-  /* Char stagger for headings ------------------------------ */
-  .stagger { display: inline-block; }
-  .stagger .ch {
-    display: inline-block;
-    transform: translate3d(0, 1.2em, 0);
-    opacity: 0;
-    transition: transform 1.1s var(--ease-out), opacity 1.1s var(--ease-out);
-    will-change: transform, opacity;
-  }
-  .stagger.in .ch { transform: none; opacity: 1; }
-
-  /* Buttons ------------------------------------------------ */
+  /* Buttons */
   .btn {
     position: relative;
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 24px;
+    padding: 16px 26px;
     border-radius: 999px;
-    font-size: 15px; font-weight: 600; letter-spacing: -0.005em;
+    font-size: 14.5px; font-weight: 500;
+    letter-spacing: -0.005em;
     border: 1px solid transparent;
-    transition: transform .5s var(--ease-out), background .25s, color .25s, border-color .25s;
+    transition: transform .55s var(--ease), background .3s, color .3s, border-color .3s;
     will-change: transform;
   }
-  .btn-primary { background: var(--text); color: #000; }
-  .btn-primary:hover { background: #fff; }
-  .btn-secondary {
-    background: rgba(255,255,255,0.04); color: var(--text);
-    border-color: var(--line-2);
-    backdrop-filter: blur(10px);
-  }
-  .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: var(--line-3); }
-  .btn .arrow {
-    display: inline-block; transition: transform .4s var(--ease-out);
-  }
-  .btn:hover .arrow { transform: translateX(4px); }
-  .btn .inner { display: inline-flex; align-items: center; gap: 10px; transition: transform .4s var(--ease-out); }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
+  .btn-ghost:hover { border-color: var(--ink); }
+  .btn .arr { display: inline-block; transition: transform .45s var(--ease); }
+  .btn:hover .arr { transform: translate(3px, -3px); }
 
-  /* =========================================================
+  /* ============================================================
+     REVEAL PRIMITIVES — mask-based, not opacity fade
+     ============================================================ */
+  .r-mask {
+    overflow: hidden;
+    display: inline-block;
+  }
+  .r-mask > .inner {
+    display: inline-block;
+    transform: translate3d(0, 110%, 0);
+    transition: transform 1.1s var(--ease);
+    will-change: transform;
+  }
+  .r-mask.in > .inner { transform: none; }
+  .r-mask.d1 > .inner { transition-delay: .08s; }
+  .r-mask.d2 > .inner { transition-delay: .16s; }
+  .r-mask.d3 > .inner { transition-delay: .24s; }
+  .r-mask.d4 > .inner { transition-delay: .32s; }
+
+  .r-fade {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .r-fade.in { opacity: 1; transform: none; }
+  .r-fade.d1 { transition-delay: .12s; }
+  .r-fade.d2 { transition-delay: .24s; }
+  .r-fade.d3 { transition-delay: .36s; }
+  .r-fade.d4 { transition-delay: .48s; }
+
+  /* Clip-path image reveal */
+  .r-clip {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 1.4s var(--ease);
+    will-change: clip-path;
+  }
+  .r-clip.in { clip-path: inset(0 0 0 0); }
+
+  /* Word stagger using r-mask per word */
+  .words .w {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1.05;
+  }
+  .words .w > span {
+    display: inline-block;
+    transform: translate3d(0, 110%, 0);
+    transition: transform 1.1s var(--ease);
+    will-change: transform;
+  }
+  .words.in .w > span { transform: none; }
+
+  /* ============================================================
      HERO
-     ========================================================= */
+     ============================================================ */
   .hero {
-    min-height: 100svh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 140px var(--pad) 80px;
     position: relative;
+    padding-top: clamp(120px, 14vh, 180px);
+    padding-bottom: clamp(60px, 8vh, 110px);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
   }
-  .hero-inner { max-width: var(--maxw); width: 100%; margin: 0 auto; }
-  .hero .eyebrow { margin-bottom: 32px; opacity: 0; transform: translateY(10px); animation: fadeUp 1s var(--ease-out) .2s forwards; }
-  @keyframes fadeUp { to { opacity: 1; transform: none; } }
 
-  .hero-name {
-    margin: 0 0 28px;
-    color: var(--text);
-  }
-  .hero-name .ch { transition-duration: 1.4s; }
-
-  .hero-tagline {
-    max-width: 760px;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    color: var(--text-2);
-    font-weight: 400;
-    line-height: 1.35;
-    letter-spacing: -0.02em;
+  .hero-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 24px; flex-wrap: wrap;
+    color: var(--ink-3);
+    font-size: 13.5px;
+    letter-spacing: -0.005em;
     margin-bottom: 36px;
   }
-  .hero-tagline .accent { color: var(--text); }
 
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 64px; }
-
-  .hero-meta {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 24px;
-    max-width: 920px;
-    padding-top: 32px;
-    border-top: 1px solid var(--line);
-  }
-  .hero-meta-item .k {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--text-3); margin-bottom: 8px;
-  }
-  .hero-meta-item .v {
-    font-size: 15px; color: var(--text); line-height: 1.45;
+  .hero-name {
+    margin-bottom: clamp(40px, 6vh, 72px);
   }
 
-  .scroll-cue {
-    position: absolute; left: 50%; bottom: 28px;
-    transform: translateX(-50%);
-    display: flex; align-items: center; gap: 10px;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--text-3);
-    opacity: 0; animation: fadeUp 1s var(--ease-out) 1.4s forwards;
-  }
-  .scroll-cue .line {
-    width: 1px; height: 28px;
-    background: linear-gradient(to bottom, transparent, var(--text-3));
-    animation: scrollLine 2.4s ease-in-out infinite;
-    transform-origin: top;
-  }
-  @keyframes scrollLine {
-    0%   { transform: scaleY(0);   opacity: 0; }
-    40%  { transform: scaleY(1);   opacity: 1; }
-    100% { transform: scaleY(1) translateY(28px); opacity: 0; }
-  }
-
-  /* =========================================================
-     MARQUEE
-     ========================================================= */
-  .marquee {
-    overflow: hidden;
-    padding: 28px 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: rgba(255,255,255,0.015);
-    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  }
-  .marquee-track {
-    display: flex; gap: 56px;
-    width: max-content;
-    animation: marquee 38s linear infinite;
-  }
-  .marquee-item {
-    display: inline-flex; align-items: baseline; gap: 56px;
-    font-size: clamp(1rem, 1.6vw, 1.5rem);
-    font-weight: 400;
-    color: var(--text-2);
-    letter-spacing: -0.01em;
-    white-space: nowrap;
-  }
-  .marquee-item .sep {
-    color: var(--text-4);
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: .85em;
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-
-  /* =========================================================
-     SECTION SHELL
-     ========================================================= */
-  .sec {
-    padding: clamp(80px, 12vw, 160px) 0;
-    position: relative;
-  }
-  .sec-head { max-width: 920px; margin-bottom: 64px; }
-  .sec-head .eyebrow { margin-bottom: 24px; }
-  .sec-head .lede { margin-top: 24px; max-width: 720px; }
-
-  /* =========================================================
-     ABOUT — bento grid
-     ========================================================= */
-  .bento {
+  /* Two-column hero: text-left, portrait-right */
+  .hero-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(180px, auto);
-    gap: 16px;
-  }
-  .bento .card {
-    position: relative;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-    padding: 28px;
-    overflow: hidden;
-    transition: transform .6s var(--ease-out), border-color .25s, background .25s;
-  }
-  .bento .card::before {
-    content: ""; position: absolute; inset: 0;
-    background: radial-gradient(400px 200px at var(--mx,50%) var(--my,0%), rgba(255,255,255,0.06), transparent 70%);
-    opacity: 0; transition: opacity .35s; pointer-events: none;
-  }
-  .bento .card:hover { transform: translateY(-2px); border-color: var(--line-2); }
-  .bento .card:hover::before { opacity: 1; }
-
-  .bento .card h3 {
-    font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--text-3); margin-bottom: 16px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .bento .card .big {
-    font-size: clamp(1.6rem, 2.4vw, 2.2rem);
-    font-weight: 600; line-height: 1.15; letter-spacing: -0.025em;
-    color: var(--text);
-  }
-  .bento .card p { color: var(--text-2); font-size: 15px; line-height: 1.55; }
-  .bento .card .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-
-  /* Bento layout */
-  .bento .photo  { grid-column: span 5; grid-row: span 2; padding: 0; min-height: 460px; }
-  .bento .intro  { grid-column: span 7; grid-row: span 2; }
-  .bento .edu    { grid-column: span 4; }
-  .bento .focus  { grid-column: span 4; }
-  .bento .quote  { grid-column: span 4; }
-  .bento .pillars{ grid-column: span 12; padding: 0; border: none; background: none; }
-  .bento .quote .q {
-    font-family: var(--font-serif); font-style: italic;
-    font-size: clamp(1.4rem, 1.9vw, 1.7rem); line-height: 1.25;
-    color: var(--text); margin-top: 4px;
-  }
-  .bento .quote .a {
-    font-size: 12px; color: var(--text-3); margin-top: 16px;
-    letter-spacing: 0.06em;
-  }
-
-  .photo {
-    background:
-      linear-gradient(135deg, rgba(10,132,255,0.18), rgba(191,90,242,0.18) 60%, rgba(255,55,95,0.16));
-    display: flex; align-items: flex-end;
-  }
-  .photo img {
-    width: 100%; height: 100%; object-fit: cover;
-    border-radius: var(--radius);
-    filter: contrast(1.05) saturate(1.05);
-    transition: transform 1.2s var(--ease-out);
-  }
-  .photo:hover img { transform: scale(1.03); }
-  .photo .badge {
-    position: absolute; left: 20px; bottom: 20px;
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 9px 16px;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid var(--line-2);
-    border-radius: 999px;
-    font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
-    color: var(--text);
-  }
-
-  .intro h2 {
-    font-size: clamp(1.6rem, 2.4vw, 2.4rem);
-    font-weight: 600; line-height: 1.2; letter-spacing: -0.025em;
-    margin-bottom: 16px;
-  }
-  .intro h2 .grad {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--text);
-  }
-
-  /* Pillar quad */
-  .pillars-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-  }
-  .pillar {
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-    padding: 28px;
-    position: relative;
-    transition: transform .6s var(--ease-out), border-color .25s;
-    overflow: hidden;
-  }
-  .pillar:hover { transform: translateY(-3px); border-color: var(--line-2); }
-  .pillar .num {
-    font-family: var(--font-serif); font-style: italic;
-    font-size: 1.05rem; color: var(--text-3); margin-bottom: 22px;
-  }
-  .pillar h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
-  .pillar p  { color: var(--text-3); font-size: 14px; line-height: 1.5; }
-  .pillar .glow {
-    position: absolute; right: -50px; top: -50px;
-    width: 160px; height: 160px; border-radius: 50%;
-    filter: blur(60px); opacity: .12;
-    background: #fff;
-    transition: opacity .4s, transform .8s var(--ease-out);
-  }
-  .pillar:hover .glow { opacity: .22; transform: scale(1.15); }
-
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
-    padding: 6px 12px;
-    font-size: 12px; font-weight: 500; color: var(--text-2);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    transition: background .25s, border-color .25s, color .25s;
-  }
-  .chip:hover { background: rgba(255,255,255,0.08); border-color: var(--line-2); color: var(--text); }
-
-  /* Bento responsive */
-  @media (max-width: 980px) {
-    .bento .photo { grid-column: span 12; grid-row: auto; min-height: 360px; }
-    .bento .intro { grid-column: span 12; grid-row: auto; }
-    .bento .edu, .bento .focus, .bento .quote { grid-column: span 12; }
-    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 560px) {
-    .pillars-grid { grid-template-columns: 1fr; }
-  }
-
-  /* =========================================================
-     NOW — what I'm currently building (sticky stack)
-     ========================================================= */
-  .now-shell { position: relative; }
-  .now-track { position: relative; }
-  .now-frame {
-    position: sticky; top: 0;
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 80px var(--pad);
-  }
-  .now-card {
-    width: 100%; max-width: var(--maxw); margin: 0 auto;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--line-2);
-    background: linear-gradient(180deg, rgba(20,20,24,0.85), rgba(10,10,12,0.9));
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-    overflow: hidden; position: relative;
-    transform: scale(0.94);
-    transition: transform 1s var(--ease-out);
-  }
-  .now-card.in { transform: scale(1); }
-  .now-card .hue {
-    position: absolute; inset: 0;
-    background: radial-gradient(80% 60% at 50% -20%, rgba(255,255,255,0.07) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .now-card .body {
-    position: relative;
-    padding: clamp(36px, 6vw, 80px);
-    display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;
-  }
-  .now-card .text .tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--text-2);
-    padding: 6px 12px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid var(--line-2);
-    margin-bottom: 20px;
-  }
-  .now-card .text h3 {
-    font-size: clamp(2rem, 4.5vw, 3.6rem);
-    font-weight: 600; line-height: 1.05; letter-spacing: -0.035em;
-    margin-bottom: 18px;
-  }
-  .now-card .text p {
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
-    color: var(--text-2); line-height: 1.55; margin-bottom: 24px;
-    max-width: 540px;
-  }
-  .now-card .text .meta {
-    display: flex; flex-wrap: wrap; gap: 14px 28px;
-    font-size: 13px; color: var(--text-3);
-    margin-bottom: 26px;
-  }
-  .now-card .text .meta b { color: var(--text); font-weight: 500; }
-
-  .now-card .visual {
-    aspect-ratio: 4/3;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background:
-      linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
-      var(--bg-1);
-    position: relative; overflow: hidden;
-    padding: 32px;
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-  .now-card .visual::before {
-    content: ""; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size: 32px 32px;
-    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 80%);
-    pointer-events: none;
-  }
-  .now-card .visual .top {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    position: relative;
-    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--text-3); font-weight: 500;
-  }
-  .now-card .visual .num {
-    font-family: var(--font-serif); font-style: italic; font-weight: 400;
-    font-size: clamp(8rem, 18vw, 16rem);
-    line-height: .85;
-    color: var(--text);
-    align-self: flex-end;
-    position: relative;
-    margin-top: -10px;
-  }
-  .now-card .visual .wm {
-    font-family: var(--font-serif); font-style: italic;
-    font-size: 1.2rem;
-    color: var(--text-2);
-    position: relative;
-  }
-
-  @media (max-width: 880px) {
-    .now-card .body { grid-template-columns: 1fr; gap: 32px; }
-    .now-card .visual { aspect-ratio: 16/10; }
-  }
-
-  /* =========================================================
-     EXPERIENCE TIMELINE
-     ========================================================= */
-  .timeline {
-    position: relative;
-    padding-left: 28px;
-    border-left: 1px solid var(--line-2);
-  }
-  .timeline::before {
-    content: ""; position: absolute; left: -1px; top: 0; width: 1px;
-    height: var(--prog, 0%);
-    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.15));
-    transition: height .2s linear;
-  }
-  .tl-item { position: relative; padding: 24px 0 64px 28px; }
-  .tl-item .dot {
-    position: absolute; left: -36px; top: 32px;
-    width: 14px; height: 14px; border-radius: 50%;
-    background: var(--bg);
-    border: 2px solid var(--line-2);
-    transition: border-color .35s, background .35s, box-shadow .35s, transform .35s var(--ease-out);
-  }
-  .tl-item.in .dot {
-    border-color: var(--text);
-    background: var(--text);
-    transform: scale(1.1);
-  }
-  .tl-card {
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-    padding: 28px 32px;
-    transition: transform .6s var(--ease-out), border-color .25s;
-  }
-  .tl-card:hover { transform: translateY(-2px); border-color: var(--line-2); }
-  .tl-when {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--text-3); margin-bottom: 8px;
-  }
-  .tl-role { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 4px; }
-  .tl-role .at { color: var(--text-3); font-weight: 400; }
-  .tl-meta { font-size: 13px; color: var(--text-3); margin-bottom: 14px; }
-  .tl-card ul { list-style: none; }
-  .tl-card li {
-    position: relative; padding-left: 18px; margin-bottom: 8px;
-    color: var(--text-2); font-size: 15px; line-height: 1.55;
-  }
-  .tl-card li::before {
-    content: ""; position: absolute; left: 0; top: 10px;
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--text-4);
-  }
-  .tl-card li b { color: var(--text); font-weight: 600; }
-  .tl-card .ext {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 14px; font-size: 13px; font-weight: 500;
-    color: var(--text-2);
-    border-bottom: 1px solid var(--line-2);
-    padding-bottom: 2px;
-    transition: color .25s, border-color .25s;
-  }
-  .tl-card .ext:hover { color: var(--text); border-color: var(--text); }
-  .tl-card .ext .arrow { transition: transform .35s var(--ease-out); }
-  .tl-card .ext:hover .arrow { transform: translateX(3px); }
-
-  @media (max-width: 600px) {
-    .timeline { padding-left: 18px; }
-    .tl-item { padding: 16px 0 40px 16px; }
-    .tl-item .dot { left: -26px; }
-    .tl-card { padding: 22px 22px; }
-  }
-
-  /* =========================================================
-     PROJECTS GRID
-     ========================================================= */
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 16px;
-  }
-  .pcard {
-    grid-column: span 4;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-    padding: 28px;
-    position: relative; overflow: hidden;
-    display: flex; flex-direction: column;
-    min-height: 320px;
-    transition: transform .6s var(--ease-out), border-color .25s;
-  }
-  .pcard:hover { transform: translateY(-3px); border-color: var(--line-2); }
-  .pcard .swatch {
-    position: absolute; right: -50px; top: -50px;
-    width: 180px; height: 180px; border-radius: 50%;
-    background: #fff;
-    filter: blur(70px); opacity: .06;
-    transition: opacity .4s, transform .8s var(--ease-out);
-  }
-  .pcard:hover .swatch { opacity: .12; transform: scale(1.15); }
-  .pcard .index {
-    font-family: var(--font-serif); font-style: italic;
-    font-size: .95rem; color: var(--text-3); margin-bottom: 18px;
-  }
-  .pcard h3 {
-    font-size: 1.15rem; font-weight: 600; letter-spacing: -0.015em;
-    line-height: 1.25; margin-bottom: 10px;
-  }
-  .pcard .stack {
-    font-size: 12px; color: var(--text-3); margin-bottom: 14px;
-    letter-spacing: 0.04em;
-  }
-  .pcard p {
-    color: var(--text-2); font-size: 14px; line-height: 1.55;
-    flex: 1;
-  }
-  .pcard .ext {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 18px; font-size: 13px; font-weight: 500;
-    color: var(--text-2);
-    border-bottom: 1px solid var(--line-2);
-    align-self: flex-start;
-    padding-bottom: 2px;
-    transition: color .25s, border-color .25s;
-  }
-  .pcard .ext:hover { color: var(--text); border-color: var(--text); }
-  .pcard .ext .arrow { transition: transform .35s var(--ease-out); }
-  .pcard:hover .ext .arrow { transform: translateX(3px); }
-
-  .pcard.feat { grid-column: span 8; min-height: 380px; }
-  @media (max-width: 980px) {
-    .pcard, .pcard.feat { grid-column: span 6; }
-  }
-  @media (max-width: 640px) {
-    .pcard, .pcard.feat { grid-column: span 12; }
-  }
-
-  /* =========================================================
-     SKILLS
-     ========================================================= */
-  .skills {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .sk {
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-    padding: 28px 32px;
-    transition: transform .6s var(--ease-out), border-color .25s;
-  }
-  .sk:hover { transform: translateY(-2px); border-color: var(--line-2); }
-  .sk h4 {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--text-3); margin-bottom: 18px;
-  }
-  .sk .chips { gap: 8px; }
-  .sk .chip {
-    padding: 8px 14px; font-size: 13px;
-  }
-  @media (max-width: 720px) { .skills { grid-template-columns: 1fr; } }
-
-  /* =========================================================
-     CONTACT
-     ========================================================= */
-  .contact {
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--line-2);
-    background:
-      radial-gradient(80% 100% at 50% 0%, rgba(255,255,255,0.06), transparent 60%),
-      linear-gradient(180deg, rgba(22,22,26,0.85), rgba(10,10,12,0.9));
-    padding: clamp(48px, 7vw, 96px);
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-  }
-  .contact h2 {
-    font-size: clamp(2.4rem, 6vw, 5rem);
-    font-weight: 600; line-height: 1.02; letter-spacing: -0.035em;
-    margin-bottom: 20px;
-  }
-  .contact h2 .serif { color: var(--text-2); }
-  .contact p {
-    color: var(--text-2); font-size: clamp(1rem, 1.4vw, 1.2rem);
-    max-width: 560px; margin: 0 auto 36px; line-height: 1.5;
-  }
-  .contact .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .contact .small {
-    margin-top: 28px; color: var(--text-3); font-size: 13px;
-  }
-  .contact .small a { color: var(--text-2); }
-  .contact .small a:hover { color: var(--text); }
-
-  /* =========================================================
-     FOOTER
-     ========================================================= */
-  footer {
-    padding: 36px var(--pad) 60px;
-    border-top: 1px solid var(--line);
-    margin-top: 80px;
-    color: var(--text-3); font-size: 13px;
-  }
-  footer .row {
-    max-width: var(--maxw); margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
-  }
-  footer a { color: var(--text-3); transition: color .2s; }
-  footer a:hover { color: var(--text); }
-  footer .links { display: flex; gap: 22px; flex-wrap: wrap; }
-
-  /* =========================================================
-     HERO ENHANCEMENTS — full-width name, feature card below
-     ========================================================= */
-  .hero { display: flex; flex-direction: column; }
-  .hero-inner { display: block; }
-  .hero-top { margin-bottom: clamp(40px, 6vw, 80px); }
-  .hero-bottom {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.85fr);
-    gap: clamp(28px, 5vw, 64px);
+    gap: 56px;
     align-items: end;
+    grid-template-columns: 1fr;
   }
-  .hero-text { min-width: 0; }
-  .hero-feature {
+  @media (min-width: 980px) {
+    .hero-grid {
+      grid-template-columns: 1.5fr 1fr;
+      gap: 72px;
+    }
+  }
+
+  .hero-statement {
+    font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+    line-height: 1.32;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    max-width: 30ch;
+    font-weight: 400;
+  }
+  .hero-statement .it {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    color: var(--ink-2);
+  }
+  .hero-statement .em { color: var(--accent); font-weight: 500; }
+
+  .hero-actions {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-top: 36px;
+  }
+
+  .hero-snap {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 20px;
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    max-width: 720px;
+  }
+  .hero-snap .k {
+    font-size: 12.5px; color: var(--ink-3);
+    letter-spacing: -0.005em; font-weight: 500;
+  }
+  .hero-snap .v {
+    margin-top: 8px;
+    font-size: 14px; font-weight: 500;
+    color: var(--ink); line-height: 1.4;
+  }
+
+  /* Portrait */
+  .portrait-wrap {
     position: relative;
-    aspect-ratio: 4/5;
     width: 100%;
     max-width: 380px;
     margin-left: auto;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--line-2);
-    background: var(--bg-1);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-    opacity: 0;
-    transform: translateY(20px) scale(0.98);
-    animation: heroFeatIn 1.4s var(--ease-out) .55s forwards;
   }
-  @keyframes heroFeatIn { to { opacity: 1; transform: none; } }
-  .hero-feature .ph {
-    position: absolute; inset: 0;
-    background-image: url('ojasvamishra.jpeg');
-    background-size: cover;
-    background-position: center 22%;
-    filter: contrast(1.05) saturate(1.05);
-    transform: scale(1.08);
-    transition: transform 1.6s var(--ease-out);
-  }
-  .hero-feature:hover .ph { transform: scale(1.12); }
-  .hero-feature::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.55) 75%, rgba(0,0,0,0.85) 100%);
-  }
-  .hero-feature .pill {
-    position: absolute; left: 18px; top: 18px;
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 7px 12px;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid var(--line-2);
-    border-radius: 999px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--text);
-  }
-  .hero-feature .body {
-    position: absolute; left: 24px; right: 24px; bottom: 24px;
-    color: var(--text);
-  }
-  .hero-feature .body .k {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--text-2); margin-bottom: 8px;
-  }
-  .hero-feature .body .h {
-    font-size: clamp(1.4rem, 2vw, 1.9rem);
-    font-weight: 600; letter-spacing: -0.025em; line-height: 1.05;
-  }
-  .hero-feature .body .h .serif {
-    font-family: var(--font-serif); font-style: italic; font-weight: 400;
-  }
-  .hero-feature .body .stack {
-    display: flex; align-items: baseline; gap: 8px;
-    margin-top: 14px;
-    color: var(--text-2);
-    font-size: 13px;
-  }
-  .hero-feature .body .stack b { color: var(--text); font-weight: 600; }
-  @media (max-width: 880px) {
-    .hero-bottom { grid-template-columns: 1fr; }
-    .hero-feature { max-width: 480px; margin: 28px auto 0; aspect-ratio: 4/5; }
-  }
-
-  /* =========================================================
-     UF cinematic moment
-     ========================================================= */
-  .uf-shell {
+  .portrait-frame {
     position: relative;
-    min-height: 100svh;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0 var(--pad);
+    aspect-ratio: 4 / 5;
+    border-radius: 4px;
     overflow: hidden;
+    background: var(--paper-3);
+    box-shadow:
+      0 1px 0 rgba(22,20,14,0.06),
+      0 30px 60px -20px rgba(22,20,14,0.18),
+      0 50px 100px -40px rgba(22,20,14,0.22);
   }
-  .uf-shell::before {
-    content: ""; position: absolute; inset: 0;
-    background:
-      radial-gradient(40% 50% at 50% 35%, rgba(255,255,255,0.06), transparent 70%),
-      radial-gradient(60% 80% at 50% 100%, rgba(255,200,80,0.04), transparent 70%);
-    pointer-events: none;
+  .portrait-frame img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 26%;
+    transform: scale(1.04);
+    transition: transform 1.6s var(--ease);
+    filter: saturate(0.95) contrast(1.02);
   }
-  .uf-inner {
-    position: relative;
-    text-align: center;
-    max-width: 1100px;
+  .portrait-frame:hover img { transform: scale(1.08); }
+
+  .portrait-caption {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-top: 16px;
+    font-size: 13px; color: var(--ink-3);
+    letter-spacing: -0.005em;
   }
-  .uf-eyebrow {
-    font-size: 12px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--text-3); margin-bottom: 32px;
-    display: inline-flex; align-items: center; gap: 16px;
-  }
-  .uf-eyebrow::before, .uf-eyebrow::after {
-    content: ""; display: inline-block;
-    width: 32px; height: 1px;
-    background: var(--text-4);
-  }
-  .uf-name {
-    font-size: clamp(3rem, 9vw, 8.5rem);
-    font-weight: 600;
-    line-height: 0.95; letter-spacing: -0.04em;
-    margin-bottom: 28px;
-  }
-  .uf-name .ser {
-    font-family: var(--font-serif); font-style: italic; font-weight: 400;
-  }
-  .uf-sub {
-    font-size: clamp(1.1rem, 1.6vw, 1.45rem);
-    color: var(--text-2); line-height: 1.4;
-    max-width: 760px; margin: 0 auto 56px;
-  }
-  .uf-sub b { color: var(--text); font-weight: 600; }
-  .uf-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(20px, 3vw, 56px);
-    max-width: 880px; margin: 0 auto;
-    padding-top: 48px;
-    border-top: 1px solid var(--line);
-  }
-  .uf-stat .n {
-    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-    font-weight: 600; letter-spacing: -0.04em; line-height: 1;
-    font-family: var(--font-serif); font-style: italic; font-weight: 400;
-  }
-  .uf-stat .l {
-    margin-top: 10px;
-    font-size: 13px; color: var(--text-3);
-    letter-spacing: 0.04em; line-height: 1.45;
-  }
-  @media (max-width: 720px) {
-    .uf-stats { grid-template-columns: 1fr; gap: 28px; }
-    .uf-stats .uf-stat { padding-top: 24px; border-top: 1px solid var(--line); }
-    .uf-stats .uf-stat:first-child { padding-top: 0; border-top: none; }
+  .portrait-caption .it {
+    font-family: var(--serif); font-style: italic;
+    font-size: 16px; color: var(--ink-2);
   }
 
-  /* =========================================================
-     TWINLY HERO PANEL
-     ========================================================= */
-  .now-card.featured {
-    border: 1px solid var(--line-2);
+  /* ============================================================
+     SECTION CHROME
+     ============================================================ */
+  .sec {
+    padding: clamp(90px, 14vh, 170px) 0;
   }
-  .now-card.featured .body {
-    grid-template-columns: 1.05fr 1fr;
-    padding: clamp(36px, 6vw, 80px);
-    gap: clamp(28px, 4vw, 60px);
+  .sec-head {
+    display: grid; gap: 18px;
+    margin-bottom: clamp(48px, 7vh, 80px);
+    max-width: 760px;
   }
-  .now-card.featured .text h3 {
-    font-size: clamp(2.6rem, 5.5vw, 4.6rem);
-  }
-  .now-card.featured .text .lede-q {
-    font-family: var(--font-serif); font-style: italic;
-    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-    color: var(--text-2);
-    margin: -8px 0 22px;
-    line-height: 1.35;
-  }
-  .now-card.featured .visual {
-    aspect-ratio: 4/3;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid var(--line-2);
-    background: #0a0a0c;
-  }
-  .now-card.featured .visual::before { display: none; }
-  .embed-frame {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-  }
-  .embed-chrome {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 14px;
-    background: rgba(20,20,22,0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-    font-size: 12px; color: var(--text-3);
-    letter-spacing: 0.02em;
-    z-index: 2;
-  }
-  .embed-chrome .dots {
-    display: inline-flex; gap: 6px; margin-right: 6px;
-  }
-  .embed-chrome .dots i {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--bg-3); display: block;
-  }
-  .embed-chrome .url {
-    flex: 1;
-    text-align: center;
-    font-family: var(--font);
-    font-size: 12px;
-    color: var(--text-2);
-  }
-  .embed-chrome .ext {
-    color: var(--text-3); font-weight: 500;
-  }
-  .embed-stage {
-    position: relative; flex: 1; overflow: hidden;
-    background: #fff;
-  }
-  .embed-stage iframe {
-    position: absolute; left: 0; top: 0;
-    width: calc(100% / var(--scale, 0.6));
-    height: calc(100% / var(--scale, 0.6));
-    transform: scale(var(--scale, 0.6));
-    transform-origin: top left;
-    border: 0;
-    pointer-events: none;
-  }
-  .embed-stage .veil {
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.4) 100%);
-    pointer-events: none;
-  }
+  .sec-head .label { margin-bottom: 4px; }
 
-  /* =========================================================
-     CRACKED — numbers banner
-     ========================================================= */
-  .cracked-shell {
-    padding: clamp(80px, 10vw, 140px) 0;
+  /* ============================================================
+     NOW — current-state strip
+     ============================================================ */
+  .now {
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+    background: var(--paper-2);
+    padding: clamp(70px, 9vh, 120px) 0;
   }
-  .cracked-head {
-    text-align: left; max-width: 1100px;
-    margin-bottom: 64px;
+  .now .wrap { display: grid; gap: 40px; }
+  @media (min-width: 980px) {
+    .now .wrap { grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
   }
-  .cracked-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--line);
+  .now h2 {
+    font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.18;
   }
-  .cracked-cell {
-    padding: 36px 32px 36px 0;
-    border-right: 1px solid var(--line);
-    position: relative;
-  }
-  .cracked-cell:last-child { border-right: 0; }
-  .cracked-cell:nth-child(n+1) { padding-left: 0; }
-  .cracked-cell:nth-child(n+2) { padding-left: 32px; }
-  .cracked-cell .n {
-    font-size: clamp(2.6rem, 5vw, 4.4rem);
-    font-weight: 600; letter-spacing: -0.04em; line-height: 1;
-    color: var(--text);
-  }
-  .cracked-cell .n .ser {
-    font-family: var(--font-serif); font-style: italic; font-weight: 400;
-  }
-  .cracked-cell .l {
+  .now h2 .it { font-family: var(--display); font-style: italic; font-weight: 400; }
+  .now .sub {
     margin-top: 14px;
-    font-size: 13px; color: var(--text-3); line-height: 1.5;
-    max-width: 200px;
-  }
-  .cracked-cell .l b { color: var(--text); font-weight: 600; }
-  @media (max-width: 880px) {
-    .cracked-grid { grid-template-columns: repeat(2, 1fr); }
-    .cracked-cell:nth-child(2) { border-right: 0; }
-    .cracked-cell:nth-child(n+3) { border-top: 1px solid var(--line); padding-top: 36px; }
-  }
-  @media (max-width: 520px) {
-    .cracked-grid { grid-template-columns: 1fr; }
-    .cracked-cell { border-right: 0; padding-left: 0 !important; padding-right: 0; }
-    .cracked-cell:nth-child(n+2) { border-top: 1px solid var(--line); padding-top: 32px; }
+    color: var(--ink-3); font-size: 14.5px; line-height: 1.5;
   }
 
-  /* =========================================================
-     LIVE BUILDS gallery
-     ========================================================= */
-  .builds-grid {
+  .now-list { display: grid; gap: 2px; }
+  .now-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-  }
-  .build {
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--line);
-    background: var(--bg-1);
-    transition: transform .6s var(--ease-out), border-color .25s;
-    display: flex; flex-direction: column;
-  }
-  .build:hover { transform: translateY(-3px); border-color: var(--line-2); }
-  .build .frame {
-    position: relative;
-    aspect-ratio: 16/10;
-    overflow: hidden;
-    background: #000;
-  }
-  .build .meta {
-    padding: 22px 26px 26px;
-    display: flex; align-items: center; justify-content: space-between;
+    grid-template-columns: 1fr auto;
     gap: 16px;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 1rem;
+    position: relative;
   }
-  .build .meta .info h3 {
-    font-size: 1.05rem; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 4px;
+  .now-row:first-of-type { border-top: 1px solid var(--line); }
+  .now-row .what { font-weight: 500; color: var(--ink); letter-spacing: -0.013em; }
+  .now-row .what .role { color: var(--ink-3); font-weight: 400; }
+  .now-row .when {
+    font-size: 12.5px; color: var(--ink-3);
+    letter-spacing: -0.005em; font-weight: 500;
   }
-  .build .meta .info p {
-    font-size: 13px; color: var(--text-3); line-height: 1.5; max-width: 380px;
+  .now-row .what a {
+    border-bottom: 1px solid var(--line-2);
+    transition: border-color .3s, color .3s;
   }
-  .build .meta .visit {
-    flex-shrink: 0;
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 500;
-    color: var(--text-2);
-    border: 1px solid var(--line-2);
-    border-radius: 999px;
-    padding: 8px 14px;
-    transition: color .25s, border-color .25s, background .25s;
-  }
-  .build:hover .meta .visit {
-    color: var(--text);
-    border-color: var(--line-3);
-    background: rgba(255,255,255,0.04);
-  }
-  @media (max-width: 720px) {
-    .builds-grid { grid-template-columns: 1fr; }
-  }
+  .now-row .what a:hover { border-color: var(--ink); color: var(--accent); }
 
-  /* =========================================================
-     SECTION HAIRLINE (decorative draw)
-     ========================================================= */
-  .section-hairline {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--pad);
-    transform: translateY(8px);
+  /* ============================================================
+     TWINLY FEATURED
+     ============================================================ */
+  .featured {
+    padding: clamp(90px, 14vh, 160px) 0;
   }
-
-  /* =========================================================
-     ROCKET LAUNCH frame — replaces ARC iframe
-     Pure-CSS cinematic loop, no fake illustrative glyphs.
-     ========================================================= */
-  .rocket {
-    position: relative; width: 100%; height: 100%;
+  .featured-card {
+    display: grid; gap: 48px;
+    grid-template-columns: 1fr;
+    border-radius: 32px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(36px, 5vw, 72px);
+    overflow: hidden;
+    position: relative;
+  }
+  @media (min-width: 980px) {
+    .featured-card { grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: stretch; }
+  }
+  .featured-card::before {
+    content: "";
+    position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 70% 35% at 50% 100%, rgba(255,159,10,0.22), transparent 70%),
-      radial-gradient(ellipse 90% 60% at 50% 95%, rgba(191,90,242,0.10), transparent 70%),
-      linear-gradient(180deg, #000010 0%, #03051a 50%, #0a0d28 100%);
+      radial-gradient(60% 80% at 100% 0%, rgba(196,66,30,0.16), transparent 60%);
+    pointer-events: none;
+  }
+  .featured-card > * { position: relative; z-index: 1; }
+  .featured-card .label { color: rgba(236,231,218,0.6); }
+
+  .featured h2 {
+    margin-top: 12px;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    font-weight: 500;
+    line-height: 1; letter-spacing: -0.042em;
+  }
+  .featured h2 .it {
+    font-family: var(--display); font-style: italic; font-weight: 400; color: rgba(236,231,218,0.7);
+  }
+  .featured p.lede {
+    color: rgba(236,231,218,0.78);
+    margin-top: 24px;
+    max-width: 36ch;
+    font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+  }
+  .featured .meta {
+    margin-top: 32px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(236,231,218,0.12);
+  }
+  .featured .meta .k {
+    font-size: 12px; color: rgba(236,231,218,0.55);
+    font-weight: 500;
+  }
+  .featured .meta .v {
+    margin-top: 6px;
+    font-size: 14.5px; font-weight: 500;
+    color: var(--paper);
+  }
+  .featured .actions { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .featured .btn-primary { background: var(--paper); color: var(--ink); }
+  .featured .btn-primary:hover { background: var(--accent); color: var(--paper); }
+  .featured .btn-ghost { color: var(--paper); border-color: rgba(236,231,218,0.22); }
+  .featured .btn-ghost:hover { border-color: var(--paper); background: rgba(255,255,255,0.04); }
+
+  .twinly-preview {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--paper-2);
+    border: 1px solid rgba(236,231,218,0.1);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    aspect-ratio: 16/11;
+    min-height: 340px;
+  }
+  .twinly-preview iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0;
+    background: var(--paper);
+  }
+  .twinly-preview::after {
+    content: ""; position: absolute; inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+    border-radius: 18px;
+  }
+
+  /* ============================================================
+     WORK LIST
+     ============================================================ */
+  .work-list { border-top: 1px solid var(--line); }
+  .work-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.4fr;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    transition: padding .55s var(--ease);
+  }
+  .work-row:hover { padding-left: 14px; }
+  .work-row::before {
+    content: "";
+    position: absolute; left: 0; top: 50%;
+    width: 0; height: 1px; background: var(--ink);
+    transform: translateY(-50%);
+    transition: width .55s var(--ease);
+  }
+  .work-row:hover::before { width: 8px; }
+  .work-row .role {
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    font-weight: 500; letter-spacing: -0.022em; line-height: 1.15;
+  }
+  .work-row .role .org { color: var(--ink-3); font-weight: 400; }
+  .work-row .role .org .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .work-row .desc {
+    color: var(--ink-2); font-size: 14.5px; line-height: 1.5; letter-spacing: -0.008em;
+  }
+  .work-row .arrow-cell {
+    text-align: right;
+    font-size: 13px; color: var(--ink-3);
+    letter-spacing: -0.005em; font-weight: 500;
+    display: inline-flex; justify-content: flex-end; align-items: center; gap: 8px;
+  }
+  .work-row .arrow-cell .arr { transition: transform .55s var(--ease); display: inline-block; }
+  .work-row:hover .arrow-cell .arr { transform: translate(4px, -4px); }
+  .work-row:hover .arrow-cell { color: var(--ink); }
+  .work-row a.full { position: absolute; inset: 0; }
+  @media (max-width: 800px) {
+    .work-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      align-items: start;
+      padding: 24px 0;
+    }
+    .work-row .desc { color: var(--ink-3); font-size: 13.5px; }
+    .work-row .arrow-cell { display: none; }
+  }
+
+  /* ============================================================
+     PROJECTS GRID
+     ============================================================ */
+  .proj-grid {
+    display: grid; gap: 24px;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .pcard {
+    grid-column: span 6;
+    position: relative;
+    border-radius: 22px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    padding: 32px;
+    transition: transform .5s var(--ease), background .4s, border-color .4s;
+    overflow: hidden;
+    min-height: 280px;
+    display: flex; flex-direction: column;
+  }
+  .pcard:hover {
+    transform: translateY(-4px);
+    background: var(--paper);
+    border-color: var(--ink-3);
+  }
+  .pcard .idx {
+    font-size: 12.5px; color: var(--ink-3);
+    font-weight: 500; letter-spacing: -0.005em;
+  }
+  .pcard h3 {
+    margin-top: 12px;
+    font-size: 1.5rem; font-weight: 500; letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  .pcard .stack {
+    margin-top: 12px;
+    font-size: 13px; color: var(--ink-3); letter-spacing: -0.005em;
+  }
+  .pcard p {
+    margin-top: 16px;
+    color: var(--ink-2); font-size: 14.5px; line-height: 1.5; letter-spacing: -0.008em;
+    flex: 1;
+  }
+  .pcard .out {
+    margin-top: 20px;
+    font-size: 13px; color: var(--ink-3);
+    font-weight: 500; letter-spacing: -0.005em;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color .25s;
+  }
+  .pcard:hover .out { color: var(--ink); }
+  .pcard .out .arr { transition: transform .45s var(--ease); }
+  .pcard:hover .out .arr { transform: translate(3px, -3px); }
+  .pcard.feat {
+    grid-column: span 6;
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    min-height: 340px;
+  }
+  .pcard.feat:hover { background: var(--ink); border-color: var(--ink); }
+  .pcard.feat h3 { font-size: 1.95rem; }
+  .pcard.feat .idx { color: rgba(236,231,218,0.55); }
+  .pcard.feat .stack { color: rgba(236,231,218,0.55); }
+  .pcard.feat p { color: rgba(236,231,218,0.8); }
+  .pcard.feat .out { color: rgba(236,231,218,0.6); }
+  .pcard.feat:hover .out { color: var(--paper); }
+  @media (min-width: 720px)  { .pcard { grid-column: span 3; } .pcard.feat { grid-column: span 6; } }
+  @media (min-width: 1080px) {
+    .pcard { grid-column: span 2; }
+    .pcard.feat { grid-column: span 4; }
+    .pcard.feat ~ .pcard:first-of-type { grid-column: span 2; }
+  }
+
+  /* ============================================================
+     MANIFESTO — pinned editorial scroll moment
+     ============================================================ */
+  .manifesto {
+    padding: clamp(120px, 22vh, 220px) 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
     overflow: hidden;
   }
-  .rocket .horizon {
-    position: absolute; left: 0; right: 0; bottom: 14%;
-    height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  .manifesto .wrap { max-width: 1100px; }
+  .manifesto .lead {
+    font-size: clamp(2rem, 5.2vw, 5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.038em;
+    color: var(--ink);
   }
-  .rocket .hud {
-    position: absolute; top: 14px; left: 16px; right: 16px;
-    display: flex; justify-content: space-between;
-    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: rgba(255,255,255,0.6); font-weight: 500;
-    z-index: 3;
+  .manifesto .lead .it {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    color: var(--ink-2);
   }
-  .rocket .hud .l { display: flex; align-items: center; gap: 8px; }
-  .rocket .hud .l::before {
-    content: ""; width: 6px; height: 6px; background: var(--accent-4);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent-4);
-    animation: rocketBeacon 1.4s ease-in-out infinite;
+  .manifesto .lead .em {
+    color: var(--accent); font-weight: 500;
   }
-  @keyframes rocketBeacon { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
-
-  .rocket .stars i {
-    position: absolute; width: 1.5px; height: 1.5px;
-    background: #fff; border-radius: 50%;
-    opacity: var(--o, 0.5);
-    animation: twinkle var(--d, 3s) ease-in-out infinite;
-    animation-delay: var(--ad, 0s);
-  }
-  @keyframes twinkle {
-    0%,100% { opacity: var(--o, 0.5); transform: scale(1); }
-    50%     { opacity: 0.05; transform: scale(0.6); }
-  }
-
-  /* The trail + tip travel together via a wrapper that translates upward */
-  .rocket .ship {
-    position: absolute; left: 50%; bottom: 14%;
-    transform: translate3d(-50%, 0, 0);
-    animation: rocketRise 6s cubic-bezier(0.55, 0, 0.35, 1) infinite;
+  .manifesto .word { display: inline-block; overflow: hidden; vertical-align: top; }
+  .manifesto .word > span {
+    display: inline-block;
+    transform: translate3d(0, 110%, 0);
+    transition: transform 1.1s var(--ease);
     will-change: transform;
   }
-  @keyframes rocketRise {
-    0%       { transform: translate3d(-50%, 0%, 0); }
-    8%       { transform: translate3d(-50%, -2%, 0); }   /* ignition / hold */
-    100%     { transform: translate3d(-50%, -120%, 0); }
+  .manifesto.in .word > span { transform: none; }
+  .manifesto .footer {
+    display: grid; gap: 8px;
+    margin-top: 64px;
+    font-size: 15px; color: var(--ink-3);
+    letter-spacing: -0.008em;
+    max-width: 60ch;
+  }
+  .manifesto .footer b { color: var(--ink); font-weight: 500; }
+
+  /* ============================================================
+     TRAJECTORY
+     ============================================================ */
+  .trajectory { background: var(--paper-2); border-top: 1px solid var(--line); }
+  .traj-list { border-top: 1px solid var(--line); }
+  .traj-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 36px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+  .traj-row .when {
+    font-size: 13px; color: var(--ink-3);
+    font-weight: 500; letter-spacing: -0.005em;
+  }
+  .traj-row h3 {
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-weight: 500; letter-spacing: -0.024em; line-height: 1.2;
+  }
+  .traj-row h3 .at { color: var(--ink-3); font-weight: 400; }
+  .traj-row h3 .at .it { font-family: var(--serif); font-style: italic; }
+  .traj-row .meta {
+    margin-top: 6px;
+    font-size: 13px; color: var(--ink-3); letter-spacing: -0.005em;
+  }
+  .traj-row ul {
+    margin-top: 14px; list-style: none;
+    display: grid; gap: 8px;
+    color: var(--ink-2); font-size: 14.5px; line-height: 1.5; letter-spacing: -0.008em;
+    max-width: 70ch;
+  }
+  .traj-row ul li { padding-left: 18px; position: relative; }
+  .traj-row ul li::before {
+    content: ""; position: absolute; left: 0; top: 0.6em;
+    width: 6px; height: 1px; background: var(--ink-3);
+  }
+  @media (max-width: 720px) {
+    .traj-row { grid-template-columns: 1fr; gap: 8px; }
   }
 
-  .rocket .ship .body {
-    position: relative;
-    width: 6px; height: 22px;
-    background: linear-gradient(180deg, #fff, #d8dfee 60%, #8b96b3);
-    border-radius: 3px 3px 1px 1px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.25);
+  /* ============================================================
+     CONTACT
+     ============================================================ */
+  .contact { padding: clamp(110px, 18vh, 200px) 0 clamp(60px, 10vh, 110px); }
+  .contact h2 {
+    font-size: clamp(2.6rem, 7vw, 6.2rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.042em;
+    max-width: 14ch;
   }
-  .rocket .ship .body::before {
-    /* nose cone */
-    content: ""; position: absolute;
-    top: -7px; left: 50%; transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-bottom: 7px solid #fff;
-    filter: drop-shadow(0 0 4px rgba(255,255,255,0.4));
+  .contact h2 .it {
+    font-family: var(--display); font-style: italic; font-weight: 400; color: var(--ink-2);
   }
-  .rocket .ship .body::after {
-    /* fins */
-    content: ""; position: absolute; bottom: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 12px; height: 4px;
-    background: linear-gradient(180deg, transparent 50%, #fff 50%);
-    clip-path: polygon(0 100%, 30% 0, 70% 0, 100% 100%);
+  .contact .lede { margin-top: 24px; }
+  .contact .mailto {
+    display: inline-flex; align-items: baseline; gap: 14px;
+    margin-top: 44px;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    border-bottom: 1px solid var(--line-2);
+    padding-bottom: 10px;
+    transition: border-color .35s, color .35s;
   }
-
-  .rocket .ship .flame {
-    position: absolute; left: 50%; top: calc(100% + 1px);
-    transform: translateX(-50%);
-    width: 8px; height: 18px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,159,10,0.95) 45%, rgba(255,55,95,0.0));
-    border-radius: 50% 50% 60% 60%;
-    filter: blur(0.4px);
-    transform-origin: top center;
-    animation: flameFlick 0.12s ease-in-out infinite alternate;
+  .contact .mailto:hover { border-color: var(--ink); color: var(--accent); }
+  .contact .mailto .arr { font-size: 0.7em; transition: transform .4s var(--ease); }
+  .contact .mailto:hover .arr { transform: translate(4px, -4px); }
+  .contact .links {
+    margin-top: 36px;
+    display: flex; gap: 12px; flex-wrap: wrap;
   }
-  @keyframes flameFlick {
-    0%   { transform: translateX(-50%) scaleY(1)   scaleX(1); }
-    100% { transform: translateX(-50%) scaleY(1.25) scaleX(0.85); }
-  }
-
-  .rocket .ship .trail {
-    position: absolute; left: 50%; top: 100%;
-    transform: translateX(-50%);
-    width: 1px; height: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,159,10,0.5) 40%, transparent);
-    animation: rocketTrail 6s cubic-bezier(0.55, 0, 0.35, 1) infinite;
-  }
-  @keyframes rocketTrail {
-    0%   { height: 0; opacity: .85; }
-    8%   { height: 8px; }
-    50%  { height: 50%; opacity: .85; }
-    100% { height: 60%; opacity: 0; }
-  }
-
-  .rocket .pad {
-    position: absolute; left: 50%; bottom: calc(14% - 6px);
-    transform: translateX(-50%);
-    width: 50px; height: 4px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18) 30%, rgba(255,255,255,0.18) 70%, transparent);
-    border-radius: 2px;
-  }
-  .rocket .smoke {
-    position: absolute; left: 50%; bottom: 6%;
-    transform: translateX(-50%);
-    width: 90px; height: 60px;
-    background: radial-gradient(ellipse 50% 60% at 50% 70%, rgba(255,255,255,0.12), transparent 70%);
-    filter: blur(8px);
-    animation: smokePulse 6s cubic-bezier(0.55, 0, 0.35, 1) infinite;
-  }
-  @keyframes smokePulse {
-    0%, 8% { opacity: 0; transform: translateX(-50%) scale(0.5); }
-    18%    { opacity: 1; transform: translateX(-50%) scale(1.2); }
-    60%    { opacity: 0.4; transform: translateX(-50%) scale(1.6); }
-    100%   { opacity: 0; transform: translateX(-50%) scale(2.2); }
-  }
-
-  /* =========================================================
-     BRAND CARD frame — for builds whose iframes are unreliable
-     ========================================================= */
-  .brandframe {
-    position: relative; width: 100%; height: 100%;
-    overflow: hidden;
-    background:
-      radial-gradient(70% 50% at 30% 0%, rgba(255,159,10,0.18), transparent 60%),
-      radial-gradient(70% 60% at 100% 100%, rgba(255,55,95,0.16), transparent 60%),
-      linear-gradient(180deg, #14080a 0%, #0a0a0c 60%, #050505 100%);
-    padding: 32px;
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-  .brandframe::before {
-    content: ""; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size: 28px 28px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%);
-    pointer-events: none;
-  }
-  .brandframe .top {
-    position: relative; z-index: 1;
-    display: flex; justify-content: space-between; align-items: flex-start;
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--text-3); font-weight: 500;
-  }
-  .brandframe .word {
-    position: relative; z-index: 1;
-    font-size: clamp(2.6rem, 6vw, 4.6rem);
-    font-weight: 600; letter-spacing: -0.04em; line-height: 0.95;
-    color: var(--text);
-  }
-  .brandframe .word .ser {
-    font-family: var(--font-serif); font-style: italic; font-weight: 400;
-    color: var(--text-2);
-  }
-  .brandframe .row {
-    position: relative; z-index: 1;
-    display: flex; gap: 18px; flex-wrap: wrap;
-  }
-  .brandframe .row .pill {
-    padding: 6px 12px;
+  .contact .links a {
+    padding: 12px 20px;
     border: 1px solid var(--line-2);
     border-radius: 999px;
-    background: rgba(255,255,255,0.04);
-    font-size: 11px; letter-spacing: 0.06em;
-    color: var(--text-2);
+    font-size: 14px; font-weight: 500;
+    transition: border-color .3s, color .3s, background .3s;
+  }
+  .contact .links a:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+  .contact .footnote {
+    margin-top: 44px;
+    font-size: 13px; color: var(--ink-3);
+    letter-spacing: -0.005em;
+    max-width: 64ch;
   }
 
-  /* =========================================================
-     IMPROVED reveal — slight scale to add cinematic quality
-     ========================================================= */
-  .reveal-up { opacity: 0; transform: translateY(36px); transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out); }
-  .reveal-up.in { opacity: 1; transform: none; }
-
-  .reveal-scale {
-    opacity: 0; transform: scale(0.96) translateY(20px);
-    transition: opacity 1.4s var(--ease-out), transform 1.4s var(--ease-out);
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px var(--pad);
+    font-size: 13px; color: var(--ink-3); letter-spacing: -0.005em;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px; flex-wrap: wrap;
   }
-  .reveal-scale.in { opacity: 1; transform: none; }
+  footer .nav-foot { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer .nav-foot a { transition: color .25s; }
+  footer .nav-foot a:hover { color: var(--ink); }
 
-  /* Reduced motion --------------------------------------- */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
-      animation: none !important;
-      transition: none !important;
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
     }
-    .reveal { opacity: 1; transform: none; }
-    .stagger .ch { opacity: 1; transform: none; }
-    .now-card { transform: none; }
-  }
-  /* =========================================================
-     QUIET IB DOJO PORTAL
-     ========================================================= */
-  .dojo-trigger {
-    position: fixed;
-    top: 124px;
-    right: 28px;
-    z-index: 130;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    border: 1px solid var(--line-3);
-    background: rgba(20,20,22,0.48);
-    color: var(--text);
-    display: grid;
-    place-items: center;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    cursor: pointer;
-    backdrop-filter: saturate(180%) blur(22px);
-    -webkit-backdrop-filter: saturate(180%) blur(22px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.38);
-    transition: transform .35s var(--ease-out), border-color .25s, background .25s;
-  }
-  .dojo-trigger:hover {
-    transform: translateY(-2px) scale(1.04);
-    border-color: rgba(255,255,255,0.45);
-    background: rgba(255,255,255,0.08);
-  }
-  .dojo-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 5000;
-    display: none;
-    background: rgba(0,0,0,0.88);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-  }
-  .dojo-overlay.open { display: block; }
-  .dojo-shell {
-    position: absolute;
-    inset: clamp(10px, 2vw, 24px);
-    overflow: hidden;
-    border-radius: 24px;
-    border: 1px solid var(--line-2);
-    background: #090909;
-    box-shadow: 0 30px 100px rgba(0,0,0,0.7);
-  }
-  .dojo-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 2;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: 1px solid var(--line-3);
-    background: rgba(0,0,0,0.72);
-    color: #fff;
-    font-size: 24px;
-    line-height: 1;
-    cursor: pointer;
-  }
-  .dojo-frame {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    background: #090909;
-  }
-  body.dojo-open { overflow: hidden; }
-  @media (max-width: 720px) {
-    .dojo-trigger { top: 86px; right: 18px; width: 42px; height: 42px; }
-    .dojo-shell { inset: 0; border-radius: 0; border: 0; }
+    .words .w > span,
+    .r-mask > .inner,
+    .manifesto .word > span { transform: none !important; }
+    .r-fade { opacity: 1; transform: none !important; }
+    .r-clip { clip-path: inset(0 0 0 0); }
   }
 </style>
 </head>
-<body>
+<body class="cursor-on">
 
-<div class="aurora"></div>
-<div class="grain"></div>
-<div class="cursor" id="cursor"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <!-- ============================== NAV ============================== -->
-<div class="nav-wrap">
-  <nav class="nav" aria-label="Primary">
-    <a href="#top" class="brand"><span class="mark">o /</span>Ojasva Mishra</a>
-    <div class="nav-links" role="list">
-      <a class="link" href="#about">About</a>
-      <a class="link" href="#now">Building</a>
-      <a class="link" href="#experience">Experience</a>
-      <a class="link" href="#projects">Projects</a>
-      <a class="link" href="#skills">Skills</a>
-    </div>
-    <a class="cta" href="#contact">Get in touch</a>
-  </nav>
-</div>
-
-<button class="dojo-trigger" id="dojo-trigger" type="button" aria-label="Open Ojas's IB Dojo" title="shhh">
-  shh
-</button>
-
-<div class="dojo-overlay" id="dojo-overlay" aria-hidden="true">
-  <div class="dojo-shell" role="dialog" aria-modal="true" aria-label="Ojas's IB Dojo">
-    <button class="dojo-close" id="dojo-close" type="button" aria-label="Close Ojas's IB Dojo">&times;</button>
-    <iframe class="dojo-frame" id="dojo-frame" title="Ojas's IB Dojo" data-src="/dojo/"></iframe>
+<nav class="nav" id="nav">
+  <a href="#top" class="mark">
+    <span class="av" aria-hidden="true"></span>
+    <span>Ojasva&nbsp;Mishra</span>
+  </a>
+  <div class="links">
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#trajectory">Trajectory</a>
+    <a href="#contact">Contact</a>
   </div>
-</div>
+  <a class="cta magnetic" href="https://twinly.tech" target="_blank" rel="noopener">
+    Twinly <span class="arr">↗</span>
+  </a>
+</nav>
 
 <!-- ============================== HERO ============================== -->
 <header id="top" class="hero">
-  <div class="hero-inner">
-    <div class="hero-top">
-      <span class="eyebrow">Class of 2026 · Heading to University of Florida</span>
-      <h1 class="h-display hero-name"><span class="stagger" data-text="Ojasva Mishra"></span></h1>
+  <div class="wrap">
+
+    <div class="hero-top r-fade">
+      <span>Currently building Twinly</span>
+      <span>Philadelphia → Gainesville, 2026</span>
     </div>
 
-    <div class="hero-bottom">
-      <div class="hero-text">
-        <p class="hero-tagline reveal-up delay-2">
-          Founder of <span class="accent">Twinly</span> — an AI startup turning résumés into interactive digital twins recruiters interview 24/7.
-          Currently shipping autonomy at <span class="accent">EV Bots</span> and UAV simulation at <span class="accent">Ptero Labs</span>,
-          while building <span class="accent">Fusion Bots</span>.
+    <h1 class="display hero-name words" id="heroName">
+      <span class="w"><span>Ojasva</span></span>
+      <span class="w"><span>Mishra,</span></span>
+      <span class="w"><span class="it">building.</span></span>
+    </h1>
+
+    <div class="hero-grid">
+      <div>
+        <p class="hero-statement r-fade d1">
+          Founder of <span class="em">Twinly</span>, a personal AI operator that knows
+          how you work. Engineer at the seam of <span class="it">AI, autonomy, and robotics</span>.
         </p>
 
-        <div class="hero-cta reveal-up delay-3">
+        <div class="hero-actions r-fade d2">
           <a class="btn btn-primary magnetic" href="https://twinly.tech" target="_blank" rel="noopener">
-            <span class="inner">Visit Twinly <span class="arrow">→</span></span>
+            Visit Twinly <span class="arr">↗</span>
           </a>
-          <a class="btn btn-secondary magnetic" href="#now">
-            <span class="inner">What I'm building</span>
+          <a class="btn btn-ghost magnetic" href="#work">
+            See the work <span class="arr">↓</span>
           </a>
         </div>
 
-        <div class="hero-meta reveal-up delay-4">
-          <div class="hero-meta-item">
+        <div class="hero-snap r-fade d3">
+          <div>
             <div class="k">Founder</div>
             <div class="v">Twinly · Fusion Bots</div>
           </div>
-          <div class="hero-meta-item">
-            <div class="k">Interning</div>
+          <div>
+            <div class="k">Engineering</div>
             <div class="v">EV Bots · Ptero Labs</div>
           </div>
-          <div class="hero-meta-item">
+          <div>
             <div class="k">Next</div>
-            <div class="v">UF · CE + MS in Finance</div>
+            <div class="v">CE + MS Finance, UF</div>
           </div>
         </div>
       </div>
 
-      <aside class="hero-feature" aria-hidden="true">
-        <div class="ph"></div>
-        <span class="pill">Class of 2030 · UF</span>
-        <div class="body">
-          <div class="k">Next chapter</div>
-          <div class="h">Computer Engineering<br/>+ <span class="serif">Master&rsquo;s in Finance</span></div>
-          <div class="stack"><b>1 of 40</b><span>combined-degree cohort · 4 years</span></div>
+      <div class="portrait-wrap r-fade d2">
+        <div class="portrait-frame">
+          <img id="portrait" class="r-clip" src="ojasvamishra.jpeg" alt="Ojasva Mishra" decoding="async" />
         </div>
-      </aside>
+        <div class="portrait-caption">
+          <span>Ojasva, 2026</span>
+          <span class="it">on the way to Florida</span>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="scroll-cue"><span class="line"></span><span>Scroll</span></div>
 </header>
 
-<!-- ============================== MARQUEE ============================== -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Robotics <span class="sep">/</span></span>
-    <span class="marquee-item">Autonomy <span class="sep">/</span></span>
-    <span class="marquee-item">Computer Vision <span class="sep">/</span></span>
-    <span class="marquee-item">Control Systems <span class="sep">/</span></span>
-    <span class="marquee-item">Aerospace <span class="sep">/</span></span>
-    <span class="marquee-item">UAV Simulation <span class="sep">/</span></span>
-    <span class="marquee-item">AI <span class="sep">/</span></span>
-    <span class="marquee-item">Rapid Prototyping <span class="sep">/</span></span>
-    <!-- duplicate for seamless loop -->
-    <span class="marquee-item">Robotics <span class="sep">/</span></span>
-    <span class="marquee-item">Autonomy <span class="sep">/</span></span>
-    <span class="marquee-item">Computer Vision <span class="sep">/</span></span>
-    <span class="marquee-item">Control Systems <span class="sep">/</span></span>
-    <span class="marquee-item">Aerospace <span class="sep">/</span></span>
-    <span class="marquee-item">UAV Simulation <span class="sep">/</span></span>
-    <span class="marquee-item">AI <span class="sep">/</span></span>
-    <span class="marquee-item">Rapid Prototyping <span class="sep">/</span></span>
-  </div>
-</div>
+<!-- ============================== NOW ============================== -->
+<section class="now" id="now">
+  <div class="wrap">
+    <div class="r-fade">
+      <span class="label">Now</span>
+      <h2 style="margin-top: 14px;">
+        Things I&rsquo;m moving on <span class="it">today</span>.
+      </h2>
+      <p class="sub">
+        A snapshot of where my attention actually goes. Updated when reality changes.
+      </p>
+    </div>
 
-<!-- Decorative hairline draws between hero and UF section -->
-<div class="section-hairline" aria-hidden="true">
-  <svg viewBox="0 0 1200 24" preserveAspectRatio="none" width="100%" height="24">
-    <path d="M0 12 L1200 12" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none" />
-  </svg>
-</div>
-
-<!-- ============================== UF CINEMATIC ============================== -->
-<section class="uf-shell" aria-labelledby="uf-h">
-  <div class="uf-inner">
-    <div class="uf-eyebrow reveal-up">Next chapter — Fall 2026</div>
-    <h2 id="uf-h" class="uf-name reveal-up delay-1">
-      <span class="stagger" data-text="University of Florida"></span>
-    </h2>
-    <p class="uf-sub reveal-up delay-2">
-      Pursuing a <b>Computer Engineering</b> bachelor&rsquo;s and a <b>Master&rsquo;s in Finance</b>,
-      completing both in <b>four years</b> through a select combined-degree cohort.
-    </p>
-    <div class="uf-stats">
-      <div class="uf-stat reveal-up delay-2">
-        <div class="n"><span class="ser">1 of 40</span></div>
-        <div class="l">Selected — combined-degree cohort</div>
+    <div class="now-list r-fade d1">
+      <div class="now-row">
+        <span class="what">
+          Shipping <a href="https://twinly.tech" target="_blank" rel="noopener">Twinly</a>
+          <span class="role">— personal AI operator</span>
+        </span>
+        <span class="when">2026 →</span>
       </div>
-      <div class="uf-stat reveal-up delay-3">
-        <div class="n">2 degrees</div>
-        <div class="l">B.S. Computer Engineering<br/>Master&rsquo;s in Finance</div>
+      <div class="now-row">
+        <span class="what">
+          Autonomy at EV&nbsp;Bots Inc.
+          <span class="role">— AI Robotics Engineer Intern</span>
+        </span>
+        <span class="when">2025 →</span>
       </div>
-      <div class="uf-stat reveal-up delay-4">
-        <div class="n">4 years</div>
-        <div class="l">Compressed timeline,<br/>full course load</div>
+      <div class="now-row">
+        <span class="what">
+          UAV simulation at Ptero&nbsp;Labs
+          <span class="role">— Software Intern</span>
+        </span>
+        <span class="when">2025 →</span>
+      </div>
+      <div class="now-row">
+        <span class="what">
+          Growing Fusion&nbsp;Bots
+          <span class="role">— STEM access for younger engineers</span>
+        </span>
+        <span class="when">2025 →</span>
+      </div>
+      <div class="now-row">
+        <span class="what">
+          Preparing for UF
+          <span class="role">— combined CE + Master&rsquo;s in Finance</span>
+        </span>
+        <span class="when">Fall 2026</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================== CRACKED — numbers ============================== -->
-<section class="cracked-shell">
-  <div class="container">
-    <div class="cracked-head reveal-up">
-      <span class="eyebrow">By the work</span>
-      <h2 class="h-1" style="margin-top: 24px;">Numbers that <span class="serif">actually mean</span> something.</h2>
-    </div>
-    <div class="cracked-grid">
-      <div class="cracked-cell reveal-up">
-        <div class="n"><span class="ser">1 of 40</span></div>
-        <div class="l">Selected for the <b>UF combined-degree cohort</b> (CE + MS in Finance, 4 years)</div>
-      </div>
-      <div class="cracked-cell reveal-up delay-1">
-        <div class="n">5 ventures</div>
-        <div class="l">Founder or operator across <b>Twinly</b>, Fusion Bots, ARC, BattleBots, Stocks &amp; Investments</div>
-      </div>
-      <div class="cracked-cell reveal-up delay-2">
-        <div class="n">2 internships</div>
-        <div class="l">Shipping autonomy at <b>EV Bots</b> &amp; UAV simulation at <b>Ptero Labs</b> in parallel</div>
-      </div>
-      <div class="cracked-cell reveal-up delay-3">
-        <div class="n">1800<span class="ser">+</span></div>
-        <div class="l">Chess ELO · 2k YouTube subs · State Finalist · 1 of 13 in YPSF (UN MGCY) governing committee</div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ============================== TWINLY FEATURED ============================== -->
+<section class="featured" id="twinly">
+  <div class="wrap">
+    <div class="featured-card r-fade">
+      <div>
+        <span class="label">Featured · Founder</span>
+        <h2>Twinly</h2>
+        <p class="lede">
+          A personal AI operator that knows how you work — your context, your
+          tools, your taste. Built to act on your behalf, not just chat with you.
+        </p>
 
-<!-- ============================== ABOUT ============================== -->
-<section id="about" class="sec">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">About</span>
-      <h2 class="h-1" style="margin-top: 24px;">Engineer, founder, and <span class="serif">student</span> — building things that move.</h2>
-      <p class="lede">I run end-to-end systems: perception and control on hardware, plus full-stack web apps that people actually use.
-        I value fast feedback loops, clear specs, and measurable results.</p>
-    </div>
-
-    <div class="bento">
-      <div class="card photo reveal" data-tilt>
-        <img src="ojasvamishra.jpeg" alt="Ojasva Mishra" loading="lazy" />
-        <span class="badge">Pennsylvania, USA</span>
-      </div>
-
-      <div class="card intro reveal delay-1">
-        <h3>The short version</h3>
-        <h2>I&rsquo;m an AI robotics researcher building <span class="grad">autonomy that ships</span>.</h2>
-        <p>From combat robots to UAV simulators to a digital-twin AI startup — I learn fast,
-          design with constraints in mind, and iterate on real data. Right now I&rsquo;m interning at
-          <b>EV Bots</b> on autonomous EV charging and <b>Ptero Labs</b> on mission-grade UAV sim,
-          while founding <b>Twinly</b> and leading <b>Fusion Bots</b>.</p>
-        <div class="row">
-          <span class="chip">IB Diploma · Class of 2026</span>
-          <span class="chip">Downingtown STEM Academy</span>
-          <span class="chip">Robotics I–III pathway</span>
-        </div>
-      </div>
-
-      <div class="card edu reveal delay-2">
-        <h3>Education</h3>
-        <div class="big">University of Florida</div>
-        <p style="margin-top:10px">B.S. Computer Engineering + Master&rsquo;s in Finance &mdash; <b>1 of 40</b> in a combined-degree cohort completing both in <b>4 years</b>. Class of 2030.</p>
-        <p class="muted" style="font-size:13px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)">Now: Downingtown STEM Academy · IB Diploma · GPA 4.35 · Class of 2026</p>
-      </div>
-
-      <div class="card focus reveal delay-3">
-        <h3>Focus areas</h3>
-        <div class="chips" style="margin-top:6px">
-          <span class="chip">Robotics</span>
-          <span class="chip">Computer Vision</span>
-          <span class="chip">Control Theory</span>
-          <span class="chip">Perception</span>
-          <span class="chip">UAV / Aerospace</span>
-          <span class="chip">AI / ML</span>
-          <span class="chip">Finance &amp; Investing</span>
-        </div>
-      </div>
-
-      <div class="card quote reveal delay-4">
-        <h3>How I work</h3>
-        <p class="q">&ldquo;Design, build, test &mdash; with data-driven iteration and the patience to ship something that doesn&rsquo;t fall apart.&rdquo;</p>
-        <p class="a">— Operating principle</p>
-      </div>
-
-      <div class="pillars reveal delay-2">
-        <div class="pillars-grid">
-          <div class="pillar p1"><span class="glow"></span>
-            <div class="num">01 — Robotics</div>
-            <h4>Hardware that survives</h4>
-            <p>Mechanisms, reliability, closed-loop control. Design → build → test with data-driven iteration.</p>
-          </div>
-          <div class="pillar p2"><span class="glow"></span>
-            <div class="num">02 — AI</div>
-            <h4>Models that earn trust</h4>
-            <p>Perception, forecasting, decision support — integrated into real apps and real robots.</p>
-          </div>
-          <div class="pillar p3"><span class="glow"></span>
-            <div class="num">03 — Autonomy</div>
-            <h4>Behavior under constraint</h4>
-            <p>Sensing + feedback + planning for robust behavior under time and energy pressure.</p>
-          </div>
-          <div class="pillar p4"><span class="glow"></span>
-            <div class="num">04 — Aerospace</div>
-            <h4>Mission-safe trajectories</h4>
-            <p>Flight simulation, rocketry CAD, and mission math for stable, repeatable launches.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== NOW (sticky stack) ============================== -->
-<section id="now" class="sec" style="padding-bottom: 0;">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">What I&rsquo;m building right now</span>
-      <h2 class="h-1" style="margin-top: 24px;">Four <span class="serif">parallel</span> bets.</h2>
-      <p class="lede">A research startup, a robotics company, two internships in autonomy. Each frame below is one of them.</p>
-    </div>
-  </div>
-
-  <div class="now-shell">
-    <div class="now-track">
-
-      <div class="now-frame">
-        <article class="now-card featured">
-          <div class="hue"></div>
-          <div class="body">
-            <div class="text">
-              <span class="tag">Founder · Live</span>
-              <h3>Twinly</h3>
-              <p class="lede-q">&ldquo;Your résumé, now alive.&rdquo;</p>
-              <p>An AI startup that turns static résumés into interactive digital twins recruiters can interview 24/7.
-                Real-time GitHub &amp; LinkedIn sync, proprietary NLP for technical domains, custom tone-of-voice mapping,
-                and full data sovereignty for the candidate.</p>
-              <div class="meta">
-                <span><b>Role</b> · Founder</span>
-                <span><b>Product</b> · Live</span>
-                <span><b>Stack</b> · NLP · GitHub/LinkedIn sync</span>
-              </div>
-              <a class="btn btn-primary magnetic" href="https://twinly.tech" target="_blank" rel="noopener">
-                <span class="inner">Visit Twinly <span class="arrow">→</span></span>
-              </a>
-            </div>
-            <div class="visual">
-              <div class="embed-frame">
-                <div class="embed-chrome">
-                  <span class="dots"><i></i><i></i><i></i></span>
-                  <span class="url">twinly.tech</span>
-                  <span class="ext">↗</span>
-                </div>
-                <div class="embed-stage">
-                  <iframe data-embed="https://twinly.tech" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Twinly live preview" tabindex="-1"></iframe>
-                  <div class="veil"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="now-frame">
-        <article class="now-card">
-          <div class="hue"></div>
-          <div class="body">
-            <div class="text">
-              <span class="tag">AI Robotics Intern</span>
-              <h3>EV Bots Inc.</h3>
-              <p>Building autonomous robots that dock with and charge electric vehicles, controlled from a mobile app.
-                Working across CAD, hardware bring-up, perception, and the AI that ties it together.</p>
-              <div class="meta">
-                <span><b>Role</b> · AI Robotics Engineer Intern</span>
-                <span><b>Domain</b> · Autonomy · Perception</span>
-                <span><b>Since</b> · Jul 2025</span>
-              </div>
-            </div>
-            <div class="visual" aria-hidden="true">
-              <div class="top"><span>02 — EV Bots</span><span>Jul 2025 →</span></div>
-              <div class="num">02</div>
-              <div class="wm">autonomous EV charging.</div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="now-frame">
-        <article class="now-card">
-          <div class="hue"></div>
-          <div class="body">
-            <div class="text">
-              <span class="tag">UAV Simulation Intern</span>
-              <h3>Ptero Labs</h3>
-              <p>Mission-grade UAV simulation. Working on flight dynamics &amp; control integration, plus AI/ML for
-                mission planning and object detection. Performance benchmarking and systems optimization across the stack.</p>
-              <div class="meta">
-                <span><b>Role</b> · Software Intern</span>
-                <span><b>Domain</b> · Flight Dynamics · ML</span>
-                <span><b>Since</b> · Jul 2025</span>
-              </div>
-            </div>
-            <div class="visual" aria-hidden="true">
-              <div class="top"><span>03 — Ptero Labs</span><span>Jul 2025 →</span></div>
-              <div class="num">03</div>
-              <div class="wm">flight dynamics, simulated.</div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="now-frame">
-        <article class="now-card">
-          <div class="hue"></div>
-          <div class="body">
-            <div class="text">
-              <span class="tag">Founder &amp; CEO</span>
-              <h3>Fusion Bots</h3>
-              <p>STEM kits, curriculum, and workshops that make robotics accessible. Built the storefront on Shopify + custom React,
-                grew revenue, and lead a team of 6 core + 6 interns across product, ops, and outreach.</p>
-              <div class="meta">
-                <span><b>Role</b> · Founder &amp; CEO</span>
-                <span><b>Team</b> · 6 core + 6 interns</span>
-                <span><b>Since</b> · Jan 2025</span>
-              </div>
-              <a class="btn btn-secondary magnetic" href="https://fusionbots.org" target="_blank" rel="noopener">
-                <span class="inner">fusionbots.org <span class="arrow">→</span></span>
-              </a>
-            </div>
-            <div class="visual" aria-hidden="true">
-              <div class="top"><span>04 — Fusion Bots</span><span>Jan 2025 →</span></div>
-              <div class="num">04</div>
-              <div class="wm">robotics, made accessible.</div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================== LIVE BUILDS ============================== -->
-<section id="builds" class="sec">
-  <div class="container">
-    <div class="sec-head reveal-up">
-      <span class="eyebrow">Live builds</span>
-      <h2 class="h-1" style="margin-top: 24px;">Real products at <span class="serif">real URLs</span>.</h2>
-      <p class="lede">Each panel below is the actual deployed site &mdash; loaded live, not mocked.</p>
-    </div>
-
-    <div class="builds-grid">
-      <a class="build reveal-scale" href="https://twinly.tech" target="_blank" rel="noopener">
-        <div class="frame">
-          <div class="embed-frame">
-            <div class="embed-chrome">
-              <span class="dots"><i></i><i></i><i></i></span>
-              <span class="url">twinly.tech</span>
-              <span class="ext">↗</span>
-            </div>
-            <div class="embed-stage" style="--scale: 0.45">
-              <iframe data-embed="https://twinly.tech" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Twinly preview" tabindex="-1"></iframe>
-              <div class="veil"></div>
-            </div>
-          </div>
-        </div>
         <div class="meta">
-          <div class="info">
-            <h3>Twinly</h3>
-            <p>An AI startup turning résumés into interactive digital twins recruiters can interview 24/7.</p>
+          <div>
+            <div class="k">Role</div>
+            <div class="v">Founder · Design + Engineering</div>
           </div>
-          <span class="visit">Visit <span class="arrow">→</span></span>
+          <div>
+            <div class="k">Status</div>
+            <div class="v">In active development</div>
+          </div>
+          <div>
+            <div class="k">URL</div>
+            <div class="v">twinly.tech</div>
+          </div>
+          <div>
+            <div class="k">Stack</div>
+            <div class="v">Next.js · LLMs · Edge</div>
+          </div>
         </div>
-      </a>
 
-      <a class="build reveal-scale delay-1" href="https://safmstsa.vercel.app" target="_blank" rel="noopener">
-        <div class="frame">
-          <div class="embed-frame">
-            <div class="embed-chrome">
-              <span class="dots"><i></i><i></i><i></i></span>
-              <span class="url">safmstsa.vercel.app</span>
-              <span class="ext">↗</span>
-            </div>
-            <div class="embed-stage" style="--scale: 0.45">
-              <iframe data-embed="https://safmstsa.vercel.app" loading="lazy" sandbox="allow-scripts allow-same-origin" title="SAFMS preview" tabindex="-1"></iframe>
-              <div class="veil"></div>
-            </div>
-          </div>
+        <div class="actions">
+          <a class="btn btn-primary magnetic" href="https://twinly.tech" target="_blank" rel="noopener">
+            Open Twinly <span class="arr">↗</span>
+          </a>
+          <a class="btn btn-ghost magnetic" href="mailto:ojasvamishra32@gmail.com?subject=Twinly%20%E2%80%94%20interested">
+            Get in touch
+          </a>
         </div>
-        <div class="meta">
-          <div class="info">
-            <h3>SAFMS</h3>
-            <p>Smart Agro-Forest Management System &mdash; AI insights, IoT sim, and a carbon-credit prototype.</p>
-          </div>
-          <span class="visit">Visit <span class="arrow">→</span></span>
-        </div>
-      </a>
+      </div>
 
-      <a class="build reveal-scale" href="https://arcstem.vercel.app" target="_blank" rel="noopener">
-        <div class="frame">
-          <div class="rocket" aria-hidden="true">
-            <div class="hud">
-              <span class="l">Live · ARC</span>
-              <span class="r">T-0:00 — Liftoff</span>
-            </div>
-            <div class="stars" id="rocketStars"></div>
-            <div class="horizon"></div>
-            <div class="pad"></div>
-            <div class="smoke"></div>
-            <div class="ship">
-              <div class="trail"></div>
-              <div class="body"></div>
-              <div class="flame"></div>
-            </div>
-          </div>
-        </div>
-        <div class="meta">
-          <div class="info">
-            <h3>American Rocketry Challenge</h3>
-            <p>Founded the ARC chapter at Downingtown STEM &mdash; 4 teams, 40+ members, payload CAD &amp; launch sims.</p>
-          </div>
-          <span class="visit">Visit <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a class="build reveal-scale delay-1" href="https://fusionbots.org" target="_blank" rel="noopener">
-        <div class="frame">
-          <div class="brandframe" aria-hidden="true">
-            <div class="top">
-              <span>Founder &amp; CEO</span>
-              <span>Jan 2025 →</span>
-            </div>
-            <div>
-              <div class="word">Fusion<br/>Bots<span class="ser">.</span></div>
-              <p style="position:relative;z-index:1;color:var(--text-2);max-width:340px;margin-top:14px;font-size:14px;line-height:1.5;font-family:var(--font-serif);font-style:italic">Robotics, made&nbsp;accessible.</p>
-            </div>
-            <div class="row">
-              <span class="pill">6 core + 6 interns</span>
-              <span class="pill">Shopify · React</span>
-              <span class="pill">Revenue-positive</span>
-            </div>
-          </div>
-        </div>
-        <div class="meta">
-          <div class="info">
-            <h3>Fusion Bots</h3>
-            <p>Storefront and curriculum for the education-robotics startup I founded &mdash; Shopify + custom React.</p>
-          </div>
-          <span class="visit">Visit <span class="arrow">→</span></span>
-        </div>
-      </a>
+      <div class="twinly-preview" aria-label="Live preview of twinly.tech">
+        <iframe data-embed="https://twinly.tech" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Twinly live preview" tabindex="-1"></iframe>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================== EXPERIENCE TIMELINE ============================== -->
-<section id="experience" class="sec">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Experience &amp; Leadership</span>
-      <h2 class="h-1" style="margin-top: 24px;">A timeline of <span class="serif">building</span> and leading.</h2>
-      <p class="lede">Internships, founded ventures, club presidencies, and the patient work of teaching others.</p>
+<!-- ============================== WORK ============================== -->
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="sec-head r-fade">
+      <span class="label">Work</span>
+      <h1 class="h-1">Where I&rsquo;m shipping, <span class="it">right now</span>.</h1>
     </div>
 
-    <div class="timeline" id="timeline">
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">Fall 2026 — 2030</div>
-          <h3 class="tl-role">B.S. Computer Engineering + Master&rsquo;s in Finance <span class="at">· University of Florida</span></h3>
-          <div class="tl-meta"><b>1 of 40</b> · Combined-degree cohort · 4 years</div>
-          <ul>
-            <li>Selected for a <b>highly competitive combined-degree cohort</b> completing both a B.S. in Computer Engineering and an M.S. in Finance in four years.</li>
-            <li>Continuing the through-line of my work: engineering the build, financing the bet, and learning to operate at the seam.</li>
-          </ul>
-        </div>
+    <div class="work-list r-fade d1">
+      <a class="work-row" href="https://twinly.tech" target="_blank" rel="noopener">
+        <span class="role">Founder <span class="org">· <span class="it">Twinly</span></span></span>
+        <span class="desc">Building a personal AI operator that knows how its user works.</span>
+        <span class="arrow-cell">twinly.tech <span class="arr">↗</span></span>
+      </a>
+      <div class="work-row">
+        <span class="role">AI Robotics Engineer Intern <span class="org">· <span class="it">EV Bots Inc.</span></span></span>
+        <span class="desc">Autonomy stack for next-generation electric-vehicle robotics.</span>
+        <span class="arrow-cell">2025 → <span class="arr">→</span></span>
       </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">Jul 2025 — Present</div>
-          <h3 class="tl-role">AI Robotics Engineer Intern <span class="at">· EV Bots Inc.</span></h3>
-          <div class="tl-meta">Autonomous EV-charging robots</div>
-          <ul>
-            <li>Built and programmed autonomous robots that dock with and charge EVs via a mobile app; integrated AI for perception and automation.</li>
-            <li>CAD &amp; prototyping, hardware bring-up, test &amp; optimization across software and electronics.</li>
-          </ul>
-        </div>
+      <div class="work-row">
+        <span class="role">Software Intern <span class="org">· <span class="it">Ptero Labs</span></span></span>
+        <span class="desc">High-fidelity UAV simulation for mission-grade flight software.</span>
+        <span class="arrow-cell">2025 → <span class="arr">→</span></span>
       </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">Jul 2025 — Present</div>
-          <h3 class="tl-role">Software Intern <span class="at">· Ptero Labs</span></h3>
-          <div class="tl-meta">Mission-grade UAV simulation · AI/ML</div>
-          <ul>
-            <li>Developed flight dynamics &amp; control integration; AI/ML for mission planning and object detection.</li>
-            <li>Performance benchmarking and systems optimization within the simulation stack.</li>
-          </ul>
-        </div>
+      <div class="work-row">
+        <span class="role">Founder &amp; CEO <span class="org">· <span class="it">Fusion Bots</span></span></span>
+        <span class="desc">A program lowering the barrier to building real robots for younger engineers.</span>
+        <span class="arrow-cell">2025 → <span class="arr">→</span></span>
       </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2025 — Present</div>
-          <h3 class="tl-role">Founder <span class="at">· Twinly</span></h3>
-          <div class="tl-meta">AI startup · Live · twinly.tech</div>
-          <ul>
-            <li>Building <b>Twinly</b> — an AI startup turning static résumés into interactive digital twins recruiters can interview 24/7.</li>
-            <li>Real-time GitHub &amp; LinkedIn sync, proprietary NLP optimized for technical fields, and full data sovereignty for the candidate.</li>
-          </ul>
-          <a class="ext" href="https://twinly.tech" target="_blank" rel="noopener">twinly.tech <span class="arrow">→</span></a>
-        </div>
+      <div class="work-row">
+        <span class="role">President <span class="org">· <span class="it">BattleBots Club</span></span></span>
+        <span class="desc">Leading a high-school combat-robotics program — design, fabrication, drive.</span>
+        <span class="arrow-cell">2023 → <span class="arr">→</span></span>
       </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">Jan 2025 — Present</div>
-          <h3 class="tl-role">Founder &amp; CEO <span class="at">· Fusion Bots</span></h3>
-          <div class="tl-meta">Education robotics startup</div>
-          <ul>
-            <li>Founded a robotics startup creating STEM kits and curriculum; launched Shopify + custom React storefront with measurable <b>revenue growth</b>.</li>
-            <li>Recruited and led a team <b>(6 core + 6 interns)</b> across product, outreach, and operations; ran workshops expanding STEM access.</li>
-          </ul>
-          <a class="ext" href="https://fusionbots.org" target="_blank" rel="noopener">fusionbots.org <span class="arrow">→</span></a>
-        </div>
+      <div class="work-row">
+        <span class="role">Software Development Intern <span class="org">· <span class="it">iPipeline</span></span></span>
+        <span class="desc">Built internal tooling at a financial-services platform company.</span>
+        <span class="arrow-cell">2024 <span class="arr">→</span></span>
       </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">Summer 2025</div>
-          <h3 class="tl-role">Software Development Intern <span class="at">· iPipeline</span></h3>
-          <div class="tl-meta">Automation &amp; frontend</div>
-          <ul>
-            <li>Built AI-assisted agents and internal tools for QA automation and code-workflow efficiency.</li>
-            <li>Shipped UI enhancements and testing pipelines to improve developer velocity.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2024 — Present</div>
-          <h3 class="tl-role">CTO &amp; Director of Global Programmes <span class="at">· YPSF (UN MGCY)</span></h3>
-          <div class="tl-meta">Governing committee (1 of 13) · ~600 members</div>
-          <ul>
-            <li>Lead AI literacy and equitable digital-policy initiatives; co-develop global programming for youth tech empowerment.</li>
-            <li>Manage program managers and international fellow teams; set standards and roadmaps for delivery.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2022 — Present</div>
-          <h3 class="tl-role">President <span class="at">· BattleBots Club</span></h3>
-          <div class="tl-meta">Downingtown STEM Academy</div>
-          <ul>
-            <li>Lead combat-robot design, manufacturing, programming, and match strategy with emphasis on reliability and rapid field repair.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2019, 2023 — Present</div>
-          <h3 class="tl-role">Lead Programmer <span class="at">· VEX Robotics (State Finalist)</span></h3>
-          <div class="tl-meta">CAD · C++/Python · PID · Autonomous routines</div>
-          <ul>
-            <li>Led 6-member team; CAD, modular subsystems, autonomous routines, PID tuning; managed engineering notebook &amp; judging presentations.</li>
-            <li>Built for reliability; coordinated strategy and rapid pit-repair during competition weeks.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2023 — Present</div>
-          <h3 class="tl-role">Founder &amp; President <span class="at">· American Rocketry Challenge Club</span></h3>
-          <ul>
-            <li>Founded 4 teams (40+ members); led CAD of payloads, propulsion analysis, and launch simulations; ensured safety &amp; compliance.</li>
-          </ul>
-          <a class="ext" href="https://arcstem.vercel.app" target="_blank" rel="noopener">arcstem.vercel.app <span class="arrow">→</span></a>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2023 — Present</div>
-          <h3 class="tl-role">CIO &amp; President <span class="at">· Stocks &amp; Investments Club</span></h3>
-          <div class="tl-meta">140+ members</div>
-          <ul>
-            <li>Grew membership; ran literacy workshops &amp; competitions; built an AI stock tracker (40+ daily users); 3× personal portfolio.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2022 — 2023</div>
-          <h3 class="tl-role">Center Assistant &amp; Tutor <span class="at">· Kumon Learning Center</span></h3>
-          <div class="tl-meta">Math &amp; English · Ages 4–16</div>
-          <ul>
-            <li>Taught students; graded work; maintained the data system tracking mastery.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2022 — 2025</div>
-          <h3 class="tl-role">Tennis Coach <span class="at">· Paid &amp; volunteer</span></h3>
-          <ul>
-            <li>Taught fundamentals (serves, volleys, strokes) to ages 8–15; ran drills; assisted HS coach; organized sessions.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2014 — Present</div>
-          <h3 class="tl-role">Chess Coach &amp; Creator <span class="at">· Competitor · YouTuber</span></h3>
-          <ul>
-            <li>1800+ ELO; coached youth players; produced educational content (2k+ subs); competed OTB and online.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item reveal">
-        <span class="dot"></span>
-        <div class="tl-card">
-          <div class="tl-when">2022 — 2026</div>
-          <h3 class="tl-role">IB Diploma Candidate <span class="at">· Downingtown STEM Academy</span></h3>
-          <div class="tl-meta">Robotics I–III pathway · HL Math AA, Physics, Economics · GPA 4.35</div>
-          <ul>
-            <li>3 years Varsity Tennis; founded clubs in robotics, rocketry, and finance; led a maker-heavy pathway emphasizing controls, perception, and embedded systems.</li>
-          </ul>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
 <!-- ============================== PROJECTS ============================== -->
-<section id="projects" class="sec">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Projects</span>
-      <h2 class="h-1" style="margin-top: 24px;">Selected work — <span class="serif">shipped</span>.</h2>
-      <p class="lede">A mix of robotics, web platforms, environmental engineering, and the occasional game system.
-        Pick anything; documentation is linked where it exists.</p>
+<section class="sec" id="projects" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="sec-head r-fade">
+      <span class="label">Selected work</span>
+      <h1 class="h-1">Things I&rsquo;ve built — shipped, <span class="it">documented</span>, or sitting in a closet.</h1>
     </div>
 
-    <div class="projects">
-      <a class="pcard feat reveal" href="https://safmstsa.vercel.app" target="_blank" rel="noopener">
-        <span class="swatch"></span>
-        <div class="index">01 / Featured</div>
+    <div class="proj-grid">
+      <a class="pcard feat r-fade" href="https://safmstsa.vercel.app" target="_blank" rel="noopener">
+        <div class="idx">01 / Featured</div>
         <h3>SAFMS — Smart Agro-Forest Management System</h3>
         <div class="stack">React · AI insights · IoT simulation · Carbon-credit concept</div>
-        <p>A web platform modeling sustainable agriculture with AI insights and a device simulation layer.
-          Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</p>
-        <span class="ext">safmstsa.vercel.app <span class="arrow">→</span></span>
+        <p>A web platform modeling sustainable agriculture with AI insights and a device-simulation layer. Prototyped a carbon-credit trading interface and explored blockchain concepts for traceability.</p>
+        <span class="out">safmstsa.vercel.app <span class="arr">↗</span></span>
       </a>
 
-      <div class="pcard reveal delay-1">
-        <span class="swatch"></span>
-        <div class="index">02</div>
+      <div class="pcard r-fade d1">
+        <div class="idx">02</div>
+        <h3>AI Stock Assistant</h3>
+        <div class="stack">JavaScript · LLM signals · Finance</div>
+        <p>An AI-assisted tracker generating daily watchlists and tracking performance with a modern UI.</p>
+        <span class="out">github.com/OjasMishra32 <span class="arr">↗</span></span>
+      </div>
+
+      <a class="pcard r-fade d2" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noopener">
+        <div class="idx">03</div>
         <h3>Custom Racing Drone w/ Claw</h3>
         <div class="stack">Betaflight · ESC integration · PID tuning</div>
         <p>Designed and wired a competition-grade FPV drone; soldered ESCs and tuned PIDs manually for stability and responsiveness.</p>
-        <a class="ext" href="https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit" target="_blank" rel="noopener">View documentation <span class="arrow">→</span></a>
-      </div>
+        <span class="out">View documentation <span class="arr">↗</span></span>
+      </a>
 
-      <div class="pcard reveal delay-2">
-        <span class="swatch"></span>
-        <div class="index">03</div>
-        <h3>NitroCapture Pro — Zeolite Nitrogen Capture</h3>
-        <div class="stack">Environmental · 3D-printed · Engineering design</div>
-        <p>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions; iterative experiments and analysis.</p>
-        <a class="ext" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noopener">View documentation <span class="arrow">→</span></a>
-      </div>
+      <a class="pcard r-fade d3" href="https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit?usp=sharing" target="_blank" rel="noopener">
+        <div class="idx">04</div>
+        <h3>NitroCapture Pro</h3>
+        <div class="stack">Environmental · 3D-printed · Zeolite chemistry</div>
+        <p>3D-printed dome using zeolites to absorb nitrogen runoff and reduce greenhouse emissions. Iterative design, real-world experiments, data analysis.</p>
+        <span class="out">View documentation <span class="arr">↗</span></span>
+      </a>
 
-      <div class="pcard reveal">
-        <span class="swatch"></span>
-        <div class="index">04</div>
-        <h3>Competition Robot</h3>
-        <div class="stack">Autonomous + Tele-op · Mechanisms · Controls</div>
+      <div class="pcard r-fade">
+        <div class="idx">05</div>
+        <h3>Autonomous Competition Robot</h3>
+        <div class="stack">Autonomous + tele-op · Mechanisms · Controls</div>
         <p>Built and programmed a multifunction robot for obstacle navigation and object manipulation with reliable driver control and autonomous routines.</p>
+        <span class="out">VEX state finalist <span class="arr">→</span></span>
       </div>
 
-      <div class="pcard reveal delay-1">
-        <span class="swatch"></span>
-        <div class="index">05</div>
+      <a class="pcard r-fade d1" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noopener">
+        <div class="idx">06</div>
+        <h3>Unity VR Escape Room</h3>
+        <div class="stack">Unity · C# · Blender · Meta Quest</div>
+        <p>An immersive VR puzzle experience with custom assets, tuned for comfort and progressive challenge.</p>
+        <span class="out">View documentation <span class="arr">↗</span></span>
+      </a>
+
+      <div class="pcard r-fade d2">
+        <div class="idx">07</div>
+        <h3>Preventa</h3>
+        <div class="stack">Swift · iOS · Health tooling</div>
+        <p>An iOS application focused on early-warning health workflows.</p>
+        <span class="out">github.com/OjasMishra32 <span class="arr">↗</span></span>
+      </div>
+
+      <div class="pcard r-fade d3">
+        <div class="idx">08</div>
         <h3>Systems Control Challenge</h3>
         <div class="stack">Python · C++ · Feedback control</div>
         <p>Developed autonomous control systems under timed constraints; modeled dynamics and tuned feedback for stability.</p>
-      </div>
-
-      <div class="pcard reveal delay-2">
-        <span class="swatch"></span>
-        <div class="index">06</div>
-        <h3>Unity VR Escape Room</h3>
-        <div class="stack">Unity · C# · Blender · Meta Quest</div>
-        <p>An immersive VR puzzle experience with custom assets; tuned for comfort and progressive challenge.</p>
-        <a class="ext" href="https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit?usp=sharing" target="_blank" rel="noopener">View documentation <span class="arrow">→</span></a>
-      </div>
-
-      <div class="pcard reveal">
-        <span class="swatch"></span>
-        <div class="index">07</div>
-        <h3>Tower Defense — Systems Design</h3>
-        <div class="stack">Game design · Balancing · Documentation</div>
-        <p>Layered mechanics with readable code and difficulty curves; produced full portfolios and artwork.</p>
-        <a class="ext" href="https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit?usp=sharing" target="_blank" rel="noopener">View documentation <span class="arrow">→</span></a>
-      </div>
-
-      <div class="pcard reveal delay-1">
-        <span class="swatch"></span>
-        <div class="index">08</div>
-        <h3>Modular Board Game System</h3>
-        <div class="stack">Mechanics · Replayability</div>
-        <p>Modular rule sets enabling variants and high replay value; emphasized clarity of interaction loops.</p>
-      </div>
-
-      <div class="pcard reveal delay-2">
-        <span class="swatch"></span>
-        <div class="index">09</div>
-        <h3>AI Stock Tracker &amp; Pre-Market Watchlist</h3>
-        <div class="stack">AI/ML · Finance · Web app</div>
-        <p>An AI-assisted tracker generating daily bullish watchlists and tracking performance with a modern UI.</p>
+        <span class="out">Internal write-up <span class="arr">→</span></span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================== SKILLS ============================== -->
-<section id="skills" class="sec">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Skills</span>
-      <h2 class="h-1" style="margin-top: 24px;">The toolkit, <span class="serif">organized</span>.</h2>
-      <p class="lede">Hardware down to the controller, code up through the UI, and the simulation layers in between.</p>
+<!-- ============================== MANIFESTO ============================== -->
+<section class="manifesto" id="manifesto">
+  <div class="wrap">
+    <h2 class="lead" id="manifestoLead">
+      <span class="word"><span>I</span></span>
+      <span class="word"><span class="it">build</span></span>
+      <span class="word"><span>things</span></span>
+      <span class="word"><span>people</span></span>
+      <span class="word"><span class="em">actually</span></span>
+      <span class="word"><span>use.</span></span>
+      <br/>
+      <span class="word"><span>Robots</span></span>
+      <span class="word"><span>that</span></span>
+      <span class="word"><span>move,</span></span>
+      <span class="word"><span>software</span></span>
+      <span class="word"><span>that</span></span>
+      <span class="word"><span>ships,</span></span>
+      <span class="word"><span class="it">products</span></span>
+      <span class="word"><span>that</span></span>
+      <span class="word"><span>matter.</span></span>
+    </h2>
+    <div class="footer">
+      <span><b>Five months</b> until I leave for the University of Florida — combined Computer Engineering + Master&rsquo;s in Finance.</span>
+      <span>Until then: shipping Twinly, autonomy at EV Bots, simulation at Ptero Labs.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== TRAJECTORY ============================== -->
+<section class="trajectory sec" id="trajectory">
+  <div class="wrap">
+    <div class="sec-head r-fade">
+      <span class="label">Trajectory</span>
+      <h1 class="h-1">A short, <span class="it">honest</span> timeline.</h1>
     </div>
 
-    <div class="skills">
-      <div class="sk reveal">
-        <h4>Hardware &amp; Robotics</h4>
-        <div class="chips">
-          <span class="chip">VEX</span>
-          <span class="chip">Arduino</span>
-          <span class="chip">FPV Drones</span>
-          <span class="chip">Betaflight</span>
-          <span class="chip">ESC / PID Tuning</span>
-          <span class="chip">Control Theory</span>
-          <span class="chip">Sensors &amp; Bring-up</span>
+    <div class="traj-list r-fade d1">
+      <div class="traj-row">
+        <div class="when">2026 → 2030</div>
+        <div>
+          <h3>B.S. Computer Engineering + Master&rsquo;s in Finance <span class="at">· <span class="it">University of Florida</span></span></h3>
+          <div class="meta">Combined-degree cohort · 1 of 40 · four years</div>
+          <ul>
+            <li>Selected for UF&rsquo;s combined CE + MS-Finance program — engineering depth with a quantitative-finance overlay.</li>
+            <li>Plan to keep operating Twinly and contracting on autonomy in parallel through undergrad.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="sk reveal delay-1">
-        <h4>CAD &amp; Simulation</h4>
-        <div class="chips">
-          <span class="chip">Fusion 360</span>
-          <span class="chip">Onshape</span>
-          <span class="chip">RockSim</span>
-          <span class="chip">OpenRocket</span>
-          <span class="chip">Revit</span>
-          <span class="chip">Unity (sim)</span>
+      <div class="traj-row">
+        <div class="when">2026 →</div>
+        <div>
+          <h3>Founder <span class="at">· <span class="it">Twinly</span></span></h3>
+          <div class="meta">Personal AI operator — twinly.tech</div>
+          <ul>
+            <li>Designing and building a product around the idea that an AI should know how <em>you</em> work, not the median person.</li>
+            <li>Owning product, design, and engineering. Lean stack, fast iteration, small early-access cohort.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="sk reveal">
-        <h4>Programming</h4>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">C++</span>
-          <span class="chip">JavaScript / TS</span>
-          <span class="chip">C# (Unity)</span>
-          <span class="chip">HTML / CSS</span>
+      <div class="traj-row">
+        <div class="when">2025 →</div>
+        <div>
+          <h3>AI Robotics Engineer Intern <span class="at">· <span class="it">EV Bots Inc.</span></span></h3>
+          <div class="meta">Autonomy stack for next-generation EV robotics</div>
+          <ul>
+            <li>Working on the perception/planning layer for an autonomous EV-charging robot.</li>
+            <li>Bridging research-grade ML with shipping firmware constraints.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="sk reveal delay-1">
-        <h4>Frameworks &amp; Tools</h4>
-        <div class="chips">
-          <span class="chip">React</span>
-          <span class="chip">Next.js</span>
-          <span class="chip">Tailwind</span>
-          <span class="chip">Framer Motion</span>
-          <span class="chip">Unity</span>
-          <span class="chip">Blender</span>
-          <span class="chip">Git</span>
-          <span class="chip">Shopify</span>
+      <div class="traj-row">
+        <div class="when">2025 →</div>
+        <div>
+          <h3>Software Intern <span class="at">· <span class="it">Ptero Labs</span></span></h3>
+          <div class="meta">Mission-grade UAV simulation</div>
+          <ul>
+            <li>Helping build a high-fidelity simulation environment for unmanned-aerial flight software.</li>
+            <li>Touching the seam between flight controls, physics, and rendering pipelines.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traj-row">
+        <div class="when">2025 →</div>
+        <div>
+          <h3>Founder &amp; CEO <span class="at">· <span class="it">Fusion Bots</span></span></h3>
+          <div class="meta">STEM access for younger engineers</div>
+          <ul>
+            <li>Launched a program that lowers the cost and complexity of starting a serious robotics project in middle / high school.</li>
+            <li>Curriculum, parts kits, and mentorship — designed to remove the &ldquo;where do I even start&rdquo; bottleneck.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traj-row">
+        <div class="when">2024</div>
+        <div>
+          <h3>Software Development Intern <span class="at">· <span class="it">iPipeline</span></span></h3>
+          <div class="meta">Internal tooling at a financial-services platform</div>
+          <ul>
+            <li>Shipped against a real codebase, with real reviews, real deadlines, real ops.</li>
+            <li>First taste of production engineering culture.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traj-row">
+        <div class="when">2023 →</div>
+        <div>
+          <h3>President <span class="at">· <span class="it">BattleBots Club</span></span></h3>
+          <div class="meta">High-school combat-robotics program</div>
+          <ul>
+            <li>Lead a team across design, fabrication, electronics, drive — and the politics of running a club.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="traj-row">
+        <div class="when">2022 → 2026</div>
+        <div>
+          <h3>IB Diploma Candidate <span class="at">· <span class="it">Downingtown STEM Academy</span></span></h3>
+          <div class="meta">HL Math AA, Physics, Economics · GPA 4.35</div>
+          <ul>
+            <li>3 years varsity tennis; founded clubs in robotics, rocketry, and finance.</li>
+            <li>Lead programmer at VEX Robotics — state finalist.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -2366,46 +1271,46 @@
 </section>
 
 <!-- ============================== CONTACT ============================== -->
-<section id="contact" class="sec">
-  <div class="container">
-    <div class="contact reveal">
-      <span class="eyebrow">Contact</span>
-      <h2 style="margin-top: 24px;">Let&rsquo;s build something <span class="serif">good</span>.</h2>
-      <p>Open to collaboration on robotics, autonomy, and AI projects. Sponsorships welcome for builds and competitions.
-        And — always down to geek out about controls, drones, or chess.</p>
-      <div class="actions">
-        <a class="btn btn-primary magnetic" href="mailto:ojasvamishra32@gmail.com">
-          <span class="inner">ojasvamishra32@gmail.com <span class="arrow">→</span></span>
-        </a>
-        <a class="btn btn-secondary magnetic" href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" rel="noopener">
-          <span class="inner">LinkedIn</span>
-        </a>
-        <a class="btn btn-secondary magnetic" href="https://github.com/OjasMishra32" target="_blank" rel="noopener">
-          <span class="inner">GitHub</span>
-        </a>
-        <a class="btn btn-secondary magnetic" href="https://www.instagram.com/ojas_mishra32/" target="_blank" rel="noopener">
-          <span class="inner">Instagram</span>
-        </a>
-      </div>
-      <div class="small">
-        Or call: <a href="tel:4847039916">(484) 703-9916</a>
-      </div>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="label r-fade">Contact</span>
+    <h2 class="r-fade d1" style="margin-top: 16px;">
+      Let&rsquo;s build something <span class="it">that ships</span>.
+    </h2>
+    <p class="lede r-fade d2">
+      Open to collaboration on AI, autonomy, and robotics. Happy to talk to potential
+      Twinly early users, robotics teams, or anyone working on something serious.
+    </p>
+
+    <a class="mailto magnetic r-fade d3" href="mailto:ojasvamishra32@gmail.com">
+      ojasvamishra32@gmail.com <span class="arr">↗</span>
+    </a>
+
+    <div class="links r-fade d4">
+      <a href="https://twinly.tech" target="_blank" rel="noopener">Twinly</a>
+      <a href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/OjasMishra32" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.instagram.com/ojas_mishra32/" target="_blank" rel="noopener">Instagram</a>
+      <a href="tel:4847039916">(484) 703-9916</a>
+    </div>
+
+    <div class="footnote r-fade d4">
+      Reading this from a recruiter, fund, or robotics team? Put &ldquo;Twinly&rdquo; in
+      the subject and I&rsquo;ll answer same day.
     </div>
   </div>
 </section>
 
 <!-- ============================== FOOTER ============================== -->
 <footer>
-  <div class="row">
-    <div>© <span id="year"></span> Ojasva Mishra. Designed &amp; built from scratch.</div>
-    <div class="links">
-      <a href="#about">About</a>
-      <a href="#now">Now</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <a href="games.html" title="Just for fun">Easter egg</a>
-    </div>
+  <div>© <span id="year"></span> Ojasva Mishra · Designed and built from scratch.</div>
+  <div class="nav-foot">
+    <a href="#now">Now</a>
+    <a href="#twinly">Twinly</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#trajectory">Trajectory</a>
+    <a href="#contact">Contact</a>
   </div>
 </footer>
 
@@ -2413,58 +1318,58 @@
 (() => {
   'use strict';
 
-  /* Year */
-  const yEl = document.getElementById('year');
-  if (yEl) yEl.textContent = new Date().getFullYear();
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---------------- Char stagger ---------------- */
-  document.querySelectorAll('.stagger').forEach(el => {
-    const text = el.dataset.text || el.textContent;
-    el.textContent = '';
-    [...text].forEach((c, i) => {
-      const span = document.createElement('span');
-      span.className = 'ch';
-      span.style.transitionDelay = (i * 0.035) + 's';
-      span.textContent = c === ' ' ? ' ' : c;
-      el.appendChild(span);
+  // --------- Reveal observer ----------
+  const reveal = (root = document) => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    root.querySelectorAll('.r-fade, .r-clip, .r-mask, .words, .manifesto').forEach(el => io.observe(el));
+  };
+  reveal();
+
+  // --------- Hero word stagger ----------
+  // Stagger word transition delays manually so they cascade
+  const stagger = (root) => {
+    const words = root.querySelectorAll('.w > span, .word > span');
+    words.forEach((s, i) => {
+      s.style.transitionDelay = (i * 0.08 + 0.05) + 's';
     });
-    // Trigger after a tick so the initial state paints first
-    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in')));
-  });
+  };
+  stagger(document.getElementById('heroName'));
 
-  /* ---------------- Reveal on scroll ---------------- */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
+  // Manifesto: stagger only when the section is in view, words trickle in
+  const manif = document.getElementById('manifestoLead');
+  if (manif) {
+    [...manif.querySelectorAll('.word > span')].forEach((s, i) => {
+      s.style.transitionDelay = (i * 0.06) + 's';
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-
-  document.querySelectorAll('.reveal, .reveal-up, .reveal-scale').forEach(el => io.observe(el));
-
-  /* ---------------- Rocket starfield ---------------- */
-  const starHost = document.getElementById('rocketStars');
-  if (starHost) {
-    const N = 36;
-    const frag = document.createDocumentFragment();
-    for (let i = 0; i < N; i++) {
-      const s = document.createElement('i');
-      const x = Math.random() * 100;
-      const y = Math.random() * 88; // keep stars above horizon
-      const o = (0.25 + Math.random() * 0.55).toFixed(2);
-      const d = (2 + Math.random() * 3.5).toFixed(2);
-      const ad = (Math.random() * 4).toFixed(2);
-      const sz = (0.8 + Math.random() * 1.4).toFixed(2);
-      s.style.cssText = `left:${x}%;top:${y}%;--o:${o};--d:${d}s;--ad:${ad}s;width:${sz}px;height:${sz}px;`;
-      frag.appendChild(s);
-    }
-    starHost.appendChild(frag);
   }
 
-  /* ---------------- Lazy iframe embeds ---------------- */
-  const embedIO = new IntersectionObserver(entries => {
+  // Trigger hero name animation on next frame
+  const heroName = document.getElementById('heroName');
+  if (heroName) requestAnimationFrame(() => requestAnimationFrame(() => heroName.classList.add('in')));
+
+  // Portrait clip reveal happens via reveal observer
+
+  // --------- Nav scrolled state ----------
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 32) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // --------- Lazy iframe ----------
+  const embedIO = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       const f = e.target;
@@ -2475,302 +1380,73 @@
   }, { threshold: 0.05, rootMargin: '300px 0px' });
   document.querySelectorAll('iframe[data-embed]').forEach(f => embedIO.observe(f));
 
-  /* ---------------- Hero feature card depth ---------------- */
-  const featureCard = document.querySelector('.hero-feature');
-  if (featureCard && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const ph = featureCard.querySelector('.ph');
+  // --------- Portrait parallax on scroll ----------
+  const portrait = document.getElementById('portrait');
+  if (portrait && matchMedia('(hover: hover)').matches) {
     let raf = 0;
     document.addEventListener('scroll', () => {
       if (raf) return;
       raf = requestAnimationFrame(() => {
-        const r = featureCard.getBoundingClientRect();
+        const r = portrait.getBoundingClientRect();
         const vh = window.innerHeight;
         const t = Math.max(-1, Math.min(1, (r.top + r.height/2 - vh/2) / vh));
-        if (ph) ph.style.transform = `scale(1.08) translateY(${(t * 22).toFixed(2)}px)`;
-        featureCard.style.transform = `translateY(${(t * 8).toFixed(2)}px)`;
+        const cur = portrait.classList.contains('in') ? 1.04 : 1.04;
+        portrait.style.transform = `translateY(${(t * 18).toFixed(2)}px) scale(${cur + Math.abs(t) * 0.02})`;
         raf = 0;
       });
     }, { passive: true });
   }
 
-  /* ---------------- Number count-up ---------------- */
-  const numIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      const target = parseInt(el.dataset.count || '0', 10);
-      const dur = 1100;
-      const start = performance.now();
-      const tick = (t) => {
-        const p = Math.min(1, (t - start) / dur);
-        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-        el.textContent = Math.floor(eased * target);
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = target.toString();
-      };
-      requestAnimationFrame(tick);
-      numIO.unobserve(el);
-    });
-  }, { threshold: 0.6 });
-  document.querySelectorAll('[data-count]').forEach(el => numIO.observe(el));
-
-  /* ---------------- Bento card cursor highlight ---------------- */
-  document.querySelectorAll('.bento .card, .pcard, .sk, .pillar, .tl-card').forEach(card => {
-    card.addEventListener('mousemove', (ev) => {
-      const r = card.getBoundingClientRect();
-      const x = ((ev.clientX - r.left) / r.width) * 100;
-      const y = ((ev.clientY - r.top) / r.height) * 100;
-      card.style.setProperty('--mx', x + '%');
-      card.style.setProperty('--my', y + '%');
-    });
-  });
-
-  /* ---------------- Magnetic buttons ---------------- */
-  const supportsHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (supportsHover) {
-    document.querySelectorAll('.magnetic').forEach(btn => {
-      const inner = btn.querySelector('.inner') || btn;
-      const strength = 0.18;
-      btn.addEventListener('mousemove', (ev) => {
-        const r = btn.getBoundingClientRect();
-        const x = ev.clientX - (r.left + r.width / 2);
-        const y = ev.clientY - (r.top + r.height / 2);
-        btn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
-        inner.style.transform = `translate(${x * strength * 0.6}px, ${y * strength * 0.6}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-        inner.style.transform = '';
-      });
-    });
-  }
-
-  /* ---------------- Custom cursor ---------------- */
+  // --------- Custom cursor ----------
+  const fineCursor = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const cursor = document.getElementById('cursor');
-  if (cursor && supportsHover) {
-    document.body.classList.add('cursor-on');
-    let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+  if (fineCursor && cursor) {
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; }, { passive: true });
     const loop = () => {
       cx += (tx - cx) * 0.22;
       cy += (ty - cy) * 0.22;
-      cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%,-50%)`;
-      raf = requestAnimationFrame(loop);
+      cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+      requestAnimationFrame(loop);
     };
-    window.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; });
-    window.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
-    window.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
-    document.querySelectorAll('a, button, .btn, .pcard, .bento .card, .nav .link, .nav .cta')
-      .forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-      });
     loop();
+    document.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
+    document.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
+
+    const hoverables = 'a, button, .btn, .pcard, .work-row, .now-row, .mailto, .magnetic, input, textarea, [role="button"], .portrait-frame';
+    document.addEventListener('mouseover', (e) => {
+      const t = e.target.closest(hoverables);
+      if (t) cursor.classList.add('hover');
+    });
+    document.addEventListener('mouseout', (e) => {
+      const t = e.target.closest(hoverables);
+      if (t && !e.relatedTarget?.closest?.(hoverables)) cursor.classList.remove('hover');
+    });
+  } else {
+    document.body.classList.remove('cursor-on');
+    if (cursor) cursor.remove();
   }
 
-  /* ---------------- Timeline progressive line ---------------- */
-  const timeline = document.getElementById('timeline');
-  if (timeline) {
-    const items = [...timeline.querySelectorAll('.tl-item')];
-    const tlIO = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('in');
+  // --------- Magnetic buttons ----------
+  if (fineCursor) {
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      let raf = 0;
+      const reset = () => { btn.style.transform = ''; };
+      btn.addEventListener('mousemove', (e) => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          const r = btn.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width / 2;
+          const y = e.clientY - r.top - r.height / 2;
+          btn.style.transform = `translate(${x * 0.18}px, ${y * 0.22}px)`;
+          raf = 0;
+        });
       });
-    }, { threshold: 0.4 });
-    items.forEach(it => tlIO.observe(it));
-
-    const updateProg = () => {
-      const r = timeline.getBoundingClientRect();
-      const top = r.top, bot = r.bottom;
-      const vh = window.innerHeight;
-      const total = bot - top;
-      // progress: how far the viewport center has traveled through timeline
-      const center = vh * 0.55;
-      const traveled = Math.min(Math.max(center - top, 0), total);
-      const pct = (traveled / total) * 100;
-      timeline.style.setProperty('--prog', pct.toFixed(2) + '%');
-    };
-    updateProg();
-    document.addEventListener('scroll', updateProg, { passive: true });
-    window.addEventListener('resize', updateProg);
+      btn.addEventListener('mouseleave', reset);
+    });
   }
-
-  /* ---------------- Now-cards in-view scaling ---------------- */
-  const nowIO = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('in');
-      else e.target.classList.remove('in');
-    });
-  }, { threshold: 0.45 });
-  document.querySelectorAll('.now-card').forEach(c => nowIO.observe(c));
-
-  /* ---------------- Nav active state on scroll up ---------------- */
-  let lastScroll = 0;
-  const navWrap = document.querySelector('.nav-wrap');
-  document.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y > lastScroll && y > 240) {
-      navWrap.style.top = '-80px';
-    } else {
-      navWrap.style.top = '18px';
-    }
-    lastScroll = y;
-  }, { passive: true });
-
-  /* ---------------- Tilt on hero photo ---------------- */
-  document.querySelectorAll('[data-tilt]').forEach(el => {
-    const max = 6;
-    el.addEventListener('mousemove', (ev) => {
-      const r = el.getBoundingClientRect();
-      const x = (ev.clientX - r.left) / r.width  - 0.5;
-      const y = (ev.clientY - r.top)  / r.height - 0.5;
-      el.style.transform = `perspective(900px) rotateX(${(-y*max).toFixed(2)}deg) rotateY(${(x*max).toFixed(2)}deg)`;
-    });
-    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
-  });
-
-  /* ---------------- Quiet IB Dojo portal ---------------- */
-  const dojoTrigger = document.getElementById('dojo-trigger');
-  const dojoOverlay = document.getElementById('dojo-overlay');
-  const dojoClose = document.getElementById('dojo-close');
-  const dojoFrame = document.getElementById('dojo-frame');
-
-  const openDojo = () => {
-    if (!dojoOverlay || !dojoFrame) return;
-    if (!dojoFrame.getAttribute('src')) {
-      dojoFrame.setAttribute('src', dojoFrame.dataset.src);
-    }
-    dojoOverlay.classList.add('open');
-    dojoOverlay.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('dojo-open');
-  };
-
-  const closeDojo = () => {
-    if (!dojoOverlay) return;
-    dojoOverlay.classList.remove('open');
-    dojoOverlay.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('dojo-open');
-    dojoTrigger?.focus();
-  };
-
-  dojoTrigger?.addEventListener('click', openDojo);
-  dojoClose?.addEventListener('click', closeDojo);
-  dojoOverlay?.addEventListener('click', (ev) => {
-    if (ev.target === dojoOverlay) closeDojo();
-  });
-  window.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Escape' && dojoOverlay?.classList.contains('open')) closeDojo();
-  });
 
 })();
 </script>
-
-<!-- ============================== ANIME.JS MOTION LAYER ============================== -->
-<script type="module">
-  // anime.js v4 — text split + spring stagger + scroll observers
-  import { animate, stagger, onScroll, createSpring, text }
-    from 'https://cdn.jsdelivr.net/npm/animejs@4/+esm';
-
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    // Bail out cleanly if the user doesn't want motion
-    document.querySelectorAll('[data-anime]').forEach(el => el.removeAttribute('data-anime'));
-  } else {
-
-  /* ---------------- Hero name: char spring stagger ----------------
-     Replaces the manual .stagger animation with anime.js for crisper
-     spring physics + finer per-char control. */
-  const heroNameEl = document.querySelector('.hero-name');
-  if (heroNameEl) {
-    // Strip the manual stagger DOM the existing IIFE built (if any)
-    const existing = heroNameEl.querySelector('.stagger');
-    if (existing) {
-      existing.classList.remove('in');
-      existing.textContent = existing.dataset.text || existing.textContent;
-    }
-    const split = text.split(heroNameEl, { chars: { wrap: 'clip' } });
-    animate(split.chars, {
-      y: ['110%', '0%'],
-      ease: createSpring({ stiffness: 110, damping: 14, mass: 0.9 }),
-      duration: 1300,
-      delay: stagger(38, { start: 240 }),
-    });
-  }
-
-  /* ---------------- UF marquee headline: char stagger on scroll ---------------- */
-  const ufNameEl = document.querySelector('.uf-name .stagger');
-  if (ufNameEl) {
-    ufNameEl.classList.remove('in');
-    ufNameEl.textContent = ufNameEl.dataset.text || ufNameEl.textContent;
-    const split = text.split(ufNameEl, { chars: { wrap: 'clip' } });
-    animate(split.chars, {
-      y: ['110%', '0%'],
-      opacity: [0, 1],
-      ease: createSpring({ stiffness: 100, damping: 14, mass: 1 }),
-      duration: 1500,
-      delay: stagger(28),
-      autoplay: onScroll({ target: ufNameEl, enter: 'bottom-=15%', once: true })
-    });
-  }
-
-  /* ---------------- Section H1s: word stagger reveal on scroll ---------------- */
-  document.querySelectorAll('.h-1').forEach(h => {
-    if (h.closest('.uf-shell')) return; // already handled
-    const split = text.split(h, { words: { wrap: 'clip' }, lines: false });
-    animate(split.words, {
-      y: ['110%', '0%'],
-      opacity: [0, 1],
-      ease: createSpring({ stiffness: 95, damping: 16, mass: 1 }),
-      duration: 1400,
-      delay: stagger(70),
-      autoplay: onScroll({ target: h, enter: 'bottom-=12%', once: true })
-    });
-  });
-
-  /* ---------------- Animated count-up for cracked-cell numbers ---------------- */
-  document.querySelectorAll('.cracked-cell .n[data-n]').forEach(el => {
-    const target = parseFloat(el.dataset.n);
-    const suffix = el.dataset.suffix || '';
-    const prefix = el.dataset.prefix || '';
-    if (Number.isNaN(target)) return;
-    const obj = { v: 0 };
-    animate(obj, {
-      v: target,
-      duration: 1600,
-      ease: 'out(3)',
-      onUpdate: () => { el.firstChild.textContent = prefix + Math.round(obj.v).toLocaleString() + suffix; },
-      autoplay: onScroll({ target: el, enter: 'bottom-=10%', once: true })
-    });
-  });
-
-  /* ---------------- Decorative SVG hairline draw at the hero/UF boundary ---------------- */
-  const hairline = document.querySelector('.section-hairline path');
-  if (hairline) {
-    const len = hairline.getTotalLength();
-    hairline.style.strokeDasharray = String(len);
-    hairline.style.strokeDashoffset = String(len);
-    animate(hairline, {
-      strokeDashoffset: [len, 0],
-      duration: 1800,
-      ease: 'out(3)',
-      autoplay: onScroll({ target: hairline, enter: 'bottom-=10%', once: true })
-    });
-  }
-
-  /* ---------------- Build cards: subtle staggered scale-in on scroll ---------------- */
-  const buildCards = document.querySelectorAll('#builds .build');
-  if (buildCards.length) {
-    animate(buildCards, {
-      opacity: [0, 1],
-      y: [24, 0],
-      scale: [0.985, 1],
-      ease: createSpring({ stiffness: 90, damping: 16 }),
-      duration: 1300,
-      delay: stagger(120),
-      autoplay: onScroll({ target: '#builds .builds-grid', enter: 'bottom-=10%', once: true })
-    });
-  }
-
-  }
-</script>
-
 </body>
 </html>
