@@ -10,7 +10,7 @@ YC Startup School 2026. Heading to Carnegie Mellon in fall 2026.
 
 Currently:
 - Founding AI Platform Engineer (full-time), **Drift** — godrift.ai
-- Research Intern, **CMU Robotics Institute** — two IEEE papers under review (TRO, IROS)
+- Research Intern, **CMU Robotics Institute** — first-author on IEEE TRO and IEEE IROS '26
 - Founder, **Twinly** — twinly.tech
 
 Contact: ojasva@godrift.ai · ojasvamishra32@gmail.com · [LinkedIn](https://www.linkedin.com/in/ojasva-mishra-657b89352/) · [GitHub](https://github.com/OjasMishra32) · [Instagram](https://www.instagram.com/ojas_mishra32/)
