@@ -462,6 +462,57 @@
   .now-row .what a:hover { border-color: var(--ink); color: var(--accent); }
 
   /* ============================================================
+     CREDENTIALS — quietly scrolling recognition strip
+     ============================================================ */
+  .creds {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    overflow: hidden;
+    padding: 22px 0;
+    position: relative;
+  }
+  .creds::before, .creds::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 80px;
+    z-index: 2; pointer-events: none;
+  }
+  .creds::before { left: 0; background: linear-gradient(90deg, var(--paper), transparent); }
+  .creds::after  { right: 0; background: linear-gradient(270deg, var(--paper), transparent); }
+  .creds-track {
+    display: flex; gap: 56px; align-items: center;
+    white-space: nowrap;
+    animation: credsScroll 55s linear infinite;
+    width: max-content;
+    will-change: transform;
+  }
+  .creds-track .item {
+    font-size: 14px;
+    color: var(--ink-2);
+    font-weight: 500;
+    letter-spacing: -0.008em;
+    display: inline-flex; align-items: baseline; gap: 14px;
+  }
+  .creds-track .item .sub {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    color: var(--ink-3);
+    font-size: 14px;
+  }
+  .creds-track .item::after {
+    content: "·";
+    color: var(--ink-4);
+    margin-left: 42px;
+    font-style: normal;
+  }
+  .creds:hover .creds-track { animation-play-state: paused; }
+  @keyframes credsScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .creds-track { animation: none; transform: translateX(0); }
+  }
+
+  /* ============================================================
      TWINLY FEATURED
      ============================================================ */
   .featured {
@@ -1123,6 +1174,36 @@
   </div>
 </section>
 
+<!-- ============================== CREDENTIALS STRIP ============================== -->
+<section class="creds" aria-label="Recognition and affiliations">
+  <div class="creds-track" id="credsTrack">
+    <span class="item">CMU Robotics Institute <span class="sub">research</span></span>
+    <span class="item">IEEE TRO <span class="sub">first author</span></span>
+    <span class="item">IEEE IROS &rsquo;26 <span class="sub">first author</span></span>
+    <span class="item">Drift <span class="sub">founding engineer · Antler</span></span>
+    <span class="item">Product Hunt <span class="sub">#5 Product of the Day</span></span>
+    <span class="item">YC Startup School &rsquo;26 <span class="sub">admitted</span></span>
+    <span class="item">NexHacks <span class="sub">1 of 3 high schoolers · 1,500 hackers</span></span>
+    <span class="item">Startup in a Weekend Philly <span class="sub">winner · sole HS</span></span>
+    <span class="item">TSA Nationals <span class="sub">8 events</span></span>
+    <span class="item">UN HLPF + UNGA <span class="sub">presenter</span></span>
+    <span class="item">UF <span class="sub">full merit · CE + M.S. Finance</span></span>
+
+    <!-- duplicate for seamless loop -->
+    <span class="item">CMU Robotics Institute <span class="sub">research</span></span>
+    <span class="item">IEEE TRO <span class="sub">first author</span></span>
+    <span class="item">IEEE IROS &rsquo;26 <span class="sub">first author</span></span>
+    <span class="item">Drift <span class="sub">founding engineer · Antler</span></span>
+    <span class="item">Product Hunt <span class="sub">#5 Product of the Day</span></span>
+    <span class="item">YC Startup School &rsquo;26 <span class="sub">admitted</span></span>
+    <span class="item">NexHacks <span class="sub">1 of 3 high schoolers · 1,500 hackers</span></span>
+    <span class="item">Startup in a Weekend Philly <span class="sub">winner · sole HS</span></span>
+    <span class="item">TSA Nationals <span class="sub">8 events</span></span>
+    <span class="item">UN HLPF + UNGA <span class="sub">presenter</span></span>
+    <span class="item">UF <span class="sub">full merit · CE + M.S. Finance</span></span>
+  </div>
+</section>
+
 <!-- ============================== TWINLY FEATURED ============================== -->
 <section class="featured" id="twinly">
   <div class="wrap">
@@ -1316,10 +1397,9 @@
   <div class="wrap">
     <div class="tsa-head r-fade">
       <span class="label">TSA · National Competitor</span>
-      <h2>A national slate of <span class="it">eight events</span>.</h2>
+      <h2>Nationals. <span class="it">Eight events.</span></h2>
       <p class="lede">
-        Robotics, simulation, engineering, environmental, finance, game design.
-        Pieces I built and competed with.
+        Robotics, simulation, engineering, environmental, finance, game design — every piece built, every event placed.
       </p>
     </div>
 
