@@ -461,7 +461,7 @@ export type Experience = {
 export const EXPERIENCE: Experience[] = [
   {
     id: 1,
-    startDate: "2025",
+    startDate: "Feb 2026",
     endDate: "Present",
     title: "AI Platform Engineer, Founding Team",
     company: "Drift",
@@ -489,7 +489,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 2,
-    startDate: "Jul 2025",
+    startDate: "May 2025",
     endDate: "Present",
     title: "Research Intern",
     company: "Carnegie Mellon University, Robotics Institute",
@@ -513,7 +513,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 3,
-    startDate: "2025",
+    startDate: "Mar 2026",
     endDate: "Present",
     title: "Co-Founder & CEO",
     company: "Twinly",
@@ -538,8 +538,8 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 4,
-    startDate: "Apr 2025",
-    endDate: "Feb 2026",
+    startDate: "Jun 2025",
+    endDate: "Dec 2025",
     title: "AI Robotics Engineer Intern",
     company: "EV Bots, Inc.",
     blurb: "Fleet charging with mobile robots",

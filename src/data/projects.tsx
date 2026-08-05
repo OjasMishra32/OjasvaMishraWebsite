@@ -694,7 +694,7 @@ const projects: Project[] = [
     emblem: { src: "/assets/companies/evbots.png", bg: "#ffffff" },
     category: "Autonomous hardware",
     title: "EV Charging Robot",
-    role: "Robotics Engineer · EV Bots",
+    role: "AI Robotics Engineer Intern · EV Bots",
     period: "2025",
     tagline:
       "The company's first autonomous EV charging robot that actually closed the loop.",
