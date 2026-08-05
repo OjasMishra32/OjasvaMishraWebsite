@@ -26,7 +26,7 @@ import SectionWrapper from "../ui/section-wrapper";
 const CREDENTIALS = [
   { label: "Founding engineer", detail: "Drift · godrift.ai" },
   { label: "Researcher", detail: "CMU Robotics Institute" },
-  { label: "Founder", detail: "Twinly · twinly.tech" },
+  { label: "Co-founder & CEO", detail: "Twinly · twinly.tech" },
 ];
 
 const HeroSection = () => {

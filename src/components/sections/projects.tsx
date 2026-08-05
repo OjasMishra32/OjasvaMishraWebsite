@@ -13,6 +13,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 import projects, { Project } from "@/data/projects";
+import Chip3D from "../ui/chip-3d";
 import { SectionHeader } from "./section-header";
 
 import SectionWrapper from "../ui/section-wrapper";
@@ -70,6 +71,7 @@ const FeaturedCard = ({ project }: { project: Project }) => {
             "hover:-translate-y-1 hover:border-primary/40 hover:bg-card",
             "hover:shadow-[0_28px_80px_-40px_hsl(var(--foreground)/0.65)]"
           )}
+          data-chip-track
         >
           {/* a single wash of accent, anchored to one corner — the only place
               on the page that gets colour, so it reads as emphasis not decoration */}
@@ -107,9 +109,19 @@ const FeaturedCard = ({ project }: { project: Project }) => {
               </div>
             </div>
 
-            <div className="flex shrink-0 items-center gap-2 font-mono text-sm text-foreground/80">
-              {project.liveLabel}
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <div className="flex shrink-0 flex-col items-start gap-6 md:items-end">
+              {project.emblem && (
+                <Chip3D
+                  {...project.emblem}
+                  index={0}
+                  trackSelector="[data-chip-track]"
+                  className="size-24 md:size-32"
+                />
+              )}
+              <div className="flex items-center gap-2 font-mono text-sm text-foreground/80">
+                {project.liveLabel}
+                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </div>
             </div>
           </div>
         </motion.article>
@@ -147,6 +159,7 @@ const ProjectCard = ({
               "hover:-translate-y-1 hover:border-primary/30 hover:bg-card",
               "hover:shadow-[0_16px_50px_-24px_hsl(var(--foreground)/0.45)]"
             )}
+            data-chip-track
           >
             <div className="flex items-baseline justify-between font-mono text-[11px] text-muted-foreground/70">
               <span>{String(index + 1).padStart(2, "0")}</span>
@@ -165,15 +178,25 @@ const ProjectCard = ({
               </p>
             </div>
 
-            {/* the line that does the convincing */}
-            <div className="mt-6 border-t border-border pt-3">
-              <p className="font-mono text-[11px] leading-relaxed text-foreground/80">
-                {project.proof}
-              </p>
-              <p className="mt-1 flex items-center gap-1 font-mono text-[11px] text-muted-foreground/70">
-                {project.role}
-                <ArrowUpRight className="size-3 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-60" />
-              </p>
+            {/* the line that does the convincing, with the project's own mark */}
+            <div className="mt-6 flex items-end justify-between gap-4 border-t border-border pt-4">
+              <div className="min-w-0">
+                <p className="font-mono text-[11px] leading-relaxed text-foreground/80">
+                  {project.proof}
+                </p>
+                <p className="mt-1 flex items-center gap-1 font-mono text-[11px] text-muted-foreground/70">
+                  {project.role}
+                  <ArrowUpRight className="size-3 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-60" />
+                </p>
+              </div>
+              {project.emblem && (
+                <Chip3D
+                  {...project.emblem}
+                  index={index}
+                  trackSelector="[data-chip-track]"
+                  className="size-14 md:size-16"
+                />
+              )}
             </div>
           </article>
         </ResponsiveDialogTrigger>

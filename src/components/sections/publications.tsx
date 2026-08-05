@@ -52,10 +52,43 @@ const PublicationsSection = () => {
 
               <p className="mt-3 text-sm text-muted-foreground">{pub.authors}</p>
 
-              <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs">
+              <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-xs">
+                {pub.venueLogo &&
+                  (pub.venueLogo.mono ? (
+                    // mono marks inherit the text colour, so they read in
+                    // either theme without a plate behind them
+                    <span
+                      role="img"
+                      aria-label={pub.venueLogo.alt}
+                      className="block h-6 w-16 bg-foreground/90"
+                      style={{
+                        WebkitMaskImage: `url(${pub.venueLogo.src})`,
+                        maskImage: `url(${pub.venueLogo.src})`,
+                        WebkitMaskRepeat: "no-repeat",
+                        maskRepeat: "no-repeat",
+                        WebkitMaskPosition: "left center",
+                        maskPosition: "left center",
+                        WebkitMaskSize: "contain",
+                        maskSize: "contain",
+                      }}
+                    />
+                  ) : (
+                    // full-colour conference art needs a light plate to stay
+                    // legible on the dark card
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={pub.venueLogo.src}
+                      alt={pub.venueLogo.alt}
+                      loading="lazy"
+                      className="h-9 rounded-md bg-white px-2 py-1 object-contain"
+                    />
+                  ))}
                 <span className="rounded-full border border-primary/30 px-3 py-1 text-foreground/90">
                   {pub.venue}
                 </span>
+                {/* status sits right beside the venue mark on purpose — these
+                    are submissions, and a conference logo alone would read as
+                    "accepted" */}
                 <span className="text-muted-foreground">{pub.status}</span>
               </div>
 

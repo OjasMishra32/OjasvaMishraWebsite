@@ -214,18 +214,32 @@ export type Project = {
   liveLabel: string;
   /** renders large, above the grid — exactly one project should set this */
   featured?: boolean;
+  /**
+   * The project's own mark, shown as a 3D chip on the card. Every one of these
+   * is a real artifact — an app icon off the store listing, a company logo, a
+   * conference mark, a frame of the thing actually running. Nothing invented.
+   */
+  emblem?: {
+    src?: string;
+    monogram?: string;
+    monogramColor?: string;
+    bg?: string;
+    fullBleed?: boolean;
+  };
 };
 
 const projects: Project[] = [
   {
     id: "twinly",
+    emblem: { src: "/assets/companies/twinly.png", bg: "#000000", fullBleed: true },
     featured: true,
     category: "AI desktop agent",
     title: "Twinly",
     role: "Co-founder & CEO",
     period: "Mar 2026 —",
-    tagline: "A digital twin for your Mac and Windows machine.",
-    proof: "Shipped · macOS + Windows · from $20/mo",
+    tagline:
+      "Your digital AI clone. It runs your life and your computer.",
+    proof: "Z Fellows '26 · 2,000+ waitlist → 100-user beta",
     live: "https://twinly.tech",
     liveLabel: "twinly.tech",
     skills: {
@@ -246,32 +260,32 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            A digital twin for your Mac and Windows machine.
+            Your digital AI clone. It runs your life and your computer.
           </TypographyP>
           <TypographyP className="font-mono">
-            Twinly learns how you write, talk, and make decisions — then handles
-            your inbox, texts, calendar, browser, and real phone calls the way
-            you would. The company I co-founded and run. Free tier at five tasks a
-            day; paid plans from $20/month.
+            A two-person Delaware C Corp I co-founded and run, in the Z Fellows
+            September 2026 cohort. Twinly executes real computer tasks on your
+            behalf, with persistent memory, a personal CRM, and a locally cloned
+            voice.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Try Twinly" />
 
-          <TypographyH3 className="my-4 mt-8">
-            Acting on your behalf, without the horror stories
-          </TypographyH3>
+          <TypographyH3 className="my-4 mt-8">The Identity Runtime</TypographyH3>
           <p className="font-mono mb-2">
-            The hard part of an agent with real account access isn&apos;t
-            capability, it&apos;s restraint. A live workbench shows every action as
-            it happens — read the thread, match the voice, draft the reply — and
-            anything consequential waits for an explicit OK before it goes out.
+            The architecture I built. macOS accessibility APIs, browser DOM
+            state, application state, and vision all compose into a single
+            execution graph — so the agent drives real structured interfaces
+            wherever they exist, and only falls back to pixel-level control when
+            nothing structured is available. Clicking pixels is the last resort,
+            not the strategy.
           </p>
 
-          <TypographyH3 className="my-4 mt-8">Where it plugs in</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Launch</TypographyH3>
           <p className="font-mono mb-2">
-            Inbox triage, texts, billing calls, travel checkout, research, CAD
-            quotes, calendar conflicts — the operational work that eats a day
-            without ever being the day&apos;s actual job. Native on macOS and
-            Windows, not a browser tab.
+            Public macOS app shipped July 2026. A 2,000+ person waitlist
+            converted into a 100-user private beta, a 150-member Discord, and
+            2,700+ TikTok followers. Built on SwiftUI, Electron, Supabase, and
+            Stripe.
           </p>
         </div>
       );
@@ -279,6 +293,7 @@ const projects: Project[] = [
   },
   {
     id: "drift",
+    emblem: { src: "/assets/companies/drift.png", bg: "#000000", fullBleed: true },
     category: "Robotics simulation platform",
     title: "Drift",
     role: "AI Platform Engineer · founding team",
@@ -306,12 +321,12 @@ const projects: Project[] = [
             Engineer.
           </TypographyP>
           <TypographyP className="font-mono">
-            Drift is an Antler-backed, sim-based evaluation platform for robotics
-            engineering. You describe what you want a robot to do in plain
-            language; Drift sets up, debugs, and runs the simulation across ROS2,
-            Gazebo, and Ignition. I joined as the founding AI engineer after
-            meeting the founders at NexHacks, where I was one of three high
-            schoolers accepted out of 1,500+ applicants.
+            Drift is an Antler-backed AI copilot for robotics simulation. You
+            describe what you want a robot to do in plain language; Drift sets
+            up, debugs, and runs the simulation across ROS2, Gazebo, and MuJoCo.
+            I joined as founding AI engineer after meeting the founders at
+            NexHacks, where I was one of three high schoolers accepted out of
+            1,500+ applicants.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Visit Drift" />
 
@@ -324,10 +339,29 @@ const projects: Project[] = [
             the plumbing.
           </p>
 
+          <TypographyH3 className="my-4 mt-8">What I actually built</TypographyH3>
+          <p className="font-mono mb-2">
+            The 129-robot library catalog behind the <code>/robots</code> CLI
+            command, with per-entry license verification against MuJoCo Menagerie
+            and partner repos. An automated CLI test pipeline driving the tool
+            with pexpect, analysing Gazebo screenshots with a vision model, and
+            sourcing real queries from robotics forums. The internal EPS
+            dashboard and regression CI on a two-week cycle, plus work on Drift
+            Desktop in Tauri and React.
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">One bug worth naming</TypographyH3>
+          <p className="font-mono mb-2">
+            A production Gazebo rendering freeze that turned out to be
+            gz-transport UDP multicast failing on Ubuntu 24.04 with an RTX 5070.
+            Most of debugging robotics simulation is like this: the symptom is in
+            the renderer and the cause is four layers down in the network stack.
+          </p>
+
           <TypographyH3 className="my-4 mt-8">Traction</TypographyH3>
           <p className="font-mono mb-2">
-            #5 Product of the Day on Product Hunt at public launch. The platform
-            is now used by thousands of engineers and installs with a single curl
+            #5 Product of the Day on Product Hunt at launch. Now used by
+            thousands of robotics engineers, installed with a single curl
             one-liner on Linux.
           </p>
         </div>
@@ -336,6 +370,7 @@ const projects: Project[] = [
   },
   {
     id: "research",
+    emblem: { src: "/assets/logos/iros.png", bg: "#ffffff" },
     category: "Robotics research",
     title: "Joint Control Under Saturation",
     role: "First author · CMU School of Computer Science",
@@ -412,7 +447,105 @@ const projects: Project[] = [
     },
   },
   {
+    id: "hive",
+    emblem: { monogram: "HIVE", bg: "#1a1206" },
+    category: "Hackathon winner",
+    title: "HIVE",
+    role: "Builder · San Francisco Hackathon",
+    period: "2026",
+    tagline:
+      "An AI operating system that coordinates people across a physical workspace.",
+    proof: "Won the San Francisco Hackathon",
+    live: "#",
+    liveLabel: "Hackathon build",
+    skills: {
+      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.ts],
+      backend: [
+        PROJECT_SKILLS.python,
+        PROJECT_SKILLS.opencv,
+        PROJECT_SKILLS.pytorch,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            An operating system for a room full of people.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            HIVE reads a physical workspace through camera input and turns what
+            it sees into task graphs, then coordinates the people in that space
+            against them. It won the San Francisco Hackathon.
+          </TypographyP>
+
+          <TypographyH3 className="my-4 mt-8">The idea</TypographyH3>
+          <p className="font-mono mb-2">
+            Software has gotten very good at coordinating work that already lives
+            on a screen, and is close to useless for work happening in a room.
+            HIVE treats the room as the interface: vision figures out what is
+            being done and by whom, the task graph figures out what should happen
+            next, and people get told the one thing that unblocks everyone else.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "eyesight",
+    emblem: { monogram: "EYE", bg: "#0a1b2e" },
+    category: "iOS accessibility",
+    title: "Eyesight",
+    role: "Founder · Apple Swift Student Challenge",
+    period: "2025 —",
+    tagline:
+      "Obstacle detection and real-time narration for blind and low-vision users.",
+    proof: "LiDAR + on-device CoreML · TestFlight beta",
+    live: "https://testflight.apple.com/join/tyjpWY2B",
+    liveLabel: "TestFlight",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.swift,
+        PROJECT_SKILLS.swiftui,
+        PROJECT_SKILLS.apple,
+      ],
+      backend: [PROJECT_SKILLS.coreml, PROJECT_SKILLS.opencv],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            The phone tells you what is in front of you, without asking the
+            internet.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Eyesight uses the iPhone&apos;s LiDAR sensor and on-device CoreML
+            inference to detect obstacles and narrate surroundings in real time,
+            for users who are blind or have low vision. Built for the Apple Swift
+            Student Challenge.
+          </TypographyP>
+          <ProjectsLinks live={this.live} liveLabel="Join on TestFlight" />
+
+          <TypographyH3 className="my-4 mt-8">Why on-device</TypographyH3>
+          <p className="font-mono mb-2">
+            An accessibility tool that stops working without signal is not an
+            accessibility tool. Everything runs locally: no round trip, no
+            dependency on a connection, and nothing about where a user is or what
+            they are looking at ever leaves the phone. The constraint is the
+            whole design.
+          </p>
+          <p className="font-mono mb-2">
+            <em>
+              The TestFlight beta is currently closed to new testers — worth
+              knowing before you tap.
+            </em>
+          </p>
+        </div>
+      );
+    },
+  },
+  {
     id: "preventaai",
+    emblem: { src: "/assets/companies/preventaai.png", bg: "#0b0b1a", fullBleed: true },
     category: "iOS health app",
     title: "PreventaAI",
     role: "Founder",
@@ -462,6 +595,7 @@ const projects: Project[] = [
   },
   {
     id: "kinetix",
+    emblem: { src: "/assets/companies/kinetix.png", bg: "#111827", fullBleed: true },
     category: "Computer vision · biomechanics",
     title: "Kinetix",
     role: "Founder",
@@ -508,6 +642,7 @@ const projects: Project[] = [
   },
   {
     id: "quickcitepro",
+    emblem: { src: "/assets/companies/quickcitepro.png", bg: "#1b2a4a", fullBleed: true },
     category: "Research tooling",
     title: "QuickCitePro",
     role: "Founder",
@@ -556,6 +691,7 @@ const projects: Project[] = [
   },
   {
     id: "evbots",
+    emblem: { src: "/assets/companies/evbots.png", bg: "#ffffff" },
     category: "Autonomous hardware",
     title: "EV Charging Robot",
     role: "Robotics Engineer · EV Bots",
@@ -609,6 +745,7 @@ const projects: Project[] = [
   },
   {
     id: "tsa",
+    emblem: { src: "/assets/companies/tsa.png", bg: "#ffffff" },
     category: "TSA Nationals",
     title: "TSA Nationals",
     role: "National competitor · team captain",
@@ -687,7 +824,55 @@ const projects: Project[] = [
     },
   },
   {
+    id: "textbook",
+    emblem: { monogram: "SSRN", bg: "#0f2a44" },
+    category: "Robotics education",
+    title: "Robotics Textbook",
+    role: "Author · co-founder, FusionBots",
+    period: "2022 – 2025",
+    tagline:
+      "A free 120-page robotics and programming textbook, published on SSRN.",
+    proof: "Published on SSRN · 200+ students taught · team of 18",
+    live: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5408322",
+    liveLabel: "papers.ssrn.com",
+    skills: {
+      frontend: [PROJECT_SKILLS.blender],
+      backend: [
+        PROJECT_SKILLS.cpp,
+        PROJECT_SKILLS.python,
+        PROJECT_SKILLS.arduino,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            120 pages of robotics and programming, given away free.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Written and published on SSRN out of FusionBots, the robotics
+            non-profit I co-founded at 14 and ran to 200+ students, a team of 18,
+            and $6K+ in revenue before we wound it down. The textbook and the
+            affordable robotics kits it was written for are what the whole thing
+            was actually for.
+          </TypographyP>
+          <ProjectsLinks live={this.live} liveLabel="Read it on SSRN" />
+
+          <TypographyH3 className="my-4 mt-8">Why write it</TypographyH3>
+          <p className="font-mono mb-2">
+            Robotics has an access problem before it has a talent problem. The
+            kits cost more than most school clubs can spend, and the material
+            assumes you already own them. So the book teaches from first
+            principles up, priced at zero, and the kits were built down to what a
+            club could actually afford.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
     id: "ypsforum",
+    emblem: { monogram: "YPSF", monogramColor: "#e04a59", bg: "linear-gradient(135deg, #7a0e23 0%, #a32738 50%, #e04a59 100%)" },
     category: "UN MGCY NGO",
     title: "YPS Forum",
     role: "Chief Technology Officer",

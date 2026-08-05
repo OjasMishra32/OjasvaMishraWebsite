@@ -449,25 +449,34 @@ export type Experience = {
   logo?: string;
   /** Fallback initials when a company has no public logo to pull. */
   monogram?: string;
+  /** Colour for the initials, when the brand's own mark is set in type. */
+  monogramColor?: string;
   /** Tile background behind the mark, matched to the logo's own artwork. */
   logoBg?: string;
+  /** Logo is already an app icon (its own rounded square + background), so it
+   *  fills the chip face edge-to-edge instead of sitting padded inside it. */
+  logoFullBleed?: boolean;
 };
 
 export const EXPERIENCE: Experience[] = [
   {
     id: 1,
-    startDate: "Feb 2026",
+    startDate: "2025",
     endDate: "Present",
-    title: "AI Platform Engineer",
+    title: "AI Platform Engineer, Founding Team",
     company: "Drift",
     companyUrl: "https://godrift.ai",
-    blurb: "Backed by Antler · San Francisco · full-time",
+    blurb: "Antler-backed · AI copilot for robotics simulation",
     logo: "/assets/companies/drift.png",
     logoBg: "#000000",
+    logoFullBleed: true,
     description: [
-      "Natural language in, working robot simulation out — across ROS2, Gazebo, and Ignition.",
-      "#5 Product of the Day on Product Hunt. Thousands of engineers on the platform.",
-      "Joined as founding AI engineer out of NexHacks: 1 of 3 high schoolers accepted from 1,500+.",
+      "Founding AI engineer on the natural-language layer: set up, debug, and run robot simulations conversationally across ROS2, Gazebo, and MuJoCo.",
+      "Built the 129-robot library catalog behind the /robots CLI command, with per-entry license verification against MuJoCo Menagerie and partner repos.",
+      "Built an automated CLI test pipeline — pexpect-driven interaction, vision-model analysis of Gazebo screenshots, and real queries sourced from robotics forums.",
+      "Shipped the internal EPS dashboard and regression CI on a two-week cycle; contributed to Drift Desktop (Tauri + React).",
+      "Traced a production Gazebo rendering freeze to gz-transport UDP multicast failing on Ubuntu 24.04 with an RTX 5070, and fixed it.",
+      "#5 Product of the Day at launch. Now used by thousands of robotics engineers.",
     ],
     skills: [
       SkillNames.PYTHON,
@@ -480,12 +489,12 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 2,
-    startDate: "May 2025",
+    startDate: "Jul 2025",
     endDate: "Present",
-    title: "AI & Robotics Researcher",
-    company: "Carnegie Mellon University, School of Computer Science",
+    title: "Research Intern",
+    company: "Carnegie Mellon University, Robotics Institute",
     companyUrl: "https://www.ri.cmu.edu/",
-    blurb: "Prof. Min Xu and Dr. Xiaolong Wu · xulab",
+    blurb: "Advised by Prof. Min Xu and Dr. Xiaolong Wu",
     logo: "/assets/companies/cmu.png",
     logoBg: "#ffffff",
     description: [
@@ -504,18 +513,20 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 3,
-    startDate: "Mar 2026",
+    startDate: "2025",
     endDate: "Present",
-    title: "Co-founder & CEO",
+    title: "Co-Founder & CEO",
     company: "Twinly",
     companyUrl: "https://twinly.tech",
-    blurb: "A digital twin for your Mac and Windows",
+    blurb: "Delaware C Corp · Z Fellows, Sept 2026 cohort",
     logo: "/assets/companies/twinly.png",
-    logoBg: "#0e1210",
+    logoBg: "#000000",
+    logoFullBleed: true,
     description: [
-      "Twinly learns how you write, talk, and decide, then runs your inbox, texts, calendar, browser, and real phone calls.",
-      "Every consequential action holds for an explicit OK before it goes out.",
-      "Shipped on macOS and Windows. Free tier at five tasks a day; paid from $20/month.",
+      "Two-person company building an AI operator that executes real computer tasks for you — persistent memory, a personal CRM, and a locally cloned voice.",
+      "Architected the Identity Runtime: macOS accessibility APIs, browser DOM state, application state, and vision composed into one execution graph, falling back to pixel-level control only when no structured interface exists.",
+      "Launched the public macOS app in July 2026 — a 2,000+ person waitlist converted into a 100-user private beta, a 150-member Discord, and 2,700+ TikTok followers.",
+      "SwiftUI, Electron, Supabase, Stripe.",
     ],
     skills: [
       SkillNames.TS,
@@ -527,9 +538,9 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 4,
-    startDate: "Jun 2025",
-    endDate: "Dec 2025",
-    title: "Robotics Engineer",
+    startDate: "Apr 2025",
+    endDate: "Feb 2026",
+    title: "AI Robotics Engineer Intern",
     company: "EV Bots, Inc.",
     blurb: "Fleet charging with mobile robots",
     logo: "/assets/companies/evbots.png",
@@ -551,15 +562,15 @@ export const EXPERIENCE: Experience[] = [
     id: 5,
     startDate: "Aug 2025",
     endDate: "Mar 2026",
-    title: "Machine Learning & Autonomy Intern",
+    title: "Engineering Intern",
     company: "PteroLabs",
     companyUrl: "https://pterolabs.ai",
     blurb: "Mission-grade UAV simulation",
     logo: "/assets/companies/pterolabs.png",
     logoBg: "#0b1f3a",
     description: [
-      "Built a UAV simulator in Unreal Engine with drone racing and AI mission planning.",
-      "Object detection plus performance benchmarking. Now used at Penn for active research.",
+      "Built a mission-grade UAV simulator in Unreal Engine with FPV racing, ML-driven mission planning, and object detection.",
+      "Performance-benchmarked it. Now used by the University of Pennsylvania for active research.",
     ],
     skills: [
       SkillNames.UNREAL,
@@ -573,7 +584,7 @@ export const EXPERIENCE: Experience[] = [
     id: 6,
     startDate: "Jul 2025",
     endDate: "Aug 2025",
-    title: "Software Engineering Intern",
+    title: "Software Development Intern",
     company: "iPipeline",
     companyUrl: "https://ipipeline.com",
     blurb: "Enterprise insurance software",
@@ -593,8 +604,10 @@ export const EXPERIENCE: Experience[] = [
     company: "Youth Publications & Socioeconomic Forum",
     companyUrl: "https://www.ypsforum.org/",
     blurb: "UN MGCY-affiliated NGO",
-    monogram: "YP",
-    logoBg: "#12324f",
+    monogram: "YPSF",
+    monogramColor: "#e04a59",
+    logoBg:
+      "linear-gradient(135deg, #7a0e23 0%, #a32738 50%, #e04a59 100%)",
     description: [
       "AI literacy programs across 15+ countries for a 500+ member organisation.",
       "Presented the work at UN conferences including HLPF and UNGA.",
@@ -673,6 +686,9 @@ export const EXPERIENCE: Experience[] = [
 
 export type Publication = {
   id: string;
+  /** Venue mark. `mono` marks inherit text colour; full-colour ones sit on a
+   *  light chip so they stay legible on the dark card. */
+  venueLogo?: { src: string; alt: string; mono?: boolean };
   title: string;
   venue: string;
   status: string;
@@ -690,6 +706,11 @@ export type Publication = {
 export const PUBLICATIONS: Publication[] = [
   {
     id: "pid-gain",
+    venueLogo: {
+      src: "/assets/logos/ieee-mono.svg",
+      alt: "IEEE",
+      mono: true,
+    },
     title:
       "Constraint-Aware Discrete-Time PID Gain Optimization for Robotic Joint Control Under Actuator Saturation",
     venue: "IEEE Transactions on Robotics (T-RO)",
@@ -703,7 +724,24 @@ export const PUBLICATIONS: Publication[] = [
     ],
   },
   {
+    id: "textbook-pub",
+    title: "Introduction to Robotics and Programming",
+    venue: "SSRN",
+    status: "Published · open access",
+    year: "2025",
+    authors: "Ojasva Mishra",
+    abstract:
+      "A 120-page open-access robotics and programming textbook, written for students who can't reach the material any other way. Published through FusionBots and indexed on SSRN.",
+    links: [
+      {
+        label: "Read on SSRN",
+        href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5408322",
+      },
+    ],
+  },
+  {
     id: "scig",
+    venueLogo: { src: "/assets/logos/iros.png", alt: "IEEE IROS 2026" },
     title:
       "SCIG++: Risk-Limiting Conformal Safety Filtering for Attack-Resilient Robotic Joint Control Under Saturation",
     venue: "IEEE IROS",
