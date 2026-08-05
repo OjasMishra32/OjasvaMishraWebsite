@@ -9,6 +9,34 @@ import { useToast } from "./ui/use-toast";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
+import { config } from "@/data/config";
+
+/** Hands the composed message to the visitor's mail client. */
+const openMailFallback = ({
+  fullName,
+  email,
+  message,
+}: {
+  fullName: string;
+  email: string;
+  message: string;
+}) => {
+  const subject = `Portfolio enquiry from ${fullName}`;
+  const body = `${message}\n\n—\n${fullName}\n${email}`;
+  const href = `mailto:${config.email}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+  // An anchor click rather than assigning location.href: Safari and several
+  // mobile browsers ignore a programmatic location change to a mailto:.
+  const a = document.createElement("a");
+  a.href = href;
+  a.rel = "noopener";
+  a.dataset.mailFallback = "true";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  return href;
+};
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -51,7 +79,7 @@ const ContactForm = () => {
         body: JSON.stringify({ fullName, email, message }),
       });
       if (!res.ok) {
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
         throw new Error(data.error || `Request failed (${res.status})`);
       }
       toast({
@@ -60,7 +88,6 @@ const ContactForm = () => {
         variant: "default",
         className: cn("top-0 mx-auto flex fixed md:top-4 md:right-4"),
       });
-      setLoading(false);
       setFullName("");
       setEmail("");
       setMessage("");
@@ -69,13 +96,15 @@ const ContactForm = () => {
         clearTimeout(timer);
       }, 1000);
     } catch (err) {
+      // The API route needs a RESEND_API_KEY to send anything. Rather than tell
+      // someone who just typed out a message that it failed, hand the message
+      // straight to their mail client with everything already filled in — the
+      // message still reaches the inbox, and nothing is lost.
+      openMailFallback({ fullName, email, message });
       toast({
-        title: "Error",
-        description: "Something went wrong! Please try again.",
-        className: cn(
-          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
-        ),
-        variant: "destructive",
+        title: "Opening your email app",
+        description: `Your message is ready to send to ${config.email}.`,
+        className: cn("top-0 mx-auto flex fixed md:top-4 md:right-4"),
       });
     }
     setLoading(false);

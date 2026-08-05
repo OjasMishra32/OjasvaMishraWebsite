@@ -24,9 +24,9 @@ import SectionWrapper from "../ui/section-wrapper";
  * name instead of three screens down.
  */
 const CREDENTIALS = [
-  { label: "Researcher", detail: "CMU Robotics Institute" },
   { label: "Co-founder & CEO", detail: "Twinly · twinly.tech" },
   { label: "Incoming freshman", detail: "UF · B.S. CE + M.S. Finance" },
+  { label: "Researcher", detail: "CMU Robotics Institute" },
 ];
 
 const HeroSection = () => {
