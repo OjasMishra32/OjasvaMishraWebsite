@@ -19,7 +19,7 @@ import { SectionHeader } from "./section-header";
 import SectionWrapper from "../ui/section-wrapper";
 
 const ProjectsSection = () => {
-  const featured = projects.find((p) => p.featured);
+  const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
 
   return (
@@ -31,7 +31,9 @@ const ProjectsSection = () => {
         className="static mb-14 md:mb-24 mt-0"
       />
 
-      {featured && <FeaturedCard project={featured} />}
+      {featured.map((p) => (
+        <FeaturedCard key={p.id} project={p} />
+      ))}
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {rest.map((project, i) => (
@@ -52,37 +54,44 @@ const ProjectsSection = () => {
  * away.
  */
 
-/** The one project that gets the full width, before the grid starts. */
+/**
+ * A featured project: full width, above the grid.
+ *
+ * The card is an <article>, not a dialog trigger wrapping everything — the TSA
+ * entry carries real anchor links on its face, and an <a> inside a <button> is
+ * invalid HTML that React hydrates differently to the server. So the trigger
+ * wraps only the non-interactive text block, and the links sit beside it.
+ */
 const FeaturedCard = ({ project }: { project: Project }) => {
   const reduce = useReducedMotion();
 
   return (
     <ResponsiveDialog>
-      <ResponsiveDialogTrigger className="mb-4 block w-full bg-transparent text-left">
-        <motion.article
-          initial={reduce ? false : { opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-          className={cn(
-            "group relative overflow-hidden rounded-2xl border border-border p-7 md:p-12",
-            "bg-card/95",
-            "transition-[transform,border-color,background-color,box-shadow] duration-300",
-            "hover:-translate-y-1 hover:border-primary/40 hover:bg-card",
-            "hover:shadow-[0_28px_80px_-40px_hsl(var(--foreground)/0.65)]"
-          )}
-          data-chip-track
-        >
-          {/* a single wash of accent, anchored to one corner — the only place
-              on the page that gets colour, so it reads as emphasis not decoration */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full opacity-[0.10] blur-2xl"
-            style={{ background: "hsl(var(--primary))" }}
-          />
+      <motion.article
+        initial={reduce ? false : { opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        data-chip-track
+        className={cn(
+          "group relative mb-4 overflow-hidden rounded-2xl border border-border p-7 md:p-12",
+          "bg-card/95",
+          "transition-[transform,border-color,background-color,box-shadow] duration-300",
+          "hover:-translate-y-1 hover:border-primary/40 hover:bg-card",
+          "hover:shadow-[0_28px_80px_-40px_hsl(var(--foreground)/0.65)]"
+        )}
+      >
+        {/* a single wash of accent, anchored to one corner — the only place on
+            the page that gets colour, so it reads as emphasis not decoration */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full opacity-[0.10] blur-2xl"
+          style={{ background: "hsl(var(--primary))" }}
+        />
 
-          <div className="relative flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-2xl">
+        <div className="relative flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <ResponsiveDialogTrigger className="block w-full bg-transparent text-left">
               <div className="flex items-center gap-3">
                 <span className="rounded-full border border-primary/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/90">
                   Featured
@@ -107,25 +116,48 @@ const FeaturedCard = ({ project }: { project: Project }) => {
                 <span className="opacity-40">/</span>
                 <span>{project.period}</span>
               </div>
-            </div>
+            </ResponsiveDialogTrigger>
 
-            <div className="flex shrink-0 flex-col items-start gap-6 md:items-end">
-              {project.emblem && (
-                <Chip3D
-                  {...project.emblem}
-                  index={0}
-                  trackSelector="[data-chip-track]"
-                  className="size-24 md:size-32"
-                />
-              )}
-              <div className="flex items-center gap-2 font-mono text-sm text-foreground/80">
-                {project.liveLabel}
-                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            {/* Surfaced on the card, not behind the click: nobody opens a modal
+                to find documentation they don't know exists. */}
+            {project.featuredLinks && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {project.featuredLinks.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener"
+                    className={cn(
+                      "inline-flex items-center gap-1.5 rounded-full border border-border",
+                      "bg-background/40 px-3 py-1.5 font-mono text-[11px] text-foreground/80",
+                      "transition-colors hover:border-primary/50 hover:bg-background hover:text-foreground"
+                    )}
+                  >
+                    {l.label}
+                    <ArrowUpRight className="size-3" />
+                  </a>
+                ))}
               </div>
-            </div>
+            )}
           </div>
-        </motion.article>
-      </ResponsiveDialogTrigger>
+
+          <div className="flex shrink-0 flex-col items-start gap-6 md:items-end">
+            {project.emblem && (
+              <Chip3D
+                {...project.emblem}
+                index={0}
+                trackSelector="[data-chip-track]"
+                className="size-24 md:size-32"
+              />
+            )}
+            <ResponsiveDialogTrigger className="flex items-center gap-2 bg-transparent font-mono text-sm text-foreground/80 transition-colors hover:text-foreground">
+              {project.liveLabel}
+              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </ResponsiveDialogTrigger>
+          </div>
+        </div>
+      </motion.article>
       <ProjectDialog project={project} />
     </ResponsiveDialog>
   );

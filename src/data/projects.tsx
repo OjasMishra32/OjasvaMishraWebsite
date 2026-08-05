@@ -176,12 +176,12 @@ const TSA_EVENTS: {
     name: "Systems Control",
     blurb:
       "Autonomous control systems coded on-site in Python and C++ under a timer.",
-    note: "on-site build",
+    note: "built on-site, timed",
   },
   {
     name: "Robotics",
     blurb: "Built and programmed an autonomous, drivable object-manipulating robot.",
-    note: "on-site build",
+    note: "built on-site, timed",
   },
   {
     name: "Board Game Design",
@@ -214,6 +214,12 @@ export type Project = {
   liveLabel: string;
   /** renders large, above the grid — exactly one project should set this */
   featured?: boolean;
+  /**
+   * Links surfaced directly on a featured card. The TSA portfolios are the
+   * whole point of that entry and nobody clicks into a modal to discover
+   * something they don't know is there.
+   */
+  featuredLinks?: { label: string; href: string }[];
   /**
    * The project's own mark, shown as a 3D chip on the card. Every one of these
    * is a real artifact — an app icon off the store listing, a company logo, a
@@ -492,7 +498,11 @@ const projects: Project[] = [
   },
   {
     id: "eyesight",
-    emblem: { monogram: "EYE", bg: "#0a1b2e" },
+    emblem: {
+      src: "/assets/companies/eyesight.png",
+      bg: "#000000",
+      fullBleed: true,
+    },
     category: "iOS accessibility",
     title: "Eyesight",
     role: "Founder · Apple Swift Student Challenge",
@@ -595,7 +605,11 @@ const projects: Project[] = [
   },
   {
     id: "kinetix",
-    emblem: { src: "/assets/companies/kinetix.png", bg: "#111827", fullBleed: true },
+    emblem: {
+      src: "/assets/companies/kinetix.png",
+      bg: "#0B1017",
+      fullBleed: true,
+    },
     category: "Computer vision · biomechanics",
     title: "Kinetix",
     role: "Founder",
@@ -745,16 +759,36 @@ const projects: Project[] = [
   },
   {
     id: "tsa",
+    featured: true,
     emblem: { src: "/assets/companies/tsa.png", bg: "#ffffff" },
     category: "TSA Nationals",
     title: "TSA Nationals",
     role: "National competitor · team captain",
     period: "2024 – 2025",
     tagline:
-      "Eight events at nationals, from a carbon-trading web app to an FPV drone to a Meta Quest escape room.",
-    proof: "Captain for 6 events · national finalist in 2",
+      "Eight separate engineering projects in one season — a carbon-trading web app, an FPV drone, a Meta Quest escape room, an autonomous robot.",
+    proof: "Captain for 6 events · national finalist in 2 · 5 portfolios below",
     live: "https://safmstsa.vercel.app",
     liveLabel: "safmstsa.vercel.app",
+    featuredLinks: [
+      { label: "SAFMS — live app", href: "https://safmstsa.vercel.app" },
+      {
+        label: "Drone Challenge",
+        href: "https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit",
+      },
+      {
+        label: "Engineering Design",
+        href: "https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit",
+      },
+      {
+        label: "VR Visualization",
+        href: "https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit",
+      },
+      {
+        label: "Video Game Design",
+        href: "https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit",
+      },
+    ],
     skills: {
       frontend: [
         PROJECT_SKILLS.react,
@@ -779,8 +813,10 @@ const projects: Project[] = [
             The Technology Student Association runs national competitions across
             wildly different disciplines, and I entered eight of them in a single
             year — software, hardware, aerospace, environmental engineering, and
-            games. National finalist in two. Each event below links to the
-            documentation portfolio I submitted for it.
+            games. Team captain for six, national finalist in two. Every one of
+            these is a full engineering project with its own design cycle, not a
+            science-fair poster. Five have submitted documentation portfolios,
+            linked below.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Open SAFMS, the live app" />
 
@@ -865,47 +901,6 @@ const projects: Project[] = [
             assumes you already own them. So the book teaches from first
             principles up, priced at zero, and the kits were built down to what a
             club could actually afford.
-          </p>
-        </div>
-      );
-    },
-  },
-  {
-    id: "ypsforum",
-    emblem: { monogram: "YPSF", monogramColor: "#e04a59", bg: "linear-gradient(135deg, #7a0e23 0%, #a32738 50%, #e04a59 100%)" },
-    category: "UN MGCY NGO",
-    title: "YPS Forum",
-    role: "Chief Technology Officer",
-    period: "2025 – 2026",
-    tagline: "AI literacy programs for students across 15+ countries.",
-    proof: "500+ members · presented at UN HLPF and UNGA",
-    live: "https://www.ypsforum.org/",
-    liveLabel: "ypsforum.org",
-    skills: {
-      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.next, PROJECT_SKILLS.ts],
-      backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.firebase],
-    },
-    get content() {
-      return (
-        <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            CTO of a UN MGCY-affiliated NGO running AI literacy programs across
-            15+ countries.
-          </TypographyP>
-          <TypographyP className="font-mono">
-            The Youth Publications &amp; Socioeconomic Forum is a 500+ member
-            global organisation. I lead the technology side: the programs
-            themselves, the platform they run on, and the AI literacy curriculum
-            delivered to students who would otherwise get none. I have presented
-            this work at UN conferences including HLPF and UNGA.
-          </TypographyP>
-          <ProjectsLinks live={this.live} liveLabel="Visit ypsforum.org" />
-
-          <TypographyH3 className="my-4 mt-8">What the work is</TypographyH3>
-          <p className="font-mono mb-2">
-            Curriculum, platform, and delivery. Most of what I know about
-            teaching engineering came from finding out, repeatedly, which parts
-            people actually get stuck on.
           </p>
         </div>
       );

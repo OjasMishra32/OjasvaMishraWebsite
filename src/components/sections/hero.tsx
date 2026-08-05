@@ -11,6 +11,7 @@ import {
 import { usePreloader } from "../preloader";
 import { BlurIn, BoxReveal } from "../reveal-animations";
 import ScrollDownIcon from "../scroll-down-icon";
+import { motion, useReducedMotion } from "motion/react";
 import { SiGithub } from "react-icons/si";
 // LinkedIn was dropped from simple-icons (trademark), so it comes from Font Awesome.
 import { FaLinkedin } from "react-icons/fa6";
@@ -23,11 +24,68 @@ import SectionWrapper from "../ui/section-wrapper";
  * the three things that are hardest to fake — so they sit directly under the
  * name instead of three screens down.
  */
-const CREDENTIALS = [
-  { label: "Co-founder & CEO", detail: "Twinly · twinly.tech" },
+const CREDENTIALS: {
+  label: string;
+  detail: string;
+  href?: string;
+}[] = [
+  { label: "Co-founder & CEO", detail: "Twinly", href: "https://twinly.tech" },
   { label: "Incoming freshman", detail: "UF · B.S. CE + M.S. Finance" },
   { label: "Researcher", detail: "CMU Robotics Institute" },
 ];
+
+/**
+ * The one bit of salesmanship on the page. It arrives after the hero has
+ * settled so it reads as an aside rather than a popup, keeps bobbing gently so
+ * the eye catches it on the way past, and is a real mailto rather than
+ * decoration.
+ */
+const TwinlyPerk = () => {
+  const reduce = useReducedMotion();
+
+  return (
+    <motion.a
+      href="mailto:founders@twinly.tech?subject=Sent%20by%20ojasvamishra.me"
+      initial={reduce ? false : { opacity: 0, y: 10, scale: 0.85 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ type: "spring", stiffness: 260, damping: 16, delay: 2.6 }}
+      whileHover={reduce ? undefined : { scale: 1.04, rotate: -1 }}
+      whileTap={{ scale: 0.97 }}
+      className={cn(
+        "group/perk relative mt-4 inline-flex w-fit items-center gap-2",
+        "rounded-2xl rounded-tl-md border border-primary/40 bg-primary/10",
+        "px-3.5 py-2 font-mono text-[11px] leading-tight text-foreground/90",
+        "backdrop-blur-[2px] transition-colors hover:bg-primary/20 sm:text-xs"
+      )}
+    >
+      {/* the tail, pointing back up at the Twinly line it belongs to */}
+      <span
+        aria-hidden
+        className="absolute -top-[7px] left-3 size-3 rotate-45 border-l border-t border-primary/40 bg-primary/10"
+      />
+      <motion.span
+        aria-hidden
+        animate={reduce ? undefined : { rotate: [0, 14, -8, 0] }}
+        transition={{
+          duration: 2.2,
+          repeat: Infinity,
+          repeatDelay: 3.5,
+          ease: "easeInOut",
+        }}
+        className="text-sm"
+      >
+        👋
+      </motion.span>
+      <span>
+        psst — email{" "}
+        <span className="font-semibold text-foreground underline decoration-primary/60 underline-offset-2">
+          founders@twinly.tech
+        </span>{" "}
+        and mention this site for a <em className="not-italic font-semibold">big</em> discount
+      </span>
+    </motion.a>
+  );
+};
 
 const HeroSection = () => {
   const { isLoading } = usePreloader();
@@ -104,12 +162,24 @@ const HeroSection = () => {
                           {c.label}
                         </span>
                         <span className="mx-2 opacity-40">/</span>
-                        <span className="font-mono text-xs sm:text-sm">
-                          {c.detail}
-                        </span>
+                        {c.href ? (
+                          <Link
+                            href={c.href}
+                            target="_blank"
+                            rel="noopener"
+                            className="font-mono text-xs underline decoration-muted-foreground/40 underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground sm:text-sm"
+                          >
+                            {c.detail}
+                          </Link>
+                        ) : (
+                          <span className="font-mono text-xs sm:text-sm">
+                            {c.detail}
+                          </span>
+                        )}
                       </li>
                     ))}
                   </ul>
+                  <TwinlyPerk />
                 </BlurIn>
               </div>
 

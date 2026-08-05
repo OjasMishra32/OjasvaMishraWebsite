@@ -724,22 +724,6 @@ export const PUBLICATIONS: Publication[] = [
     ],
   },
   {
-    id: "textbook-pub",
-    title: "Introduction to Robotics and Programming",
-    venue: "SSRN",
-    status: "Published · open access",
-    year: "2025",
-    authors: "Ojasva Mishra",
-    abstract:
-      "A 120-page open-access robotics and programming textbook, written for students who can't reach the material any other way. Published through FusionBots and indexed on SSRN.",
-    links: [
-      {
-        label: "Read on SSRN",
-        href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5408322",
-      },
-    ],
-  },
-  {
     id: "scig",
     venueLogo: { src: "/assets/logos/iros.png", alt: "IEEE IROS 2026" },
     title:
@@ -754,6 +738,22 @@ export const PUBLICATIONS: Publication[] = [
       {
         label: "Watch the Panda demo",
         href: "https://www.youtube.com/watch?v=2A_RMrd1qKo",
+      },
+    ],
+  },
+  {
+    id: "textbook-pub",
+    title: "Introduction to Robotics and Programming",
+    venue: "SSRN",
+    status: "Published · open access",
+    year: "2025",
+    authors: "Ojasva Mishra",
+    abstract:
+      "A 120-page open-access robotics and programming textbook, written for students who can't reach the material any other way. Published through FusionBots and indexed on SSRN.",
+    links: [
+      {
+        label: "Read on SSRN",
+        href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5408322",
       },
     ],
   },
