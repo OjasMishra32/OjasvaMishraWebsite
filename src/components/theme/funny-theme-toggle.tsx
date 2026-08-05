@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -16,6 +18,13 @@ export default function FunnyThemeToggle({
 }) {
   const { setTheme, theme } = useTheme();
   const [counter, setCounter] = React.useState({ dark: 0, light: 0 });
+  // The two branches below render structurally different markup — a bare button
+  // in light, a Popover trigger otherwise. The server has no idea which theme
+  // the visitor has, so it always renders one of them and the client sometimes
+  // renders the other, which is a hydration mismatch. Hold the neutral button
+  // until mount, then switch.
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
   const { toast } = useToast();
   const ref = React.useRef<HTMLButtonElement>(null);
 
@@ -75,6 +84,20 @@ export default function FunnyThemeToggle({
     });
     toggleTheme("dark", e);
   };
+
+  if (!mounted) {
+    return (
+      <Button
+        variant="outline"
+        size="icon"
+        aria-label="Toggle theme"
+        className={cn("border-none bg-transparent", className)}
+      >
+        <Sun className="h-[1.2rem] w-[1.2rem]" />
+        <span className="sr-only">Toggle theme</span>
+      </Button>
+    );
+  }
 
   return (
     <>

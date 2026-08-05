@@ -144,42 +144,39 @@ export type TsaEvent = {
   href?: string;
   linkLabel?: string;
   note?: string;
-  /** real brand marks for what it was actually built with */
-  tech: Skill[];
+  /** full-colour marks for what it was actually built with */
+  icons: { src: string; title: string }[];
 };
 
+const ic = (path: string, title: string) => ({
+  src: `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}.svg`,
+  title,
+});
+
 /**
- * The eight TSA national events. These are eight separate engineering projects
- * with their own design cycles, not eight entries in one competition — so they
- * render in full on the card face rather than as a list of link labels nobody
- * can decode. Five have submitted documentation portfolios; three were built
- * on-site against a clock.
+ * The eight TSA national events, hardware and physical builds first.
+ *
+ * These are eight separate engineering projects with their own design cycles,
+ * not eight entries in one competition — so they render in full on the card
+ * face rather than as a list of link labels nobody can decode. Five have
+ * submitted documentation portfolios; three were built on-site against a clock.
  */
 export const TSA_EVENTS: TsaEvent[] = [
-  {
-    name: "Software Development",
-    field: "Web · blockchain",
-    blurb:
-      "SAFMS — an AI/IoT web app modelling agroforestry carbon credits, land use, and live environmental telemetry, settling credit issuance on-chain.",
-    href: "https://safmstsa.vercel.app",
-    linkLabel: "Live app",
-    tech: [PROJECT_SKILLS.react, PROJECT_SKILLS.js, PROJECT_SKILLS.chain],
-  },
   {
     name: "Drone Challenge",
     field: "Aerospace · hardware",
     blurb:
       "A Betaflight FPV drone engineered and tuned from scratch — custom CAD frame, wiring loom, and flight-controller tuning.",
     href: "https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit",
-    tech: [PROJECT_SKILLS.arduino, PROJECT_SKILLS.cpp],
+    icons: [ic("arduino/arduino-original", "Arduino"), ic("cplusplus/cplusplus-original", "C++")],
   },
   {
-    name: "Engineering Design",
-    field: "Environmental",
+    name: "Robotics",
+    field: "Robotics",
     blurb:
-      "Nitrogen-capture domes using zeolites to cut agricultural emissions — materials selection, geometry, and capture modelling.",
-    href: "https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit",
-    tech: [PROJECT_SKILLS.python],
+      "An autonomous and drivable object-manipulating robot — chassis, manipulator, and autonomous routine, built on the floor.",
+    note: "Built on-site, timed",
+    icons: [ic("cplusplus/cplusplus-original", "C++"), ic("arduino/arduino-original", "Arduino")],
   },
   {
     name: "VR Visualization",
@@ -187,7 +184,24 @@ export const TSA_EVENTS: TsaEvent[] = [
     blurb:
       "A fully playable escape room built in Unity 6 for the Meta Quest — level design, interaction, and hand-tracked puzzles.",
     href: "https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit",
-    tech: [PROJECT_SKILLS.unity, PROJECT_SKILLS.quest],
+    icons: [ic("unity/unity-original", "Unity"), ic("csharp/csharp-original", "C#")],
+  },
+  {
+    name: "Software Development",
+    field: "Web · blockchain",
+    blurb:
+      "SAFMS — an AI/IoT web app modelling agroforestry carbon credits, land use, and live environmental telemetry, settling credit issuance on-chain.",
+    href: "https://safmstsa.vercel.app",
+    linkLabel: "Open the live app",
+    icons: [ic("react/react-original", "React"), ic("javascript/javascript-original", "JavaScript")],
+  },
+  {
+    name: "Engineering Design",
+    field: "Environmental",
+    blurb:
+      "Nitrogen-capture domes using zeolites to cut agricultural emissions — materials selection, geometry, and capture modelling.",
+    href: "https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit",
+    icons: [ic("python/python-original", "Python")],
   },
   {
     name: "Video Game Design",
@@ -195,7 +209,7 @@ export const TSA_EVENTS: TsaEvent[] = [
     blurb:
       "A tower defense game in Unity with C#, custom Blender models, and hand-drawn pixel art assets.",
     href: "https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit",
-    tech: [PROJECT_SKILLS.unity, PROJECT_SKILLS.blender],
+    icons: [ic("unity/unity-original", "Unity"), ic("blender/blender-original", "Blender")],
   },
   {
     name: "Systems Control",
@@ -203,22 +217,14 @@ export const TSA_EVENTS: TsaEvent[] = [
     blurb:
       "Autonomous control systems written on-site in Python and C++ against a clock, with no reference material.",
     note: "Built on-site, timed",
-    tech: [PROJECT_SKILLS.python, PROJECT_SKILLS.cpp],
-  },
-  {
-    name: "Robotics",
-    field: "Robotics",
-    blurb:
-      "An autonomous and drivable object-manipulating robot — chassis, manipulator, and autonomous routine.",
-    note: "Built on-site, timed",
-    tech: [PROJECT_SKILLS.cpp, PROJECT_SKILLS.arduino],
+    icons: [ic("python/python-original", "Python"), ic("cplusplus/cplusplus-original", "C++")],
   },
   {
     name: "Board Game Design",
     field: "Systems design",
     blurb: "An original board game, designed and playtested end to end.",
     note: "Built on-site, timed",
-    tech: [],
+    icons: [],
   },
 ];
 

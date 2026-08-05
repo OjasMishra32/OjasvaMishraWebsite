@@ -149,76 +149,103 @@ const FeaturedCard = ({ project }: { project: Project }) => {
  * The alternative was a row of links reading "Drone Challenge", "VR
  * Visualization" — which tells a reader nothing about what was built and
  * requires a click to find out. Each one gets what it actually is, the
- * discipline it sits in, and the real brand marks for what it was built with.
+ * discipline it sits in, the real marks for what it was built with, and — where
+ * one exists — an unmissable button to the documentation portfolio. A quiet
+ * "Portfolio ↗" caption was getting missed, which defeats the point of having
+ * the portfolios at all.
  */
 const Breakdown = ({ items }: { items: TsaEvent[] }) => {
   const reduce = useReducedMotion();
+  const withDocs = items.filter((i) => i.href).length;
 
   return (
     <div className="relative mt-10 border-t border-border pt-8">
-      <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-        Eight events · eight builds
-      </p>
-      <ul className="grid grid-cols-1 gap-x-6 gap-y-px sm:grid-cols-2 xl:grid-cols-4">
-        {items.map((ev, i) => {
-          const Wrapper = ev.href ? "a" : "div";
-          return (
-            <motion.li
-              key={ev.name}
-              initial={reduce ? false : { opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
+      <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3">
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          Eight events · eight builds
+        </p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary/90">
+          ↓ {withDocs} documentation portfolios, open below
+        </p>
+      </div>
+
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {items.map((ev, i) => (
+          <motion.li
+            key={ev.name}
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
+            className={cn(
+              "group/ev relative flex flex-col overflow-hidden rounded-xl border p-4",
+              "transition-colors duration-200",
+              ev.href
+                ? "border-border bg-background/40 hover:border-primary/40 hover:bg-background/70"
+                : "border-dashed border-border/70 bg-background/20"
+            )}
+          >
+            {/* the build number, ghosted large behind the content */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -right-2 -top-5 select-none font-display text-[5rem] font-bold leading-none text-foreground/[0.045] transition-colors duration-300 group-hover/ev:text-foreground/[0.08]"
             >
-              <Wrapper
-                {...(ev.href
-                  ? { href: ev.href, target: "_blank", rel: "noopener" }
-                  : {})}
-                className={cn(
-                  "group/ev flex h-full flex-col rounded-xl border border-transparent p-4",
-                  "transition-colors duration-200",
-                  ev.href
-                    ? "hover:border-primary/30 hover:bg-background/50"
-                    : "opacity-80"
-                )}
-              >
-                <div className="flex items-baseline justify-between gap-2">
-                  <span className="font-display text-sm font-bold tracking-tight text-foreground">
-                    {ev.name}
-                  </span>
-                  <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground/70">
-                    {ev.field}
-                  </span>
-                </div>
+              {String(i + 1).padStart(2, "0")}
+            </span>
 
-                <p className="mt-2 flex-1 text-[13px] leading-relaxed text-muted-foreground">
-                  {ev.blurb}
-                </p>
+            <div className="relative">
+              <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground/70">
+                {ev.field}
+              </p>
+              <h4 className="mt-1 font-display text-[15px] font-bold leading-tight tracking-tight text-foreground">
+                {ev.name}
+              </h4>
+              <p className="mt-2.5 text-[13px] leading-relaxed text-muted-foreground">
+                {ev.blurb}
+              </p>
+            </div>
 
-                <div className="mt-3 flex items-center justify-between gap-3">
-                  {/* real marks for what it was built with */}
-                  <div className="flex items-center gap-2 text-foreground/55">
-                    {ev.tech.map((t) => (
-                      <span key={t.title} title={t.title} className="text-[15px]">
-                        {t.icon}
-                      </span>
-                    ))}
-                  </div>
-                  {ev.href ? (
-                    <span className="inline-flex shrink-0 items-center gap-1 font-mono text-[10px] text-foreground/70 transition-colors group-hover/ev:text-foreground">
-                      {ev.linkLabel ?? "Portfolio"}
-                      <ArrowUpRight className="size-3 transition-transform duration-200 group-hover/ev:-translate-y-0.5 group-hover/ev:translate-x-0.5" />
-                    </span>
-                  ) : (
-                    <span className="shrink-0 font-mono text-[10px] text-muted-foreground/50">
-                      {ev.note}
-                    </span>
+            {/* full-colour marks for what it was built with */}
+            {ev.icons.length > 0 && (
+              <div className="relative mt-4 flex items-center gap-2.5">
+                {ev.icons.map((t) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={t.title}
+                    src={t.src}
+                    alt={t.title}
+                    title={t.title}
+                    loading="lazy"
+                    className="size-5 object-contain opacity-85 transition-transform duration-300 group-hover/ev:scale-110"
+                  />
+                ))}
+              </div>
+            )}
+
+            <div className="relative mt-4 pt-1">
+              {ev.href ? (
+                <a
+                  href={ev.href}
+                  target="_blank"
+                  rel="noopener"
+                  className={cn(
+                    "inline-flex w-full items-center justify-center gap-1.5 rounded-lg",
+                    "border border-primary/50 bg-primary/10 px-3 py-2",
+                    "font-mono text-[11px] font-medium text-foreground",
+                    "transition-colors duration-200 hover:bg-primary hover:text-primary-foreground"
                   )}
-                </div>
-              </Wrapper>
-            </motion.li>
-          );
-        })}
+                >
+                  {ev.linkLabel ?? "View my portfolio"}
+                  <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover/ev:-translate-y-0.5 group-hover/ev:translate-x-0.5" />
+                </a>
+              ) : (
+                <span className="inline-flex w-full items-center justify-center rounded-lg border border-dashed border-border px-3 py-2 font-mono text-[11px] text-muted-foreground/70">
+                  {ev.note}
+                </span>
+              )}
+            </div>
+          </motion.li>
+        ))}
       </ul>
     </div>
   );

@@ -8,7 +8,8 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* cool off the flat white — everything sits on a faint blue-grey */
+    --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -38,12 +39,25 @@ body {
     --brand: #171717;
     --accent-solid: #171717;
     --accent-glow: transparent;
+
+    /* aurora */
+    --aurora-base: linear-gradient(180deg, #f7f9fc 0%, #eef2f8 55%, #e9eef6 100%);
+    --aurora-1: rgba(56, 130, 246, 0.20);
+    --aurora-2: rgba(168, 85, 247, 0.16);
+    --aurora-3: rgba(20, 184, 166, 0.16);
+    --aurora-grid: rgba(15, 23, 42, 0.055);
+    --aurora-vignette: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      transparent 40%,
+      rgba(226, 232, 240, 0.55) 100%
+    );
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* a touch bluer and deeper than the stock slate */
+    --background: 222 47% 6%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 222 45% 8%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
@@ -69,6 +83,18 @@ body {
     --brand: #f5f5f5;
     --accent-solid: #f5f5f5;
     --accent-glow: transparent;
+
+    /* aurora */
+    --aurora-base: linear-gradient(180deg, #070b16 0%, #0a1020 55%, #060912 100%);
+    --aurora-1: rgba(56, 130, 246, 0.30);
+    --aurora-2: rgba(147, 51, 234, 0.26);
+    --aurora-3: rgba(16, 185, 129, 0.20);
+    --aurora-grid: rgba(148, 163, 184, 0.07);
+    --aurora-vignette: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      transparent 35%,
+      rgba(2, 4, 10, 0.85) 100%
+    );
   }
 }
 
@@ -241,4 +267,74 @@ body > canvas {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+
+/* ---------------------------------------------------------------------------
+   Aurora background
+   Radial gradients, not blurred blobs: a blur wide enough to soften a 900px
+   shape is a full-screen offscreen pass every frame, and this animates under a
+   live WebGL canvas. Only `transform` is animated, so it stays on the
+   compositor — no layout, no repaint.
+--------------------------------------------------------------------------- */
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+  /* the gradient's own falloff is the softness — no filter needed */
+  opacity: 1;
+}
+
+.aurora-blob-1 {
+  top: -22%;
+  left: -12%;
+  width: 62vw;
+  height: 62vw;
+  background: radial-gradient(circle closest-side, var(--aurora-1), transparent 72%);
+  animation: aurora-drift-1 34s ease-in-out infinite alternate;
+}
+
+.aurora-blob-2 {
+  top: 18%;
+  right: -18%;
+  width: 58vw;
+  height: 58vw;
+  background: radial-gradient(circle closest-side, var(--aurora-2), transparent 72%);
+  animation: aurora-drift-2 44s ease-in-out infinite alternate;
+}
+
+.aurora-blob-3 {
+  bottom: -26%;
+  left: 22%;
+  width: 66vw;
+  height: 66vw;
+  background: radial-gradient(circle closest-side, var(--aurora-3), transparent 72%);
+  animation: aurora-drift-3 52s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift-1 {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(14vw, 10vh, 0) scale(1.18); }
+}
+@keyframes aurora-drift-2 {
+  from { transform: translate3d(0, 0, 0) scale(1.08); }
+  to   { transform: translate3d(-16vw, 14vh, 0) scale(0.92); }
+}
+@keyframes aurora-drift-3 {
+  from { transform: translate3d(0, 0, 0) scale(0.95); }
+  to   { transform: translate3d(10vw, -14vh, 0) scale(1.15); }
+}
+
+.aurora-grid {
+  background-image:
+    linear-gradient(to right, var(--aurora-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--aurora-grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  /* fade the grid out toward the edges so it never looks like a table */
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 78%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 78%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob { animation: none; }
 }

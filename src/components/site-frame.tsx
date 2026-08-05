@@ -5,6 +5,7 @@ import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import AppOverlays from "@/components/app-overlays";
 import ScrollProgress from "@/components/ui/scroll-progress";
+import AuroraBackground from "@/components/aurora-background";
 
 /**
  * Wraps the app shell. The `/components*` showcase routes are rendered
@@ -19,6 +20,7 @@ export default function SiteFrame({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <AuroraBackground />
       <ScrollProgress />
       <Header />
       {children}
