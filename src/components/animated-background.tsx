@@ -144,7 +144,8 @@ const KeyboardScene = ({ maxDpr }: { maxDpr: number }) => {
     return [
       createSectionTimeline("#skills", "skills", "hero"),
       createSectionTimeline("#experience", "experience", "skills", "top 70%"),
-      createSectionTimeline("#projects", "projects", "experience", "top 70%"),
+      createSectionTimeline("#publications", "publications", "experience", "top 70%"),
+      createSectionTimeline("#projects", "projects", "publications", "top 70%"),
       createSectionTimeline("#contact", "contact", "projects", "top 30%"),
     ].filter(Boolean) as gsap.core.Timeline[];
   };

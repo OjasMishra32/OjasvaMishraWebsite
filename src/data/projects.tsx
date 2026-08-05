@@ -132,6 +132,64 @@ const PROJECT_SKILLS = {
   chain: text("Blockchain", "BC"),
 };
 
+/**
+ * The eight TSA national events, each pointing at the documentation portfolio
+ * actually submitted for it. Three were judged on-site with nothing to hand in.
+ */
+const TSA_EVENTS: {
+  name: string;
+  blurb: string;
+  href?: string;
+  linkLabel?: string;
+  note?: string;
+}[] = [
+  {
+    name: "Software Development",
+    blurb:
+      "SAFMS — an AI/IoT modelling web app for agroforestry carbon trading, React and blockchain, deployed live.",
+    href: "https://safmstsa.vercel.app",
+    linkLabel: "Live app",
+  },
+  {
+    name: "Drone Challenge",
+    blurb: "Engineered and tuned a Betaflight FPV drone with custom CAD and wiring.",
+    href: "https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit",
+  },
+  {
+    name: "Engineering Design",
+    blurb:
+      "Nitrogen-capture domes using zeolites, to cut agricultural emissions.",
+    href: "https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit",
+  },
+  {
+    name: "VR Visualization",
+    blurb: "A fully playable escape room built in Unity 6 for the Meta Quest.",
+    href: "https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit",
+  },
+  {
+    name: "Video Game Design",
+    blurb:
+      "A tower defense game in Unity with C# and custom Blender and pixel art assets.",
+    href: "https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit",
+  },
+  {
+    name: "Systems Control",
+    blurb:
+      "Autonomous control systems coded on-site in Python and C++ under a timer.",
+    note: "on-site build",
+  },
+  {
+    name: "Robotics",
+    blurb: "Built and programmed an autonomous, drivable object-manipulating robot.",
+    note: "on-site build",
+  },
+  {
+    name: "Board Game Design",
+    blurb: "Designed and playtested an original board game.",
+    note: "no documentation kept",
+  },
+];
+
 export type Project = {
   id: string;
   /** what kind of thing this is — sits above the title on the card */
@@ -154,11 +212,14 @@ export type Project = {
   live: string;
   /** shown as the card's footer link text */
   liveLabel: string;
+  /** renders large, above the grid — exactly one project should set this */
+  featured?: boolean;
 };
 
 const projects: Project[] = [
   {
     id: "twinly",
+    featured: true,
     category: "AI desktop agent",
     title: "Twinly",
     role: "Co-founder & CEO",
@@ -547,52 +608,80 @@ const projects: Project[] = [
     },
   },
   {
-    id: "safms",
+    id: "tsa",
     category: "TSA Nationals",
-    title: "SAFMS",
-    role: "Builder · national competitor",
+    title: "TSA Nationals",
+    role: "National competitor · team captain",
     period: "2024 – 2025",
     tagline:
-      "Carbon-credit modelling for agroforestry, settled on-chain and deployed live.",
-    proof: "1 of 8 TSA national events placed in",
+      "Eight events at nationals, from a carbon-trading web app to an FPV drone to a Meta Quest escape room.",
+    proof: "Captain for 6 events · national finalist in 2",
     live: "https://safmstsa.vercel.app",
     liveLabel: "safmstsa.vercel.app",
     skills: {
       frontend: [
         PROJECT_SKILLS.react,
-        PROJECT_SKILLS.js,
-        PROJECT_SKILLS.tailwind,
-        PROJECT_SKILLS.vercel,
+        PROJECT_SKILLS.unity,
+        PROJECT_SKILLS.quest,
+        PROJECT_SKILLS.blender,
       ],
-      backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.chain],
+      backend: [
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.chain,
+        PROJECT_SKILLS.python,
+        PROJECT_SKILLS.cpp,
+      ],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            A carbon-trading dashboard for agroforestry, built for TSA Nationals.
+            Eight events at nationals in one season. Captain for six of them.
           </TypographyP>
           <TypographyP className="font-mono">
-            An AI/IoT modelling web app that tracks a farm&apos;s land use, carbon
-            credits, tree count, and live environmental telemetry, then settles
-            credit issuance on-chain. Built in React and deployed live — so the
-            judges could open it on their own phones instead of watching a slide
-            about it.
+            The Technology Student Association runs national competitions across
+            wildly different disciplines, and I entered eight of them in a single
+            year — software, hardware, aerospace, environmental engineering, and
+            games. National finalist in two. Each event below links to the
+            documentation portfolio I submitted for it.
           </TypographyP>
-          <ProjectsLinks live={this.live} liveLabel="Open the live app" />
+          <ProjectsLinks live={this.live} liveLabel="Open SAFMS, the live app" />
 
-          <TypographyH3 className="my-4 mt-8">
-            One of eight events at Nationals
-          </TypographyH3>
-          <p className="font-mono mb-2">
-            SAFMS was one of eight TSA national events I competed and placed in.
-            The others: a Betaflight FPV drone with custom CAD and wiring;
-            zeolite-based nitrogen-capture domes for agricultural emissions;
-            autonomous control systems coded on-site in Python and C++ under a
-            timer; an object-manipulating autonomous robot; a fully playable Meta
-            Quest escape room in Unity 6; and a tower defense game in Unity with
-            custom Blender and pixel art.
-          </p>
+          <TypographyH3 className="my-4 mt-8">The eight events</TypographyH3>
+          <ul className="my-4 flex flex-col divide-y divide-border border-y border-border">
+            {TSA_EVENTS.map((ev) => (
+              <li
+                key={ev.name}
+                className="flex flex-col gap-1 py-4 md:flex-row md:items-baseline md:gap-6"
+              >
+                <span className="w-full shrink-0 font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground md:w-52">
+                  {ev.name}
+                </span>
+                <span className="flex-1 text-sm leading-relaxed">
+                  {ev.blurb}
+                </span>
+                {ev.href ? (
+                  <Link
+                    href={ev.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="inline-flex shrink-0 items-center gap-1 font-mono text-xs text-foreground/80 underline underline-offset-4 transition-colors hover:text-foreground"
+                  >
+                    {ev.linkLabel ?? "Portfolio"}
+                    <ArrowUpRight className="size-3" />
+                  </Link>
+                ) : (
+                  <span className="shrink-0 font-mono text-xs text-muted-foreground/50">
+                    {ev.note ?? "on-site event"}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+          <ProjectsLinks
+            live="https://docs.google.com/document/d/112GJX5ysoTm5Nm9VSCm8ahcTSYvYtfbAXNIpc9BlZnE/edit"
+            liveLabel="All portfolios, one doc"
+          />
         </div>
       );
     },

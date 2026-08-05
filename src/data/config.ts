@@ -19,13 +19,11 @@ const config = {
     "conformal safety filtering",
     "PID optimization",
     "computer vision",
-    "FusionBots",
     "University of Florida",
     "portfolio",
   ],
   author: "Ojasva Mishra",
-  email: "ojasva@godrift.ai",
-  altEmail: "ojasvamishra32@gmail.com",
+  email: "ojasvamishra32@gmail.com",
   site: "https://www.ojasvamishra.me",
 
   // for github stars button — blank keeps the header button hidden

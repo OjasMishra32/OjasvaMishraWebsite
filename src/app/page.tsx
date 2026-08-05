@@ -7,6 +7,7 @@ import AnimatedBackground from "@/components/animated-background";
 import SkillsSection from "@/components/sections/skills";
 import ExperienceSection from "@/components/sections/experience";
 import ProjectsSection from "@/components/sections/projects";
+import PublicationsSection from "@/components/sections/publications";
 import ContactSection from "@/components/sections/contact";
 import HeroSection from "@/components/sections/hero";
 
@@ -18,6 +19,7 @@ function MainPage() {
         <HeroSection />
         <SkillsSection />
         <ExperienceSection />
+        <PublicationsSection />
         <ProjectsSection />
         <ContactSection />
       </main>

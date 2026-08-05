@@ -43,7 +43,7 @@ const SkillsSection = () => {
                 // the whole card so hover isn't limited to the icon/label.
                 "pointer-events-auto",
                 "group relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl p-5",
-                "border border-border/60 bg-secondary/20 backdrop-blur-sm",
+                "border border-border/60 bg-secondary/40",
                 "transition-[transform,border-color,background-color,box-shadow] duration-300",
                 "hover:-translate-y-1 hover:border-[var(--skill)] hover:bg-secondary/40",
                 "hover:shadow-[0_10px_40px_-12px_var(--skill)]"

@@ -1,106 +1,49 @@
 "use client";
 
-import { EXPERIENCE, SkillNames, SKILLS, type Experience } from "@/data/constants";
+import {
+  EXPERIENCE,
+  SkillNames,
+  SKILLS,
+  type Experience,
+} from "@/data/constants";
 import { SectionHeader } from "./section-header";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
 import SectionWrapper from "../ui/section-wrapper";
-import { motion, useReducedMotion } from "motion/react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-
-/**
- * Company mark, as a rounded-square tile.
- *
- * Every logo here is the company's own artwork pulled from their own site, so
- * each tile carries the brand's background colour rather than a colour I picked
- * — that's what keeps a row of them from looking like a sticker sheet. Companies
- * with no public mark to pull get initials in the same tile, the way LinkedIn
- * does it, instead of a logo I'd have to invent.
- *
- * The tile is the only thing on the page that moves on its own: it springs in
- * once when scrolled to, then only responds to hover. Restraint is the point.
- */
-const CompanyLogo = ({
-  experience,
-  index,
-}: {
-  experience: Experience;
-  index: number;
-}) => {
-  const reduce = useReducedMotion();
-  const { logo, monogram, logoBg, company } = experience;
-
-  return (
-    <motion.div
-      initial={reduce ? false : { opacity: 0, scale: 0.6, rotate: -10 }}
-      whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{
-        type: "spring",
-        stiffness: 260,
-        damping: 18,
-        delay: 0.08 + index * 0.06,
-      }}
-      whileHover={reduce ? undefined : { scale: 1.06, rotate: -3 }}
-      className={cn(
-        "relative shrink-0 overflow-hidden rounded-2xl",
-        "size-14 md:size-16",
-        "ring-1 ring-border/70 shadow-sm",
-        "flex items-center justify-center"
-      )}
-      style={{ background: logoBg ?? "hsl(var(--secondary))" }}
-      aria-hidden
-    >
-      {logo ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={logo}
-          alt=""
-          width={64}
-          height={64}
-          loading="lazy"
-          className="size-full object-contain p-2"
-        />
-      ) : (
-        <span className="font-display text-lg font-bold tracking-tight text-white md:text-xl">
-          {monogram ?? company.slice(0, 2).toUpperCase()}
-        </span>
-      )}
-      {/* a single soft highlight across the top edge, so the tile reads as a
-          physical chip rather than a flat swatch */}
-      <span
-        className="pointer-events-none absolute inset-0 rounded-2xl"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(255,255,255,0.18), rgba(255,255,255,0) 55%)",
-        }}
-      />
-    </motion.div>
-  );
-};
+import CompanyLogo from "./company-logo";
 
 const ExperienceSection = () => {
   return (
     <SectionWrapper
       id="experience"
-      className="flex flex-col items-center justify-center min-h-[120vh] py-20"
+      className="flex flex-col items-center justify-center py-24"
     >
-      <div className="w-full max-w-4xl px-4 md:px-8 mx-auto">
+      <div className="mx-auto w-full max-w-5xl px-4 md:px-8">
         <SectionHeader
           id="experience"
           title="Experience"
           desc="Robotics research, founding teams, and things that had to work in the physical world."
-          className="mb-12 md:mb-20 mt-0"
+          className="static mb-14 md:mb-24 mt-0"
         />
 
-        <div className="flex flex-col gap-8 md:gap-12 relative">
-          {EXPERIENCE.map((exp, index) => (
-            <div key={exp.id} className="relative">
-              <ExperienceCard experience={exp} index={index} />
-            </div>
-          ))}
+        {/* the spine the whole timeline hangs off */}
+        <div className="relative">
+          <div
+            aria-hidden
+            className="absolute left-8 top-0 bottom-0 hidden w-px md:left-10 md:block"
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent, hsl(var(--border)) 8%, hsl(var(--border)) 92%, transparent)",
+            }}
+          />
+          <div className="flex flex-col gap-10 md:gap-16">
+            {EXPERIENCE.map((exp, index) => (
+              <ExperienceCard key={exp.id} experience={exp} index={index} />
+            ))}
+          </div>
         </div>
       </div>
     </SectionWrapper>
@@ -114,89 +57,106 @@ const ExperienceCard = ({
   experience: Experience;
   index: number;
 }) => {
+  const isCurrent = experience.endDate === "Present";
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
+    <motion.article
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-60px" }}
+      data-experience-card
+      className={cn(
+        "group relative rounded-2xl border border-border p-6 md:p-8",
+        "bg-card/95",
+        "transition-[border-color,background-color,box-shadow] duration-300",
+        "hover:border-primary/30 hover:bg-card",
+        "hover:shadow-[0_24px_70px_-40px_hsl(var(--foreground)/0.6)]"
+      )}
     >
-      <Card
-        className={cn(
-          "group bg-card text-card-foreground border-border",
-          "hover:border-primary/20 transition-colors duration-300",
-          "shadow-sm hover:shadow-md"
-        )}
-      >
-        <CardHeader className="pb-3">
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-            <div className="flex items-start gap-4">
-              <CompanyLogo experience={experience} index={index} />
-              <div className="space-y-1 min-w-0">
-                <CardTitle className="text-lg md:text-xl font-bold tracking-tight">
-                  {experience.title}
-                </CardTitle>
-                <div className="text-base font-medium text-muted-foreground">
-                  {experience.companyUrl ? (
-                    <Link
-                      href={experience.companyUrl}
-                      target="_blank"
-                      rel="noopener"
-                      className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-                    >
-                      {experience.company}
-                      <ArrowUpRight className="size-3.5 opacity-0 -translate-x-1 transition-all group-hover:opacity-70 group-hover:translate-x-0" />
-                    </Link>
-                  ) : (
-                    experience.company
-                  )}
-                </div>
-                {experience.blurb && (
-                  <p className="font-mono text-xs text-muted-foreground/80">
-                    {experience.blurb}
-                  </p>
+      <div className="flex flex-col gap-6 md:flex-row md:gap-8">
+        {/* the chip, sized to actually be seen */}
+        <div className="flex shrink-0 items-start">
+          <CompanyLogo experience={experience} index={index} />
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between md:gap-6">
+            <div className="min-w-0">
+              <h3 className="font-display text-xl font-bold leading-tight tracking-tight text-foreground md:text-2xl">
+                {experience.title}
+              </h3>
+              <div className="mt-1 text-base font-medium text-muted-foreground md:text-lg">
+                {experience.companyUrl ? (
+                  <Link
+                    href={experience.companyUrl}
+                    target="_blank"
+                    rel="noopener"
+                    className="inline-flex items-center gap-1 transition-colors hover:text-foreground"
+                  >
+                    {experience.company}
+                    <ArrowUpRight className="size-4 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-70" />
+                  </Link>
+                ) : (
+                  experience.company
                 )}
               </div>
+              {experience.blurb && (
+                <p className="mt-1 font-mono text-xs text-muted-foreground/80">
+                  {experience.blurb}
+                </p>
+              )}
             </div>
+
             <Badge
-              variant="secondary"
+              variant={isCurrent ? "default" : "secondary"}
               className="w-fit shrink-0 font-mono text-xs font-normal"
             >
               {experience.startDate} — {experience.endDate}
             </Badge>
           </div>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <ul className="list-disc list-outside ml-4 space-y-2 text-base text-muted-foreground leading-relaxed">
-            {experience.description.map((point, i) => (
-              <li key={i}>{point}</li>
-            ))}
-          </ul>
 
-          <div className="flex flex-wrap gap-2">
-            {experience.skills.map((skillName) => {
-              const skill = SKILLS[skillName as SkillNames];
-              if (!skill) return null;
-              return (
-                <Badge
-                  key={skillName}
-                  variant="outline"
-                  className="gap-2 text-xs font-normal bg-secondary/30 hover:bg-secondary/50 transition-colors border-transparent"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={skill.icon}
-                    alt=""
-                    className="w-3.5 h-3.5 object-contain opacity-80"
+          {experience.description.length > 0 && (
+            <ul className="mt-5 space-y-2.5 text-[15px] leading-relaxed text-muted-foreground md:text-base">
+              {experience.description.map((point, i) => (
+                <li key={i} className="flex gap-3">
+                  <span
+                    aria-hidden
+                    className="mt-[0.6em] size-1 shrink-0 rounded-full bg-muted-foreground/50"
                   />
-                  {skill.label}
-                </Badge>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {experience.skills.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {experience.skills.map((skillName) => {
+                const skill = SKILLS[skillName as SkillNames];
+                if (!skill) return null;
+                return (
+                  <Badge
+                    key={skillName}
+                    variant="outline"
+                    className="gap-2 border-transparent bg-secondary/30 text-xs font-normal transition-colors hover:bg-secondary/50"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={skill.icon}
+                      alt=""
+                      loading="lazy"
+                      className="size-3.5 object-contain opacity-80"
+                    />
+                    {skill.label}
+                  </Badge>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+    </motion.article>
   );
 };
 

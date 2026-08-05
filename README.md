@@ -27,6 +27,6 @@ npm run dev
 
 ## Contact
 
-ojasva@godrift.ai · ojasvamishra32@gmail.com ·
+ojasvamishra32@gmail.com ·
 [LinkedIn](https://www.linkedin.com/in/ojasva-mishra-657b89352/) ·
 [GitHub](https://github.com/OjasMishra32)

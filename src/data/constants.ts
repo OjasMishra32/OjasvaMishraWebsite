@@ -504,6 +504,29 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 3,
+    startDate: "Mar 2026",
+    endDate: "Present",
+    title: "Co-founder & CEO",
+    company: "Twinly",
+    companyUrl: "https://twinly.tech",
+    blurb: "A digital twin for your Mac and Windows",
+    logo: "/assets/companies/twinly.png",
+    logoBg: "#0e1210",
+    description: [
+      "Twinly learns how you write, talk, and decide, then runs your inbox, texts, calendar, browser, and real phone calls.",
+      "Every consequential action holds for an explicit OK before it goes out.",
+      "Shipped on macOS and Windows. Free tier at five tasks a day; paid from $20/month.",
+    ],
+    skills: [
+      SkillNames.TS,
+      SkillNames.NEXTJS,
+      SkillNames.PYTHON,
+      SkillNames.POSTGRES,
+      SkillNames.DOCKER,
+    ],
+  },
+  {
+    id: 4,
     startDate: "Jun 2025",
     endDate: "Dec 2025",
     title: "Robotics Engineer",
@@ -525,7 +548,7 @@ export const EXPERIENCE: Experience[] = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     startDate: "Aug 2025",
     endDate: "Mar 2026",
     title: "Machine Learning & Autonomy Intern",
@@ -547,7 +570,7 @@ export const EXPERIENCE: Experience[] = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     startDate: "Jul 2025",
     endDate: "Aug 2025",
     title: "Software Engineering Intern",
@@ -561,6 +584,140 @@ export const EXPERIENCE: Experience[] = [
       "Internal tooling deployed org-wide.",
     ],
     skills: [SkillNames.PYTHON, SkillNames.JS, SkillNames.DOCKER, SkillNames.GIT],
+  },
+  {
+    id: 7,
+    startDate: "Mar 2025",
+    endDate: "Apr 2026",
+    title: "Chief Technology Officer",
+    company: "Youth Publications & Socioeconomic Forum",
+    companyUrl: "https://www.ypsforum.org/",
+    blurb: "UN MGCY-affiliated NGO",
+    monogram: "YP",
+    logoBg: "#12324f",
+    description: [
+      "AI literacy programs across 15+ countries for a 500+ member organisation.",
+      "Presented the work at UN conferences including HLPF and UNGA.",
+      "Owned curriculum, platform, and delivery.",
+    ],
+    skills: [SkillNames.REACT, SkillNames.NEXTJS, SkillNames.TS, SkillNames.FIREBASE],
+  },
+  {
+    id: 8,
+    startDate: "Jul 2023",
+    endDate: "Jun 2026",
+    title: "Founder & Club President",
+    company: "American Rocketry Challenge",
+    blurb: "60+ member club",
+    logo: "/assets/companies/rocketry.png",
+    logoBg: "#ffffff",
+    description: [
+      "Founded the club and grew it past 60 members.",
+      "Led CAD payload design, propulsion analysis, and launches.",
+    ],
+    skills: [SkillNames.PYTHON, SkillNames.MATLAB],
+  },
+  {
+    id: 9,
+    startDate: "May 2024",
+    endDate: "Jun 2025",
+    title: "National Competitor",
+    company: "Technology Student Association",
+    blurb: "8 events at nationals",
+    logo: "/assets/companies/tsa.png",
+    logoBg: "#ffffff",
+    description: [
+      "Competed at the national level across 8 events.",
+      "Team captain for 6 of them; national finalist in 2.",
+      "Range ran from a React + blockchain carbon-trading app to a Betaflight FPV drone to a Meta Quest escape room.",
+    ],
+    skills: [
+      SkillNames.REACT,
+      SkillNames.UNITY,
+      SkillNames.CSHARP,
+      SkillNames.PYTHON,
+      SkillNames.CPP,
+    ],
+  },
+  {
+    id: 10,
+    startDate: "2019",
+    endDate: "Feb 2025",
+    title: "Team Captain, Lead Programmer & Driver",
+    company: "VEX Robotics",
+    blurb: "3x World Championship competitor",
+    logo: "/assets/companies/vex.png",
+    logoBg: "#ffffff",
+    description: [
+      "Three-time VEX Worlds competitor.",
+      "Led CAD, C++/Python autonomous routines, PID tuning, and modular subsystems.",
+    ],
+    skills: [SkillNames.CPP, SkillNames.PYTHON, SkillNames.ARDUINO],
+  },
+  {
+    id: 11,
+    startDate: "May 2022",
+    endDate: "Dec 2022",
+    title: "Center Assistant",
+    company: "Kumon North America, Inc.",
+    blurb: "Where the teaching habit started",
+    logo: "/assets/companies/kumon.png",
+    logoBg: "#ffffff",
+    description: [
+      "Tutored students aged 4–16 in math and English.",
+      "Graded coursework and managed student records.",
+    ],
+    skills: [],
+  },
+];
+
+export type Publication = {
+  id: string;
+  title: string;
+  venue: string;
+  status: string;
+  year: string;
+  authors: string;
+  abstract: string;
+  links: { label: string; href: string }[];
+};
+
+/**
+ * Two first-author papers, both on actuator saturation — the regime where a
+ * controller commands more torque than the hardware can deliver and the
+ * textbook stability guarantees quietly stop applying.
+ */
+export const PUBLICATIONS: Publication[] = [
+  {
+    id: "pid-gain",
+    title:
+      "Constraint-Aware Discrete-Time PID Gain Optimization for Robotic Joint Control Under Actuator Saturation",
+    venue: "IEEE Transactions on Robotics (T-RO)",
+    status: "Under review · arXiv preprint",
+    year: "2026",
+    authors: "Ojasva Mishra (first author), with Prof. Min Xu and Dr. Xiaolong Wu",
+    abstract:
+      "Tunes discrete-time PID gains with the actuator's saturation limit treated as a first-class constraint, rather than as something patched around after the controller is already designed.",
+    links: [
+      { label: "Read on arXiv", href: "https://arxiv.org/abs/2601.18639v3" },
+    ],
+  },
+  {
+    id: "scig",
+    title:
+      "SCIG++: Risk-Limiting Conformal Safety Filtering for Attack-Resilient Robotic Joint Control Under Saturation",
+    venue: "IEEE IROS",
+    status: "Under review",
+    year: "2026",
+    authors: "Ojasva Mishra (first author), with Prof. Min Xu and Dr. Xiaolong Wu",
+    abstract:
+      "Wraps the controller in a conformal safety filter with an explicit risk bound, so a joint stays inside its safe set even when the commands reaching it have been adversarially manipulated. Demonstrated on a Franka Emika Panda arm.",
+    links: [
+      {
+        label: "Watch the Panda demo",
+        href: "https://www.youtube.com/watch?v=2A_RMrd1qKo",
+      },
+    ],
   },
 ];
 
