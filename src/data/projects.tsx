@@ -136,57 +136,89 @@ const PROJECT_SKILLS = {
  * The eight TSA national events, each pointing at the documentation portfolio
  * actually submitted for it. Three were judged on-site with nothing to hand in.
  */
-const TSA_EVENTS: {
+export type TsaEvent = {
   name: string;
+  /** the discipline, so the eight read as eight different engineering problems */
+  field: string;
   blurb: string;
   href?: string;
   linkLabel?: string;
   note?: string;
-}[] = [
+  /** real brand marks for what it was actually built with */
+  tech: Skill[];
+};
+
+/**
+ * The eight TSA national events. These are eight separate engineering projects
+ * with their own design cycles, not eight entries in one competition — so they
+ * render in full on the card face rather than as a list of link labels nobody
+ * can decode. Five have submitted documentation portfolios; three were built
+ * on-site against a clock.
+ */
+export const TSA_EVENTS: TsaEvent[] = [
   {
     name: "Software Development",
+    field: "Web · blockchain",
     blurb:
-      "SAFMS — an AI/IoT modelling web app for agroforestry carbon trading, React and blockchain, deployed live.",
+      "SAFMS — an AI/IoT web app modelling agroforestry carbon credits, land use, and live environmental telemetry, settling credit issuance on-chain.",
     href: "https://safmstsa.vercel.app",
     linkLabel: "Live app",
+    tech: [PROJECT_SKILLS.react, PROJECT_SKILLS.js, PROJECT_SKILLS.chain],
   },
   {
     name: "Drone Challenge",
-    blurb: "Engineered and tuned a Betaflight FPV drone with custom CAD and wiring.",
+    field: "Aerospace · hardware",
+    blurb:
+      "A Betaflight FPV drone engineered and tuned from scratch — custom CAD frame, wiring loom, and flight-controller tuning.",
     href: "https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit",
+    tech: [PROJECT_SKILLS.arduino, PROJECT_SKILLS.cpp],
   },
   {
     name: "Engineering Design",
+    field: "Environmental",
     blurb:
-      "Nitrogen-capture domes using zeolites, to cut agricultural emissions.",
+      "Nitrogen-capture domes using zeolites to cut agricultural emissions — materials selection, geometry, and capture modelling.",
     href: "https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit",
+    tech: [PROJECT_SKILLS.python],
   },
   {
     name: "VR Visualization",
-    blurb: "A fully playable escape room built in Unity 6 for the Meta Quest.",
+    field: "XR · game engine",
+    blurb:
+      "A fully playable escape room built in Unity 6 for the Meta Quest — level design, interaction, and hand-tracked puzzles.",
     href: "https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit",
+    tech: [PROJECT_SKILLS.unity, PROJECT_SKILLS.quest],
   },
   {
     name: "Video Game Design",
+    field: "Games · art pipeline",
     blurb:
-      "A tower defense game in Unity with C# and custom Blender and pixel art assets.",
+      "A tower defense game in Unity with C#, custom Blender models, and hand-drawn pixel art assets.",
     href: "https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit",
+    tech: [PROJECT_SKILLS.unity, PROJECT_SKILLS.blender],
   },
   {
     name: "Systems Control",
+    field: "Controls",
     blurb:
-      "Autonomous control systems coded on-site in Python and C++ under a timer.",
-    note: "built on-site, timed",
+      "Autonomous control systems written on-site in Python and C++ against a clock, with no reference material.",
+    note: "Built on-site, timed",
+    tech: [PROJECT_SKILLS.python, PROJECT_SKILLS.cpp],
   },
   {
     name: "Robotics",
-    blurb: "Built and programmed an autonomous, drivable object-manipulating robot.",
-    note: "built on-site, timed",
+    field: "Robotics",
+    blurb:
+      "An autonomous and drivable object-manipulating robot — chassis, manipulator, and autonomous routine.",
+    note: "Built on-site, timed",
+    tech: [PROJECT_SKILLS.cpp, PROJECT_SKILLS.arduino],
   },
   {
     name: "Board Game Design",
-    blurb: "Designed and playtested an original board game.",
-    note: "no documentation kept",
+    field: "Systems design",
+    blurb: "An original board game, designed and playtested end to end.",
+    note: "Built on-site, timed",
+    tech: [],
   },
 ];
 
@@ -215,11 +247,11 @@ export type Project = {
   /** renders large, above the grid — exactly one project should set this */
   featured?: boolean;
   /**
-   * Links surfaced directly on a featured card. The TSA portfolios are the
-   * whole point of that entry and nobody clicks into a modal to discover
-   * something they don't know is there.
+   * Sub-projects rendered in full on a featured card. Nobody opens a modal to
+   * discover work they don't know is there, and a link labelled "Drone
+   * Challenge" doesn't tell you a drone was built.
    */
-  featuredLinks?: { label: string; href: string }[];
+  breakdown?: TsaEvent[];
   /**
    * The project's own mark, shown as a 3D chip on the card. Every one of these
    * is a real artifact — an app icon off the store listing, a company logo, a
@@ -770,25 +802,7 @@ const projects: Project[] = [
     proof: "Captain for 6 events · national finalist in 2 · 5 portfolios below",
     live: "https://safmstsa.vercel.app",
     liveLabel: "safmstsa.vercel.app",
-    featuredLinks: [
-      { label: "SAFMS — live app", href: "https://safmstsa.vercel.app" },
-      {
-        label: "Drone Challenge",
-        href: "https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit",
-      },
-      {
-        label: "Engineering Design",
-        href: "https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit",
-      },
-      {
-        label: "VR Visualization",
-        href: "https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit",
-      },
-      {
-        label: "Video Game Design",
-        href: "https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit",
-      },
-    ],
+    breakdown: TSA_EVENTS,
     skills: {
       frontend: [
         PROJECT_SKILLS.react,

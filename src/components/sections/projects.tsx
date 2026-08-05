@@ -12,7 +12,7 @@ import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-import projects, { Project } from "@/data/projects";
+import projects, { Project, TsaEvent } from "@/data/projects";
 import Chip3D from "../ui/chip-3d";
 import { SectionHeader } from "./section-header";
 
@@ -118,28 +118,6 @@ const FeaturedCard = ({ project }: { project: Project }) => {
               </div>
             </ResponsiveDialogTrigger>
 
-            {/* Surfaced on the card, not behind the click: nobody opens a modal
-                to find documentation they don't know exists. */}
-            {project.featuredLinks && (
-              <div className="mt-6 flex flex-wrap gap-2">
-                {project.featuredLinks.map((l) => (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener"
-                    className={cn(
-                      "inline-flex items-center gap-1.5 rounded-full border border-border",
-                      "bg-background/40 px-3 py-1.5 font-mono text-[11px] text-foreground/80",
-                      "transition-colors hover:border-primary/50 hover:bg-background hover:text-foreground"
-                    )}
-                  >
-                    {l.label}
-                    <ArrowUpRight className="size-3" />
-                  </a>
-                ))}
-              </div>
-            )}
           </div>
 
           <div className="flex shrink-0 flex-col items-start gap-6 md:items-end">
@@ -157,9 +135,92 @@ const FeaturedCard = ({ project }: { project: Project }) => {
             </ResponsiveDialogTrigger>
           </div>
         </div>
+
+        {project.breakdown && <Breakdown items={project.breakdown} />}
       </motion.article>
       <ProjectDialog project={project} />
     </ResponsiveDialog>
+  );
+};
+
+/**
+ * Every sub-project, laid out on the card face.
+ *
+ * The alternative was a row of links reading "Drone Challenge", "VR
+ * Visualization" — which tells a reader nothing about what was built and
+ * requires a click to find out. Each one gets what it actually is, the
+ * discipline it sits in, and the real brand marks for what it was built with.
+ */
+const Breakdown = ({ items }: { items: TsaEvent[] }) => {
+  const reduce = useReducedMotion();
+
+  return (
+    <div className="relative mt-10 border-t border-border pt-8">
+      <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+        Eight events · eight builds
+      </p>
+      <ul className="grid grid-cols-1 gap-x-6 gap-y-px sm:grid-cols-2 xl:grid-cols-4">
+        {items.map((ev, i) => {
+          const Wrapper = ev.href ? "a" : "div";
+          return (
+            <motion.li
+              key={ev.name}
+              initial={reduce ? false : { opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
+            >
+              <Wrapper
+                {...(ev.href
+                  ? { href: ev.href, target: "_blank", rel: "noopener" }
+                  : {})}
+                className={cn(
+                  "group/ev flex h-full flex-col rounded-xl border border-transparent p-4",
+                  "transition-colors duration-200",
+                  ev.href
+                    ? "hover:border-primary/30 hover:bg-background/50"
+                    : "opacity-80"
+                )}
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="font-display text-sm font-bold tracking-tight text-foreground">
+                    {ev.name}
+                  </span>
+                  <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.14em] text-muted-foreground/70">
+                    {ev.field}
+                  </span>
+                </div>
+
+                <p className="mt-2 flex-1 text-[13px] leading-relaxed text-muted-foreground">
+                  {ev.blurb}
+                </p>
+
+                <div className="mt-3 flex items-center justify-between gap-3">
+                  {/* real marks for what it was built with */}
+                  <div className="flex items-center gap-2 text-foreground/55">
+                    {ev.tech.map((t) => (
+                      <span key={t.title} title={t.title} className="text-[15px]">
+                        {t.icon}
+                      </span>
+                    ))}
+                  </div>
+                  {ev.href ? (
+                    <span className="inline-flex shrink-0 items-center gap-1 font-mono text-[10px] text-foreground/70 transition-colors group-hover/ev:text-foreground">
+                      {ev.linkLabel ?? "Portfolio"}
+                      <ArrowUpRight className="size-3 transition-transform duration-200 group-hover/ev:-translate-y-0.5 group-hover/ev:translate-x-0.5" />
+                    </span>
+                  ) : (
+                    <span className="shrink-0 font-mono text-[10px] text-muted-foreground/50">
+                      {ev.note}
+                    </span>
+                  )}
+                </div>
+              </Wrapper>
+            </motion.li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
