@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Pencil, Trash2, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PdfPages from "./pdf-pages";
 
 const COLORS = [
   "hsl(20,100%,70%)", // accent
@@ -29,6 +30,21 @@ export default function ResumeDoodle({
   const [color, setColor] = useState(COLORS[0]);
   const [hasDrawing, setHasDrawing] = useState(false);
   const [wiped, setWiped] = useState(false);
+
+  // Which viewer: the browser's own (iframe) or pdf.js. Phones get pdf.js —
+  // iOS crops an iframe PDF to the screen and Android Chrome can't show one —
+  // as does anything that says it has no inline PDF viewer. Unknown (null)
+  // until mounted, so a phone never even loads the iframe: Android answers a
+  // PDF in a frame by downloading it.
+  const [usePdfJs, setUsePdfJs] = useState<boolean | null>(null);
+  useEffect(() => {
+    const phone = matchMedia("(max-width: 767px)");
+    const update = () =>
+      setUsePdfJs(phone.matches || navigator.pdfViewerEnabled === false);
+    update();
+    phone.addEventListener("change", update);
+    return () => phone.removeEventListener("change", update);
+  }, []);
 
   // Keep the canvas sized to the viewer (clears on resize — rare, fine for a doodle).
   useEffect(() => {
@@ -113,11 +129,17 @@ export default function ResumeDoodle({
 
   return (
     <div ref={wrapRef} className="relative h-full">
-      <iframe
-        src={src}
-        title={title}
-        className="relative z-0 block h-full w-full bg-white"
-      />
+      {usePdfJs === false && (
+        <iframe
+          src={src}
+          title={title}
+          className="relative z-0 block h-full w-full bg-white"
+        />
+      )}
+      {usePdfJs && <PdfPages file={src.split("#")[0]} title={title} />}
+      {/* phones size the card to the page, so hold a page's height until the
+          viewer is chosen rather than letting the footer jump */}
+      {usePdfJs === null && <div aria-hidden className="aspect-[612/792] md:hidden" />}
 
       {/* Doodle layer */}
       <canvas

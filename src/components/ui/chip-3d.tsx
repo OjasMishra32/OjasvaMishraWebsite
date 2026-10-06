@@ -141,7 +141,10 @@ export const Chip3D = ({
             : { opacity: 0, rotateY: -80, rotateX: 20, z: -160, scale: 0.5 }
         }
         whileInView={{ opacity: 1, rotateY: 0, rotateX: 0, z: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-70px" }}
+        // Inset vertically only. A plain "-70px" shrinks the sides too, and on
+        // a phone the project-card chips sit within 70px of the right edge — so
+        // they never counted as in view and stayed invisible.
+        viewport={{ once: true, margin: "-70px 0px" }}
         transition={{
           type: "spring",
           stiffness: 120,

@@ -19,7 +19,7 @@ const ExperienceSection = () => {
   return (
     <SectionWrapper
       id="experience"
-      className="flex flex-col items-center justify-center py-24"
+      className="flex flex-col items-center justify-center py-16 md:py-24"
     >
       <div className="mx-auto w-full max-w-5xl px-4 md:px-8">
         <SectionHeader

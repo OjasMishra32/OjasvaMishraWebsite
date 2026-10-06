@@ -140,10 +140,12 @@ const KeyboardScene = ({ maxDpr }: { maxDpr: number }) => {
     gsap.set(kbd.scale, heroState.scale);
     gsap.set(kbd.position, heroState.position);
 
-    // Section transitions
+    // Section transitions. On a phone the keyboard shares the one column with
+    // the section headings, so it waits for "Tech Stack" to pin at the top
+    // before rising in, and is gone before "Experience" scrolls up into it.
     return [
-      createSectionTimeline("#skills", "skills", "hero"),
-      createSectionTimeline("#experience", "experience", "skills", "top 70%"),
+      createSectionTimeline("#skills", "skills", "hero", isMobile ? "top 80px" : "top 50%"),
+      createSectionTimeline("#experience", "experience", "skills", isMobile ? "top 85%" : "top 70%"),
       createSectionTimeline("#publications", "publications", "experience", "top 70%"),
       createSectionTimeline("#projects", "projects", "publications", "top 70%"),
       createSectionTimeline("#contact", "contact", "projects", "top 30%"),
@@ -522,14 +524,27 @@ const AnimatedBackground = () => {
  * 1x canvas — a huge GPU cost. We clamp it and reapply on resize, since Spline
  * re-reads devicePixelRatio when the canvas resizes. Returns a disposer that
  * removes the resize listener (so it isn't leaked across reloads/unmounts).
+ *
+ * Spline's renderer only reallocates its drawing buffer when the canvas *size*
+ * changes, so a new ratio on its own leaves the old-sized buffer with a
+ * viewport scaled to the new ratio — on a phone (dpr 3, capped to 1.5) the
+ * whole scene drew into the bottom-left quarter of the screen, clipped. After
+ * changing the ratio we force the resize Spline would otherwise skip.
  */
 function capSplinePixelRatio(app: Application, maxDpr: number) {
+  let applied = 0;
   const apply = () => {
+    const ratio = Math.min(window.devicePixelRatio, maxDpr);
+    if (ratio === applied) return;
     try {
-      const renderer = (app as unknown as { _renderer?: { setPixelRatio?: (n: number) => void } })
-        ._renderer;
-      if (renderer?.setPixelRatio) {
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
+      const internals = app as unknown as {
+        _renderer?: { setPixelRatio?: (n: number) => void };
+        _resize?: (force?: boolean) => void;
+      };
+      if (internals._renderer?.setPixelRatio) {
+        internals._renderer.setPixelRatio(ratio);
+        internals._resize?.(true);
+        applied = ratio;
       }
     } catch {
       /* internal API moved — fail silent, scene still renders */

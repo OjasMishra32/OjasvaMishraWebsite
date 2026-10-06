@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,14 +20,27 @@ interface HeaderProps {
 const Header = ({ loader }: HeaderProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const isHome = usePathname() === "/";
+
+  // On a phone the cards fill the full width, so they scroll straight under the
+  // bar and the blur alone just smears their text behind the name. Once the
+  // page has moved, back the bar on mobile; at the top it stays clear.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <motion.header
       className={cn(
         styles.header,
-        "transition-colors delay-100 duration-500 ease-in z-[1000]"
+        "transition-colors delay-100 duration-500 ease-in z-[1000]",
+        scrolled && "max-md:bg-background/85 max-md:shadow-[0_1px_0_hsl(var(--border)/0.6)]"
       )}
       style={{
-        background: isActive ? "hsl(var(--background) / .8)" : "transparent",
+        background: isActive ? "hsl(var(--background) / .8)" : undefined,
         // backgroundImage:
         //   "linear-gradient(0deg, rgba(0, 0, 0, 0), rgb(0, 0, 0))",
       }}

@@ -21,12 +21,18 @@ const nextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
-      {
-        source: "/_next/static/(.*)",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
-      },
+      // Production only: dev chunk names aren't content-hashed, so caching them
+      // immutably pins the browser to stale code after every edit.
+      ...(process.env.NODE_ENV === "production"
+        ? [
+            {
+              source: "/_next/static/(.*)",
+              headers: [
+                { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+              ],
+            },
+          ]
+        : []),
     ];
   },
 };

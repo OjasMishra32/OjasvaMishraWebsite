@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
  */
 const PublicationsSection = () => {
   return (
-    <SectionWrapper id="publications" className="py-24">
+    <SectionWrapper id="publications" className="py-16 md:py-24">
       <div className="mx-auto w-full max-w-5xl px-4 md:px-8">
         <SectionHeader
           id="publications"

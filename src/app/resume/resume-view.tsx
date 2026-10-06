@@ -56,7 +56,8 @@ export default function ResumeView() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="aspect-[210/297] w-full overflow-hidden rounded-2xl bg-white shadow-xl"
+          // phones size to the drawn page itself (pdf.js), not an A4 box
+          className="aspect-[210/297] w-full overflow-hidden rounded-2xl bg-white shadow-xl max-md:aspect-auto"
         >
           <ResumeDoodle
             src={`${RESUME_PATH}#toolbar=0&navpanes=0&view=FitH`}

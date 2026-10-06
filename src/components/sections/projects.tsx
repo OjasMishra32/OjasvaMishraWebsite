@@ -23,7 +23,7 @@ const ProjectsSection = () => {
   const rest = projects.filter((p) => !p.featured);
 
   return (
-    <SectionWrapper id="projects" className="mx-auto max-w-7xl px-4 py-24">
+    <SectionWrapper id="projects" className="mx-auto max-w-7xl px-4 py-16 md:py-24">
       <SectionHeader
         id="projects"
         title="Projects"

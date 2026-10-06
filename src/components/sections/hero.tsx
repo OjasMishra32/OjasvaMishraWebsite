@@ -91,14 +91,17 @@ const HeroSection = () => {
   const { isLoading } = usePreloader();
 
   return (
-    <SectionWrapper id="hero" className={cn("relative w-full h-screen")}>
+    <SectionWrapper id="hero" className={cn("relative w-full md:h-screen")}>
       <div className="grid md:grid-cols-2">
         <div
           className={cn(
-            "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
+            // phones: at least one screen tall, but free to grow — a fixed
+            // height let the credentials spill into the next section on short
+            // screens
+            "min-h-svh md:min-h-0 md:h-[calc(100dvh-4rem)] z-[2]",
             "col-span-1",
-            "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"
+            "flex flex-col justify-center items-center md:items-start",
+            "px-6 pt-24 pb-14 sm:px-10 md:p-20 lg:p-24 xl:p-28"
           )}
         >
           {!isLoading && (
@@ -244,7 +247,9 @@ const HeroSection = () => {
         </div>
         <div className="grid col-span-1"></div>
       </div>
-      <div className="absolute bottom-10 left-[50%] translate-x-[-50%]">
+      {/* a mouse is the wrong hint on a phone, and there it collided with the
+          buttons on shorter screens */}
+      <div className="absolute bottom-10 left-[50%] hidden translate-x-[-50%] md:block">
         <ScrollDownIcon />
       </div>
     </SectionWrapper>

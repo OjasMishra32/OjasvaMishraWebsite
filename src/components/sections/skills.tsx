@@ -5,6 +5,7 @@ import SectionWrapper from "../ui/section-wrapper";
 import { SectionHeader } from "./section-header";
 import { STACK } from "@/data/constants";
 import { usePerfProfile } from "@/hooks/use-perf-profile";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 
 /**
@@ -19,6 +20,8 @@ import { cn } from "@/lib/utils";
 const SkillsSection = () => {
   const { disable3D, ready } = usePerfProfile();
   const showGrid = ready && disable3D;
+  // there's no key to press on a phone, but tapping a keycap does label it
+  const isTouch = useMediaQuery("(hover: none)");
 
   if (showGrid) {
     return (
@@ -77,9 +80,15 @@ const SkillsSection = () => {
   return (
     <SectionWrapper
       id="skills"
-      className="w-full h-screen md:h-[150dvh] pointer-events-none"
+      // phones: tall enough that the keyboard holds the screen for a real
+      // scroll after it rises in, rather than a few hundred pixels
+      className="w-full h-[160svh] md:h-[150dvh] pointer-events-none"
     >
-      <SectionHeader id="skills" title="Tech Stack" desc="(hint: press a key)" />
+      <SectionHeader
+        id="skills"
+        title="Tech Stack"
+        desc={isTouch ? "(hint: tap a key)" : "(hint: press a key)"}
+      />
     </SectionWrapper>
   );
 };

@@ -5,7 +5,9 @@
     position: relative;
     display: flex;
     gap: 50px;
-    margin-bottom: 12px; // prev 80px
+    // room for the reduce-motion toggle pinned bottom-right, which otherwise
+    // sat on top of the last link (CONTACT)
+    margin-bottom: 56px;
   }
 
   .container {
