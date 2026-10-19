@@ -555,6 +555,20 @@ export const EXPERIENCE: Experience[] = [
     skills: [SkillNames.PYTHON, SkillNames.NUMPY],
   },
   {
+    id: 13,
+    startDate: "Sep 2026",
+    endDate: "Present",
+    title: "Researcher, NeuroSpine Team",
+    company: "Dream Team Engineering",
+    blurb: "UF research team · with the UF Department of Neurosurgery",
+    monogram: "DTE",
+    description: [
+      "Research team building AI tools that help spine surgeons judge vertebral bone quality before surgery, where DEXA cutoffs leave a gray area.",
+      "Building a Python pipeline that segments vertebrae in CT and MRI (nnU-Net, TotalSegmentator, MONAI, SimpleITK) and computes Hounsfield-unit and VBQ metrics automatically.",
+    ],
+    skills: [SkillNames.PYTHON, SkillNames.NUMPY],
+  },
+  {
     id: 4,
     startDate: "Apr 2025",
     endDate: "Feb 2026",

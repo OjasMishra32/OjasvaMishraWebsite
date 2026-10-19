@@ -106,6 +106,7 @@ const PROJECT_SKILLS = {
   postgres: brand("PostgreSQL", "postgresql-mono.svg"),
   mongo: brand("MongoDB", "mongodb-mono.svg"),
   docker: brand("Docker", "docker-mono.svg"),
+  supabase: brand("Supabase", "supabase-mono.svg"),
   python: brand("Python", "python-mono.svg"),
   // robotics / systems
   cpp: brand("C++", "cplusplus-mono.svg"),
@@ -130,6 +131,8 @@ const PROJECT_SKILLS = {
   numpy: text("NumPy", "np"),
   matlab: text("MATLAB", "M"),
   chain: text("Blockchain", "BC"),
+  mediapipe: text("MediaPipe", "MP"),
+  openai: text("OpenAI", "AI"),
 };
 
 /**
@@ -682,6 +685,154 @@ const projects: Project[] = [
     },
   },
   {
+    id: "kinetix",
+    emblem: {
+      src: "/assets/companies/kinetix.png",
+      bg: "#0B1017",
+      fullBleed: true,
+    },
+    category: "Computer vision · biomechanics",
+    title: "Kinetix",
+    role: "Builder · NexHacks",
+    period: "2025",
+    tagline:
+      "A physical therapist that watches your form and tells you when it's wrong.",
+    proof: "Live joint-angle tracking from a plain webcam, voice coaching in a Meta Quest",
+    live: "https://www.youtube.com/watch?v=-k4Ks9YATTI",
+    liveLabel: "Watch the demo",
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.next,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.quest,
+      ],
+      backend: [PROJECT_SKILLS.mediapipe, PROJECT_SKILLS.supabase],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            A physical therapist that watches your form and tells you when
+            it&apos;s wrong.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Built at NexHacks with Andrew Yuan, Eashan Iyer, and Kevin Harned.
+            MediaPipe reads your pose from a plain webcam and computes live joint
+            angles, elbow, shoulder, hip, against per-exercise thresholds stored
+            in Supabase. It counts reps and holds and speaks corrections while
+            you are mid-exercise rather than in a report afterward: LiveKit
+            carries the real-time voice, ElevenLabs gives it a voice, and a Meta
+            Quest headset puts the feedback in front of your eyes. The front end
+            is Next.js, TypeScript, and Tailwind.
+          </TypographyP>
+          <ProjectsLinks live={this.live} liveLabel="Watch the demo" />
+          <ProjectsLinks
+            live="https://devpost.com/software/flowers-and-joy"
+            liveLabel="Devpost write-up"
+          />
+
+          <TypographyH3 className="my-4 mt-8">The hard part</TypographyH3>
+          <p className="font-mono mb-2">
+            Pose estimation is the easy half. &ldquo;Good form&rdquo; is a range,
+            not a number, and it moves with body proportions and fatigue. Correct
+            too eagerly and the coach is noise; too late and it&apos;s decoration.
+            Most of the work was tolerance logic and when to speak.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "fuse",
+    emblem: { monogram: "FUSE", bg: "#101010" },
+    category: "Hackathon build · iOS",
+    title: "FUSE",
+    role: "Builder · Bitrig Hacks at Y Combinator",
+    period: "Sep 2026",
+    tagline:
+      "Put one thing on each half of a foldable iPhone, fold it, and get one useful result back.",
+    proof: "Native Swift app with 12 result types · Bitrig Hacks iPhone Duo Edition",
+    live: "https://devpost.com/software/fuse-47s1jg",
+    liveLabel: "Devpost",
+    github: "https://github.com/OjasMishra32/fuse",
+    skills: {
+      frontend: [PROJECT_SKILLS.swift, PROJECT_SKILLS.apple],
+      backend: [PROJECT_SKILLS.openai, PROJECT_SKILLS.supabase, PROJECT_SKILLS.python],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            The fold is the command: combine these two things.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Built at Bitrig Hacks iPhone Duo Edition at Y Combinator with Abhinav
+            Nigam, Abhinav Shivalli, Harpreet Vishnoi, and Vasu Ganesa. You put
+            something on each screen of the foldable iPhone Duo, a résumé and a
+            job post, an email and your calendar, a room and a chair, then fold
+            the phone. FUSE sends both inputs and any spoken instruction to
+            OpenAI, which picks what kind of result fits, and the app renders it
+            natively: an itinerary on a map, a calendar event, an email draft, a
+            quiz, slides, a generated image, and more, 12 result types in all.
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} liveLabel="Devpost" />
+          <ProjectsLinks
+            live="https://www.youtube.com/watch?v=h8jK9cSw0xU"
+            liveLabel="Watch the demo"
+          />
+
+          <TypographyH3 className="my-4 mt-8">Getting content in</TypographyH3>
+          <p className="font-mono mb-2">
+            Content can come from FUSE&apos;s own browser, map, notes and photo
+            panes, or from other apps through the Share Sheet, a Safari
+            extension, and Shortcuts. Results are kept in a local history, with
+            RevenueCat handling subscriptions and Supabase backing a community
+            feed.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "glassbox",
+    emblem: { monogram: "GB", bg: "#0d1117" },
+    category: "Hackathon placement · interview integrity",
+    title: "GlassBoxAI",
+    role: "Co-founder & CEO",
+    period: "2024",
+    tagline:
+      "An overlay for Zoom and Google Meet that flags AI-assisted answers in live interviews.",
+    proof: "2nd of 200+ at Startup in a Weekend Philly, the only high school team",
+    live: "#",
+    liveLabel: "Hackathon build",
+    skills: { frontend: [], backend: [] },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            If everyone uses AI in interviews, is there still a point?
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Built with three friends over a 48-hour startup weekend in
+            Philadelphia, as the only high school team among 200+ competitors
+            from Penn, Drexel, and MIT. It took 2nd place.
+          </TypographyP>
+
+          <TypographyH3 className="my-4 mt-8">How it works</TypographyH3>
+          <p className="font-mono mb-2">
+            GlassBoxAI sits on top of Zoom, Teams, or Google Meet. Face tracking
+            follows small shifts in gaze and blink rate, an audio analyzer
+            listens for odd pauses and a voice that never changes pitch, and a
+            lightweight language model reads the transcript, together flagging
+            script reading and AI-assisted answers from tools like ChatGPT and
+            Cluely.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
     id: "eyesight",
     emblem: {
       src: "/assets/companies/eyesight.png",
@@ -783,57 +934,6 @@ const projects: Project[] = [
             than standard screening did. That&apos;s the reason it&apos;s still
             maintained. The streaks, the polish, the rating are all downstream of
             software being in someone&apos;s pocket at the right moment.
-          </p>
-        </div>
-      );
-    },
-  },
-  {
-    id: "kinetix",
-    emblem: {
-      src: "/assets/companies/kinetix.png",
-      bg: "#0B1017",
-      fullBleed: true,
-    },
-    category: "Computer vision · biomechanics",
-    title: "Kinetix",
-    role: "Founder",
-    period: "2025 —",
-    tagline:
-      "A physical therapist that watches your form and tells you when it's wrong.",
-    proof: "Live joint-angle tracking from a plain webcam",
-    live: "https://www.youtube.com/watch?v=-k4Ks9YATTI",
-    liveLabel: "Watch the demo",
-    skills: {
-      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.ts, PROJECT_SKILLS.quest],
-      backend: [
-        PROJECT_SKILLS.python,
-        PROJECT_SKILLS.opencv,
-        PROJECT_SKILLS.pytorch,
-      ],
-    },
-    get content() {
-      return (
-        <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            A physical therapist that watches your form and tells you when
-            it&apos;s wrong.
-          </TypographyP>
-          <TypographyP className="font-mono">
-            Real-time computer vision reads your pose from a plain webcam and
-            computes live joint angles — elbow, shoulder, hip — against the
-            target range for the movement. It counts reps, tracks sets, and
-            speaks corrections while you are mid-exercise rather than in a report
-            afterward. Meta Quest integration for guided sessions in headset.
-          </TypographyP>
-          <ProjectsLinks live={this.live} liveLabel="Watch the demo" />
-
-          <TypographyH3 className="my-4 mt-8">The hard part</TypographyH3>
-          <p className="font-mono mb-2">
-            Pose estimation is the easy half. &ldquo;Good form&rdquo; is a range,
-            not a number, and it moves with body proportions and fatigue. Correct
-            too eagerly and the coach is noise; too late and it&apos;s decoration.
-            Most of the work was tolerance logic and when to speak.
           </p>
         </div>
       );
