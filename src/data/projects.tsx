@@ -344,7 +344,7 @@ const projects: Project[] = [
     emblem: { src: "/assets/companies/drift.png", bg: "#000000", fullBleed: true },
     category: "Robotics simulation platform",
     title: "Drift",
-    role: "AI Platform Engineer · founding team",
+    role: "AI/Software Engineer · founding team",
     period: "Nov 2025 —",
     tagline:
       "Natural language in, working robot simulation out. Claude Code for robotics.",
@@ -365,7 +365,7 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Claude Code for robotics — where I work as founding AI Platform
+            Claude Code for robotics, where I work as a founding AI/Software
             Engineer.
           </TypographyP>
           <TypographyP className="font-mono">

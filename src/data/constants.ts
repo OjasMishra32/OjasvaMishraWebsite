@@ -463,7 +463,7 @@ export const EXPERIENCE: Experience[] = [
     id: 1,
     startDate: "Nov 2025",
     endDate: "Present",
-    title: "AI Platform Engineer, Founding Team",
+    title: "AI/Software Engineer, Founding Team",
     company: "Drift",
     companyUrl: "https://godrift.ai",
     blurb: "Antler-backed · AI copilot for robotics simulation",
