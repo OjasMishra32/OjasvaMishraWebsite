@@ -4,7 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Download, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import ResumeDoodle from "./resume-doodle";
 
 // The PDF lives at public/OjasMishraResume.pdf
@@ -36,16 +37,16 @@ export default function ResumeView() {
             <ArrowLeft className="h-4 w-4" />
             Back to portfolio
           </Link>
-          <Button>
-            <a
-              href={RESUME_PATH}
-              download
-              className="flex gap-2 text-sm transition-colors hover:text-foreground"
-            >
-              <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
-              Download PDF
-            </a>
-          </Button>
+          {/* The link is the button: Button sets pointer-events-none on its
+              children, so an <a> inside it never receives the click. */}
+          <a
+            href={RESUME_PATH}
+            download="OjasMishraResume.pdf"
+            className={cn(buttonVariants(), "cursor-can-hover gap-2")}
+          >
+            <Download className="h-4 w-4" />
+            Download PDF
+          </a>
         </motion.div>
       </div>
 
