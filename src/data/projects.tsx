@@ -280,10 +280,10 @@ const projects: Project[] = [
     category: "AI desktop agent",
     title: "Twinly",
     role: "Co-founder & CEO",
-    period: "Mar 2026 —",
+    period: "Dec 2025 —",
     tagline:
       "Your digital AI clone. It runs your life and your computer.",
-    proof: "Z Fellows '26 · 2,000+ waitlist → 100-user beta",
+    proof: "Z Fellows '26 · 1,000+ active users on macOS, Windows, iOS",
     live: "https://twinly.tech",
     liveLabel: "twinly.tech",
     skills: {
@@ -326,10 +326,11 @@ const projects: Project[] = [
 
           <TypographyH3 className="my-4 mt-8">Launch</TypographyH3>
           <p className="font-mono mb-2">
-            Public macOS app shipped July 2026. A 2,000+ person waitlist
-            converted into a 100-user private beta, a 150-member Discord, and
-            2,700+ TikTok followers. Built on SwiftUI, Electron, Supabase, and
-            Stripe.
+            Public macOS app shipped July 2026, out of a 2,000+ person
+            waitlist. Twinly now ships production macOS, Windows, and iOS apps
+            serving 1,000+ active users, paying customers included, and was
+            picked for Z Fellows&apos; 10-builder cohort. Built on SwiftUI,
+            Electron, Supabase, and Stripe.
           </p>
         </div>
       );
@@ -341,10 +342,10 @@ const projects: Project[] = [
     category: "Robotics simulation platform",
     title: "Drift",
     role: "AI Platform Engineer · founding team",
-    period: "Feb 2026 —",
+    period: "Nov 2025 —",
     tagline:
       "Natural language in, working robot simulation out. Claude Code for robotics.",
-    proof: "#5 Product of the Day · thousands of engineers · Antler-backed",
+    proof: "#5 Product of the Day · 1,000+ users · Antler-backed",
     live: "https://godrift.ai",
     liveLabel: "godrift.ai",
     skills: {
@@ -404,9 +405,9 @@ const projects: Project[] = [
 
           <TypographyH3 className="my-4 mt-8">Traction</TypographyH3>
           <p className="font-mono mb-2">
-            #5 Product of the Day on Product Hunt at launch. Now used by
-            thousands of robotics engineers, installed with a single curl
-            one-liner on Linux.
+            #5 Product of the Day on Product Hunt at launch. Now used by 1,000+
+            robotics engineers across ROS2, Gazebo, MuJoCo, and Isaac Sim,
+            installed with a single curl one-liner on Linux.
           </p>
         </div>
       );
@@ -418,10 +419,10 @@ const projects: Project[] = [
     category: "Robotics research",
     title: "Joint Control Under Saturation",
     role: "First author · CMU School of Computer Science",
-    period: "May 2025 —",
+    period: "Jul 2025 —",
     tagline:
       "Keeping robot joints provably stable when the motor physically can't do what the controller asked.",
-    proof: "2 first-author papers · IEEE TRO + IROS, under review",
+    proof: "3 first-author papers · IEEE T-RO, IROS, ICRA",
     live: "https://arxiv.org/abs/2601.18639v3",
     liveLabel: "arxiv.org — read the preprint",
     skills: {
@@ -437,12 +438,12 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Two first-author papers on what happens when a motor physically
+            Three first-author papers on what happens when a motor physically
             can&apos;t do what the controller asked.
           </TypographyP>
           <TypographyP className="font-mono">
             Research intern at the Carnegie Mellon Robotics Institute under Prof.
-            Min Xu and Dr. Xiaolong Wu. Both papers deal with actuator saturation
+            Min Xu and Dr. Xiaolong Wu. All three deal with actuator saturation
             — the regime where a controller commands more torque than the
             hardware can deliver, and the neat guarantees from the textbook
             quietly stop applying.
@@ -481,6 +482,19 @@ const projects: Project[] = [
             liveLabel="Watch the Panda demo"
           />
 
+          <TypographyH3 className="my-4 mt-8">
+            Paper 3 — Feedback authority under torque limits
+          </TypographyH3>
+          <p className="font-mono mb-2">
+            <em>
+              Bounding Detector-Accepted Feedback Authority in Torque-Limited
+              Robot Control.
+            </em>{" "}
+            IEEE ICRA 2027. Bounds how much control authority a command can
+            carry and still be accepted by the attack detector, when the
+            joints are torque-limited.
+          </p>
+
           <TypographyH3 className="my-4 mt-8">Also in the lab</TypographyH3>
           <p className="font-mono mb-2">
             Multi-modal SLAM path-planning work with a PID substructure
@@ -491,15 +505,88 @@ const projects: Project[] = [
     },
   },
   {
+    id: "dejaview",
+    emblem: { src: "/assets/companies/dejaview.png", bg: "#007aff", fullBleed: true },
+    category: "Hackathon winner",
+    title: "Deja View",
+    role: "Builder · SwampHacks XII",
+    period: "Oct 2026",
+    tagline:
+      "Any photo or video of any place, real or from a game, rebuilt as a 3D world you can walk into in VR, a browser, or Roblox.",
+    proof: "1st place, AI/ML track + DeepSpace track · SwampHacks XII",
+    live: "https://deja-view.photo",
+    liveLabel: "deja-view.photo",
+    github: "https://github.com/OjasMishra32/Deja-View",
+    skills: {
+      frontend: [PROJECT_SKILLS.ts, PROJECT_SKILLS.quest, PROJECT_SKILLS.node],
+      backend: [
+        PROJECT_SKILLS.python,
+        PROJECT_SKILLS.pytorch,
+        PROJECT_SKILLS.opencv,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            Walk back into any place you have a photo or video of.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Built in 36 hours at SwampHacks XII with Shivin, Brianna, and Seb,
+            and took 1st in both the AI/ML track and the DeepSpace track. Give
+            it a phone video, a single photo, or game footage (we rebuilt
+            Fortnite&apos;s Tilted Towers) and it becomes a world you can walk
+            through on a Meta Quest, in any browser, or in Roblox.
+          </TypographyP>
+          <ProjectsLinks
+            live={this.live}
+            repo={this.github}
+            liveLabel="Walk in at deja-view.photo"
+          />
+
+          <TypographyH3 className="my-4 mt-8">From pixels to a world</TypographyH3>
+          <p className="font-mono mb-2">
+            COLMAP solves every camera&apos;s pose (163 cameras for one room, at
+            about 1 px of reprojection error). Then a Gaussian splat of about a
+            million 3D Gaussians trains on UF&apos;s HiPerGator with
+            gsplat&apos;s MCMC densification: 30k steps in 11 minutes. With
+            only one photo, a video world model (FlashWorld, on Wan2.2)
+            generates the rest of the room in about 6 seconds.
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">Honest about what it made up</TypographyH3>
+          <p className="font-mono mb-2">
+            Every Gaussian is checked against the cameras that actually saw it,
+            and one button in the headset tints the guessed parts blue. Holes
+            get filled by rendering 2,304 probe views: Qwen2.5-VL describes
+            what belongs there, Qwen-Image-Edit paints it, and Depth Anything
+            V2 lifts it back into 3D. A fill only stays if every original view
+            still matches at 45 dB PSNR.
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">People, and play</TypographyH3>
+          <p className="font-mono mb-2">
+            People are cut out of the video, depth-mapped every frame, fit with
+            a 3D body model, and put back in the room, moving. Every world also
+            compiles into a life-size Roblox map, and the headset and Roblox
+            share one 240 Hz ping pong physics sim, so a friend on a laptop can
+            play someone in VR. Gemini knows every room and answers questions
+            out loud.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
     id: "hive",
     emblem: { monogram: "HIVE", bg: "#1a1206" },
     category: "Hackathon winner",
     title: "HIVE",
-    role: "Builder · San Francisco Hackathon",
+    role: "Builder · YC Transpose",
     period: "2026",
     tagline:
       "An AI operating system that coordinates people across a physical workspace.",
-    proof: "Won the San Francisco Hackathon",
+    proof: "1st place at YC Transpose",
     live: "#",
     liveLabel: "Hackathon build",
     skills: {
@@ -519,7 +606,7 @@ const projects: Project[] = [
           <TypographyP className="font-mono">
             HIVE reads a physical workspace through camera input and turns what
             it sees into task graphs, then coordinates the people in that space
-            against them. It won the San Francisco Hackathon.
+            against them. It took 1st place at YC Transpose.
           </TypographyP>
 
           <TypographyH3 className="my-4 mt-8">The idea</TypographyH3>
@@ -529,6 +616,66 @@ const projects: Project[] = [
             HIVE treats the room as the interface: vision figures out what is
             being done and by whom, the task graph figures out what should happen
             next, and people get told the one thing that unblocks everyone else.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "courtside",
+    emblem: { src: "/assets/companies/courtside.jpg", bg: "#0b1d6b", fullBleed: true },
+    category: "Computer vision · quant research",
+    title: "Courtside",
+    role: "Builder · Gator Quant Hacks 2026",
+    period: "Oct 2026",
+    tagline:
+      "A ball tracker that calls the point before it lands, and a test of what that head start is worth on Polymarket.",
+    proof: "Early calls a median 162 ms before the bounce, none wrong · 13,084 matches",
+    live: "https://drive.google.com/file/d/1ZMOhVQHA-lSsqmIboTntavcxZIRGt4Nr/view",
+    liveLabel: "Read the paper",
+    github: "https://github.com/OjasMishra32/computervision_quant_strategy",
+    skills: {
+      frontend: [PROJECT_SKILLS.numpy],
+      backend: [
+        PROJECT_SKILLS.python,
+        PROJECT_SKILLS.pytorch,
+        PROJECT_SKILLS.opencv,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono text-2xl text-center">
+            Call the point before the ball lands, then price the head start.
+          </TypographyP>
+          <TypographyP className="font-mono">
+            Built at Gator Quant Hacks 2026, Systematic Trading track, with Yoan
+            Exposito, Rafael Penhas, and Ian Hoang. A camera films the court, a
+            model finds the ball, fits its flight, and calls a miss or an out
+            before the bounce. On held-out table tennis its early calls came a
+            median 162 ms before the ball landed, none wrong, at 119.9 fps. On
+            broadcast tennis its out calls were right 5 of 5 at the bounce.
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} liveLabel="Read the paper" />
+          <ProjectsLinks
+            live="https://github.com/OjasMishra32/computervision_quant_strategy/blob/main/results/viz/courtside_60.mp4"
+            liveLabel="Watch the 90 s video"
+          />
+
+          <TypographyH3 className="my-4 mt-8">The market side</TypographyH3>
+          <p className="font-mono mb-2">
+            Polymarket prices each match from 0 to 1 and lags each point by
+            about a second, so whoever learns the point first sets the price.
+            Across 13,084 ATP and WTA matches, wallets trading within 3 seconds
+            of a point earned after fees in all 11 months, as our pre-registered
+            hypothesis predicted out of sample. Copying them after the fact
+            loses about a cent a share once fees and delays are in, so the edge
+            is the speed itself: we priced the first second of feed delay at
+            $42 to $74 a day.
+          </p>
+          <p className="font-mono mb-2 text-sm opacity-70">
+            Paper trading only: real Polymarket prices and fills, simulated
+            camera calls, no real money.
           </p>
         </div>
       );

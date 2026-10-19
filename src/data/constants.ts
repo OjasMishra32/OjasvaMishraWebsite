@@ -461,7 +461,7 @@ export type Experience = {
 export const EXPERIENCE: Experience[] = [
   {
     id: 1,
-    startDate: "Feb 2026",
+    startDate: "Nov 2025",
     endDate: "Present",
     title: "AI Platform Engineer, Founding Team",
     company: "Drift",
@@ -471,12 +471,13 @@ export const EXPERIENCE: Experience[] = [
     logoBg: "#000000",
     logoFullBleed: true,
     description: [
-      "Founding AI engineer on the natural-language layer: set up, debug, and run robot simulations conversationally across ROS2, Gazebo, and MuJoCo.",
+      "Core infrastructure for a robotics AI coding workspace used by 1,000+ engineers to configure, run, and debug simulations across ROS2, Gazebo, MuJoCo, and Isaac Sim.",
+      "Shipped World Labs photo-to-3D scene generation inside the workspace.",
       "Built the 129-robot library catalog behind the /robots CLI command, with per-entry license verification against MuJoCo Menagerie and partner repos.",
       "Built an automated CLI test pipeline — pexpect-driven interaction, vision-model analysis of Gazebo screenshots, and real queries sourced from robotics forums.",
       "Shipped the internal EPS dashboard and regression CI on a two-week cycle; contributed to Drift Desktop (Tauri + React).",
       "Traced a production Gazebo rendering freeze to gz-transport UDP multicast failing on Ubuntu 24.04 with an RTX 5070, and fixed it.",
-      "#5 Product of the Day at launch. Now used by thousands of robotics engineers.",
+      "#5 Product of the Day at launch. Now used by 1,000+ robotics engineers.",
     ],
     skills: [
       SkillNames.PYTHON,
@@ -489,7 +490,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 2,
-    startDate: "May 2025",
+    startDate: "Jul 2025",
     endDate: "Present",
     title: "Research Intern",
     company: "Carnegie Mellon University, Robotics Institute",
@@ -498,9 +499,10 @@ export const EXPERIENCE: Experience[] = [
     logo: "/assets/companies/cmu.png",
     logoBg: "#ffffff",
     description: [
-      "First author on two papers: robotic joint control when the motor can't deliver the commanded torque.",
+      "First author on three papers: robotic joint control when the motor can't deliver the commanded torque.",
       "Constraint-aware discrete-time PID gain optimization — under review, IEEE Transactions on Robotics.",
       "SCIG++, conformal safety filtering under adversarial input — under review, IEEE IROS. Demonstrated on a Franka Emika Panda.",
+      "Bounding detector-accepted feedback authority in torque-limited robot control — IEEE ICRA 2027.",
       "Multi-modal SLAM path planning with a PID substructure.",
     ],
     skills: [
@@ -513,7 +515,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 3,
-    startDate: "Mar 2026",
+    startDate: "Dec 2025",
     endDate: "Present",
     title: "Co-Founder & CEO",
     company: "Twinly",
@@ -525,7 +527,7 @@ export const EXPERIENCE: Experience[] = [
     description: [
       "Two-person company building an AI operator that executes real computer tasks for you — persistent memory, a personal CRM, and a locally cloned voice.",
       "Architected the Identity Runtime: macOS accessibility APIs, browser DOM state, application state, and vision composed into one execution graph, falling back to pixel-level control only when no structured interface exists.",
-      "Launched the public macOS app in July 2026 — a 2,000+ person waitlist converted into a 100-user private beta, a 150-member Discord, and 2,700+ TikTok followers.",
+      "Production macOS, Windows, and iOS apps serving 1,000+ active users, including paying customers. Picked for Z Fellows' 10-builder cohort.",
       "SwiftUI, Electron, Supabase, Stripe.",
     ],
     skills: [
@@ -537,9 +539,25 @@ export const EXPERIENCE: Experience[] = [
     ],
   },
   {
+    id: 12,
+    startDate: "Sep 2026",
+    endDate: "Present",
+    title: "Quantitative Research Analyst",
+    company: "AlgoGators Investment Fund",
+    blurb: "Student-run fund · about $500K AUM",
+    monogram: "AG",
+    monogramColor: "#fa4616",
+    logoBg: "#0021a5",
+    description: [
+      "One of 2 first-year students picked for the quant research team; builds systematic signals, backtests, and trading strategies.",
+      "Ran a crack spread strategy at a 64% win rate across live trades, adjusting positions as hurricane forecasts changed during an active storm.",
+    ],
+    skills: [SkillNames.PYTHON, SkillNames.NUMPY],
+  },
+  {
     id: 4,
-    startDate: "Jun 2025",
-    endDate: "Dec 2025",
+    startDate: "Apr 2025",
+    endDate: "Feb 2026",
     title: "AI Robotics Engineer Intern",
     company: "EV Bots, Inc.",
     blurb: "Fleet charging with mobile robots",
@@ -560,8 +578,8 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 5,
-    startDate: "Aug 2025",
-    endDate: "Mar 2026",
+    startDate: "Jul 2025",
+    endDate: "Jan 2026",
     title: "Engineering Intern",
     company: "PteroLabs",
     companyUrl: "https://pterolabs.ai",
@@ -569,7 +587,7 @@ export const EXPERIENCE: Experience[] = [
     logo: "/assets/companies/pterolabs.png",
     logoBg: "#0b1f3a",
     description: [
-      "Built a mission-grade UAV simulator in Unreal Engine with FPV racing, ML-driven mission planning, and object detection.",
+      "Built a mission-grade Unreal Engine 5 UAV simulator with PX4, ArduPilot, and Betaflight SITL, 6-DOF flight dynamics, FPV, ML mission planning, and object detection.",
       "Performance-benchmarked it. Now used by the University of Pennsylvania for active research.",
     ],
     skills: [
@@ -582,7 +600,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 6,
-    startDate: "Jul 2025",
+    startDate: "Jun 2025",
     endDate: "Aug 2025",
     title: "Software Development Intern",
     company: "iPipeline",
@@ -699,7 +717,7 @@ export type Publication = {
 };
 
 /**
- * Two first-author papers, both on actuator saturation — the regime where a
+ * Three first-author papers, all on actuator saturation — the regime where a
  * controller commands more torque than the hardware can deliver and the
  * textbook stability guarantees quietly stop applying.
  */
@@ -740,6 +758,23 @@ export const PUBLICATIONS: Publication[] = [
         href: "https://www.youtube.com/watch?v=2A_RMrd1qKo",
       },
     ],
+  },
+  {
+    id: "feedback-authority",
+    venueLogo: {
+      src: "/assets/logos/ieee-mono.svg",
+      alt: "IEEE",
+      mono: true,
+    },
+    title:
+      "Bounding Detector-Accepted Feedback Authority in Torque-Limited Robot Control",
+    venue: "IEEE ICRA",
+    status: "ICRA 2027",
+    year: "2027",
+    authors: "Ojasva Mishra (first author), with Prof. Min Xu and Dr. Xiaolong Wu",
+    abstract:
+      "Bounds how much control authority a command can carry and still be accepted by the attack detector, when the robot's joints are torque-limited.",
+    links: [],
   },
   {
     id: "textbook-pub",
