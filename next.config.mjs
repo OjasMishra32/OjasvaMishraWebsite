@@ -2,6 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   cacheComponents: true,
+  async redirects() {
+    return [
+      // The résumé was renamed; links already shared still point at the old name.
+      {
+        source: "/Ojasva_Mishra_Resume.pdf",
+        destination: "/OjasMishraResume.pdf",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
