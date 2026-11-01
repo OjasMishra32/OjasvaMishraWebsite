@@ -25,14 +25,14 @@ const ContactSection = () => {
           <CardHeader>
             <CardTitle className="text-3xl md:text-4xl">Contact Form</CardTitle>
             <CardDescription>
-              Email me directly at{" "}
+              Email me at{" "}
               <a
                 href={`mailto:${config.email}`}
                 className="underline underline-offset-4 cursor-can-hover rounded-lg hover:text-foreground"
               >
                 {config.email}
-              </a>{" "}
-              — or drop your info here and I&apos;ll come back to you.
+              </a>
+              , or leave your details here and I&apos;ll get back to you.
             </CardDescription>
           </CardHeader>
           <CardContent>

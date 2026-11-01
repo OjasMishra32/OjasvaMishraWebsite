@@ -21,7 +21,7 @@ const PublicationsSection = () => {
         <SectionHeader
           id="publications"
           title="Publications"
-          desc="First author, both under review. Actuator saturation — when the motor can't do what the controller asked."
+          desc="Three first-author papers on robot joints that hit their motor's torque limit, and a free textbook."
           className="static mb-14 md:mb-24 mt-0"
         />
 

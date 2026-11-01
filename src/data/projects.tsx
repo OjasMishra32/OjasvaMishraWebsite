@@ -169,7 +169,7 @@ export const TSA_EVENTS: TsaEvent[] = [
     name: "Drone Challenge",
     field: "Aerospace · hardware",
     blurb:
-      "A Betaflight FPV drone engineered and tuned from scratch — custom CAD frame, wiring loom, and flight-controller tuning.",
+      "A Betaflight FPV drone built and tuned from scratch, with a custom CAD frame and wiring loom.",
     href: "https://docs.google.com/document/u/0/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit",
     icons: [ic("arduino/arduino-original", "Arduino"), ic("cplusplus/cplusplus-original", "C++")],
   },
@@ -177,7 +177,7 @@ export const TSA_EVENTS: TsaEvent[] = [
     name: "Robotics",
     field: "Robotics",
     blurb:
-      "An autonomous and drivable object-manipulating robot — chassis, manipulator, and autonomous routine, built on the floor.",
+      "A robot that picks up and moves objects, driven and autonomous. The chassis, manipulator and routine were all built at the event.",
     note: "Built on-site, timed",
     icons: [ic("cplusplus/cplusplus-original", "C++"), ic("arduino/arduino-original", "Arduino")],
   },
@@ -185,7 +185,7 @@ export const TSA_EVENTS: TsaEvent[] = [
     name: "VR Visualization",
     field: "XR · game engine",
     blurb:
-      "A fully playable escape room built in Unity 6 for the Meta Quest — level design, interaction, and hand-tracked puzzles.",
+      "A playable escape room in Unity 6 for the Meta Quest, with hand-tracked puzzles.",
     href: "https://docs.google.com/document/d/176jDWUSqxicfdT6wM05To4pvtfx3kMSmVqMIt49FyZQ/edit",
     icons: [ic("unity/unity-original", "Unity"), ic("csharp/csharp-original", "C#")],
   },
@@ -193,7 +193,7 @@ export const TSA_EVENTS: TsaEvent[] = [
     name: "Software Development",
     field: "Web · blockchain",
     blurb:
-      "SAFMS — an AI/IoT web app modelling agroforestry carbon credits, land use, and live environmental telemetry, settling credit issuance on-chain.",
+      "SAFMS, an AI/IoT web app that models agroforestry carbon credits from land use and live environmental sensors, and issues the credits on-chain.",
     href: "https://safmstsa.vercel.app",
     linkLabel: "Open the live app",
     icons: [ic("react/react-original", "React"), ic("javascript/javascript-original", "JavaScript")],
@@ -202,7 +202,7 @@ export const TSA_EVENTS: TsaEvent[] = [
     name: "Engineering Design",
     field: "Environmental",
     blurb:
-      "Nitrogen-capture domes using zeolites to cut agricultural emissions — materials selection, geometry, and capture modelling.",
+      "Zeolite domes that capture nitrogen to cut agricultural emissions, from materials and geometry to capture modelling.",
     href: "https://docs.google.com/document/d/1kdHmo5DeLaevcmrig-DwGT1apDXM1F7g4HFoFn7aL7o/edit",
     icons: [ic("python/python-original", "Python")],
   },
@@ -210,7 +210,7 @@ export const TSA_EVENTS: TsaEvent[] = [
     name: "Video Game Design",
     field: "Games · art pipeline",
     blurb:
-      "A tower defense game in Unity with C#, custom Blender models, and hand-drawn pixel art assets.",
+      "A tower defense game in Unity and C#, with custom Blender models and hand-drawn pixel art.",
     href: "https://docs.google.com/document/d/1MhuqxFeqf64SOi6IuWZ5Yyr8Bm39sFkfx8TZDNv1i4w/edit",
     icons: [ic("unity/unity-original", "Unity"), ic("blender/blender-original", "Blender")],
   },
@@ -280,12 +280,12 @@ const projects: Project[] = [
     id: "twinly",
     emblem: { src: "/assets/companies/twinly.png", bg: "#000000", fullBleed: true },
     featured: true,
-    category: "AI desktop agent",
+    category: "Desktop AI agent",
     title: "Twinly",
     role: "Co-founder & CEO",
     period: "Dec 2025 —",
     tagline:
-      "Your digital AI clone. It runs your life and your computer.",
+      "An AI agent for macOS and Windows that handles your browser, email, calendar, files and phone calls in your own voice.",
     proof: "Z Fellows '26 · 1,000+ active users on macOS, Windows, iOS",
     live: "https://twinly.tech",
     liveLabel: "twinly.tech",
@@ -306,34 +306,94 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            Your digital AI clone. It runs your life and your computer.
-          </TypographyP>
           <TypographyP className="font-mono">
-            A two-person Delaware C Corp I co-founded and run, in the Z Fellows
-            September 2026 cohort. Twinly executes real computer tasks on your
-            behalf, with persistent memory, a personal CRM, and a locally cloned
-            voice.
+            I co-founded Twinly and run it as CEO. It&apos;s a two-person
+            company in the Z Fellows September 2026 cohort. Twinly learns how
+            you write, talk and use your computer, then does tasks for you, with
+            persistent memory, a personal CRM and a voice clone that runs
+            locally. You choose how much it asks before it acts.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Try Twinly" />
 
           <TypographyH3 className="my-4 mt-8">The Identity Runtime</TypographyH3>
           <p className="font-mono mb-2">
-            The architecture I built. macOS accessibility APIs, browser DOM
-            state, application state, and vision all compose into a single
-            execution graph — so the agent drives real structured interfaces
-            wherever they exist, and only falls back to pixel-level control when
-            nothing structured is available. Clicking pixels is the last resort,
-            not the strategy.
+            This is the part I built. It combines macOS accessibility APIs,
+            browser DOM state, app state and vision into one execution graph.
+            The agent works through those structured interfaces wherever they
+            exist and only clicks on pixels when there&apos;s nothing else to
+            use.
           </p>
 
           <TypographyH3 className="my-4 mt-8">Launch</TypographyH3>
           <p className="font-mono mb-2">
-            Public macOS app shipped July 2026, out of a 2,000+ person
-            waitlist. Twinly now ships production macOS, Windows, and iOS apps
-            serving 1,000+ active users, paying customers included, and was
-            picked for Z Fellows&apos; 10-builder cohort. Built on SwiftUI,
-            Electron, Supabase, and Stripe.
+            The macOS app went public in July 2026 to a waitlist of 2,000+.
+            Twinly now has macOS, Windows and iOS apps with 1,000+ active users,
+            including paying customers, built on SwiftUI, Electron, Supabase and
+            Stripe.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "applytwin",
+    emblem: { src: "/assets/companies/applytwin.png", bg: "#ffffff" },
+    featured: true,
+    category: "Job search agent",
+    title: "ApplyTwin",
+    role: "Creator",
+    period: "Oct 2026 —",
+    tagline:
+      "Finds internships, writes a one-page résumé for each posting and fills out the application for you.",
+    proof: "600+ career sites · runs on your Claude Code or Codex plan",
+    live: "https://apply.twinly.tech",
+    liveLabel: "apply.twinly.tech",
+    github: "https://github.com/OjasMishra32/applytwin",
+    skills: {
+      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.ts],
+      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.node],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            A free app that runs on your own computer and uses the Claude Code
+            or Codex plan you already pay for, so there are no API keys and no
+            new subscription. It installs with one line on Mac, Windows or
+            Linux.
+          </TypographyP>
+          <ProjectsLinks
+            live={this.live}
+            repo={this.github}
+            liveLabel="Get it at apply.twinly.tech"
+          />
+
+          <TypographyH3 className="my-4 mt-8">How it works</TypographyH3>
+          <p className="font-mono mb-2">
+            It reads the career sites of 600+ companies on Greenhouse, Lever,
+            Ashby, Workday and SmartRecruiters, plus the community internship
+            trackers, and scores each posting against your roles, location,
+            graduation date and sponsorship needs.
+          </p>
+          <p className="font-mono mb-2">
+            For each job it builds a one-page résumé from everything you&apos;ve
+            done, choosing and ordering the most relevant parts. A fact check
+            rejects any rewrite that adds a number, tool or claim you
+            didn&apos;t write.
+          </p>
+          <p className="font-mono mb-2">
+            Then your Claude Code or Codex opens the application in a browser,
+            fills it in from your saved answers, uploads the PDF and stops on
+            the review screen so you can press Submit. It never applies to the
+            same role twice.
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">What it won&apos;t do</TypographyH3>
+          <p className="font-mono mb-2">
+            Show your password to the AI, solve a CAPTCHA, accept a legal
+            agreement, or change a number, title, employer, degree or award on
+            your résumé. When it reaches one of those, it stops and notifies
+            you.
           </p>
         </div>
       );
@@ -347,7 +407,7 @@ const projects: Project[] = [
     role: "AI/Software Engineer · founding team",
     period: "Nov 2025 —",
     tagline:
-      "Natural language in, working robot simulation out. Claude Code for robotics.",
+      "Claude Code for robots. Describe what you want a robot to do and it builds and runs the simulation.",
     proof: "#5 Product of the Day · 1,000+ users · Antler-backed",
     live: "https://godrift.ai",
     liveLabel: "godrift.ai",
@@ -364,53 +424,38 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            Claude Code for robotics, where I work as a founding AI/Software
-            Engineer.
-          </TypographyP>
           <TypographyP className="font-mono">
-            Drift is an Antler-backed AI copilot for robotics simulation. You
-            describe what you want a robot to do in plain language; Drift sets
-            up, debugs, and runs the simulation across ROS2, Gazebo, and MuJoCo.
-            I joined as founding AI engineer after meeting the founders at
+            Drift is an AI coding agent for robotics, backed by Antler. You
+            describe what you want a robot to do in plain language, and it sets
+            up, debugs and runs the simulation in ROS2, Gazebo, MuJoCo or Isaac
+            Sim. I joined the founding team after meeting the founders at
             NexHacks, where I was one of three high schoolers accepted out of
             1,500+ applicants.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Visit Drift" />
 
-          <TypographyH3 className="my-4 mt-8">Why this matters</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">What I built</TypographyH3>
           <p className="font-mono mb-2">
-            Robotics simulation has a brutal setup tax: days of YAML, launch
-            files, and version mismatches before a robot, a world, a sensor stack,
-            and a controller agree with each other. Drift collapses that into a
-            conversation, so engineers iterate on the control problem instead of
-            the plumbing.
+            The 129-robot catalog behind the <code>/robots</code> command, each
+            entry license-checked against MuJoCo Menagerie and partner repos.
+            Photo-to-3D scene generation with World Labs. A CLI test harness
+            that drives the tool through pexpect, has a vision model check
+            Gazebo screenshots, and asks it real questions pulled from robotics
+            forums. Regression CI, the internal EPS dashboard, and parts of
+            Drift Desktop in Tauri and React.
           </p>
 
-          <TypographyH3 className="my-4 mt-8">What I actually built</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">A production bug</TypographyH3>
           <p className="font-mono mb-2">
-            The 129-robot library catalog behind the <code>/robots</code> CLI
-            command, with per-entry license verification against MuJoCo Menagerie
-            and partner repos. An automated CLI test pipeline driving the tool
-            with pexpect, analysing Gazebo screenshots with a vision model, and
-            sourcing real queries from robotics forums. The internal EPS
-            dashboard and regression CI on a two-week cycle, plus work on Drift
-            Desktop in Tauri and React.
+            Gazebo&apos;s rendering froze in production. I traced it to
+            gz-transport&apos;s UDP multicast failing on Ubuntu 24.04 with an
+            RTX 5070, and fixed it.
           </p>
 
-          <TypographyH3 className="my-4 mt-8">One bug worth naming</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Launch</TypographyH3>
           <p className="font-mono mb-2">
-            A production Gazebo rendering freeze that turned out to be
-            gz-transport UDP multicast failing on Ubuntu 24.04 with an RTX 5070.
-            Most of debugging robotics simulation is like this: the symptom is in
-            the renderer and the cause is four layers down in the network stack.
-          </p>
-
-          <TypographyH3 className="my-4 mt-8">Traction</TypographyH3>
-          <p className="font-mono mb-2">
-            #5 Product of the Day on Product Hunt at launch. Now used by 1,000+
-            robotics engineers across ROS2, Gazebo, MuJoCo, and Isaac Sim,
-            installed with a single curl one-liner on Linux.
+            #5 Product of the Day on Product Hunt. 1,000+ robotics engineers use
+            it now, and it installs on Linux with one curl command.
           </p>
         </div>
       );
@@ -424,10 +469,10 @@ const projects: Project[] = [
     role: "First author · CMU School of Computer Science",
     period: "Jul 2025 —",
     tagline:
-      "Keeping robot joints provably stable when the motor physically can't do what the controller asked.",
+      "Control for robot joints when the motor can't deliver the torque the controller asks for.",
     proof: "3 first-author papers · IEEE T-RO, IROS, ICRA",
     live: "https://arxiv.org/abs/2601.18639v3",
-    liveLabel: "arxiv.org — read the preprint",
+    liveLabel: "Read the preprint on arXiv",
     skills: {
       frontend: [PROJECT_SKILLS.matlab, PROJECT_SKILLS.numpy],
       backend: [
@@ -440,45 +485,38 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            Three first-author papers on what happens when a motor physically
-            can&apos;t do what the controller asked.
-          </TypographyP>
           <TypographyP className="font-mono">
-            Research intern at the Carnegie Mellon Robotics Institute under Prof.
-            Min Xu and Dr. Xiaolong Wu. All three deal with actuator saturation
-            — the regime where a controller commands more torque than the
-            hardware can deliver, and the neat guarantees from the textbook
-            quietly stop applying.
+            Research intern at Carnegie Mellon&apos;s Robotics Institute with
+            Prof. Min Xu and Dr. Xiaolong Wu. All three papers deal with
+            actuator saturation, where the controller asks for more torque than
+            the motor can produce and the usual stability guarantees stop
+            holding.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Read the preprint" />
 
           <TypographyH3 className="my-4 mt-8">
-            Paper 1 — Constraint-aware PID gain optimization
+            Constraint-aware PID gain optimization
           </TypographyH3>
           <p className="font-mono mb-2">
             <em>
               Constraint-Aware Discrete-Time PID Gain Optimization for Robotic
               Joint Control Under Actuator Saturation.
             </em>{" "}
-            arXiv preprint, under review at IEEE Transactions on Robotics. Tunes
-            discrete-time PID gains with the saturation limit treated as a
-            first-class constraint, rather than as something you patch around
-            after the fact.
+            Under review at IEEE Transactions on Robotics, preprint on arXiv.
+            It tunes discrete-time PID gains with the saturation limit built in
+            as a constraint from the start.
           </p>
 
-          <TypographyH3 className="my-4 mt-8">
-            Paper 2 — SCIG++, safety filtering under attack
-          </TypographyH3>
+          <TypographyH3 className="my-4 mt-8">SCIG++</TypographyH3>
           <p className="font-mono mb-2">
             <em>
               SCIG++: Risk-Limiting Conformal Safety Filtering for
               Attack-Resilient Robotic Joint Control Under Saturation.
             </em>{" "}
-            Under review at IEEE IROS. Wraps the controller in a conformal safety
-            filter with an explicit risk bound, so a joint stays inside its safe
-            set even when the commands reaching it have been adversarially
-            manipulated. Demonstrated on a Franka Emika Panda arm.
+            Under review at IEEE IROS. A conformal safety filter with an
+            explicit risk bound keeps each joint in its safe set even when the
+            commands reaching it have been tampered with. Demonstrated on a
+            Franka Emika Panda arm.
           </p>
           <ProjectsLinks
             live="https://www.youtube.com/watch?v=2A_RMrd1qKo"
@@ -486,7 +524,7 @@ const projects: Project[] = [
           />
 
           <TypographyH3 className="my-4 mt-8">
-            Paper 3 — Feedback authority under torque limits
+            Feedback authority under torque limits
           </TypographyH3>
           <p className="font-mono mb-2">
             <em>
@@ -494,14 +532,14 @@ const projects: Project[] = [
               Robot Control.
             </em>{" "}
             IEEE ICRA 2027. Bounds how much control authority a command can
-            carry and still be accepted by the attack detector, when the
-            joints are torque-limited.
+            carry and still pass the attack detector when the joints are
+            torque-limited.
           </p>
 
-          <TypographyH3 className="my-4 mt-8">Also in the lab</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Other lab work</TypographyH3>
           <p className="font-mono mb-2">
-            Multi-modal SLAM path-planning work with a PID substructure
-            implementation, running alongside the control theory.
+            Multimodal SLAM and path-planning experiments with a PID controller
+            underneath.
           </p>
         </div>
       );
@@ -515,7 +553,7 @@ const projects: Project[] = [
     role: "Builder · SwampHacks XII",
     period: "Oct 2026",
     tagline:
-      "Any photo or video of any place, real or from a game, rebuilt as a 3D world you can walk into in VR, a browser, or Roblox.",
+      "Turns a photo or video of any place, real or from a game, into a 3D world you can walk into on a Meta Quest, in a browser or in Roblox.",
     proof: "1st place, AI/ML track + DeepSpace track · SwampHacks XII",
     live: "https://deja-view.photo",
     liveLabel: "deja-view.photo",
@@ -531,15 +569,12 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            Walk back into any place you have a photo or video of.
-          </TypographyP>
           <TypographyP className="font-mono">
-            Built in 36 hours at SwampHacks XII with Shivin, Brianna, and Seb,
-            and took 1st in both the AI/ML track and the DeepSpace track. Give
-            it a phone video, a single photo, or game footage (we rebuilt
+            Built in 36 hours at SwampHacks XII with Shivin, Brianna and Seb. It
+            took 1st in both the AI/ML track and the DeepSpace track. Give it a
+            phone video, a single photo or game footage (we rebuilt
             Fortnite&apos;s Tilted Towers) and it becomes a world you can walk
-            through on a Meta Quest, in any browser, or in Roblox.
+            through on a Meta Quest, in a browser or in Roblox.
           </TypographyP>
           <ProjectsLinks
             live={this.live}
@@ -547,30 +582,32 @@ const projects: Project[] = [
             liveLabel="Walk in at deja-view.photo"
           />
 
-          <TypographyH3 className="my-4 mt-8">From pixels to a world</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">How it works</TypographyH3>
           <p className="font-mono mb-2">
             COLMAP solves every camera&apos;s pose (163 cameras for one room, at
             about 1 px of reprojection error). Then a Gaussian splat of about a
             million 3D Gaussians trains on UF&apos;s HiPerGator with
-            gsplat&apos;s MCMC densification: 30k steps in 11 minutes. With
-            only one photo, a video world model (FlashWorld, on Wan2.2)
-            generates the rest of the room in about 6 seconds.
+            gsplat&apos;s MCMC densification: 30k steps in 11 minutes. From a
+            single photo, a video world model (FlashWorld, on Wan2.2) generates
+            the rest of the room in about 6 seconds.
           </p>
 
-          <TypographyH3 className="my-4 mt-8">Honest about what it made up</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">
+            What&apos;s real and what&apos;s guessed
+          </TypographyH3>
           <p className="font-mono mb-2">
             Every Gaussian is checked against the cameras that actually saw it,
             and one button in the headset tints the guessed parts blue. Holes
-            get filled by rendering 2,304 probe views: Qwen2.5-VL describes
-            what belongs there, Qwen-Image-Edit paints it, and Depth Anything
-            V2 lifts it back into 3D. A fill only stays if every original view
+            are filled by rendering 2,304 probe views: Qwen2.5-VL describes what
+            belongs there, Qwen-Image-Edit paints it, and Depth Anything V2
+            lifts it back into 3D. A fill only stays if every original view
             still matches at 45 dB PSNR.
           </p>
 
-          <TypographyH3 className="my-4 mt-8">People, and play</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">People and Roblox</TypographyH3>
           <p className="font-mono mb-2">
             People are cut out of the video, depth-mapped every frame, fit with
-            a 3D body model, and put back in the room, moving. Every world also
+            a 3D body model and put back in the room, moving. Every world also
             compiles into a life-size Roblox map, and the headset and Roblox
             share one 240 Hz ping pong physics sim, so a friend on a laptop can
             play someone in VR. Gemini knows every room and answers questions
@@ -581,44 +618,131 @@ const projects: Project[] = [
     },
   },
   {
-    id: "hive",
-    emblem: { monogram: "HIVE", bg: "#1a1206" },
-    category: "Hackathon winner",
-    title: "HIVE",
-    role: "Builder · YC Transpose",
-    period: "2026",
+    id: "luciddreams",
+    emblem: { src: "/assets/companies/luciddreams.svg", bg: "#000000", fullBleed: true },
+    category: "Hackathon build · Meta Quest",
+    title: "Lucid Dreams",
+    role: "Builder · Gator Hack V",
+    period: "Oct 2026",
     tagline:
-      "An AI operating system that coordinates people across a physical workspace.",
-    proof: "1st place at YC Transpose",
-    live: "#",
-    liveLabel: "Hackathon build",
+      "Turns a video or a few photos of someone into a life-size 3D person standing in your room, in a Meta Quest.",
+    proof: "Built in 48 hours at Gator Hack V · 12 NVIDIA B200s on UF's HiPerGator",
+    live: "https://getluciddreams.vercel.app",
+    liveLabel: "getluciddreams.vercel.app",
+    github: "https://github.com/OjasMishra32/lucid_dreams",
     skills: {
-      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.ts],
-      backend: [
-        PROJECT_SKILLS.python,
-        PROJECT_SKILLS.opencv,
-        PROJECT_SKILLS.pytorch,
-      ],
+      frontend: [PROJECT_SKILLS.ts, PROJECT_SKILLS.next, PROJECT_SKILLS.quest],
+      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.pytorch],
     },
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            An operating system for a room full of people.
-          </TypographyP>
           <TypographyP className="font-mono">
-            HIVE reads a physical workspace through camera input and turns what
-            it sees into task graphs, then coordinates the people in that space
-            against them. It took 1st place at YC Transpose.
+            Built in 48 hours at Gator Hack V (UF AI Days 2026) with Vishal, Ian
+            and Atina. You give it a clip or a few photos and one sentence about
+            what you want to do with that person, and they appear life-size in
+            Meta Quest passthrough, from one link in the Quest browser.
           </TypographyP>
+          <ProjectsLinks
+            live={this.live}
+            repo={this.github}
+            liveLabel="Open the website"
+          />
 
-          <TypographyH3 className="my-4 mt-8">The idea</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">What you can do</TypographyH3>
           <p className="font-mono mb-2">
-            Software has gotten very good at coordinating work that already lives
-            on a screen, and is close to useless for work happening in a room.
-            HIVE treats the room as the interface: vision figures out what is
-            being done and by whom, the task graph figures out what should happen
-            next, and people get told the one thing that unblocks everyone else.
+            Learn a guitar part, a golf swing or a dance from a teacher who
+            slows each step down and waits for your turn. Play chess against
+            Bobby Fischer and Magnus Carlsen likenesses that reach over and move
+            their own pieces, play a tennis match against a Roger Federer
+            likeness, or shoot around with LeBron. Public figures are labelled
+            on screen and never speak.
+          </p>
+          <p className="font-mono mb-2">
+            Vishal, built from a short phone video of him turning around,
+            answers out loud in his own cloned voice 3.1 seconds after you
+            finish asking. He agreed to it, and every reply is labelled as an AI
+            voice.
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">How it works</TypographyH3>
+          <p className="font-mono mb-2">
+            4DAnyone turns one video into 48 synchronized views of the person.
+            On UF&apos;s HiPerGator, 12 NVIDIA B200s fit about 290,000 Gaussians
+            to every frame with gsplat. The headset app is WebXR, built on
+            three.js and Spark, and keeps the 160,000 Gaussians per frame that
+            matter most.
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">Reality check</TypographyH3>
+          <p className="font-mono mb-2">
+            No camera sees every side of a person, so part of every replay is
+            generated. One tap turns everything the camera never saw blue and
+            shows how much of the person was really seen.
+          </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "volition",
+    emblem: { src: "/assets/companies/volition.png", bg: "#ffffff", fullBleed: true },
+    category: "Exoskeleton concept",
+    title: "Volition",
+    role: "CAD, controls and simulation",
+    period: "Oct 2026",
+    tagline:
+      "A concept exoskeleton for people with complete paraplegia, controlled by imagined movements read from an EEG cap.",
+    proof: "Walks 8 steps in a 1 kHz closed-loop simulation · design only, not built",
+    live: "https://volition-eight.vercel.app",
+    liveLabel: "volition-eight.vercel.app",
+    github: "https://github.com/OjasMishra32/volition",
+    skills: { frontend: [], backend: [] },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            A concept design for a brain-controlled exoskeleton for people with
+            complete paraplegia: a parametric CAD model in CadQuery, the
+            electronics and control design, and a 1 kHz closed-loop simulation
+            driven by a synthetic EEG decoder. It hasn&apos;t been built or
+            tested on people, so every number here is a design estimate.
+          </TypographyP>
+          <ProjectsLinks
+            live={this.live}
+            repo={this.github}
+            liveLabel="See the design"
+          />
+
+          <TypographyH3 className="my-4 mt-8">Control</TypographyH3>
+          <p className="font-mono mb-2">
+            The user wears a 16-channel EEG cap. Imagining a foot movement asks
+            the exoskeleton to move forward through its sequence, from sitting
+            to standing to walking, and imagining a hand movement asks it to go
+            back. Nothing moves until the user confirms with a button on a
+            crutch handle within 4 seconds, and a stop button on either crutch
+            works at any time.
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">Torque limits</TypographyH3>
+          <p className="font-mono mb-2">
+            Both hips and both knees use the same actuator, a frameless BLDC
+            motor on a 100:1 strain-wave gear. The torque each joint can
+            deliver is recomputed every millisecond as the smallest of five
+            limits: peak, current, voltage, thermal and slew. While a limit
+            binds, the controller stops the integrator from winding up. In a
+            sit-to-stand on a nearly empty battery, that cut the integrator peak
+            from 73 N·m to 16 N·m and the knee overshoot from 1.69° to 0.38°.
+          </p>
+
+          <TypographyH3 className="my-4 mt-8">In simulation</TypographyH3>
+          <p className="font-mono mb-2">
+            The user stands up, walks 8 steps (2.66 m at 0.25 m/s), stops and
+            sits down, with every transition decoded from synthetic EEG and
+            confirmed with the button. The decoder scored 85% on held-out data
+            with no unconfirmed detections in 5 minutes of rest. Detection takes
+            3.3 to 4.7 seconds from the start of the imagined movement, which is
+            still an open issue.
           </p>
         </div>
       );
@@ -648,12 +772,9 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            Call the point before the ball lands, then price the head start.
-          </TypographyP>
           <TypographyP className="font-mono">
             Built at Gator Quant Hacks 2026, Systematic Trading track, with Yoan
-            Exposito, Rafael Penhas, and Ian Hoang. A camera films the court, a
+            Exposito, Rafael Penhas and Ian Hoang. A camera films the court, a
             model finds the ball, fits its flight, and calls a miss or an out
             before the bounce. On held-out table tennis its early calls came a
             median 162 ms before the ball landed, none wrong, at 119.9 fps. On
@@ -672,14 +793,48 @@ const projects: Project[] = [
             Across 13,084 ATP and WTA matches, wallets trading within 3 seconds
             of a point earned after fees in all 11 months, as our pre-registered
             hypothesis predicted out of sample. Copying them after the fact
-            loses about a cent a share once fees and delays are in, so the edge
-            is the speed itself: we priced the first second of feed delay at
-            $42 to $74 a day.
+            loses about a cent a share once fees and delays are in, so the
+            profit comes from being fast. We priced the first second of feed
+            delay at $42 to $74 a day.
           </p>
           <p className="font-mono mb-2 text-sm opacity-70">
             Paper trading only: real Polymarket prices and fills, simulated
             camera calls, no real money.
           </p>
+        </div>
+      );
+    },
+  },
+  {
+    id: "hive",
+    emblem: { monogram: "HIVE", bg: "#1a1206" },
+    category: "Hackathon winner",
+    title: "HIVE",
+    role: "Builder · YC Transpose",
+    period: "2026",
+    tagline:
+      "Computer vision that turns a physical workspace into task graphs and coordinates the people in it.",
+    proof: "1st place at YC Transpose",
+    live: "#",
+    liveLabel: "Hackathon build",
+    skills: {
+      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.ts],
+      backend: [
+        PROJECT_SKILLS.python,
+        PROJECT_SKILLS.opencv,
+        PROJECT_SKILLS.pytorch,
+      ],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            1st place at YC Transpose. HIVE watches a physical workspace through
+            cameras, turns what it sees into task graphs, and coordinates the
+            people in the room against them. Vision works out what is being
+            done and by whom, and the task graph decides what should happen
+            next.
+          </TypographyP>
         </div>
       );
     },
@@ -696,7 +851,7 @@ const projects: Project[] = [
     role: "Builder · NexHacks",
     period: "2025",
     tagline:
-      "A physical therapist that watches your form and tells you when it's wrong.",
+      "A physical therapy coach that watches your form through a webcam and corrects it out loud.",
     proof: "Live joint-angle tracking from a plain webcam, voice coaching in a Meta Quest",
     live: "https://www.youtube.com/watch?v=-k4Ks9YATTI",
     liveLabel: "Watch the demo",
@@ -712,32 +867,24 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            A physical therapist that watches your form and tells you when
-            it&apos;s wrong.
-          </TypographyP>
           <TypographyP className="font-mono">
-            Built at NexHacks with Andrew Yuan, Eashan Iyer, and Kevin Harned.
-            MediaPipe reads your pose from a plain webcam and computes live joint
-            angles, elbow, shoulder, hip, against per-exercise thresholds stored
-            in Supabase. It counts reps and holds and speaks corrections while
-            you are mid-exercise rather than in a report afterward: LiveKit
-            carries the real-time voice, ElevenLabs gives it a voice, and a Meta
-            Quest headset puts the feedback in front of your eyes. The front end
-            is Next.js, TypeScript, and Tailwind.
+            Built at NexHacks with Andrew Yuan, Eashan Iyer and Kevin Harned.
+            MediaPipe reads your pose from a plain webcam and computes live
+            joint angles at the elbow, shoulder and hip, checked against
+            per-exercise thresholds stored in Supabase. It counts reps and holds
+            and speaks corrections while you&apos;re mid-exercise. LiveKit
+            carries the audio in real time, ElevenLabs does the speaking, and a
+            Meta Quest headset puts the feedback in front of your eyes. The
+            front end is Next.js, TypeScript and Tailwind.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Watch the demo" />
           <ProjectsLinks
             live="https://devpost.com/software/flowers-and-joy"
             liveLabel="Devpost write-up"
           />
-
-          <TypographyH3 className="my-4 mt-8">The hard part</TypographyH3>
           <p className="font-mono mb-2">
-            Pose estimation is the easy half. &ldquo;Good form&rdquo; is a range,
-            not a number, and it moves with body proportions and fatigue. Correct
-            too eagerly and the coach is noise; too late and it&apos;s decoration.
-            Most of the work was tolerance logic and when to speak.
+            Most of the work went into the tolerance logic: how far off counts
+            as bad form, and when to speak up.
           </p>
         </div>
       );
@@ -763,18 +910,16 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            The fold is the command: combine these two things.
-          </TypographyP>
           <TypographyP className="font-mono">
-            Built at Bitrig Hacks iPhone Duo Edition at Y Combinator with Abhinav
-            Nigam, Abhinav Shivalli, Harpreet Vishnoi, and Vasu Ganesa. You put
-            something on each screen of the foldable iPhone Duo, a résumé and a
-            job post, an email and your calendar, a room and a chair, then fold
+            Built at Bitrig Hacks iPhone Duo Edition at Y Combinator with
+            Abhinav Nigam, Abhinav Shivalli, Harpreet Vishnoi and Vasu Ganesa.
+            You put something on each screen of the foldable iPhone Duo (a
+            résumé and a job post, say, or an email and your calendar) and fold
             the phone. FUSE sends both inputs and any spoken instruction to
-            OpenAI, which picks what kind of result fits, and the app renders it
-            natively: an itinerary on a map, a calendar event, an email draft, a
-            quiz, slides, a generated image, and more, 12 result types in all.
+            OpenAI, which picks what kind of result fits, and the app renders
+            it natively: an itinerary on a map, a calendar event, an email
+            draft, a quiz, slides, a generated image and more, 12 result types
+            in all.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} liveLabel="Devpost" />
           <ProjectsLinks
@@ -784,49 +929,11 @@ const projects: Project[] = [
 
           <TypographyH3 className="my-4 mt-8">Getting content in</TypographyH3>
           <p className="font-mono mb-2">
-            Content can come from FUSE&apos;s own browser, map, notes and photo
+            Content comes from FUSE&apos;s own browser, map, notes and photo
             panes, or from other apps through the Share Sheet, a Safari
-            extension, and Shortcuts. Results are kept in a local history, with
+            extension and Shortcuts. Results are kept in a local history, with
             RevenueCat handling subscriptions and Supabase backing a community
             feed.
-          </p>
-        </div>
-      );
-    },
-  },
-  {
-    id: "glassbox",
-    emblem: { monogram: "GB", bg: "#0d1117" },
-    category: "Hackathon placement · interview integrity",
-    title: "GlassBoxAI",
-    role: "Co-founder & CEO",
-    period: "2024",
-    tagline:
-      "An overlay for Zoom and Google Meet that flags AI-assisted answers in live interviews.",
-    proof: "2nd of 200+ at Startup in a Weekend Philly, the only high school team",
-    live: "#",
-    liveLabel: "Hackathon build",
-    skills: { frontend: [], backend: [] },
-    get content() {
-      return (
-        <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            If everyone uses AI in interviews, is there still a point?
-          </TypographyP>
-          <TypographyP className="font-mono">
-            Built with three friends over a 48-hour startup weekend in
-            Philadelphia, as the only high school team among 200+ competitors
-            from Penn, Drexel, and MIT. It took 2nd place.
-          </TypographyP>
-
-          <TypographyH3 className="my-4 mt-8">How it works</TypographyH3>
-          <p className="font-mono mb-2">
-            GlassBoxAI sits on top of Zoom, Teams, or Google Meet. Face tracking
-            follows small shifts in gaze and blink rate, an audio analyzer
-            listens for odd pauses and a voice that never changes pitch, and a
-            lightweight language model reads the transcript, together flagging
-            script reading and AI-assisted answers from tools like ChatGPT and
-            Cluely.
           </p>
         </div>
       );
@@ -859,31 +966,17 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            The phone tells you what is in front of you, without asking the
-            internet.
-          </TypographyP>
           <TypographyP className="font-mono">
-            Eyesight uses the iPhone&apos;s LiDAR sensor and on-device CoreML
-            inference to detect obstacles and narrate surroundings in real time,
-            for users who are blind or have low vision. Built for the Apple Swift
-            Student Challenge.
+            Eyesight uses the iPhone&apos;s LiDAR sensor and on-device CoreML to
+            detect obstacles and describe the surroundings out loud in real
+            time, for people who are blind or have low vision. Built for the
+            Apple Swift Student Challenge. Everything runs on the phone, so it
+            works with no signal and nothing about where you are or what
+            you&apos;re looking at leaves the device.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Join on TestFlight" />
-
-          <TypographyH3 className="my-4 mt-8">Why on-device</TypographyH3>
           <p className="font-mono mb-2">
-            An accessibility tool that stops working without signal is not an
-            accessibility tool. Everything runs locally: no round trip, no
-            dependency on a connection, and nothing about where a user is or what
-            they are looking at ever leaves the phone. The constraint is the
-            whole design.
-          </p>
-          <p className="font-mono mb-2">
-            <em>
-              The TestFlight beta is currently closed to new testers — worth
-              knowing before you tap.
-            </em>
+            <em>The TestFlight beta isn&apos;t taking new testers right now.</em>
           </p>
         </div>
       );
@@ -897,7 +990,7 @@ const projects: Project[] = [
     role: "Founder",
     period: "2023 —",
     tagline:
-      "A proactive health companion: medication tracking, body map, AI assistant.",
+      "A health app for medication tracking, logging symptoms on a body map, and asking an AI assistant.",
     proof: "Live on the App Store · rated 5.0",
     live: "https://apps.apple.com/us/app/preventaai/id6757689865",
     liveLabel: "App Store",
@@ -917,23 +1010,17 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            A proactive health companion, shipped to the App Store and rated 5.0.
-          </TypographyP>
           <TypographyP className="font-mono">
-            SwiftUI and Firebase. Medication tracking with streaks and schedules,
-            an AI health assistant, an interactive body map for logging where
-            something hurts and how badly, a visual scanner, and short learning
-            modules. Listed under Medical; free with in-app purchases.
+            A health app on the App Store, rated 5.0. Built with SwiftUI and
+            Firebase: medication tracking with streaks and schedules, an AI
+            health assistant, a body map for logging where something hurts and
+            how badly, a visual scanner and short lessons. Free, with in-app
+            purchases.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="View on the App Store" />
-
-          <TypographyH3 className="my-4 mt-8">The one that mattered</TypographyH3>
           <p className="font-mono mb-2">
-            A user reported the app helped them catch severe tuberculosis earlier
-            than standard screening did. That&apos;s the reason it&apos;s still
-            maintained. The streaks, the polish, the rating are all downstream of
-            software being in someone&apos;s pocket at the right moment.
+            One user reported that it helped them catch severe tuberculosis
+            earlier than standard screening did.
           </p>
         </div>
       );
@@ -961,29 +1048,17 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            Triple-click a citation, land on the PDF. 5.0 on the Chrome Web
-            Store.
-          </TypographyP>
           <TypographyP className="font-mono">
-            Built out of a personal annoyance during the CMU research work.
-            Reading a dense paper means constantly bouncing off citations:
-            copying a title, opening a tab, cleaning a malformed DOI, testing
-            three links, checking whether it is open access. QuickCitePro
-            collapses that into one gesture — select a citation signal, trigger
-            the resolver, land in the document.
+            A Chrome extension I built during the CMU research work. Following a
+            citation in a dense paper meant copying the title, opening a tab,
+            fixing a broken DOI and trying links one by one. With QuickCitePro
+            you triple-click the citation and land on the paper. Rated 5.0 on
+            the Chrome Web Store and used by professors and lab teammates.
           </TypographyP>
           <ProjectsLinks
             live={this.live}
             liveLabel="Install from the Web Store"
           />
-
-          <TypographyH3 className="my-4 mt-8">Who actually uses it</TypographyH3>
-          <p className="font-mono mb-2">
-            Professors and lab teammates — the only endorsement a research tool
-            needs. Small friction per citation, enormous across a literature
-            review. Exactly the kind of problem nobody thinks is worth a project.
-          </p>
         </div>
       );
     },
@@ -996,7 +1071,7 @@ const projects: Project[] = [
     role: "AI Robotics Engineer Intern · EV Bots",
     period: "2025",
     tagline:
-      "The company's first autonomous EV charging robot that actually closed the loop.",
+      "The company's first autonomous EV-charging robot that worked end to end.",
     proof: "Working prototype · contributed to provisional patents",
     live: "#",
     liveLabel: "Internal — no public link",
@@ -1012,31 +1087,47 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            Plug a car in without a person. Harder than it sounds.
-          </TypographyP>
           <TypographyP className="font-mono">
-            I shipped EV Bots&apos; first fully working autonomous EV charging
-            robot prototype — iterating across mechanical, electronics, and
-            controls until the whole loop finally closed. The work contributed to
-            multiple provisional patents.
+            I built EV Bots&apos; first fully working autonomous EV-charging
+            robot prototype, iterating on the mechanics, electronics and
+            controls until the robot could find a car&apos;s charging port and
+            plug in by itself. The work went into several provisional patents.
           </TypographyP>
-
-          <TypographyH3 className="my-4 mt-8">Why hardware is different</TypographyH3>
           <p className="font-mono mb-2">
-            Software failures are reversible. A misaligned end effector against a
-            real charging port is not. Perception has to localise the port, the
-            controller has to approach without overshooting, and the mechanism has
-            to absorb whatever error survives both. Nothing that works in
-            simulation works in a parking lot for free.
+            I also designed the CAD for an autonomous drone charging dock meant
+            for swarm delivery fleets.
           </p>
-
-          <TypographyH3 className="my-4 mt-8">Drone charging dock</TypographyH3>
+        </div>
+      );
+    },
+  },
+  {
+    id: "glassbox",
+    emblem: { monogram: "GB", bg: "#0d1117" },
+    category: "Hackathon placement · interview integrity",
+    title: "GlassBoxAI",
+    role: "Co-founder & CEO",
+    period: "2024",
+    tagline:
+      "An overlay for Zoom and Google Meet that flags AI-assisted answers in live interviews.",
+    proof: "2nd of 200+ at Startup in a Weekend Philly, the only high school team",
+    live: "#",
+    liveLabel: "Hackathon build",
+    skills: { frontend: [], backend: [] },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            Built with three friends over a 48-hour startup weekend in
+            Philadelphia, as the only high school team among 200+ competitors
+            from Penn, Drexel and MIT. It took 2nd place.
+          </TypographyP>
           <p className="font-mono mb-2">
-            I also designed the CAD for an autonomous drone charging dock aimed
-            at swarm delivery fleets — the same docking problem, smaller
-            tolerances, and a vehicle that cannot simply wait around while you
-            get it right.
+            GlassBoxAI sits on top of Zoom, Teams or Google Meet. Face tracking
+            follows small shifts in gaze and blink rate, an audio analyzer
+            listens for odd pauses and a pitch that never changes, and a small
+            language model reads the transcript. Together they flag script
+            reading and AI-assisted answers from tools like ChatGPT and Cluely.
           </p>
         </div>
       );
@@ -1051,7 +1142,7 @@ const projects: Project[] = [
     role: "National competitor · team captain",
     period: "2024 – 2025",
     tagline:
-      "Eight separate engineering projects in one season — a carbon-trading web app, an FPV drone, a Meta Quest escape room, an autonomous robot.",
+      "Eight engineering projects in one season, from a carbon-credit web app to an FPV drone and a Meta Quest escape room.",
     proof: "Captain for 6 events · national finalist in 2 · 5 portfolios below",
     live: "https://safmstsa.vercel.app",
     liveLabel: "safmstsa.vercel.app",
@@ -1073,17 +1164,12 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            Eight events at nationals in one season. Captain for six of them.
-          </TypographyP>
           <TypographyP className="font-mono">
-            The Technology Student Association runs national competitions across
-            wildly different disciplines, and I entered eight of them in a single
-            year — software, hardware, aerospace, environmental engineering, and
-            games. Team captain for six, national finalist in two. Every one of
-            these is a full engineering project with its own design cycle, not a
-            science-fair poster. Five have submitted documentation portfolios,
-            linked below.
+            The Technology Student Association runs national competitions in
+            very different fields, and I entered eight in one year, across
+            software, hardware, aerospace, environmental engineering and games.
+            I captained six of the teams and made the national final in two.
+            Five of the projects have documentation portfolios, linked below.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Open SAFMS, the live app" />
 
@@ -1131,11 +1217,11 @@ const projects: Project[] = [
     emblem: { monogram: "SSRN", bg: "#0f2a44" },
     category: "Robotics education",
     title: "Robotics Textbook",
-    role: "Author · co-founder, FusionBots",
+    role: "Author",
     period: "2022 – 2025",
     tagline:
-      "A free 120-page robotics and programming textbook, published on SSRN.",
-    proof: "Published on SSRN · 200+ students taught · team of 18",
+      "A 120-page robotics and programming textbook that starts from first principles.",
+    proof: "Free and open access on SSRN",
     live: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5408322",
     liveLabel: "papers.ssrn.com",
     skills: {
@@ -1149,26 +1235,12 @@ const projects: Project[] = [
     get content() {
       return (
         <div>
-          <TypographyP className="font-mono text-2xl text-center">
-            120 pages of robotics and programming, given away free.
-          </TypographyP>
           <TypographyP className="font-mono">
-            Written and published on SSRN out of FusionBots, the robotics
-            non-profit I co-founded at 14 and ran to 200+ students, a team of 18,
-            and $6K+ in revenue before we wound it down. The textbook and the
-            affordable robotics kits it was written for are what the whole thing
-            was actually for.
+            A 120-page introduction to robotics and programming that starts from
+            first principles, written for students who can&apos;t get the
+            material any other way. It&apos;s free and open access on SSRN.
           </TypographyP>
           <ProjectsLinks live={this.live} liveLabel="Read it on SSRN" />
-
-          <TypographyH3 className="my-4 mt-8">Why write it</TypographyH3>
-          <p className="font-mono mb-2">
-            Robotics has an access problem before it has a talent problem. The
-            kits cost more than most school clubs can spend, and the material
-            assumes you already own them. So the book teaches from first
-            principles up, priced at zero, and the kits were built down to what a
-            club could actually afford.
-          </p>
         </div>
       );
     },

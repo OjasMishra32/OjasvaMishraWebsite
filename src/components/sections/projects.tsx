@@ -27,7 +27,7 @@ const ProjectsSection = () => {
       <SectionHeader
         id="projects"
         title="Projects"
-        desc="Papers, products, and one robot that plugs a car in by itself."
+        desc="Products, hackathon builds and research."
         className="static mb-14 md:mb-24 mt-0"
       />
 
@@ -332,10 +332,11 @@ const ProjectDialog = ({ project }: { project: Project }) => {
   return (
     <ResponsiveDialogContent className="md:h-[85vh] md:max-w-4xl md:!flex md:flex-col md:gap-0 md:overflow-hidden md:p-0">
       {/* Sticky header */}
-      <div className="shrink-0 border-b border-border bg-background/80 px-8 py-5 backdrop-blur-sm">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-4">
-            <h4 className="truncate font-display text-xl font-bold tracking-tight text-foreground md:text-2xl">
+      <div className="shrink-0 border-b border-border bg-background/80 px-5 py-4 backdrop-blur-sm md:px-8 md:py-5">
+        {/* phones: wrap instead of truncating the title and pushing Visit off-screen */}
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 md:flex-nowrap">
+          <div className="flex min-w-0 flex-wrap items-center gap-x-4 gap-y-2 md:flex-nowrap">
+            <h4 className="font-display text-xl font-bold tracking-tight text-foreground md:truncate md:text-2xl">
               {project.title}
             </h4>
             <span className="shrink-0 rounded-full border border-border px-3 py-0.5 text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -365,7 +366,7 @@ const ProjectDialog = ({ project }: { project: Project }) => {
       </div>
 
       <ScrollArea className="flex-1" type="always" data-lenis-prevent>
-        <div className="px-8 py-8">
+        <div className="px-5 py-6 md:px-8 md:py-8">
           {/* the facts, before the prose */}
           <dl className="mb-10 grid grid-cols-1 gap-x-8 gap-y-3 border-y border-border py-5 sm:grid-cols-3">
             {[

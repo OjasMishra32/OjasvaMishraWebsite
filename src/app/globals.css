@@ -172,7 +172,8 @@ body > canvas {
    `min-w-0`/`truncate`/`break-words` below it measures against the inflated
    width and never wraps. Forcing the wrapper to `block` pins the message
    column to the viewport width so truncation/wrapping can take effect. */
-.chat-scroll-area [data-radix-scroll-area-viewport] > div {
+.chat-scroll-area [data-radix-scroll-area-viewport] > div,
+[data-vaul-drawer] [data-radix-scroll-area-viewport] > div {
   display: block !important;
 }
 

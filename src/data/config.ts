@@ -1,9 +1,9 @@
 const config = {
   title: "Ojasva Mishra | AI & Robotics Engineer",
   description: {
-    long: "Ojasva Mishra — founding AI Platform Engineer at Drift (godrift.ai), research intern at the CMU Robotics Institute, and founder of Twinly. First-author on IEEE TRO and IROS submissions in robotic joint control and safety filtering. Building robotics simulation tooling, autonomous systems, and AI products that ship.",
+    long: "Ojasva Mishra studies Computer Engineering and Finance at the University of Florida. Founding AI/software engineer at Drift, research intern at the CMU Robotics Institute with three first-author papers on robot joint control, and co-founder and CEO of Twinly.",
     short:
-      "AI & robotics engineer. Founding engineer at Drift, researcher at the CMU Robotics Institute, founder of Twinly.",
+      "Founding engineer at Drift, researcher at the CMU Robotics Institute, co-founder and CEO of Twinly.",
   },
   keywords: [
     "Ojasva Mishra",

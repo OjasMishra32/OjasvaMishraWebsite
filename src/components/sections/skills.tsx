@@ -32,7 +32,7 @@ const SkillsSection = () => {
         <SectionHeader
           id="skills"
           title="Tech Stack"
-          desc="What I actually build with"
+          desc="What I build with"
           className="static mb-14"
         />
         <ul className="mx-auto grid w-full max-w-5xl grid-cols-2 gap-3 px-4 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5">

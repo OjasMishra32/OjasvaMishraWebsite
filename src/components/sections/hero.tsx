@@ -30,7 +30,7 @@ const CREDENTIALS: {
   href?: string;
 }[] = [
   { label: "Co-founder & CEO", detail: "Twinly", href: "https://twinly.tech" },
-  { label: "Incoming freshman", detail: "UF · B.S. CE + M.S. Finance" },
+  { label: "Freshman", detail: "UF · B.S. CE + M.S. Finance" },
   { label: "Researcher", detail: "CMU Robotics Institute" },
 ];
 
@@ -150,7 +150,7 @@ const HeroSection = () => {
                       "cursor-default sm:text-xl md:text-xl bg-clip-text"
                     )}
                   >
-                    I build robots that think, and software that ships.
+                    I work on robot control and AI agents.
                   </p>
                 </BlurIn>
 
