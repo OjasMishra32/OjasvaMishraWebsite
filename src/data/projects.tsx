@@ -519,8 +519,8 @@ const projects: Project[] = [
             Franka Emika Panda arm.
           </p>
           <ProjectsLinks
-            live="https://www.youtube.com/watch?v=2A_RMrd1qKo"
-            liveLabel="Watch the Panda demo"
+            live="https://docs.google.com/presentation/d/1SlviBI7ru_gd3lhIjRU0SLKIdPdTKMvxvI_7BdUW_Eg/edit?usp=sharing"
+            liveLabel="Watch the video supplement"
           />
 
           <TypographyH3 className="my-4 mt-8">
@@ -1073,8 +1073,8 @@ const projects: Project[] = [
     tagline:
       "The company's first autonomous EV-charging robot that worked end to end.",
     proof: "Working prototype · contributed to provisional patents",
-    live: "#",
-    liveLabel: "Internal — no public link",
+    live: "https://www.youtube.com/watch?v=2A_RMrd1qKo",
+    liveLabel: "Watch the prototype",
     skills: {
       frontend: [PROJECT_SKILLS.python, PROJECT_SKILLS.opencv],
       backend: [
@@ -1093,6 +1093,7 @@ const projects: Project[] = [
             controls until the robot could find a car&apos;s charging port and
             plug in by itself. The work went into several provisional patents.
           </TypographyP>
+          <ProjectsLinks live={this.live} liveLabel="Watch the prototype" />
           <p className="font-mono mb-2">
             I also designed the CAD for an autonomous drone charging dock meant
             for swarm delivery fleets.

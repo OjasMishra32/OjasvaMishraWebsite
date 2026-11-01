@@ -764,8 +764,8 @@ export const PUBLICATIONS: Publication[] = [
       "Wraps the controller in a conformal safety filter with an explicit risk bound, so a joint stays inside its safe set even when the commands reaching it have been adversarially manipulated. Demonstrated on a Franka Emika Panda arm.",
     links: [
       {
-        label: "Watch the Panda demo",
-        href: "https://www.youtube.com/watch?v=2A_RMrd1qKo",
+        label: "Watch the video supplement",
+        href: "https://docs.google.com/presentation/d/1SlviBI7ru_gd3lhIjRU0SLKIdPdTKMvxvI_7BdUW_Eg/edit?usp=sharing",
       },
     ],
   },
