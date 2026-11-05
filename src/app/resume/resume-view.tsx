@@ -41,7 +41,7 @@ export default function ResumeView() {
               children, so an <a> inside it never receives the click. */}
           <a
             href={RESUME_PATH}
-            download="OjasMishraResume.pdf"
+            download="OjasvaMishraResume.pdf"
             className={cn(buttonVariants(), "cursor-can-hover gap-2")}
           >
             <Download className="h-4 w-4" />
