@@ -471,6 +471,8 @@ export const EXPERIENCE: Experience[] = [
     logoBg: "#000000",
     logoFullBleed: true,
     description: [
+      "Built the Gaussian splat pipeline, the biggest system I've built: it turns photos of real spaces into walkable 3D worlds that robots can be simulated in.",
+      "Built a self-healing loop: an error-triage service groups the failures users report, then a repair agent patches the code and reruns CI, so the codebase keeps itself working.",
       "Built core infrastructure for the agent, which 1,000+ people use to build and debug robot simulations in ROS2, Gazebo, MuJoCo and Isaac Sim. #5 Product of the Day at launch.",
       "Built the /robots catalog: 129 robots, each license-checked against MuJoCo Menagerie and partner repos.",
       "Shipped photo-to-3D scene generation with World Labs.",
