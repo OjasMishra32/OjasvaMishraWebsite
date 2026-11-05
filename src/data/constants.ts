@@ -592,7 +592,7 @@ export const EXPERIENCE: Experience[] = [
     id: 5,
     startDate: "Jul 2025",
     endDate: "Jan 2026",
-    title: "Engineering Intern",
+    title: "Software Engineering Intern",
     company: "PteroLabs",
     companyUrl: "https://pterolabs.ai",
     blurb: "UAV simulation and autonomy",
