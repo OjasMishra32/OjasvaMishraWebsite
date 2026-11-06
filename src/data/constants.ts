@@ -571,7 +571,7 @@ export const EXPERIENCE: Experience[] = [
   {
     id: 4,
     startDate: "Apr 2025",
-    endDate: "Feb 2026",
+    endDate: "Nov 2025",
     title: "AI Robotics Engineer Intern",
     company: "EV Bots, Inc.",
     blurb: "Robots that charge electric vehicle fleets",
@@ -592,8 +592,8 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 5,
-    startDate: "Jul 2024",
-    endDate: "Jul 2025",
+    startDate: "May 2025",
+    endDate: "Jan 2026",
     title: "Software Engineering Intern",
     company: "PteroLabs",
     companyUrl: "https://pterolabs.ai",
