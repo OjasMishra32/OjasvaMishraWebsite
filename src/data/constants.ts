@@ -462,7 +462,7 @@ export const EXPERIENCE: Experience[] = [
   {
     id: 1,
     startDate: "Nov 2025",
-    endDate: "Present",
+    endDate: "Aug 2026",
     title: "AI/Software Engineer, Founding Team",
     company: "Drift",
     companyUrl: "https://godrift.ai",
@@ -592,8 +592,8 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: 5,
-    startDate: "Jul 2025",
-    endDate: "Jan 2026",
+    startDate: "Jul 2024",
+    endDate: "Jul 2025",
     title: "Software Engineering Intern",
     company: "PteroLabs",
     companyUrl: "https://pterolabs.ai",
