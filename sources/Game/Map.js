@@ -98,23 +98,17 @@ export class Map
     {
         this.texture = {}
         this.texture.element = this.element.querySelector('.js-texture')
-        this.texture.previousUrl = null
 
         this.texture.element.addEventListener('load', () =>
         {
             this.texture.element.classList.add('is-visible')
         })
-        
+
+        // One drawing for every hour: the map is already dark
         this.texture.update = () =>
         {
-            const url = this.game.dayCycles.intervalEvents.get('night').inInterval ? 'ui/map/map-night.webp' : 'ui/map/map-day.webp'
-
-            if(url !== this.texture.previousUrl)
-            {
-                this.texture.element.classList.remove('is-visible')
-                this.texture.previousUrl = url
-                this.texture.element.src = url
-            }
+            if(!this.texture.element.getAttribute('src'))
+                this.texture.element.src = 'ui/map/map.webp'
         }
     }
 

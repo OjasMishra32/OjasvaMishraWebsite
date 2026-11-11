@@ -11,6 +11,7 @@ export const person = {
     first: 'Ojasva',
     last: 'Mishra',
     headline: 'AI and robotics engineer',
+    line: 'I work on robot control and AI agents.',
     site: 'https://www.ojasvamishra.me',
     email: 'ojasvamishra32@gmail.com',
     resume: '/OjasMishraResume.pdf',
@@ -24,10 +25,10 @@ export const person = {
         'I co-founded Twinly and run it as CEO, I was on the founding team at Drift, and I do robotics research with the CMU Robotics Institute, where I\'m first author on three papers about robot joints that hit their torque limit.',
     ],
     now: [
-        { label: 'Co-founder & CEO', detail: 'Twinly', url: 'https://twinly.tech', emblem: 'twinly', metric: [ '1,000+', 'active users' ] },
-        { label: 'Research intern', detail: 'CMU Robotics Institute', url: 'https://www.ri.cmu.edu/', emblem: 'Carnegie Mellon University, Robotics Institute', metric: [ '3', 'first-author papers' ] },
-        { label: 'Quant research analyst', detail: 'AlgoGators Investment Fund', emblem: 'AlgoGators', monogram: 'AG', metric: [ '64%', 'win rate, live trade' ] },
-        { label: 'B.S. Computer Engineering + M.S. Finance', detail: 'University of Florida', emblem: 'UF', monogram: 'UF', metric: [ 'Full merit', 'four-year combined pathway' ] },
+        { label: 'Co-founder & CEO', detail: 'Twinly', url: 'https://twinly.tech', emblem: 'Twinly' },
+        { label: 'Researcher', detail: 'CMU Robotics Institute', url: 'https://www.ri.cmu.edu/', emblem: 'Carnegie Mellon University, Robotics Institute' },
+        { label: 'Quant research analyst', detail: 'AlgoGators Investment Fund', emblem: 'AlgoGators Investment Fund' },
+        { label: 'Freshman', detail: 'UF · B.S. CE + M.S. Finance', emblem: 'University of Florida' },
     ],
 }
 
@@ -484,7 +485,6 @@ export const experience = [
     {
         title: 'Quantitative Research Analyst',
         company: 'AlgoGators Investment Fund',
-        monogram: 'AG',
         metrics: [ [ '64%', 'win rate on a live crack-spread trade' ], [ '1 of 2', 'first-years on the quant team' ], [ '$500K', 'fund under management' ] ],
         blurb: 'Student-run fund · about $500K AUM',
         period: 'Sep 2026 – present',
@@ -496,7 +496,6 @@ export const experience = [
     {
         title: 'Researcher, NeuroSpine Team',
         company: 'Dream Team Engineering',
-        monogram: 'DTE',
         metrics: [ [ 'CT + MRI', 'vertebra segmentation' ], [ 'VBQ', 'bone quality scoring' ] ],
         blurb: 'UF research team · with the UF Department of Neurosurgery',
         period: 'Sep 2026 – present',
@@ -521,7 +520,6 @@ export const experience = [
     {
         title: 'Chief Technology Officer',
         company: 'Youth Publications & Socioeconomic Forum',
-        monogram: 'YP',
         metrics: [ [ '15+', 'countries' ], [ '500+', 'members' ], [ 'UN', 'presented at HLPF and UNGA' ] ],
         url: 'https://www.ypsforum.org/',
         blurb: 'Youth NGO affiliated with UN MGCY',
@@ -645,31 +643,40 @@ export const videos = [
 ]
 
 /**
- * Logos for the profile panel, files in static/profile/emblems.
- * Keyed by project id or company name. Entries without one get a monogram.
+ * Logo chips for the About page. Files are in static/profile/emblems.
+ * Keyed by project id or company name. `bg` is the chip's colour behind the
+ * mark; entries with `text` instead of `file` are set as a monogram.
  */
 export const emblems = {
-    twinly: 'twinly.png',
-    applytwin: 'applytwin.png',
-    drift: 'drift.png',
-    dejaview: 'dejaview.png',
-    luciddreams: 'luciddreams.svg',
-    evbots: 'evbots.png',
-    kinetix: 'kinetix.png',
-    eyesight: 'eyesight.png',
-    preventaai: 'preventaai.png',
-    quickcitepro: 'quickcitepro.png',
-    tsa: 'tsa.png',
-    courtside: 'courtside.jpg',
-    volition: 'volition.png',
-    'Twinly': 'twinly.png',
-    'Drift': 'drift.png',
-    'Carnegie Mellon University, Robotics Institute': 'cmu.png',
-    'EV Bots, Inc.': 'evbots.png',
-    'PteroLabs': 'pterolabs.png',
-    'iPipeline': 'ipipeline.png',
-    'American Rocketry Challenge': 'rocketry.png',
-    'Technology Student Association': 'tsa.png',
-    'VEX Robotics': 'vex.png',
-    'Kumon North America, Inc.': 'kumon.png',
+    // Projects
+    twinly: { file: 'twinly.png', bg: '#000000' },
+    applytwin: { file: 'applytwin.png', bg: '#ffffff' },
+    drift: { file: 'drift.png', bg: '#000000' },
+    dejaview: { file: 'dejaview.png', bg: '#007aff' },
+    luciddreams: { file: 'luciddreams.svg', bg: '#000000' },
+    hive: { text: 'HIVE', bg: '#1a1206' },
+    evbots: { file: 'evbots.png', bg: '#ffffff' },
+    kinetix: { file: 'kinetix.png', bg: '#0b1017' },
+    fuse: { text: 'FUSE', bg: '#101010' },
+    eyesight: { file: 'eyesight.png', bg: '#000000' },
+    preventaai: { file: 'preventaai.png', bg: '#0b0b1a' },
+    quickcitepro: { file: 'quickcitepro.png', bg: '#1b2a4a' },
+    glassbox: { text: 'GB', bg: '#0d1117' },
+    tsa: { file: 'tsa.png', bg: '#ffffff' },
+
+    // Organisations
+    'Twinly': { file: 'twinly.png', bg: '#000000' },
+    'Drift': { file: 'drift.png', bg: '#000000' },
+    'Carnegie Mellon University, Robotics Institute': { file: 'cmu.png', bg: '#ffffff' },
+    'AlgoGators Investment Fund': { file: 'algogators.png', bg: '#ffffff' },
+    'Dream Team Engineering': { file: 'dte.png', bg: '#1b2a4a' },
+    'University of Florida': { file: 'uf.png', bg: '#ffffff' },
+    'Youth Publications & Socioeconomic Forum': { file: 'ypsf.png', bg: '#14263c' },
+    'EV Bots, Inc.': { file: 'evbots.png', bg: '#ffffff' },
+    'PteroLabs': { file: 'pterolabs.png', bg: '#0b1f3a' },
+    'iPipeline': { file: 'ipipeline.png', bg: '#ffffff' },
+    'American Rocketry Challenge': { file: 'rocketry.png', bg: '#ffffff' },
+    'Technology Student Association': { file: 'tsa.png', bg: '#ffffff' },
+    'VEX Robotics': { file: 'vex.png', bg: '#ffffff' },
+    'Kumon North America, Inc.': { file: 'kumon.png', bg: '#ffffff' },
 }

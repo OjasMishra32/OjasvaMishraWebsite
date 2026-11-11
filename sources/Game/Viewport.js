@@ -7,7 +7,14 @@ export class Viewport
         this.domElement = domElement
 
         this.events = new Events()
-        
+
+        // Upper bound on the render resolution. Rendering.js lowers it on
+        // machines that can't keep up.
+        this.pixelRatioMax = 2
+
+        // Total pixels the renderer is asked to fill, whatever the screen
+        this.pixelBudget = 4.5e6
+
         this.measure()
         this.setResize()
     }
@@ -21,8 +28,16 @@ export class Viewport
         this.ratio = this.width / this.height
 
         this.pixelRatioPure = window.devicePixelRatio
-        this.pixelRatioMax = 2
-        this.pixelRatio = Math.min(this.pixelRatioPure, this.pixelRatioMax)
+        const budgetRatio = Math.sqrt(this.pixelBudget / Math.max(1, this.width * this.height))
+        this.pixelRatio = Math.min(this.pixelRatioPure, this.pixelRatioMax, Math.max(1, budgetRatio))
+    }
+
+    setPixelRatioMax(value)
+    {
+        this.pixelRatioMax = value
+        this.measure()
+        this.pixelRatio = Math.min(this.pixelRatio, value)
+        this.events.trigger('change')
     }
 
     setResize()

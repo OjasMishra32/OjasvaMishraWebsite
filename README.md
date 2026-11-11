@@ -22,10 +22,11 @@ the settings in `vercel.json`.
 | --- | --- |
 | Everything the site says about me | `sources/data/profile.js` |
 | The presentation of each project and paper | `sources/data/cards.js` |
-| The short version (one-page profile) | `sources/Game/Profile.js` |
+| The About page | `sources/Game/Profile.js`, `sources/style/about.styl` |
 | Presentations and their live tiles | `sources/Game/Keynote.js`, `sources/Game/KeynoteLive.js` |
 | Interface styles | `sources/style/ui.styl` |
 | The rover | `sources/Game/World/Rover.js` |
+| The map panel | `sources/Game/Map.js`, `scripts/build-map.mjs` |
 | Areas of the world | `sources/Game/World/Areas/` |
 | Time-of-day looks | `sources/Game/Cycles/DayCycles.js` |
 
@@ -41,6 +42,7 @@ one:
 ```bash
 npm run images    # presentation images, board images, lab images
 npm run palette   # repaints the world's colour strip
+npm run map       # redraws the map panel's picture
 ```
 
 ## Controls

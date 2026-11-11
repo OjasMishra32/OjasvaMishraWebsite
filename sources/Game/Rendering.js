@@ -168,8 +168,98 @@ export class Rendering
         this.renderer.setPixelRatio(this.game.viewport.pixelRatio)
     }
 
+    /**
+     * Keeps the frame rate up on machines that can't draw the world at full
+     * resolution: when frames stay slow, the render resolution steps down,
+     * then the post-processing does. If a step doesn't make frames faster the
+     * limit is something else (a 30 fps power-saving mode, for instance), so
+     * the step is undone and the governor stops.
+     */
+    govern()
+    {
+        const governor = this.governor ??= {
+            steps: [ 1.5, 1.25, 1, 'quality', 0.85, 0.7 ],
+            index: 0,
+            last: 0,
+            times: [],
+            slowWindows: 0,
+            pending: null,
+            done: false,
+        }
+
+        if(governor.done)
+            return
+
+        const now = performance.now()
+        const frame = now - governor.last
+        governor.last = now
+
+        // Not started, hidden, or a one-off hitch
+        if(this.game.reveal?.step !== 2 || this.game.ticker.paused || document.hidden || frame > 250 || frame <= 0)
+        {
+            governor.times.length = 0
+            return
+        }
+
+        governor.times.push(frame)
+        if(governor.times.length < 90)
+            return
+
+        const sorted = governor.times.sort((a, b) => a - b)
+        const median = sorted[sorted.length >> 1]
+        governor.times = []
+
+        // Did the last step help?
+        if(governor.pending)
+        {
+            const { before, undo } = governor.pending
+            governor.pending = null
+
+            if(median > before * 0.92)
+            {
+                undo()
+                governor.done = true
+                return
+            }
+        }
+
+        // Under about 42 frames per second, twice in a row
+        governor.slowWindows = median > 24 ? governor.slowWindows + 1 : 0
+        if(governor.slowWindows < 2)
+            return
+
+        governor.slowWindows = 0
+
+        // Next step that changes something
+        while(governor.index < governor.steps.length)
+        {
+            const step = governor.steps[governor.index++]
+
+            if(step === 'quality')
+            {
+                if(this.game.quality.level === 0)
+                {
+                    this.game.quality.changeLevel(1)
+                    governor.pending = { before: median, undo: () => this.game.quality.changeLevel(0) }
+                    return
+                }
+            }
+            else if(step < this.game.viewport.pixelRatio)
+            {
+                const previous = this.game.viewport.pixelRatioMax
+                this.game.viewport.setPixelRatioMax(step)
+                governor.pending = { before: median, undo: () => this.game.viewport.setPixelRatioMax(previous) }
+                return
+            }
+        }
+
+        governor.done = true
+    }
+
     async render()
     {
+        this.govern()
+
         // this.renderer.render(this.game.scene, this.game.view.camera)
         this.postProcessing.render()
 

@@ -28,6 +28,13 @@ export class Ticker
 
     update(elapsed)
     {
+        // Paused while a full page covers the world (see Profile.js)
+        if(this.paused)
+        {
+            this.elapsed = elapsed / 1000
+            return
+        }
+
         const elapsedSeconds = elapsed / 1000
         this.delta = Math.min(elapsedSeconds - this.elapsed, this.maxDelta)
         this.elapsed = elapsedSeconds
