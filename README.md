@@ -1,32 +1,53 @@
 # ojasvamishra.me
 
-Personal site of **Ojasva Mishra** — founding AI Platform Engineer at
-[Drift](https://godrift.ai) (Antler-backed, "Claude Code for robotics"), research
-intern at the [CMU Robotics Institute](https://www.ri.cmu.edu/) under Prof. Min Xu
-and Dr. Xiaolong Wu, and founder of [Twinly](https://twinly.tech).
+My portfolio, as a small world you drive a rover around. The workshop holds my
+projects, the lab holds my research, the timeline on the ground is my
+experience in order, and the plaza at the end is how to reach me. Everything
+is also on one page: press **About me** (or `I`).
 
-Heading to the University of Florida in fall 2026 for a B.S. in Computer
-Engineering + M.S. in Finance (4-year combined pathway, full merit).
-
-## Stack
-
-Next.js 16 · React 19 · TypeScript · Tailwind · GSAP + Motion · Spline (3D
-keyboard) · Resend (contact form) · deployed on Vercel.
-
-Built on the open-source [3d-portfolio](https://github.com/Naresh-Khatri/3d-portfolio)
-template by [Naresh Khatri](https://github.com/Naresh-Khatri) — thanks for making
-it free to use.
-
-## Local development
+## Run it
 
 ```bash
-npm install
-cp .env.example .env.local   # add RESEND_API_KEY for the contact form
+npm install --force
+cp .env.example .env
 npm run dev
 ```
 
-## Contact
+`npm run build` writes the production site to `dist/`. Vercel builds it with
+the settings in `vercel.json`.
 
-ojasvamishra32@gmail.com ·
-[LinkedIn](https://www.linkedin.com/in/ojasva-mishra-657b89352/) ·
-[GitHub](https://github.com/OjasMishra32)
+## Where things are
+
+| What | Where |
+| --- | --- |
+| Everything the site says about me | `sources/data/profile.js` |
+| The presentation of each project and paper | `sources/data/cards.js` |
+| The short version (one-page profile) | `sources/Game/Profile.js` |
+| Presentations and their live tiles | `sources/Game/Keynote.js`, `sources/Game/KeynoteLive.js` |
+| Interface styles | `sources/style/ui.styl` |
+| The rover | `sources/Game/World/Rover.js` |
+| Areas of the world | `sources/Game/World/Areas/` |
+| Time-of-day looks | `sources/Game/Cycles/DayCycles.js` |
+
+To change a fact, edit `profile.js`. To change what a presentation shows,
+edit `cards.js` (each one is a 12 × 6 grid of tiles).
+
+## Images
+
+Source material lives in `scripts/shots` (`raw` for captured pages, `art` for
+figures and photos from the projects themselves). After adding or changing
+one:
+
+```bash
+npm run images    # presentation images, board images, lab images
+npm run palette   # repaints the world's colour strip
+```
+
+## Controls
+
+WASD or arrows to drive, Shift to boost, Enter to interact, M for the map,
+I for the short version. Add `#debug` to the URL for the debug panel.
+
+## Licenses
+
+Third-party notices are in `licenses/`.
