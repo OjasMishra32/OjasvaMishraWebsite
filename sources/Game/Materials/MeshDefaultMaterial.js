@@ -157,6 +157,11 @@ export class MeshDefaultMaterial extends THREE.MeshLambertNodeMaterial
             if(this.hasReveal)
                 outputColor.assign(MeshDefaultMaterial.revealDiscardNodeBuilder(this.game, outputColor))
 
+            // Testing only: #cold=n changes every shader a little, so browsers compile them afresh
+            const cold = Number(location.hash.match(/cold=(\d+)/)?.[1] ?? 0)
+            if(cold)
+                outputColor.addAssign(float(cold * 0.0000001))
+
             // Output
             return vec4(outputColor, this._alphaNode)
         })()

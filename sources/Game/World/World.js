@@ -8,18 +8,13 @@ import { WaterSurface } from './WaterSurface.js'
 import { Areas } from './Areas/Areas.js'
 import { WindLines } from './WindLines.js'
 import { Leaves } from './Leaves.js'
-import { Lightnings } from './Lightnings.js'
-import { Snow } from './Snow.js'
 import { VisualVehicle } from './VisualVehicle.js'
-import { VisualTornado } from './VisualTornado.js'
 import { Flowers } from './Flowers.js'
 import { Bricks } from './Bricks.js'
 import { Trees } from './Trees.js'
 import { Bushes } from './Bushes.js'
 import { MeshDefaultMaterial } from '../Materials/MeshDefaultMaterial.js'
-import { Fireballs } from './Fireballs.js'
 import { ExplosiveCrates } from './ExplosiveCrates.js'
-import { RainLines } from './RainLines.js'
 import { Confetti } from './Confetti.js'
 import { Intro } from './Intro.js'
 import { PoleLights } from './PoleLights.js'
@@ -28,6 +23,7 @@ import { Fences } from './Fences.js'
 import { Benches } from './Benches.js'
 import { Scenery } from './Scenery.js'
 import { createRover } from './Rover.js'
+import { inDisc } from '../../data/route.js'
 
 export class World
 {
@@ -53,6 +49,12 @@ export class World
         }
         else if(step === 1)
         {
+            // The world is a disc cut out of the island: nothing is planted outside it
+            const inside = (children) => children.filter(child => inDisc(child.position.x, child.position.z, - 1.5))
+            const resources = this.game.resources
+            resources.bushesReferences.scene.children = inside(resources.bushesReferences.scene.children)
+            resources.flowersReferencesModel.scene.children = inside(resources.flowersReferencesModel.scene.children)
+
             this.visualVehicle = new VisualVehicle(createRover())
             this.floor = new Floor()
             this.waterSurface = new WaterSurface()
@@ -60,15 +62,10 @@ export class World
             this.windLines = new WindLines()
             this.confetti = new Confetti()
             this.leaves = new Leaves()
-            this.rain = new RainLines()
-            this.lightnings = new Lightnings()
-            this.fireballs = new Fireballs()
-            this.snow = new Snow()
-            this.visualTornado = new VisualTornado()
             this.bushes = new Bushes()
-            this.birchTrees = new Trees('Birch Tree', this.game.resources.birchTreesVisualModel.scene, this.game.resources.birchTreesReferencesModel.scene.children, '#32b8ff', '#bfeaff')
-            this.oakTrees = new Trees('Oak Tree', this.game.resources.oakTreesVisualModel.scene, this.game.resources.oakTreesReferencesModel.scene.children, '#2ee6a8', '#b9ffe6')
-            this.cherryTrees = new Trees('Cherry Tree', this.game.resources.cherryTreesVisualModel.scene, this.game.resources.cherryTreesReferencesModel.scene.children, '#a47bff', '#e2d4ff')
+            this.birchTrees = new Trees('Birch Tree', this.game.resources.birchTreesVisualModel.scene, inside(this.game.resources.birchTreesReferencesModel.scene.children), '#32b8ff', '#bfeaff')
+            this.oakTrees = new Trees('Oak Tree', this.game.resources.oakTreesVisualModel.scene, inside(this.game.resources.oakTreesReferencesModel.scene.children), '#2ee6a8', '#b9ffe6')
+            this.cherryTrees = new Trees('Cherry Tree', this.game.resources.cherryTreesVisualModel.scene, inside(this.game.resources.cherryTreesReferencesModel.scene.children), '#a47bff', '#e2d4ff')
             this.flowers = new Flowers()
             this.bricks = new Bricks()
             this.fences = new Fences()

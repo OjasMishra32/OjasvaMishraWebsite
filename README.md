@@ -26,6 +26,8 @@ the settings in `vercel.json`.
 | Presentations and their live tiles | `sources/Game/Keynote.js`, `sources/Game/KeynoteLive.js` |
 | Interface styles | `sources/style/ui.styl` |
 | The rover | `sources/Game/World/Rover.js` |
+| The route visitors are kept on, and the disc the world is cut to | `sources/data/route.js`, `sources/Game/Route.js` |
+| The stops bar | `sources/Game/Guide.js` |
 | The map panel | `sources/Game/Map.js`, `scripts/build-map.mjs` |
 | Areas of the world | `sources/Game/World/Areas/` |
 | Time-of-day looks | `sources/Game/Cycles/DayCycles.js` |

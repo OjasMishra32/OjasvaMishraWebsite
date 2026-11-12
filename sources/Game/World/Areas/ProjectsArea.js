@@ -402,10 +402,12 @@ export class ProjectsArea extends Area
             this.images.material.outputNode = Fn(() =>
             {
                 return vec4(
+                    // The picture lights itself, like a screen: it has to
+                    // read from across the plaza, not only when opened
                     mix(
                         baseOutput.rgb,
-                        colorNode,
-                        this.shadeMix.images.mixUniform
+                        colorNode.mul(1.08),
+                        this.shadeMix.images.mixUniform.max(0.92)
                     ),
                     baseOutput.a
                 )

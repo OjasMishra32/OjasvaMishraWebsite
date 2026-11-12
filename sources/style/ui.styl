@@ -881,3 +881,117 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
 
         &::after
             display none
+
+
+/*
+ * Chapter bar (Guide.js)
+ */
+.guide
+    display none
+    position absolute
+    top 20px
+    left 50%
+    z-index 9
+    align-items center
+    gap 2px
+    height 44px
+    padding 0 5px
+    border-radius 22px
+    background rgba(22, 22, 26, 0.62)
+    backdrop-filter blur(24px) saturate(180%)
+    -webkit-backdrop-filter blur(24px) saturate(180%)
+    box-shadow inset 0 0 0 1px $stroke
+    transform translateX(-50%)
+    transition opacity 0.3s, transform 0.3s $spring
+    user-select none
+    -webkit-user-select none
+
+    html.is-started &
+        display flex
+
+    html.input-filter-menu &,
+    html.input-filter-modal &,
+    html.input-filter-intro &,
+    html.input-filter-cinematic &
+        opacity 0
+        pointer-events none
+        transform translateX(-50%) scale(0.94)
+
+    @media only screen and (max-width 900px)
+        top 68px
+        max-width calc(100% - 24px)
+
+    @media only screen and (max-width 520px)
+        top 64px
+        height 40px
+
+.guide-item
+    height 34px
+    padding 0 14px
+    border-radius 17px
+    color $secondary
+    font-size 14px
+    font-weight 600
+    letter-spacing -0.01em
+    white-space nowrap
+    transition background 0.25s, color 0.25s
+
+    html:not(.is-mode-touch) &:hover
+        color $text
+
+    &.is-active
+        background $glass-strong
+        color $text
+
+    @media only screen and (max-width 520px)
+        height 30px
+        padding 0 9px
+        font-size 12.5px
+
+
+/*
+ * Boot indicator: visible until the world is ready to start
+ */
+.boot
+    position absolute
+    left 50%
+    bottom 12%
+    z-index 3
+    display flex
+    flex-direction column
+    align-items center
+    gap 12px
+    transform translateX(-50%)
+    pointer-events none
+    transition opacity 0.5s
+
+    html.is-ready &
+        opacity 0
+
+.boot-track
+    width 168px
+    height 2px
+    border-radius 1px
+    background rgba(255, 255, 255, 0.14)
+    overflow hidden
+
+.boot-bar
+    width 40%
+    height 100%
+    border-radius 1px
+    background #5fd4ff
+    animation boot-slide 1.25s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate
+    will-change transform
+
+.boot-label
+    margin 0
+    color rgba(235, 235, 245, 0.62)
+    font-size 13px
+    font-weight 500
+    letter-spacing 0.01em
+
+@keyframes boot-slide
+    from
+        transform translateX(-10%)
+    to
+        transform translateX(160%)

@@ -10,7 +10,7 @@ export class Viewport
 
         // Upper bound on the render resolution. Rendering.js lowers it on
         // machines that can't keep up.
-        this.pixelRatioMax = 2
+        this.pixelRatioMax = /AppleWebKit/i.test(navigator.userAgent) && !/Chrome|Chromium|Edg\//i.test(navigator.userAgent) ? 1.25 : 2
 
         // Total pixels the renderer is asked to fill, whatever the screen
         this.pixelBudget = 2.6e6

@@ -467,7 +467,8 @@ export class Achievements
                         </div>
                     `
 
-                    this.game.notifications.show(
+// Achievement toasts are off: the route itself is the guide now
+                    if(false)                     this.game.notifications.show(
                         html,
                         'achievement',
                         4,

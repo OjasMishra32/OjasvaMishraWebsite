@@ -2,6 +2,7 @@ import * as THREE from 'three/webgpu'
 import { color, uniform, vec2 } from 'three/tsl'
 import { Game } from './Game.js'
 import gsap from 'gsap'
+import { disc } from '../data/route.js'
 
 export class Reveal
 {
@@ -50,6 +51,8 @@ export class Reveal
         // Step 0
         if(step === 0)
         {
+            document.documentElement.classList.add('is-ready')
+
             // Intro loader => Hide circle
             this.game.world.intro.circle.hide(() =>
             {
@@ -153,16 +156,24 @@ export class Reveal
             this.sound.play()
 
             // Reveal
+            // The circle opens from the rover, then settles on the disc the
+            // world is cut to (data/route.js) and stays: its rim is the edge
+            // of the world
+            const center = this.position2Uniform.value
+            const from = { x: center.x, y: center.y, distance: 0 }
             gsap.to(
-                this.distance,
+                from,
                 {
-                    value: 30,
-                    ease: 'back.in(1.3)',
-                    duration: 2 / speedMultiplier,
+                    x: disc.x,
+                    y: disc.z,
+                    distance: disc.radius,
+                    ease: 'power2.inOut',
+                    duration: 2.6 / speedMultiplier,
                     overwrite: true,
-                    onComplete: () =>
+                    onUpdate: () =>
                     {
-                        this.distance.value = 99999
+                        center.set(from.x, from.y)
+                        this.distance.value = from.distance
                     }
                 }
             )
