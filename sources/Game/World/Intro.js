@@ -44,6 +44,12 @@ export class Intro
             this.label.rotation.x = -0.4
         }
         
+        // Upright phone: the sign runs off the right edge beside the rover and
+        // is too small to read anywhere else, so the page shows the prompt
+        // as text (.start-hint) and the sign stays out of the picture
+        if(this.game.viewport.ratio < 0.8)
+            this.label.visible = false
+
         this.label.scale.setScalar(0.01)
         this.game.scene.add(this.label)
     }
@@ -139,7 +145,8 @@ export class Intro
                     name = 'gamepadPlaystation'
                 }
             }
-            else if(this.game.inputs.mode === Inputs.MODE_TOUCH)
+            // A phone hasn't been touched yet at this point, but it is still a tap that starts it
+            else if(this.game.inputs.mode === Inputs.MODE_TOUCH || matchMedia('(pointer: coarse)').matches)
             {
                 name = 'touch'
             }

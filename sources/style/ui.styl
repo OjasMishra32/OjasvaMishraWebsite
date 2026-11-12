@@ -1282,3 +1282,36 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
         margin-top 1px
         font-size 13px
         color rgba(255, 255, 255, 0.72)
+
+// Phones: the prompt that starts the visit, as text
+.start-hint
+    display none
+    position absolute
+    left 50%
+    bottom calc(18% + env(safe-area-inset-bottom))
+    z-index 8
+    margin 0
+    padding 13px 22px
+    border-radius 24px
+    background rgba(22, 22, 26, 0.72)
+    backdrop-filter blur(24px) saturate(180%)
+    -webkit-backdrop-filter blur(24px) saturate(180%)
+    box-shadow inset 0 0 0 1px $stroke
+    color #fff
+    font-size 16px
+    font-weight 600
+    white-space nowrap
+    opacity 0
+    transform translateX(-50%)
+    transition opacity 0.4s
+    pointer-events none
+
+    @media only screen and (max-width 600px) and (orientation portrait)
+        display block
+
+    html.is-ready.input-filter-intro &
+        opacity 1
+
+    html.input-filter-modal &,
+    html.input-filter-menu &
+        opacity 0

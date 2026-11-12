@@ -107,8 +107,14 @@ export class Reveal
                 else
                 {
                     // Next function
+                    let started = false
                     const next = () =>
                     {
+                        if(started)
+                            return
+
+                        started = true
+                        this.game.canvasElement.removeEventListener('pointerup', next)
                         this.updateStep(1)
                         this.game.inputs.events.off('introStart', inputCallback)
                         this.game.rayCursor.removeIntersect(intersect)
@@ -146,6 +152,10 @@ export class Reveal
             // { name: 'forward',               categories: [ 'wandering', 'racing', 'cinematic' ], keys: [ 'Keyboard.ArrowUp', 'Keyboard.KeyW', 'Gamepad.up', 'Gamepad.r2' ] },
             // { name: 'right',                 categories: [ 'wandering', 'racing', 'cinematic' ], keys: [ 'Keyboard.ArrowRight', 'Keyboard.KeyD', 'Gamepad.right' ] },
                     this.game.inputs.events.on('introStart', inputCallback)
+
+                    // On a touch screen a tap anywhere starts it, not only one on the rover
+                    if(matchMedia('(pointer: coarse)').matches)
+                        this.game.canvasElement.addEventListener('pointerup', next)
                 }
             })
         }
