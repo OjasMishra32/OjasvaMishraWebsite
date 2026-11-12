@@ -53,7 +53,7 @@ export const explainers = {
         proof: 'Z Fellows, September 2026 cohort · 1,000+ active users on macOS, Windows and iOS',
         panels: [
             { img: `${SRC}/twinly-ask.jpg`, caption: 'Tell it what you want handled', sub: 'One line, in plain words' },
-            { img: `${SRC}/twinly-work.jpg`, span: 1.4, position: '72% center', caption: 'It does the work in your real apps', sub: 'Replies drafted, a calendar conflict fixed, a refund chased' },
+            { img: `${SRC}/twinly-work.jpg`, span: 1.4, position: '72% center', caption: 'It does the work in your real apps', sub: 'Email, calendar, files, the browser and phone calls' },
             { img: `${SRC}/twinly-approve.jpg`, span: 1.2, position: 'center top', caption: 'And asks before anything goes out', sub: 'You choose how much it checks with you' },
         ],
     },
@@ -74,7 +74,7 @@ export const explainers = {
         line: 'Coordinates a group of people building something, one spoken instruction at a time.',
         proof: '1st place at YC Transpose',
         panels: [
-            { draw: 'say', who: 'The goal', text: 'Build a red, blue and green tower.', caption: 'Give it one goal', sub: 'One sentence is the whole brief' },
+            { draw: 'say', who: 'For example', text: 'Build a red, blue and green tower.', caption: 'Give it one goal', sub: 'One sentence is the whole brief' },
             { draw: 'window', img: `${ART}/hive-host.png`, position: '62% 30%', zoom: 1.5, caption: 'It works out who does what, and when', sub: 'A task graph, scheduled by reach, workload and collision risk' },
             { draw: 'phone', img: `${ART}/hive-worker.png`, caption: 'Each phone gets only its next step', sub: 'A camera checks the work and replans when it goes wrong' },
         ],
@@ -96,19 +96,19 @@ export const explainers = {
         proof: 'I was 1 of 3 high schoolers accepted to the hackathon, out of 1,500+ applicants',
         panels: [
             { img: 'scripts/shots/raw/yt_-k4Ks9YATTI.jpg', position: '55% center', caption: 'A webcam watches you exercise', sub: 'It reads your pose and measures your joint angles' },
-            { draw: 'say', who: 'It says', spoken: true, text: 'Get into starting position: arms straight, body aligned.', caption: 'It tells you what to fix, out loud', sub: 'While you are still mid-rep' },
+            { draw: 'say', who: 'For example, it says', spoken: true, text: 'Get into starting position: arms straight, body aligned.', caption: 'It tells you what to fix, out loud', sub: 'While you are still mid-rep' },
             { draw: 'apps', items: [ 'Reps counted', 'Holds timed', 'Form checked each rep' ], caption: 'And keeps count for you', sub: 'Feedback also shows in a Meta Quest headset' },
         ],
     },
 
     fuse: {
         accent: '#ff9f0a',
-        line: 'Put one thing on each half of a foldable iPhone, fold it shut, and get the one result that needs both.',
+        line: 'Put any two things on the two halves of a foldable iPhone, fold it shut, and get one result made from both.',
         proof: 'Native Swift app with 12 kinds of result',
         panels: [
-            { img: `${SRC}/fuse-two.jpg`, fit: 'contain', background: '#ffffff', span: 1.5, caption: 'A receipt on one half, who ate what on the other', sub: 'Any two things: pages, notes, photos, PDFs, your calendar' },
-            { img: `${SRC}/fuse-fold.jpg`, fit: 'contain', background: '#ffffff', caption: 'Fold the phone shut', sub: 'The fold is the command. It works out how the two relate.' },
-            { img: `${SRC}/fuse-result.jpg`, fit: 'contain', background: '#ffffff', caption: 'One answer that needed both', sub: 'Here: what each of four people owes, to the cent' },
+            { img: `${SRC}/fuse-two.jpg`, fit: 'contain', background: '#ffffff', span: 1.4, caption: 'Put anything on each half', sub: 'A web page, a map, a note, a photo, a file, your calendar' },
+            { img: `${SRC}/fuse-fold.jpg`, fit: 'contain', background: '#ffffff', span: 0.8, caption: 'Fold the phone shut', sub: 'The fold is the command. It works out how the two relate.' },
+            { draw: 'apps', items: [ 'A day plan with a map', 'A calendar event', 'A graded test', 'A draft email', 'A side-by-side comparison' ], caption: 'Get one result made from both', sub: 'It picks the kind of result that fits the pair' },
         ],
     },
 
@@ -118,7 +118,7 @@ export const explainers = {
         proof: 'LiDAR and on-device CoreML · TestFlight beta',
         panels: [
             { draw: 'icon', img: 'static/projects/images/eyesight-1.webp', caption: 'Point an iPhone ahead', sub: 'Its LiDAR measures the distance to what is in view' },
-            { draw: 'say', who: 'It says', spoken: true, text: 'Stop. Stairs down.', caption: 'It warns you, out loud', sub: 'Stairs, drop-offs and obstacles as you move' },
+            { draw: 'say', who: 'For example, it says', spoken: true, text: 'Stop. Stairs down.', caption: 'It warns you, out loud', sub: 'Stairs, drop-offs and obstacles as you move' },
             { draw: 'stat', value: '0 bytes', label: 'about where you are leave the phone', caption: 'Everything runs on the phone', sub: 'It works with no signal' },
         ],
     },
@@ -151,7 +151,7 @@ export const explainers = {
         panels: [
             { draw: 'window', img: `${ART}/veritas-1.png`, position: 'center top', caption: 'It sits on top of the video call', sub: 'Zoom, Teams or Google Meet' },
             { draw: 'apps', items: [ 'Gaze shifts and blink rate', 'Odd pauses, flat pitch', 'Answers that read like a script' ], caption: 'It watches, listens and reads', sub: 'Face tracking, audio analysis and a small language model' },
-            { img: `${SRC}/glassbox-flags.jpg`, fit: 'contain', background: '#0b1016', span: 0.72, caption: 'And flags it while the candidate talks', sub: 'Here: an AI voice and script reading, integrity score 36' },
+            { img: `${SRC}/glassbox-flags.jpg`, fit: 'contain', background: '#0b1016', span: 0.72, caption: 'And flags it while the candidate talks', sub: 'AI voices and script reading, with a live integrity score' },
         ],
     },
 
