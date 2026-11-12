@@ -3,8 +3,9 @@
 // and portfolios):
 //
 //   static/cards            images used by the presentations (data/cards.js)
-//   static/projects/images  full-bleed images for the project board
-//   static/lab/images       images and minis for the research board
+//   static/lab/images       the small pictures on the research board's side list
+//
+// The covers on the boards themselves come from build-covers.mjs.
 //
 // Usage: node scripts/build-images.mjs
 import { existsSync, mkdirSync, readdirSync } from 'node:fs'
@@ -16,7 +17,7 @@ import { projectCards, researchCards, researchMinis } from '../sources/data/card
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.join(here, '..')
-const sources = [ path.join(here, 'shots/art'), path.join(here, 'shots/raw'), path.join(root, 'static/profile/emblems') ]
+const sources = [ path.join(here, 'shots/art'), path.join(here, 'shots/art/src'), path.join(here, 'shots/raw'), path.join(root, 'static/profile/emblems') ]
 
 const find = (name) =>
 {
@@ -121,6 +122,10 @@ for(const project of projects)
 {
     for(const image of project.images)
     {
+        // Covers are drawn by build-covers.mjs
+        if(image.includes('-cover'))
+            continue
+
         const [ source, position ] = boardShots[image.replace('.webp', '')] || []
         if(!source)
             throw new Error(`No board image defined for ${image}`)
@@ -149,12 +154,11 @@ for(const entry of research)
     if(source.startsWith('@slate:'))
     {
         const [ , title, line, note ] = source.split(':')
-        await slate(title, line, note, path.join(labDir, entry.image), 1600, 900)
         await slate(title, line, note, path.join(labDir, entry.imageMini), 320, 180)
         continue
     }
 
-    await cover(find(source), path.join(labDir, entry.image), 1600, 900, position)
+    // The board's main picture is the cover (build-covers.mjs); only the mini is made here
     await cover(find(source), path.join(labDir, entry.imageMini), 320, 180, position)
 }
 

@@ -49,12 +49,13 @@ export const explainers = {
 
     twinly: {
         accent: '#7fa800',
-        line: 'An AI agent that operates your computer for you, the way you would.',
+        line: 'An AI agent that does the work on your computer and phone for you, the way you would.',
         proof: 'Z Fellows, September 2026 cohort · 1,000+ active users on macOS, Windows and iOS',
+        arrows: false,
         panels: [
-            { img: `${SRC}/twinly-ask.jpg`, caption: 'Tell it what you want handled', sub: 'One line, in plain words' },
-            { img: `${SRC}/twinly-work.jpg`, span: 1.4, position: '72% center', caption: 'It does the work in your real apps', sub: 'Email, calendar, files, the browser and phone calls' },
-            { img: `${SRC}/twinly-approve.jpg`, span: 1.2, position: 'center top', caption: 'And asks before anything goes out', sub: 'You choose how much it checks with you' },
+            { img: `${SRC}/twinly-chat.jpg`, fit: 'contain', background: '#12110c', caption: 'It answers your messages', sub: 'In your tone, knowing your plans. Here it settles a group trip.' },
+            { img: `${SRC}/twinly-call.jpg`, fit: 'contain', background: '#12110c', span: 1.35, caption: 'It makes phone calls in your voice', sub: 'A clone of your voice books the table and reports back' },
+            { img: `${SRC}/twinly-overnight.jpg`, fit: 'contain', background: '#12110c', caption: 'It works while you are away', sub: 'Email, calendar, files and the browser, overnight' },
         ],
     },
 
@@ -157,12 +158,13 @@ export const explainers = {
 
     tsa: {
         accent: '#c8102e',
-        line: 'Eight engineering builds for one season of TSA nationals. This is the one that led.',
-        proof: 'Captain for 6 events · national finalist in 2',
+        line: 'A national engineering competition for students. I entered eight events in one season.',
+        proof: 'Technology Student Association nationals · captain for 6 events · national finalist in 2',
+        arrows: false,
         panels: [
-            { img: `${ART}/tsa-dome-side.jpg`, caption: 'A 3D-printed dome packed with zeolite', sub: 'It sits over fertilized soil' },
-            { img: `${ART}/tsa-chart.png`, fit: 'contain', background: '#ffffff', caption: 'It pulls nitrous oxide out of the air', sub: 'Gas pressure with and without it, over five trials' },
-            { img: `${ART}/drone-assembled.jpg`, caption: 'The same season: a drone from parts', sub: 'And six more events, from design to competition' },
+            { img: `${ART}/tsa-dome-side.jpg`, caption: 'A dome that cleans the air over farm soil', sub: 'Engineering Design. Lined with zeolite that traps nitrous oxide; beat the control in 5 of 5 trials.' },
+            { img: `${ART}/drone-assembled.jpg`, caption: 'A racing drone built from parts', sub: 'Drone Challenge. Wired by hand and tuned in Betaflight.' },
+            { draw: 'apps', compact: true, items: [ 'A VR escape room', 'A tower defense game', 'A pick-and-place robot', 'Control code written on-site', 'A carbon-credit web app', 'A board game' ], caption: 'And six more builds', sub: 'Games, software, robotics and controls' },
         ],
     },
 

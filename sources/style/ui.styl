@@ -921,26 +921,54 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
         top 68px
         max-width calc(100% - 24px)
 
-    // On a phone the bar sits under the buttons and scrolls sideways
+    // On a phone: previous, the current stop, next
     @media only screen and (max-width 520px)
-        top 124px
+        top 74px
         left 12px
-        right 12px
+        right auto
         max-width none
-        height 40px
-        justify-content flex-start
-        overflow-x auto
-        scrollbar-width none
+        height 44px
+        padding 0 4px
         transform none
-
-        &::-webkit-scrollbar
-            display none
 
         html.input-filter-menu &,
         html.input-filter-modal &,
         html.input-filter-intro &,
         html.input-filter-cinematic &
             transform scale(0.94)
+
+.guide-step,
+.guide-current
+    display none
+
+.guide-step
+    align-items center
+    justify-content center
+    width 36px
+    height 36px
+    border-radius 18px
+    color $text
+
+    &:active
+        background $glass-strong
+
+.guide-current
+    padding 0 6px
+    color $text
+    font-size 15px
+    font-weight 600
+    letter-spacing -0.01em
+    white-space nowrap
+
+@media only screen and (max-width 520px)
+    .guide-step
+        display flex
+
+    .guide-current
+        display block
+
+    .guide .guide-item
+        display none
 
 .guide-item
     height 34px
@@ -960,11 +988,6 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
         background $glass-strong
         color $text
 
-    @media only screen and (max-width 520px)
-        flex none
-        height 30px
-        padding 0 11px
-        font-size 13px
 
 
 /*
@@ -1111,3 +1134,8 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
             object-fit cover
             object-position top
             transform none
+
+
+/* Menu tabs that are switched off (see Menu.js) */
+.menu .js-navigation-item[hidden]
+    display none

@@ -139,6 +139,7 @@ export class Game
         // Load rest of resources
         const resourcesPromise = this.resourcesLoader.load(
             [
+                [ 'pandaModel',                            `machines/panda.glb`,                                                                 'gltf' ],
                 [ 'foliageTexture',                        `foliage/foliageSDF.${compressedTextureExtension}${cb}`,                              compressedTextureFormat, (resource) => { resource.minFilter = THREE.NearestFilter; resource.magFilter = THREE.NearestFilter; resource.generateMipmaps = false; } ],
                 [ 'bushesReferences',                      `bushes/bushesReferences${compressedModelSuffix}.glb${cb}`,                           'gltf' ],
                 [ 'playgroundVisual',                      `playground/playgroundVisual${compressedModelSuffix}.glb${cb}`,                       'gltf' ],

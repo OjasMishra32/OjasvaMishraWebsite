@@ -130,7 +130,9 @@ export class Menu
                 this.default = item
         }
 
-        const keys = [...this.items.keys()]
+        // Tabs marked hidden keep working for the code that uses them, but
+        // aren't shown or reached with the shoulder buttons
+        const keys = [...this.items.keys()].filter(name => !this.items.get(name).navigationElement.hidden)
 
         for(let i = 0; i < keys.length; i++)
         {

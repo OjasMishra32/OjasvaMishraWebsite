@@ -30,7 +30,7 @@ the settings in `vercel.json`.
 | The rover | `sources/Game/World/Rover.js` |
 | The route visitors are kept on, and the disc the world is cut to | `sources/data/route.js`, `sources/Game/Route.js` |
 | The stops bar | `sources/Game/Guide.js` |
-| The robot arm, the drone and the usage-limits terminal | `sources/Game/World/Machines.js` |
+| The Panda arm, the drone and the usage-limits terminal | `sources/Game/World/Machines.js` |
 | The map panel | `sources/Game/Map.js`, `scripts/build-map.mjs` |
 | Areas of the world | `sources/Game/World/Areas/` |
 | Time-of-day looks | `sources/Game/Cycles/DayCycles.js` |
@@ -48,6 +48,7 @@ one:
 npm run images    # presentation images, board images, lab images
 npm run palette   # repaints the world's colour strip
 npm run map       # redraws the map panel's picture
+npm run panda     # the Franka Emika Panda arm, from its official description
 npm run covers    # the three-step explainer on each board, and the role plaques (needs Chrome)
 ```
 

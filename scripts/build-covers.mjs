@@ -61,7 +61,7 @@ const drawings = {
     </div>`,
 
     // A list of things done, each ticked
-    apps: (item) => `<div class="draw apps">
+    apps: (item) => `<div class="draw apps ${item.compact ? 'is-compact' : ''}">
         ${item.items.map(name => `<div class="app"><span>${escape(name)}</span><b>✓</b></div>`).join('')}
     </div>`,
 
@@ -130,7 +130,7 @@ const panel = (item) =>
 
     return `<figure class="panel" style="flex:${item.span ?? 1}">
         <div class="frame" style="${item.background ? `background:${item.background};` : ''}">${inner}</div>
-        <figcaption><b>${escape(item.caption)}</b><span>${escape(item.sub ?? '')}</span></figcaption>
+        <figcaption><b class="${item.caption.length > 44 ? 'is-long' : ''}">${escape(item.caption)}</b><span>${escape(item.sub ?? '')}</span></figcaption>
     </figure>`
 }
 
@@ -161,6 +161,8 @@ const page = (entry, explainer, theme) =>
     figcaption span { display: block; margin-top: 8px; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; color: #6e6e73; }
     .arrow { flex: none; width: 76px; height: 438px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
     .arrow svg { width: 44px; height: 44px; }
+    .gap { flex: none; width: 34px; }
+    figcaption b.is-long { font-size: 26px; }
     .proof { position: absolute; left: 72px; right: 72px; bottom: 40px; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; color: var(--accent); }
 
     .draw { position: absolute; inset: 0; }
@@ -191,6 +193,8 @@ const page = (entry, explainer, theme) =>
     .apps { display: flex; flex-direction: column; justify-content: center; gap: 13px; padding: 0 32px; background: #ffffff; }
     .apps .app { display: flex; align-items: center; justify-content: space-between; min-height: 60px; padding: 10px 20px; border-radius: 16px; background: #f2f2f5; font-size: 25px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
     .apps .app b { flex: none; margin-left: 12px; font-size: 26px; font-weight: 800; color: #30b158; }
+    .apps.is-compact { gap: 9px; }
+    .apps.is-compact .app { min-height: 50px; padding: 6px 18px; font-size: 22px; }
     .window { display: flex; flex-direction: column; background: #17181c; }
     .window .chrome { flex: none; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; background: #1d1e23; }
     .window.is-light { background: #ffffff; }
@@ -240,10 +244,10 @@ const page = (entry, explainer, theme) =>
         ${emblem ? `<div class="chip" style="background:${emblem.bg}"><img src="${file(`static/profile/emblems/${emblem.file}`)}"></div>` : ''}
         <div>
             <h1 class="${entry.title.length > 22 ? 'is-long' : ''}">${escape(entry.title)}</h1>
-            <p class="line ${explainer.line.length > 88 ? 'is-long' : ''}">${escape(explainer.line)}</p>
+            <p class="line ${explainer.line.length > 86 ? 'is-long' : ''}">${escape(explainer.line)}</p>
         </div>
     </header>
-    <div class="strip">${explainer.panels.map(panel).join(arrow)}</div>
+    <div class="strip">${explainer.panels.map(panel).join(explainer.arrows === false ? '<div class="gap"></div>' : arrow)}</div>
     <div class="proof">${escape(explainer.proof)}</div>
 </body></html>`
 }

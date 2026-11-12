@@ -53,80 +53,72 @@ export class Machines
     }
 
     /**
-     * Robot arm: a turret, two links and a sensor head. It turns to face the
-     * rover and reaches toward it when the rover comes close.
+     * Robot arm: a Franka Emika Panda (the model is the official robot
+     * description, see scripts/build-panda.mjs). Its first joint turns the
+     * arm to face the rover, and it reaches toward the rover as it comes
+     * close. The joints are the robot's real ones, moved within their limits.
      */
     setArm()
     {
         const { x, z } = machines.arm
+        const scale = 6
+        const facing = Math.PI * 0.5 // the arm's resting direction points at the path
+
         const root = new THREE.Group()
-        root.position.set(x, 0, z)
+        root.position.set(x, 0.3, z)
+        root.rotation.y = facing
+        root.scale.setScalar(scale)
         this.game.scene.add(root)
 
-        this.arm = {
-            upper: 3.1,
-            fore: 2.7,
-            shoulderHeight: 1.75,
-            yaw: 0,
-            q1: 1.9,
-            q2: - 1.6,
+        const model = this.game.resources.pandaModel.scene
+        root.add(model)
+
+        // The model's five materials, as the world's own
+        const paint = {
+            white: Kit.flat('#f4f5f7', PLAIN),
+            off_white: Kit.flat('#dfe4e8', PLAIN),
+            black: Kit.flat('#2b2e34', PLAIN),
+            green: Kit.glow('#30d158', 2.2),
+            light_blue: Kit.glow('#1e9bff', 2.2),
         }
-        const arm = this.arm
 
-        // Base
-        this.mesh(new THREE.CylinderGeometry(1.45, 1.65, 0.55, 32), JOINT, root, 0, 0.275, 0)
-        const ring = new THREE.Mesh(new THREE.TorusGeometry(1.5, 0.05, 8, 48), Kit.glow(CYAN, 2.4))
-        ring.rotation.x = Math.PI * 0.5
-        ring.position.y = 0.57
-        root.add(ring)
-
-        // Turret
-        arm.turret = new THREE.Group()
-        root.add(arm.turret)
-        this.mesh(new THREE.CylinderGeometry(0.9, 1.05, 0.85, 28), SHELL, arm.turret, 0, 0.97, 0)
-
-        const shoulderCap = new THREE.CylinderGeometry(0.62, 0.62, 1.25, 24)
-        shoulderCap.rotateX(Math.PI * 0.5)
-        this.mesh(shoulderCap, JOINT, arm.turret, 0, arm.shoulderHeight, 0)
-
-        // Upper arm
-        arm.shoulder = new THREE.Group()
-        arm.shoulder.position.y = arm.shoulderHeight
-        arm.turret.add(arm.shoulder)
-        this.mesh(new THREE.BoxGeometry(0.7, arm.upper, 0.78), SHELL, arm.shoulder, 0, arm.upper / 2, 0)
-        const stripe = new THREE.Mesh(new THREE.BoxGeometry(0.72, arm.upper * 0.5, 0.12), Kit.glow(CYAN, 1.8))
-        stripe.position.set(0, arm.upper * 0.5, 0)
-        arm.shoulder.add(stripe)
-
-        // Elbow and forearm
-        arm.elbow = new THREE.Group()
-        arm.elbow.position.y = arm.upper
-        arm.shoulder.add(arm.elbow)
-        const elbowCap = new THREE.CylinderGeometry(0.46, 0.46, 1, 24)
-        elbowCap.rotateX(Math.PI * 0.5)
-        this.mesh(elbowCap, JOINT, arm.elbow)
-        this.mesh(new THREE.BoxGeometry(0.54, arm.fore, 0.6), SHELL, arm.elbow, 0, arm.fore / 2, 0)
-
-        // Wrist and sensor head: the lenses look along the head's +X
-        arm.wrist = new THREE.Group()
-        arm.wrist.position.y = arm.fore
-        arm.elbow.add(arm.wrist)
-        const wristCap = new THREE.CylinderGeometry(0.34, 0.34, 0.8, 20)
-        wristCap.rotateX(Math.PI * 0.5)
-        this.mesh(wristCap, JOINT, arm.wrist)
-        this.mesh(new THREE.BoxGeometry(1.1, 0.74, 0.92), SHELL, arm.wrist, 0.4, 0, 0)
-        this.mesh(new THREE.BoxGeometry(0.1, 0.54, 0.7), JOINT, arm.wrist, 0.97, 0, 0)
-
-        const lensGeometry = new THREE.CylinderGeometry(0.18, 0.18, 0.08, 20)
-        lensGeometry.rotateZ(Math.PI * 0.5)
-        for(const side of [ - 1, 1 ])
+        model.traverse((child) =>
         {
-            const lens = new THREE.Mesh(lensGeometry, Kit.glow(CYAN, 3))
-            lens.position.set(1.03, 0, side * 0.18)
-            arm.wrist.add(lens)
+            if(!child.isMesh)
+                return
+
+            child.material = paint[child.material.name] ?? paint.white
+            child.castShadow = true
+            child.receiveShadow = true
+        })
+
+        // Joints: each link turns about its own Z from its resting orientation
+        const joints = []
+        for(let i = 1; i <= 7; i++)
+        {
+            const node = model.getObjectByName(`link${i}`)
+            joints.push({ node, rest: node.quaternion.clone() })
         }
 
-        this.solid(x, z, 1.45, 0.5, 1.45)
+        const fingers = [ 'left_finger', 'right_finger' ].map((name, index) =>
+        {
+            const node = model.getObjectByName(name)
+            return { node, rest: node.position.clone(), direction: index === 0 ? 1 : - 1 }
+        })
+
+        // Plinth
+        this.mesh(new THREE.BoxGeometry(2.2, 0.3, 2.2), '#12151c', this.game.scene, x, 0.15, z)
+        this.solid(x, z, 1.1, 0.6, 1.1)
+
+        this.arm = {
+            facing,
+            joints,
+            fingers,
+            angles: [ 0, - 0.785, 0, - 2.356, 0, 1.571, 0.785 ],
+            grip: 0.02,
+            axis: new THREE.Vector3(0, 0, 1),
+            turn: new THREE.Quaternion(),
+        }
     }
 
     /**
@@ -366,32 +358,52 @@ export class Machines
             const dx = (player ? player.position.x : 1000) - machines.arm.x
             const dz = (player ? player.position.z : 1000) - machines.arm.z
             const distance = Math.hypot(dx, dz)
-            const near = distance < 22
+            const near = distance < 20
 
-            // Face the rover, or sweep slowly when nobody is around
-            const targetYaw = near ? Math.atan2(- dz, dx) : Math.sin(time * 0.12) * 1.2
-            let yawDelta = targetYaw - state.yaw
-            yawDelta = Math.atan2(Math.sin(yawDelta), Math.cos(yawDelta))
-            state.yaw += yawDelta * Math.min(1, delta * 1.6)
+            // Three poses, in joint angles: resting, reaching far, reaching close
+            const READY = [ 0, - 0.785, 0, - 2.356, 0, 1.571, 0.785 ]
+            const FAR = [ 0, 0.62, 0, - 1.5, 0, 2.15, 0.785 ]
+            const CLOSE = [ 0, 0.05, 0, - 2.45, 0, 2.5, 0.785 ]
 
-            // Reach toward a point above the rover (two-link inverse kinematics)
-            const reach = near ? THREE.MathUtils.clamp(distance - 2, 1.9, 4.8) : 3 + Math.sin(time * 0.31) * 0.8
-            const height = (near ? 2.2 : 3.4 + Math.sin(time * 0.23) * 0.7) - state.shoulderHeight
-            const span = THREE.MathUtils.clamp(Math.hypot(reach, height), Math.abs(state.upper - state.fore) + 0.2, state.upper + state.fore - 0.2)
+            let target = READY
+            let blend = 0
 
-            const elbowAngle = Math.acos(THREE.MathUtils.clamp((state.upper ** 2 + state.fore ** 2 - span ** 2) / (2 * state.upper * state.fore), - 1, 1))
-            const lift = Math.acos(THREE.MathUtils.clamp((state.upper ** 2 + span ** 2 - state.fore ** 2) / (2 * state.upper * span), - 1, 1))
-            const q1 = Math.atan2(height, reach) + lift
-            const q2 = - (Math.PI - elbowAngle)
+            if(near)
+            {
+                // Within reach the hand follows the rover in; further out it stretches toward it
+                const reach = THREE.MathUtils.clamp((distance - 2.6) / 2.2, 0, 1)
+                const interest = THREE.MathUtils.smoothstep(distance, 9, 5)
+                target = FAR.map((angle, index) => THREE.MathUtils.lerp(CLOSE[index], angle, reach))
+                blend = 1 - interest
+            }
 
-            const ease = Math.min(1, delta * 1.8)
-            state.q1 += (q1 - state.q1) * ease
-            state.q2 += (q2 - state.q2) * ease
+            const goal = target.map((angle, index) => THREE.MathUtils.lerp(angle, READY[index], near ? blend : 1))
 
-            state.turret.rotation.y = state.yaw
-            state.shoulder.rotation.z = state.q1 - Math.PI * 0.5
-            state.elbow.rotation.z = state.q2
-            state.wrist.rotation.z = (near ? - 0.55 : - 0.2) - (state.q1 - Math.PI * 0.5 + state.q2)
+            // Joint 1 faces the rover, or sweeps slowly when nobody is around
+            let yaw = near ? Math.atan2(- dz, dx) - state.facing : Math.sin(time * 0.12) * 1.1
+            yaw = Math.atan2(Math.sin(yaw), Math.cos(yaw))
+            goal[0] = THREE.MathUtils.clamp(yaw, - 2.8, 2.8)
+
+            // A little life while idle
+            if(!near)
+            {
+                goal[1] += Math.sin(time * 0.31) * 0.12
+                goal[3] += Math.sin(time * 0.23) * 0.15
+            }
+
+            const ease = Math.min(1, delta * 1.7)
+            state.angles.forEach((angle, index) =>
+            {
+                state.angles[index] = angle + (goal[index] - angle) * ease
+                const joint = state.joints[index]
+                joint.node.quaternion.copy(joint.rest).multiply(state.turn.setFromAxisAngle(state.axis, state.angles[index]))
+            })
+
+            // The gripper opens as the rover comes close
+            const grip = near && distance < 6 ? 0.04 : 0.012
+            state.grip += (grip - state.grip) * ease
+            for(const finger of state.fingers)
+                finger.node.position.set(finger.rest.x, finger.rest.y + state.grip * finger.direction, finger.rest.z)
         }
 
         /**

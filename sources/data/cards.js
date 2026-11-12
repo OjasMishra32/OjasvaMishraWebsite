@@ -22,7 +22,7 @@ const top = { position: 'top' }
 export const projectCards = {
     twinly: [
         H([ 1, 1, 5, 2 ], 'Twinly', 'An AI agent that runs your computer the way you would.', 'Co-founder & CEO · Dec 2025 to now'),
-        I([ 6, 1, 7, 3 ], 'twinly', null, top),
+        I([ 6, 1, 7, 3 ], 'twinly-call', 'A phone call made in your cloned voice (from the product showcase)', { position: 'center' }),
         S([ 1, 3, 3, 1 ], '1,000+', 'active users, some of them paying'),
         S([ 4, 3, 2, 1 ], '2,000+', 'on the launch waitlist'),
         S([ 1, 4, 3, 1 ], 'Z Fellows', 'September 2026 cohort of 10 builders'),
@@ -60,7 +60,7 @@ export const projectCards = {
 
     drift: [
         H([ 1, 1, 5, 2 ], 'Drift', 'Claude Code for robots. Describe the task and it builds and runs the simulation.', 'AI/Software Engineer, founding team · Nov 2025 to Aug 2026'),
-        I([ 6, 1, 4, 2 ], 'drift', null, { position: 'center' }),
+        I([ 6, 1, 4, 2 ], 'drift-world', null, { position: '75% center' }),
         S([ 10, 1, 3, 2 ], '#5', 'Product of the Day on Product Hunt'),
         S([ 1, 3, 3, 1 ], '1,000+', 'robotics engineers using it'),
         S([ 4, 3, 2, 1 ], '129', 'robots in the catalog I built'),
@@ -163,7 +163,7 @@ export const projectCards = {
 
     fuse: [
         H([ 1, 1, 5, 2 ], 'FUSE', 'Put one thing on each half of a foldable iPhone. Fold it. Get one useful result.', 'Bitrig Hacks at Y Combinator · Sep 2026 · team of five'),
-        I([ 6, 1, 7, 3 ], 'yt_h8jK9cSw0xU', 'Both halves of the iPhone Duo, each holding one input'),
+        I([ 6, 1, 7, 3 ], 'fuse-two', 'Both halves of the iPhone Duo. Each one holds a source.', { contain: true, bg: '#ffffff' }),
         S([ 1, 3, 3, 1 ], '12', 'native result types'),
         S([ 4, 3, 2, 1 ], 'Swift', 'a fully native app'),
         ST([ 1, 4, 8, 2 ], [
@@ -208,7 +208,7 @@ export const projectCards = {
 
     quickcitepro: [
         H([ 1, 1, 5, 2 ], 'QuickCitePro', 'Triple-click a citation. Land on the PDF.', 'Founder · Chrome extension · 2025 to now'),
-        I([ 6, 1, 7, 4 ], 'quickcitepro', null, top),
+        I([ 6, 1, 7, 4 ], 'qcp-open', 'A cited paper, opened and summarised', { position: 'left top' }),
         S([ 1, 3, 2, 2 ], '5.0', 'Chrome Web Store rating'),
         S([ 3, 3, 3, 2 ], '3 clicks', 'from a reference to the paper'),
         ST([ 1, 5, 5, 2 ], [

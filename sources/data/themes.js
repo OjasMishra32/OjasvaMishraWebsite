@@ -14,9 +14,9 @@ const DARK = '#0b0c10'
 
 export const themes = {
     // Projects
-    twinly: { bg: '#c9f24d', ink: DARK, accent: '#c9f24d', frame: 'browser', shot: 'scripts/shots/raw/twinly.png', emblem: 'twinly.png' },
+    twinly: { bg: '#c9f24d', ink: DARK, accent: '#c9f24d', frame: 'photo', shot: 'scripts/shots/raw/twinly.png', emblem: 'twinly.png' },
     applytwin: { bg: '#1f6bff', ink: LIGHT, accent: '#5a9bff', frame: 'browser', shot: 'scripts/shots/raw/applytwin.png', emblem: 'applytwin.png' },
-    drift: { bg: '#101014', ink: LIGHT, accent: '#ff4d6d', frame: 'browser', shot: 'scripts/shots/raw/drift.png', emblem: 'drift.png' },
+    drift: { bg: '#101014', ink: LIGHT, accent: '#ff4d6d', frame: 'photo', shot: 'scripts/shots/raw/drift.png', emblem: 'drift.png' },
     dejaview: { bg: '#e6efff', ink: DARK, accent: '#4d9dff', frame: 'browser', shot: 'scripts/shots/art/dejaview-browser.jpg', emblem: 'dejaview.png' },
     luciddreams: { bg: '#5b3df5', ink: LIGHT, accent: '#9d8bff', frame: 'photo', shot: 'scripts/shots/art/lucid-guitar.jpg', emblem: 'luciddreams.svg' },
     hive: { bg: '#ffb020', ink: DARK, accent: '#ffb020', frame: 'browser', shot: 'scripts/shots/art/hive-host.png' },
@@ -25,7 +25,7 @@ export const themes = {
     fuse: { bg: '#000000', ink: LIGHT, accent: '#ff9f0a', frame: 'bare', shot: 'static/projects/images/fuse-1.webp' },
     eyesight: { bg: '#0a6cff', ink: LIGHT, accent: '#4d9dff', frame: 'icon', shot: 'static/projects/images/eyesight-1.webp' },
     preventaai: { bg: '#7b3ff2', ink: LIGHT, accent: '#b38bff', frame: 'browser', bar: 'light', shot: 'scripts/shots/raw/preventaai.png', emblem: 'preventaai.png' },
-    quickcitepro: { bg: '#14213d', ink: LIGHT, accent: '#fca311', frame: 'browser', bar: 'light', shot: 'scripts/shots/raw/quickcitepro.png', emblem: 'quickcitepro.png' },
+    quickcitepro: { bg: '#14213d', ink: LIGHT, accent: '#fca311', frame: 'photo', bar: 'light', shot: 'scripts/shots/raw/quickcitepro.png', emblem: 'quickcitepro.png' },
     glassbox: { bg: '#0d1117', ink: LIGHT, accent: '#2ee6a8', frame: 'browser', shot: 'static/projects/images/glassbox-1.webp' },
     tsa: { bg: '#f4efe6', ink: DARK, accent: '#ff5a5f', frame: 'photo', shot: 'scripts/shots/art/tsa-dome-front.jpg', emblem: 'tsa.png' },
 
