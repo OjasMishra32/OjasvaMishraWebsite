@@ -921,9 +921,26 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
         top 68px
         max-width calc(100% - 24px)
 
+    // On a phone the bar sits under the buttons and scrolls sideways
     @media only screen and (max-width 520px)
-        top 64px
+        top 124px
+        left 12px
+        right 12px
+        max-width none
         height 40px
+        justify-content flex-start
+        overflow-x auto
+        scrollbar-width none
+        transform none
+
+        &::-webkit-scrollbar
+            display none
+
+        html.input-filter-menu &,
+        html.input-filter-modal &,
+        html.input-filter-intro &,
+        html.input-filter-cinematic &
+            transform scale(0.94)
 
 .guide-item
     height 34px
@@ -944,9 +961,10 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
         color $text
 
     @media only screen and (max-width 520px)
+        flex none
         height 30px
-        padding 0 9px
-        font-size 12.5px
+        padding 0 11px
+        font-size 13px
 
 
 /*

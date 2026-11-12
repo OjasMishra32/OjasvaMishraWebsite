@@ -6,22 +6,37 @@
 // the world looks: dark surfaces, a survey grid on the land, glowing outlines
 // along every boundary and vegetation as a scatter of points.
 //
+// The picture covers the square around the disc the world is cut to, with
+// the route drawn on it.
+//
 // Usage: node scripts/build-map.mjs
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
+import { disc, mapHalf, path as route } from '../sources/data/route.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const input = path.join(here, 'shots/map-original.webp')
 const output = path.join(here, '../static/ui/map/map.webp')
 
-const SIZE = 2048
+const SIZE = 1536
 const WATER = 0, GROUND = 1, GREEN = 2, ROAD = 3
 
 /**
  * 1. Read the picture and label every pixel
  */
+// Only the square around the disc the world is cut to (the source covers
+// 192 m; data/route.js says where the disc is)
+const WORLD = 192
+const SPAN = mapHalf * 2
+const sourceSize = (await sharp(input).metadata()).width
+const perMetre = sourceSize / WORLD
+const cropLeft = Math.round((disc.x - mapHalf + WORLD / 2) * perMetre)
+const cropTop = Math.round((disc.z - mapHalf + WORLD / 2) * perMetre)
+const cropSize = Math.round(SPAN * perMetre)
+
 const { data: source, info: sourceInfo } = await sharp(input)
+    .extract({ left: cropLeft, top: cropTop, width: cropSize, height: cropSize })
     .resize(SIZE, SIZE, { kernel: 'lanczos3' })
     .median(5)
     .removeAlpha()
@@ -146,10 +161,10 @@ for(let y = 0; y < SIZE; y++)
         // Survey grid on the land: one line every 4 m, a stronger one every 16 m
         if(label !== WATER)
         {
-            const cell = SIZE / 48
+            const cell = SIZE * 4 / SPAN
             const fx = Math.abs(((x + cell / 2) % cell) - cell / 2)
             const fy = Math.abs(((y + cell / 2) % cell) - cell / 2)
-            const major = SIZE / 12
+            const major = SIZE * 16 / SPAN
             const mx = Math.abs(((x + major / 2) % major) - major / 2)
             const my = Math.abs(((y + major / 2) % major) - major / 2)
 
@@ -281,7 +296,25 @@ for(let i = 0; i < count; i++)
     out[i * 3 + 2] = Math.min(255, b)
 }
 
+/**
+ * 4. The edge of the world and the route through it
+ */
+const toPixel = (x, z) => [ (x - (disc.x - mapHalf)) / SPAN * SIZE, (z - (disc.z - mapHalf)) / SPAN * SIZE ]
+const [ centreX, centreY ] = toPixel(disc.x, disc.z)
+const radius = disc.radius / SPAN * SIZE
+const line = route.map(([ x, z ]) => toPixel(x, z).map(value => value.toFixed(1)).join(',')).join(' ')
+
+const overlay = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${SIZE}" height="${SIZE}">
+    <defs><mask id="outside"><rect width="100%" height="100%" fill="white"/><circle cx="${centreX}" cy="${centreY}" r="${radius}" fill="black"/></mask></defs>
+    <rect width="100%" height="100%" fill="#05080f" mask="url(#outside)"/>
+    <circle cx="${centreX}" cy="${centreY}" r="${radius}" fill="none" stroke="#39b7ff" stroke-opacity="0.25" stroke-width="14"/>
+    <circle cx="${centreX}" cy="${centreY}" r="${radius}" fill="none" stroke="#9fe0ff" stroke-width="3"/>
+    <polyline points="${line}" fill="none" stroke="#ffd27a" stroke-opacity="0.28" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="${line}" fill="none" stroke="#ffd27a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 18"/>
+</svg>`)
+
 await sharp(out, { raw: { width: SIZE, height: SIZE, channels: 3 } })
+    .composite([ { input: overlay } ])
     .webp({ quality: 86 })
     .toFile(output)
 

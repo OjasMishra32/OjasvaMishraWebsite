@@ -69,7 +69,14 @@ export class Guide
         {
             this.current = closest
             for(const item of this.items)
-                item.classList.toggle('is-active', item.dataset.stop === closest.id)
+            {
+                const active = item.dataset.stop === closest.id
+                item.classList.toggle('is-active', active)
+
+                // Keep the current stop in view where the bar scrolls (phones)
+                if(active && this.element.scrollWidth > this.element.clientWidth)
+                    this.element.scrollTo({ left: item.offsetLeft - (this.element.clientWidth - item.offsetWidth) / 2, behavior: 'smooth' })
+            }
         }
     }
 }

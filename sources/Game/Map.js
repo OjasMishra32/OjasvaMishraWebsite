@@ -1,5 +1,6 @@
 import { clamp } from 'three/src/math/MathUtils.js'
 import { Game } from './Game.js'
+import { disc, mapHalf, stops } from '../data/route.js'
 
 export class Map
 {
@@ -40,24 +41,12 @@ export class Map
     setLocations()
     {
         this.locations = {}
-        this.locations.items = [
-            { name: 'Achievements', respawnName: 'achievements', offset: { x: 0, y: -0.01 } },
-            { name: 'Altar', respawnName: 'altar', offset: { x: 0, y: -0.05 } },
-            { name: 'About', respawnName: 'behindTheScene', offset: { x: 0.01, y: 0 } },
-            { name: 'Bowling', respawnName: 'bowling', offset: { x: -0.08, y: 0.03 } },
-            { name: 'Timeline', respawnName: 'career', offset: { x: 0, y: -0.06 } },
-            { name: 'Circuit', respawnName: 'circuit', offset: { x: -0.08, y: -0.05 } },
-            { name: 'Cookie', respawnName: 'cookie', offset: { x: -0.02, y: -0.01 } },
-            { name: 'Research', respawnName: 'lab', offset: { x: -0.03, y: 0 } },
-            { name: 'Start', respawnName: 'landing', offset: { x: 0.02, y: 0 } },
-            { name: 'Projects', respawnName: 'projects', offset: { x: 0, y: -0.02 } },
-            { name: 'Contact', respawnName: 'social', offset: { x: -0.01, y: -0.04 } },
-        ]
+        // One pin per stop on the route
+        this.locations.items = stops.map(stop => ({ name: stop.label, respawnName: stop.respawn, position: stop, offset: { x: 0, y: 0 } }))
 
         for(const item of this.locations.items)
         {
-            const respawn = this.game.respawns.getByName(item.respawnName)
-            const mapPosition = this.worldToMap(respawn.position)
+            const mapPosition = this.worldToMap({ x: item.position.x, z: item.position.z })
 
             // HTML
             const html = /* html */`
@@ -149,11 +138,9 @@ export class Map
         let x = coordinates.x
         let y = typeof coordinates.z !== 'undefined' ? coordinates.z : coordinates.y
 
-        x /= this.game.terrain.size
-        y /= this.game.terrain.size
-
-        x += 0.5
-        y += 0.5
+        // The picture covers the square around the disc
+        x = (x - (disc.x - mapHalf)) / (mapHalf * 2)
+        y = (y - (disc.z - mapHalf)) / (mapHalf * 2)
 
         x = clamp(x, 0, 1)
         y = clamp(y, 0, 1)

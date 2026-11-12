@@ -9,6 +9,9 @@
  */
 export const disc = { x: 31, z: 9, radius: 39 }
 
+// The map panel shows the square around the disc (scripts/build-map.mjs draws it)
+export const mapHalf = disc.radius + 2
+
 // In visiting order. `respawn` is the name of the place the rover is put down.
 export const stops = [
     { id: 'start', label: 'Start', respawn: 'landing', x: 39.5, z: 37.8, accent: '#ffffff' },
