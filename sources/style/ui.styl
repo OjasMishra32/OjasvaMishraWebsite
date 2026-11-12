@@ -1398,22 +1398,46 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
         outline 2px solid #fff
         outline-offset 3px
 
-// The picture drifts slowly, so the world reads as something that moves
+// Four shots of the world, each drifting slowly and fading into the next
 .chooser-shot
+    position relative
     flex 1.55
     display block
     min-height 380px
     overflow hidden
+    // The first shot is also the backdrop, so there is a picture before the fades begin
+    background #0d1018 center / cover no-repeat
 
     img
+        position absolute
+        top 0
+        left 0
         display block
         width 100%
         height 100%
         object-fit cover
-        animation chooser-drift 22s ease-in-out infinite alternate
+        opacity 0
+        animation chooser-slide 20s linear infinite, chooser-drift 20s ease-in-out infinite alternate
+        animation-delay calc(var(--n) * 5s), calc(var(--n) * -5s)
 
         @media (prefers-reduced-motion reduce)
             animation none
+
+            &:first-child
+                opacity 1
+
+// Each shot is up for a quarter of the cycle, with a second of overlap at either end
+@keyframes chooser-slide
+    0%
+        opacity 0
+    5%
+        opacity 1
+    25%
+        opacity 1
+    30%
+        opacity 0
+    100%
+        opacity 0
 
 @keyframes chooser-drift
     from

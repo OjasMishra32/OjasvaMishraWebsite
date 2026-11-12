@@ -6,8 +6,9 @@ const ARROW = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" strok
 /**
  * The first screen: the visitor picks the 3D world or the 2D page.
  *
- * The world is the larger choice, with a picture of it, because it is the
- * one worth the visit. The page is there for anyone in a hurry. Both stay
+ * The world is the larger choice, with four shots of it fading into one
+ * another (the start, the role plaques, a project board, the contact stop),
+ * because it is the one worth the visit. The page is there for anyone in a hurry. Both stay
  * one button away afterwards ("About me" in the world, "Explore the 3D
  * world" on the page).
  *
@@ -37,7 +38,7 @@ export class Chooser
                 </header>
                 <div class="chooser-options">
                     <button class="chooser-card is-world js-choose" data-choice="world" type="button">
-                        <span class="chooser-shot"><img src="ui/previews/world.webp" alt="" draggable="false"></span>
+                        <span class="chooser-shot" style="background-image:url(ui/previews/world-1.webp)">${[ 1, 2, 3, 4 ].map(index => `<img src="ui/previews/world-${index}.webp" alt="" draggable="false" style="--n:${index - 1}">`).join('')}</span>
                         <span class="chooser-body">
                             <span class="chooser-text">
                                 <b>Explore the 3D world</b>
