@@ -100,7 +100,7 @@ export class Reveal
                     this.game.world.cherryTrees.leaves.seeThroughMultiplier = 0.5
 
                 // Click
-                if(location.hash.match(/skip/i))
+                if(location.hash.match(/skip/i) || this.game.autoStart)
                 {
                     this.updateStep(1)
                 }
@@ -110,10 +110,12 @@ export class Reveal
                     let started = false
                     const next = () =>
                     {
-                        if(started)
+                        // Not while the first screen is still asking
+                        if(started || document.documentElement.classList.contains('is-choosing'))
                             return
 
                         started = true
+                        this.startNow = null
                         this.game.canvasElement.removeEventListener('pointerup', next)
                         this.updateStep(1)
                         this.game.inputs.events.off('introStart', inputCallback)
@@ -152,6 +154,9 @@ export class Reveal
             // { name: 'forward',               categories: [ 'wandering', 'racing', 'cinematic' ], keys: [ 'Keyboard.ArrowUp', 'Keyboard.KeyW', 'Gamepad.up', 'Gamepad.r2' ] },
             // { name: 'right',                 categories: [ 'wandering', 'racing', 'cinematic' ], keys: [ 'Keyboard.ArrowRight', 'Keyboard.KeyD', 'Gamepad.right' ] },
                     this.game.inputs.events.on('introStart', inputCallback)
+
+                    // For the chooser and the page's world button, which start it without a tap on the rover
+                    this.startNow = next
 
                     // On a touch screen, or any upright window (where the page shows the
                     // prompt as text), anywhere on the scene starts it, not only the rover

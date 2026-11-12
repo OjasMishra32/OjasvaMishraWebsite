@@ -468,6 +468,7 @@ export class Profile
             element.addEventListener('click', () =>
             {
                 this.game.modals.close()
+                this.game.enterWorld()
             })
         }
 
