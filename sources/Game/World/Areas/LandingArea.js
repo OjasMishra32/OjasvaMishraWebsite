@@ -50,6 +50,9 @@ export class LandingArea extends Area
         center.z += this.model.position.z
 
         const direction = end.clone().sub(start)
+
+        // A phone at this stop sees the whole name
+        this.stopFrame = { x: center.x - 2.6, z: center.z - 2.6, width: (direction.x - direction.z) * Math.SQRT1_2 * 1.1 }
         const rotationY = Math.atan2(- direction.z, direction.x)
 
         this.letters = Kit.physicalLetters({

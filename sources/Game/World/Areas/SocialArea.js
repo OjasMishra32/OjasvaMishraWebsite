@@ -128,6 +128,10 @@ export class SocialArea extends Area
         const plateFace = new THREE.PlaneGeometry(size, 0.5)
         const standGeometry = new THREE.BoxGeometry(0.5, 1, 0.3)
 
+        // A phone at this stop sees the whole row
+        const frameCenter = this.center.clone().addScaledVector(back, 1.6).addScaledVector(right, - 1.2)
+        this.stopFrame = { x: frameCenter.x, z: frameCenter.z, width: (links.length - 1) * spacing + size + 1 }
+
         links.forEach((link, index) =>
         {
             const position = this.center.clone()

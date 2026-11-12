@@ -1317,6 +1317,16 @@ export class ProjectsArea extends Area
         })
     }
 
+    // What a phone should have on screen while the rover stands at this stop:
+    // the board, and the marker in front of it that opens it
+    get stopFrame()
+    {
+        const fit = this.getBoardFit()
+        const point = this.references.items.get('interactivePoint')[0].position
+
+        return { x: fit.center.x * 0.75 + point.x * 0.25, z: fit.center.z * 0.75 + point.z * 0.25, width: fit.width * 1.3 }
+    }
+
     // Where the board is and how wide, for framing it on upright screens
     getBoardFit()
     {

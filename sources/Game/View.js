@@ -283,6 +283,12 @@ export class View
 
     setZoom()
     {
+        // Framing for a stop on upright screens, where the default view is
+        // only about eight units wide. While the rover is at a stop, the
+        // camera centres on what that stop is about and backs away until it
+        // fits. Set by the Guide: { x, z, width } and how strongly to apply it.
+        this.frame = { x: 0, z: 0, width: 8, target: 0, weight: 0 }
+
         this.zoom = {}
         this.zoom.baseRatio = 0.6
         this.zoom.ratio = this.zoom.baseRatio
@@ -724,10 +730,24 @@ export class View
         // Radius
         const radiusMax = this.spherical.radius.edges.max + this.ratioOverflow * this.spherical.radius.nonIdealRatioOffset
         this.spherical.radius.current = lerp(this.spherical.radius.edges.min, radiusMax, 1 - this.zoom.smoothedRatio)
+
+        // Stop framing
+        const focus = this.focusPoint.smoothedPosition.clone()
+        const frameTarget = this.focusPoint.isTracking && this.mode === View.MODE_DEFAULT ? this.frame.target : 0
+        this.frame.weight = lerp(this.frame.weight, frameTarget, Math.min(1, this.game.ticker.delta * 2.5))
+
+        if(this.frame.weight > 0.001)
+        {
+            const fitRadius = this.frame.width * 0.5 / (Math.tan(THREE.MathUtils.degToRad(this.defaultCamera.fov * 0.5)) * this.game.viewport.ratio)
+            this.spherical.radius.current = lerp(this.spherical.radius.current, fitRadius, this.frame.weight)
+            focus.x = lerp(focus.x, this.frame.x, this.frame.weight)
+            focus.z = lerp(focus.z, this.frame.z, this.frame.weight)
+        }
+
         this.spherical.offset.setFromSphericalCoords(this.spherical.radius.current, this.spherical.phi, this.spherical.theta)
 
         // Position
-        this.position.copy(this.focusPoint.smoothedPosition).add(this.spherical.offset)
+        this.position.copy(focus).add(this.spherical.offset)
 
         // Default camera position
         this.delta = this.position.clone().sub(this.defaultCamera.position)
@@ -735,7 +755,7 @@ export class View
 
         // Default camera look at and roll
         this.defaultCamera.rotation.set(0, 0, 0)
-        this.defaultCamera.lookAt(this.focusPoint.smoothedPosition)
+        this.defaultCamera.lookAt(focus)
 
         this.roll.velocity = - this.roll.value * this.roll.pullStrength * this.game.ticker.deltaScaled
         this.roll.speed += this.roll.velocity

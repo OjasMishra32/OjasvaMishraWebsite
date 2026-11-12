@@ -24,6 +24,7 @@ export class Guide
         this.game.domElement.append(this.element)
 
         this.items = [ ...this.element.querySelectorAll('.js-guide-item') ]
+        this.frames = new Map()
 
         for(const item of this.items)
         {
@@ -81,6 +82,45 @@ export class Guide
         }, 14)
     }
 
+    // On an upright screen, a stop's content rarely fits the default view,
+    // so while the rover is at one the camera frames what that stop is about
+    updateFrame(stop, x, z)
+    {
+        const frame = this.game.view.frame
+
+        // Not during the intro: the visitor has to tap the rover, which stays in the middle
+        if(this.game.viewport.ratio > 0.8 || this.game.inputs.filters.has('intro'))
+        {
+            frame.target = 0
+            return
+        }
+
+        if(!this.frames.has(stop))
+            this.frames.set(stop, stop.frame ?? this.game.world.areas?.[stop.respawn]?.stopFrame ?? null)
+
+        const stopFrame = this.frames.get(stop)
+        const respawn = this.game.respawns.getByName(stop.respawn)
+
+        if(!stopFrame || !respawn)
+        {
+            frame.target = 0
+            return
+        }
+
+        // Full strength within a few units of where the stop puts the rover, gone a little further out
+        const distance = Math.hypot(respawn.position.x - x, respawn.position.z - z)
+        const strength = 1 - Math.min(1, Math.max(0, (distance - 4) / 6))
+
+        if(strength > 0)
+        {
+            frame.x = stopFrame.x
+            frame.z = stopFrame.z
+            frame.width = stopFrame.width
+        }
+
+        frame.target = strength * strength * (3 - 2 * strength)
+    }
+
     update()
     {
         if(!this.game.player)
@@ -100,6 +140,8 @@ export class Guide
                 closestDistance = distance
             }
         }
+
+        this.updateFrame(closest, x, z)
 
         if(closest !== this.current)
         {
