@@ -95,6 +95,18 @@ export class Guide
             return
         }
 
+        // The timeline is driven along, so its framing travels with the rover
+        const live = this.game.world.areas?.career?.stopFrameLive?.(x, z)
+
+        if(live)
+        {
+            frame.x = live.x
+            frame.z = live.z
+            frame.width = live.width
+            frame.target = 1
+            return
+        }
+
         if(!this.frames.has(stop))
             this.frames.set(stop, stop.frame ?? this.game.world.areas?.[stop.respawn]?.stopFrame ?? null)
 
@@ -140,6 +152,10 @@ export class Guide
                 closestDistance = distance
             }
         }
+
+        // Anywhere along the timeline counts as the Timeline stop, though its far end is nearer to Contact
+        if(this.game.world.areas?.career?.stopFrameLive?.(x, z))
+            closest = stops.find(stop => stop.id === 'timeline')
 
         this.updateFrame(closest, x, z)
 

@@ -612,22 +612,23 @@ export const experience = [
  * `from` and `to` are decimal years (2025.5 is July 2025); `to: null` means it
  * is still going. `lane` picks which of the five ground tracks the line sits
  * on. `label` is carved on the stone that rises next to the car: the first
- * line is the title and the rest are details.
+ * line is the title and the rest are details. `name` and `detail` say the same
+ * in ordinary type, for the card phones show in place of the stones' small text.
  */
 export const timeline = {
     start: 2019,
     end: 2027,
     lines: [
-        { lane: 0, from: 2019, to: 2025.12, color: 'blue', label: [ 'VEX ROBOTICS', 'TEAM CAPTAIN', '3X WORLDS' ] },
-        { lane: 1, from: 2023.5, to: 2026.45, color: 'orange', label: [ 'ROCKETRY CLUB', 'FOUNDER', '60+ MEMBERS' ] },
-        { lane: 2, from: 2024.35, to: 2025.45, color: 'purple', label: [ 'TSA NATIONALS', '8 EVENTS', 'CAPTAIN OF 6' ] },
-        { lane: 3, from: 2025.25, to: 2025.85, color: 'orange', label: [ 'EV BOTS', 'ROBOTICS INTERN', 'CHARGING ROBOT' ] },
-        { lane: 4, from: 2025.35, to: 2026.05, color: 'blue', label: [ 'PTEROLABS', 'UE5 DRONE SIM', 'USED AT UPENN' ] },
-        { lane: 2, from: 2025.5, to: null, color: 'purple', label: [ 'CMU ROBOTICS', 'RESEARCH INTERN', '3 PAPERS' ] },
-        { lane: 0, from: 2025.85, to: 2026.65, color: 'orange', label: [ 'DRIFT', 'FOUNDING ENG', '1,000+ USERS' ] },
-        { lane: 3, from: 2025.95, to: null, color: 'blue', label: [ 'TWINLY', 'CO-FOUNDER & CEO', 'Z FELLOWS \'26' ] },
-        { lane: 1, from: 2026.65, to: null, color: 'purple', label: [ 'UNIV. OF FLORIDA', 'B.S. CE + M.S. FIN', 'FULL MERIT' ] },
-        { lane: 4, from: 2026.7, to: null, color: 'orange', label: [ 'ALGOGATORS', 'QUANT RESEARCH', '$500K FUND' ] },
+        { lane: 0, from: 2019, to: 2025.12, color: 'blue', label: [ 'VEX ROBOTICS', 'TEAM CAPTAIN', '3X WORLDS' ], name: 'VEX Robotics', detail: "Team captain · 3× Worlds" },
+        { lane: 1, from: 2023.5, to: 2026.45, color: 'orange', label: [ 'ROCKETRY CLUB', 'FOUNDER', '60+ MEMBERS' ], name: 'Rocketry Club', detail: "Founder · 60+ members" },
+        { lane: 2, from: 2024.35, to: 2025.45, color: 'purple', label: [ 'TSA NATIONALS', '8 EVENTS', 'CAPTAIN OF 6' ], name: 'TSA Nationals', detail: "8 events · captain of 6" },
+        { lane: 3, from: 2025.25, to: 2025.85, color: 'orange', label: [ 'EV BOTS', 'ROBOTICS INTERN', 'CHARGING ROBOT' ], name: 'EV Bots', detail: "Robotics intern · charging robot" },
+        { lane: 4, from: 2025.35, to: 2026.05, color: 'blue', label: [ 'PTEROLABS', 'UE5 DRONE SIM', 'USED AT UPENN' ], name: 'PteroLabs', detail: "UE5 drone sim · used at UPenn" },
+        { lane: 2, from: 2025.5, to: null, color: 'purple', label: [ 'CMU ROBOTICS', 'RESEARCH INTERN', '3 PAPERS' ], name: 'CMU Robotics Institute', detail: "Research intern · 3 papers" },
+        { lane: 0, from: 2025.85, to: 2026.65, color: 'orange', label: [ 'DRIFT', 'FOUNDING ENG', '1,000+ USERS' ], name: 'Drift', detail: "Founding engineer · 1,000+ users" },
+        { lane: 3, from: 2025.95, to: null, color: 'blue', label: [ 'TWINLY', 'CO-FOUNDER & CEO', 'Z FELLOWS \'26' ], name: 'Twinly', detail: "Co-founder & CEO · Z Fellows '26" },
+        { lane: 1, from: 2026.65, to: null, color: 'purple', label: [ 'UNIV. OF FLORIDA', 'B.S. CE + M.S. FIN', 'FULL MERIT' ], name: 'University of Florida', detail: "B.S. CE + M.S. Finance · full merit" },
+        { lane: 4, from: 2026.7, to: null, color: 'orange', label: [ 'ALGOGATORS', 'QUANT RESEARCH', '$500K FUND' ], name: 'AlgoGators', detail: "Quant research · $500K fund" },
     ],
 }
 

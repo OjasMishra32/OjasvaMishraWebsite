@@ -53,6 +53,7 @@ import { Keynote } from './Keynote.js'
 import { Route } from './Route.js'
 import { Guide } from './Guide.js'
 import { BoardCaption } from './BoardCaption.js'
+import { TimelineCaption } from './TimelineCaption.js'
 import { Machines } from './World/Machines.js'
 
 export class Game
@@ -207,6 +208,7 @@ export class Game
         this.machines = new Machines()
         this.guide = new Guide()
         this.boardCaption = new BoardCaption()
+        this.timelineCaption = new TimelineCaption()
 
         // Compile every material now, behind the loading screen, so nothing
         // freezes later when it first comes into view

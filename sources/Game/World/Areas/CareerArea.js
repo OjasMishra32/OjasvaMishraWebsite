@@ -207,6 +207,7 @@ export class CareerArea extends Area
         }
 
         this.lines.startZ = startZ
+        this.lines.startX = startX
         this.lines.root = new THREE.Group()
         this.game.scene.add(this.lines.root)
         this.objects.hideable.push(this.lines.root)
@@ -405,6 +406,18 @@ export class CareerArea extends Area
         }
 
         this.year.updateDigits(this.year.current)
+    }
+
+    // On an upright phone the camera keeps the five lanes centred while the rover drives the timeline
+    stopFrameLive(x, z)
+    {
+        const along = this.lines.startZ - z
+        const centerX = this.lines.startX + this.lines.laneSpacing * 2
+
+        if(along < - 4 || along > this.year.size + 3 || Math.abs(x - centerX) > 7)
+            return null
+
+        return { x: centerX + 0.8, z: z, width: 8.6 }
     }
 
     setAchievement()
