@@ -738,8 +738,12 @@ export class View
 
         if(this.frame.weight > 0.001)
         {
-            const fitRadius = this.frame.width * 0.5 / (Math.tan(THREE.MathUtils.degToRad(this.defaultCamera.fov * 0.5)) * this.game.viewport.ratio)
-            this.spherical.radius.current = lerp(this.spherical.radius.current, fitRadius, this.frame.weight)
+            // No width: the frame only moves the view, the distance stays as it is
+            if(this.frame.width)
+            {
+                const fitRadius = this.frame.width * 0.5 / (Math.tan(THREE.MathUtils.degToRad(this.defaultCamera.fov * 0.5)) * this.game.viewport.ratio)
+                this.spherical.radius.current = lerp(this.spherical.radius.current, fitRadius, this.frame.weight)
+            }
             focus.x = lerp(focus.x, this.frame.x, this.frame.weight)
             focus.z = lerp(focus.z, this.frame.z, this.frame.weight)
         }

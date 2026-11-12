@@ -53,7 +53,7 @@ export class Chooser
                                 <b>Read the 2D page</b>
                                 <span>The same things on one scrolling page.</span>
                             </span>
-                            <span class="chooser-go">Open<span class="chooser-wide">&nbsp;the page</span>${ARROW}</span>
+                            <span class="chooser-go"><span>Open<span class="chooser-wide"> the page</span></span>${ARROW}</span>
                         </span>
                     </button>
                 </div>

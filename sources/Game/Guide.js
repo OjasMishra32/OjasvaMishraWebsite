@@ -88,15 +88,21 @@ export class Guide
     {
         const frame = this.game.view.frame
 
-        // Not during the intro: the visitor has to tap the rover, which stays in the middle
-        if(this.game.viewport.ratio > 0.8 || this.game.inputs.filters.has('intro'))
+        // Upright screens are too narrow for a stop's content. A phone held
+        // sideways is too short for it: what stands behind the rover ends up
+        // under the bar along the top.
+        const upright = this.game.viewport.ratio <= 0.8
+        const short = !upright && this.game.viewport.height < 520
+
+        // Not during the intro: the rover stays in the middle then
+        if((!upright && !short) || this.game.inputs.filters.has('intro'))
         {
             frame.target = 0
             return
         }
 
         // The timeline is driven along, so its framing travels with the rover
-        const live = this.game.world.areas?.career?.stopFrameLive?.(x, z)
+        const live = upright ? this.game.world.areas?.career?.stopFrameLive?.(x, z) : null
 
         if(live)
         {
@@ -128,6 +134,14 @@ export class Guide
             frame.x = stopFrame.x
             frame.z = stopFrame.z
             frame.width = stopFrame.width
+
+            // Sideways: no backing away, only a look further up the screen so the content drops clear of the bar
+            if(short)
+            {
+                frame.x -= 2.2
+                frame.z -= 2.2
+                frame.width = null
+            }
         }
 
         frame.target = strength * strength * (3 - 2 * strength)

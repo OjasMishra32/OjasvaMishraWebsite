@@ -1553,3 +1553,70 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
     // Room for the title on one line
     .chooser-wide
         display none
+
+// A phone held sideways: the first screen has to fit a very short window
+@media only screen and (max-height 520px) and (min-width 560px)
+    .chooser
+        padding 14px 20px
+
+    // Wide and short: the picture beside the words, even where the width alone would stack them
+    .chooser-card.is-world
+        flex-direction row
+
+    .chooser-shot
+        flex 1.55
+        aspect-ratio auto
+
+    .chooser-wide
+        display inline
+
+    .chooser-head
+        gap 14px
+        margin-bottom 12px
+
+        h1
+            font-size 22px
+
+        p
+            margin-top 3px
+            font-size 14px
+
+    .chooser-photo
+        width 46px
+        height 46px
+        border-radius 14px
+
+    .chooser-options
+        gap 10px
+
+    .chooser-shot
+        min-height 176px
+
+    .chooser-body
+        padding 14px 24px
+
+    .chooser-text
+        b
+            font-size 21px
+
+        span
+            margin-top 6px
+            font-size 14px
+
+    .chooser-go
+        height 40px
+        margin-top 14px
+
+    .chooser-card.is-page
+        .chooser-body
+            padding 10px 14px 10px 24px
+
+        .chooser-text
+            b
+                font-size 16px
+
+            span
+                display none
+
+        .chooser-go
+            height 36px
