@@ -128,6 +128,16 @@ export class Inputs
             this.end('Pointer.any', { x: this.pointer.current.x, y: this.pointer.current.y })
         })
 
+        // A finger on anything, a button or the first screen, means touch
+        // mode: a visitor can reach a project board with the page's buttons
+        // alone, and its close and next buttons only exist in touch mode.
+        // Captured at the window so nothing in between can swallow it.
+        addEventListener('touchstart', () =>
+        {
+            this.pointer.mode = Pointer.MODE_TOUCH
+            this.updateMode(Inputs.MODE_TOUCH)
+        }, { capture: true, passive: true })
+
         this.pointer.events.on('move', () =>
         {
             this.change('Pointer.any', { x: this.pointer.current.x, y: this.pointer.current.y })
