@@ -53,7 +53,7 @@ export const projects = [
         url: 'https://twinly.tech',
         attributes: { role: [ 'Co-founder', '& CEO' ], at: 'Z Fellows \'26' },
         award: [ '1,000+', 'active users' ],
-        images: [ 'twinly-1.webp' ],
+        images: [ 'twinly-cover.webp' ],
         links: [ { label: 'Try Twinly', url: 'https://twinly.tech' } ],
         body: [
             'I co-founded Twinly and run it as CEO. It\'s a two-person company in the Z Fellows September 2026 cohort. Twinly learns how you write, talk and use your computer, then does tasks for you, with persistent memory, a personal CRM and a voice clone that runs locally. You choose how much it asks before it acts.',
@@ -73,7 +73,7 @@ export const projects = [
         url: 'https://apply.twinly.tech',
         attributes: { role: 'Creator', with: [ 'Claude Code', 'or Codex' ] },
         award: [ '600+', 'career sites' ],
-        images: [ 'applytwin-1.webp', 'applytwin-2.webp' ],
+        images: [ 'applytwin-cover.webp', 'applytwin-2.webp' ],
         links: [
             { label: 'Get it at apply.twinly.tech', url: 'https://apply.twinly.tech' },
             { label: 'GitHub', url: 'https://github.com/OjasMishra32/applytwin' },
@@ -96,7 +96,7 @@ export const projects = [
         url: 'https://godrift.ai',
         attributes: { role: [ 'Founding', 'engineer' ], with: 'Antler' },
         award: [ '#5 Product', 'of the Day' ],
-        images: [ 'drift-1.webp' ],
+        images: [ 'drift-cover.webp' ],
         links: [ { label: 'Visit Drift', url: 'https://godrift.ai' } ],
         body: [
             'Drift is an AI coding agent for robotics, backed by Antler. You describe what you want a robot to do in plain language, and it sets up, debugs and runs the simulation in ROS2, Gazebo, MuJoCo or Isaac Sim. I joined the founding team after meeting the founders at NexHacks, where I was one of three high schoolers accepted out of 1,500+ applicants.',
@@ -117,7 +117,7 @@ export const projects = [
         url: 'https://deja-view.photo',
         attributes: { role: 'Builder', at: [ 'SwampHacks', 'XII' ], with: [ 'Shivin, Brianna', '& Seb' ] },
         award: [ '1st place', 'in two tracks' ],
-        images: [ 'dejaview-1.webp', 'dejaview-2.webp', 'dejaview-3.webp' ],
+        images: [ 'dejaview-cover.webp', 'dejaview-2.webp', 'dejaview-3.webp' ],
         links: [
             { label: 'Walk in at deja-view.photo', url: 'https://deja-view.photo' },
             { label: 'GitHub', url: 'https://github.com/OjasMishra32/Deja-View' },
@@ -140,7 +140,7 @@ export const projects = [
         url: 'https://getluciddreams.vercel.app',
         attributes: { role: 'Builder', at: [ 'Gator Hack V' ], with: [ 'Vishal, Ian', '& Atina' ] },
         award: [ '48 hours', '12 B200 GPUs' ],
-        images: [ 'luciddreams-1.webp', 'luciddreams-2.webp' ],
+        images: [ 'luciddreams-cover.webp', 'luciddreams-2.webp' ],
         links: [
             { label: 'Open the website', url: 'https://getluciddreams.vercel.app' },
             { label: 'GitHub', url: 'https://github.com/OjasMishra32/lucid_dreams' },
@@ -163,7 +163,7 @@ export const projects = [
         url: null,
         attributes: { role: 'Builder', at: [ 'YC Transpose' ] },
         award: [ '1st place' ],
-        images: [ 'hive-1.webp' ],
+        images: [ 'hive-cover.webp' ],
         links: [],
         body: [
             '1st place at YC Transpose. HIVE watches a physical workspace through cameras, turns what it sees into task graphs, and coordinates the people in the room against them. Vision works out what is being done and by whom, and the task graph decides what should happen next.',
@@ -181,7 +181,7 @@ export const projects = [
         url: 'https://www.youtube.com/watch?v=2A_RMrd1qKo',
         attributes: { role: [ 'Robotics', 'intern' ], at: 'EV Bots' },
         award: [ 'Provisional', 'patents' ],
-        images: [ 'evbots-1.webp' ],
+        images: [ 'evbots-cover.webp' ],
         links: [ { label: 'Watch the prototype', url: 'https://www.youtube.com/watch?v=2A_RMrd1qKo' } ],
         body: [
             'I built EV Bots\' first fully working autonomous EV-charging robot prototype, iterating on the mechanics, electronics and controls until the robot could find a car\'s charging port and plug in by itself. The work went into several provisional patents.',
@@ -199,7 +199,7 @@ export const projects = [
         proof: 'Live joint-angle tracking from a plain webcam, voice coaching in a Meta Quest',
         url: 'https://www.youtube.com/watch?v=-k4Ks9YATTI',
         attributes: { role: 'Builder', at: 'NexHacks', with: [ 'Andrew, Eashan', '& Kevin' ] },
-        images: [ 'kinetix-1.webp' ],
+        images: [ 'kinetix-cover.webp' ],
         links: [
             { label: 'Watch the demo', url: 'https://www.youtube.com/watch?v=-k4Ks9YATTI' },
             { label: 'Devpost write-up', url: 'https://devpost.com/software/flowers-and-joy' },
@@ -220,7 +220,7 @@ export const projects = [
         proof: 'Native Swift app with 12 result types',
         url: 'https://devpost.com/software/fuse-47s1jg',
         attributes: { role: 'Builder', at: [ 'Bitrig Hacks', 'at Y Combinator' ] },
-        images: [ 'fuse-1.webp' ],
+        images: [ 'fuse-cover.webp' ],
         links: [
             { label: 'Devpost', url: 'https://devpost.com/software/fuse-47s1jg' },
             { label: 'Watch the demo', url: 'https://www.youtube.com/watch?v=h8jK9cSw0xU' },
@@ -242,7 +242,7 @@ export const projects = [
         proof: 'LiDAR and on-device CoreML · TestFlight beta',
         url: 'https://testflight.apple.com/join/tyjpWY2B',
         attributes: { role: 'Founder', at: [ 'Swift Student', 'Challenge' ] },
-        images: [ 'eyesight-1.webp' ],
+        images: [ 'eyesight-cover.webp' ],
         links: [ { label: 'TestFlight', url: 'https://testflight.apple.com/join/tyjpWY2B' } ],
         body: [
             'Eyesight uses the iPhone\'s LiDAR sensor and on-device CoreML to detect obstacles and describe the surroundings out loud in real time, for people who are blind or have low vision. Built for the Apple Swift Student Challenge.',
@@ -261,7 +261,7 @@ export const projects = [
         url: 'https://apps.apple.com/us/app/preventaai/id6757689865',
         attributes: { role: 'Founder', at: 'App Store' },
         award: [ 'Rated 5.0' ],
-        images: [ 'preventaai-1.webp' ],
+        images: [ 'preventaai-cover.webp' ],
         links: [ { label: 'View on the App Store', url: 'https://apps.apple.com/us/app/preventaai/id6757689865' } ],
         body: [
             'A health app on the App Store, rated 5.0. Built with SwiftUI and Firebase: medication tracking with streaks and schedules, an AI health assistant, a body map for logging where something hurts and how badly, a visual scanner and short lessons.',
@@ -281,7 +281,7 @@ export const projects = [
         urlLabel: 'chromewebstore.google.com',
         attributes: { role: 'Founder', at: [ 'Chrome', 'Web Store' ] },
         award: [ 'Rated 5.0' ],
-        images: [ 'quickcitepro-1.webp' ],
+        images: [ 'quickcitepro-cover.webp' ],
         links: [ { label: 'Install from the Web Store', url: 'https://chromewebstore.google.com/detail/quickcitepro/fpngnpgmmpimnlaejklabjelhhoeibpd' } ],
         body: [
             'A Chrome extension I built during the CMU research work. Following a citation in a dense paper meant copying the title, opening a tab, fixing a broken DOI and trying links one by one. With QuickCitePro you triple-click the citation and land on the paper.',
@@ -299,7 +299,7 @@ export const projects = [
         url: null,
         attributes: { role: [ 'Co-founder', '& CEO' ], at: [ 'Startup Weekend', 'Philly' ] },
         award: [ '2nd of 200+' ],
-        images: [ 'glassbox-1.webp' ],
+        images: [ 'glassbox-cover.webp' ],
         links: [],
         body: [
             'Built with three friends over a 48-hour startup weekend in Philadelphia, as the only high school team among 200+ competitors from Penn, Drexel and MIT. It took 2nd place.',
@@ -319,7 +319,7 @@ export const projects = [
         urlLabel: 'engineering design portfolio',
         attributes: { role: [ 'Captain,', '6 teams' ], at: 'TSA' },
         award: [ 'National finalist', 'in 2 events' ],
-        images: [ 'tsa-1.webp', 'tsa-2.webp', 'tsa-3.webp' ],
+        images: [ 'tsa-cover.webp', 'tsa-2.webp', 'tsa-3.webp' ],
         links: [
             { label: 'Engineering Design portfolio (PDF)', url: 'https://drive.google.com/file/d/1g7FHlAS585jKaO4bX4d0wYBzojE87LBT/view' },
             { label: 'Drone Challenge portfolio', url: 'https://docs.google.com/document/d/1EDjvXpqCivNz9_Ob39cphXgzUCBpW2PoxV4uQBgZG2I/edit' },
@@ -347,7 +347,7 @@ export const research = [
         year: '2026',
         authors: 'Ojasva Mishra (first author), with Prof. Min Xu and Dr. Xiaolong Wu',
         url: 'https://arxiv.org/abs/2601.18639v3',
-        image: 'pid-gain.webp',
+        image: 'pid-gain-cover.webp',
         imageMini: 'pid-gain-mini.webp',
         links: [ { label: 'Read on arXiv', url: 'https://arxiv.org/abs/2601.18639v3' } ],
         body: 'Tunes discrete-time PID gains with the actuator\'s saturation limit built in as a constraint from the start.',
@@ -363,7 +363,7 @@ export const research = [
         authors: 'Ojasva Mishra (first author), with Prof. Min Xu and Dr. Xiaolong Wu',
         url: 'https://docs.google.com/presentation/d/1SlviBI7ru_gd3lhIjRU0SLKIdPdTKMvxvI_7BdUW_Eg/edit?usp=sharing',
         urlLabel: 'video supplement',
-        image: 'scig.webp',
+        image: 'scig-cover.webp',
         imageMini: 'scig-mini.webp',
         links: [ { label: 'Watch the video supplement', url: 'https://docs.google.com/presentation/d/1SlviBI7ru_gd3lhIjRU0SLKIdPdTKMvxvI_7BdUW_Eg/edit?usp=sharing' } ],
         body: 'Wraps the controller in a conformal safety filter with an explicit risk bound, so a joint stays inside its safe set even when the commands reaching it have been tampered with. Demonstrated on a Franka Emika Panda arm.',
@@ -378,7 +378,7 @@ export const research = [
         year: '2027',
         authors: 'Ojasva Mishra (first author), with Prof. Min Xu and Dr. Xiaolong Wu',
         url: null,
-        image: 'feedback-authority.webp',
+        image: 'feedback-authority-cover.webp',
         imageMini: 'feedback-authority-mini.webp',
         links: [],
         body: 'Bounds how much control authority a command can carry and still be accepted by the attack detector, when the robot\'s joints are torque-limited.',
@@ -394,7 +394,7 @@ export const research = [
         authors: 'With Yoan Exposito, Rafael Penhas and Ian Hoang',
         url: 'https://drive.google.com/file/d/1ZMOhVQHA-lSsqmIboTntavcxZIRGt4Nr/view',
         urlLabel: 'read the paper',
-        image: 'courtside.webp',
+        image: 'courtside-cover.webp',
         imageMini: 'courtside-mini.webp',
         links: [
             { label: 'Read the paper', url: 'https://drive.google.com/file/d/1ZMOhVQHA-lSsqmIboTntavcxZIRGt4Nr/view' },
@@ -412,7 +412,7 @@ export const research = [
         year: '2026',
         authors: 'CAD, controls and simulation',
         url: 'https://volition-eight.vercel.app',
-        image: 'volition.webp',
+        image: 'volition-cover.webp',
         imageMini: 'volition-mini.webp',
         links: [
             { label: 'See the design', url: 'https://volition-eight.vercel.app' },
@@ -430,7 +430,7 @@ export const research = [
         year: '2026',
         authors: 'Researcher, NeuroSpine team',
         url: null,
-        image: 'neurospine.webp',
+        image: 'neurospine-cover.webp',
         imageMini: 'neurospine-mini.webp',
         links: [],
         body: 'Helping spine surgeons judge vertebral bone quality before surgery, where DEXA cutoffs leave a gray area. I\'m building the Python pipeline that segments vertebrae in CT and MRI (nnU-Net, TotalSegmentator, MONAI, SimpleITK) and computes Hounsfield-unit and VBQ scores.',
@@ -446,7 +446,7 @@ export const research = [
         authors: 'Ojasva Mishra',
         url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5408322',
         urlLabel: 'papers.ssrn.com',
-        image: 'textbook.webp',
+        image: 'textbook-cover.webp',
         imageMini: 'textbook-mini.webp',
         links: [ { label: 'Read it on SSRN', url: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5408322' } ],
         body: 'A 120-page introduction to robotics and programming that starts from first principles, written for students who can\'t get the material any other way. Free and open access.',

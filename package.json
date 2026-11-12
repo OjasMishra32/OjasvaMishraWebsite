@@ -9,7 +9,8 @@
     "images": "node scripts/build-images.mjs",
     "palette": "node scripts/build-palette.mjs",
     "font": "node scripts/build-font.mjs",
-    "map": "node scripts/build-map.mjs"
+    "map": "node scripts/build-map.mjs",
+    "covers": "node scripts/build-covers.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d": "^0.19.3",
@@ -46,7 +47,8 @@
     }
   },
   "devDependencies": {
-    "opentype.js": "^1.3.4"
+    "opentype.js": "^1.3.4",
+    "puppeteer-core": "^25.17.0"
   },
   "private": true
 }

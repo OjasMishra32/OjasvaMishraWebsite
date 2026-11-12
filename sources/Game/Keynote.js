@@ -1,4 +1,6 @@
 import { Game } from './Game.js'
+import { themes } from '../data/themes.js'
+import { emblems } from '../data/profile.js'
 import { projects, research } from '../data/profile.js'
 import { projectCards, researchCards } from '../data/cards.js'
 import { live } from './KeynoteLive.js'
@@ -153,7 +155,9 @@ export class Keynote
         if(tile.type === 'hero')
         {
             const size = tile.name.length > 22 ? 'is-long' : tile.name.length > 12 ? 'is-medium' : ''
-            return `<div class="tile hero ${size}" style="${style}">
+            const emblem = this.theme?.emblem ? Object.values(emblems).find(item => item.file === this.theme.emblem) : null
+            return `<div class="tile hero ${size} ${this.theme ? 'is-themed' : ''}" style="${style}">
+                ${emblem ? `<div class="mark" style="background:${emblem.bg}"><img src="profile/emblems/${emblem.file}" alt="" draggable="false"></div>` : ''}
                 <div class="name">${e(tile.name)}</div>
                 <div class="line">${e(tile.line)}</div>
                 ${tile.meta ? `<div class="meta">${e(tile.meta)}</div>` : ''}
@@ -181,6 +185,16 @@ export class Keynote
                 return `<div class="tile image is-contain" style="${style}">
                     <div class="holder" style="${background}"><img src="cards/${e(tile.src)}.webp" alt="" draggable="false" style="${position}"></div>
                     ${tile.caption ? `<div class="note">${e(tile.caption)}</div>` : ''}
+                </div>`
+
+            // The first picture of a product is shown as the window it runs in
+            if(this.theme?.frame === 'browser' && tile === this.firstImage)
+                return `<div class="tile image is-window ${this.theme.bar === 'light' ? 'is-light' : ''}" style="${style}">
+                    <div class="window">
+                        <div class="bar"><i></i><i></i><i></i></div>
+                        <img src="cards/${e(tile.src)}.webp" alt="" draggable="false">
+                    </div>
+                    ${tile.caption ? `<div class="caption">${e(tile.caption)}</div>` : ''}
                 </div>`
 
             return `<div class="tile image" style="${style}">
@@ -232,6 +246,13 @@ export class Keynote
         const order = [ ...tiles ].sort((a, b) => (a.at[1] - b.at[1]) || (a.at[0] - b.at[0]))
 
         this.bentoElement.classList.remove('is-in')
+        // The project's own colours (data/themes.js)
+        this.theme = themes[entry.id] ?? null
+        this.firstImage = tiles.find(tile => tile.type === 'image' && !tile.contain) ?? null
+        this.bentoElement.style.setProperty('--accent', this.theme?.accent ?? '#f5f5f7')
+        this.bentoElement.style.setProperty('--hero-bg', this.theme?.bg ?? 'transparent')
+        this.bentoElement.style.setProperty('--hero-ink', this.theme?.ink ?? '#f5f5f7')
+
         this.bentoElement.innerHTML = tiles.map(tile => this.renderTile(tile, order.indexOf(tile))).join('')
         this.bentoElement.scrollTop = 0
 
