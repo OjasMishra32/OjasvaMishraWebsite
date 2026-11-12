@@ -404,7 +404,15 @@ export class Profile
     observeReveal()
     {
         for(const element of this.revealElements)
-            this.revealObserver.observe(element)
+        {
+            // The first screen shows whole, at once. Waiting for each piece to
+            // come 60px into view left the "Explore the 3D world" button and
+            // the links hidden on short screens, where they sit at the bottom edge.
+            if(element.closest('.about-hero'))
+                element.classList.add('is-in')
+            else
+                this.revealObserver.observe(element)
+        }
     }
 
     /**

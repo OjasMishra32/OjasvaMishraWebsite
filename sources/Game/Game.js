@@ -339,8 +339,12 @@ export class Game
     enterWorld()
     {
         this.autoStart = true
-        this.startWorld?.()
         this.reveal?.startNow?.()
+
+        // A phone that has been holding off starts building once the page has
+        // finished closing (the 'closed' handler in aboutFirst). Starting here
+        // would freeze the browser with the page still on screen, and the tap
+        // would look as if it had done nothing.
     }
 
     reset()

@@ -171,6 +171,10 @@ export class Audio
             song.loaded = false
             song.sound = new Howl({
                 src: [ song.path ],
+                // Phones and Safari play the music as a stream. Loaded the usual
+                // way, each 6 MB track is fetched whole and decoded into tens of
+                // megabytes of memory before a note plays.
+                html5: !!this.game.quality?.light,
                 pool: 0,
                 autoplay: false,
                 loop: false,
