@@ -52,20 +52,20 @@ export const explainers = {
         line: 'An AI agent that operates your computer for you, the way you would.',
         proof: 'Z Fellows, September 2026 cohort · 1,000+ active users on macOS, Windows and iOS',
         panels: [
-            { draw: 'say', who: 'You', text: 'Reply to Sam, move Friday\'s meeting and call the dentist.', caption: 'Tell it what you need done', sub: 'In plain words' },
-            { draw: 'apps', items: [ 'Email', 'Calendar', 'Browser', 'Files', 'Phone call' ], caption: 'It does the work in your real apps', sub: 'Through each app\'s own controls. It clicks on pixels only as a last resort.' },
-            { draw: 'stat', value: '1,000+', label: 'people use it today', caption: 'And it sounds like you', sub: 'It learns how you write, and calls in a clone of your voice' },
+            { img: `${SRC}/twinly-ask.jpg`, caption: 'Tell it what you want handled', sub: 'One line, in plain words' },
+            { img: `${SRC}/twinly-work.jpg`, span: 1.4, position: '72% center', caption: 'It does the work in your real apps', sub: 'Replies drafted, a calendar conflict fixed, a refund chased' },
+            { img: `${SRC}/twinly-approve.jpg`, span: 1.2, position: 'center top', caption: 'And asks before anything goes out', sub: 'You choose how much it checks with you' },
         ],
     },
 
     drift: {
         accent: '#ff4d6d',
-        line: 'Describe what a robot should do. Drift builds the simulation and runs it.',
+        line: 'Rebuilds the real place a robot will work in as a simulation, so the robot can be tested before it ships.',
         proof: '#5 Product of the Day on Product Hunt · 1,000+ robotics engineers · backed by Antler',
         panels: [
-            { draw: 'say', who: 'You', text: 'Pick up the red cube and put it in the bin.', caption: 'Describe the task in a sentence', sub: 'No simulation code to write' },
-            { draw: 'window', img: 'scripts/shots/raw/drift.png', position: '88% 40%', zoom: 1.9, caption: 'It builds the scene and runs it', sub: 'In ROS2, Gazebo, MuJoCo or Isaac Sim' },
-            { draw: 'stat', value: '129', label: 'robots ready to drop in', caption: 'With a catalog of real robots', sub: 'I built the catalog and the pipeline that turns photos into worlds' },
+            { img: `${SRC}/drift-world.jpg`, span: 1.5, position: '70% center', caption: 'A real building, rebuilt as a 3D world', sub: 'Reconstructed from captures of the site. I built the pipeline that turns photos into these worlds.' },
+            { img: `${SRC}/drift-asset.jpg`, caption: 'Objects that behave like the real ones', sub: 'Boxes, cloth and cables, with measured physics' },
+            { draw: 'stat', value: '129', label: 'robots in the catalog I built', caption: 'Then the robot is tested in it', sub: 'In Isaac Sim, MuJoCo or Gazebo, before deployment' },
         ],
     },
 
@@ -96,7 +96,7 @@ export const explainers = {
         proof: 'I was 1 of 3 high schoolers accepted to the hackathon, out of 1,500+ applicants',
         panels: [
             { img: 'scripts/shots/raw/yt_-k4Ks9YATTI.jpg', position: '55% center', caption: 'A webcam watches you exercise', sub: 'It reads your pose and measures your joint angles' },
-            { draw: 'say', who: 'It says', spoken: true, text: 'Arms straight. Keep your body aligned.', caption: 'It tells you what to fix, out loud', sub: 'While you are still mid-rep' },
+            { draw: 'say', who: 'It says', spoken: true, text: 'Get into starting position: arms straight, body aligned.', caption: 'It tells you what to fix, out loud', sub: 'While you are still mid-rep' },
             { draw: 'apps', items: [ 'Reps counted', 'Holds timed', 'Form checked each rep' ], caption: 'And keeps count for you', sub: 'Feedback also shows in a Meta Quest headset' },
         ],
     },
@@ -106,9 +106,9 @@ export const explainers = {
         line: 'Put one thing on each half of a foldable iPhone, fold it shut, and get the one result that needs both.',
         proof: 'Native Swift app with 12 kinds of result',
         panels: [
-            { draw: 'pair', left: 'A job posting', right: 'Your résumé', caption: 'Put one thing on each screen', sub: 'A web page, a note, a photo, a PDF, your calendar' },
-            { img: 'scripts/shots/raw/yt_h8jK9cSw0xU.jpg', fit: 'contain', background: '#000000', caption: 'Fold the phone shut', sub: 'The fold is the command. There is no menu.' },
-            { draw: 'card', title: 'Cover email', rows: [ 62, 88, 74, 81, 40 ], caption: 'Get the result that needs both', sub: 'Here, a cover email that quotes the posting and the résumé' },
+            { img: `${SRC}/fuse-two.jpg`, fit: 'contain', background: '#ffffff', span: 1.5, caption: 'A receipt on one half, who ate what on the other', sub: 'Any two things: pages, notes, photos, PDFs, your calendar' },
+            { img: `${SRC}/fuse-fold.jpg`, fit: 'contain', background: '#ffffff', caption: 'Fold the phone shut', sub: 'The fold is the command. It works out how the two relate.' },
+            { img: `${SRC}/fuse-result.jpg`, fit: 'contain', background: '#ffffff', caption: 'One answer that needed both', sub: 'Here: what each of four people owes, to the cent' },
         ],
     },
 
@@ -118,7 +118,7 @@ export const explainers = {
         proof: 'LiDAR and on-device CoreML · TestFlight beta',
         panels: [
             { draw: 'icon', img: 'static/projects/images/eyesight-1.webp', caption: 'Point an iPhone ahead', sub: 'Its LiDAR measures the distance to what is in view' },
-            { draw: 'say', who: 'It says', spoken: true, text: 'Obstacle ahead. Door on your left.', caption: 'It warns and describes, out loud', sub: 'Obstacles as you move, then the surroundings' },
+            { draw: 'say', who: 'It says', spoken: true, text: 'Stop. Stairs down.', caption: 'It warns you, out loud', sub: 'Stairs, drop-offs and obstacles as you move' },
             { draw: 'stat', value: '0 bytes', label: 'about where you are leave the phone', caption: 'Everything runs on the phone', sub: 'It works with no signal' },
         ],
     },
@@ -135,11 +135,11 @@ export const explainers = {
 
     quickcitepro: {
         accent: '#f08c00',
-        line: 'Triple-click a citation in any paper and the source PDF opens.',
+        line: 'Select a citation in any paper and the paper it points to opens, with a summary beside it.',
         proof: 'Rated 5.0 on the Chrome Web Store · used by professors and lab teammates',
         panels: [
-            { draw: 'cite', caption: 'Triple-click a reference', sub: 'In any paper you are reading' },
-            { draw: 'sheets', images: [ `${ART}/arxiv-p8.png`, `${ART}/arxiv-p1.png` ], caption: 'The paper it points to opens', sub: 'No copying the title, no fixing the DOI, no dead links' },
+            { img: `${SRC}/qcp-select.jpg`, position: 'left center', caption: 'Select a reference', sub: 'Triple-click it on a web page, or right-click it in a PDF' },
+            { img: `${SRC}/qcp-open.jpg`, span: 1.5, position: 'left top', caption: 'The cited paper opens, already summarised', sub: 'What is new, the method and the key findings' },
             { draw: 'stat', value: '3 clicks', label: 'from a reference to the paper', caption: 'Built because I needed it', sub: 'During the CMU research work' },
         ],
     },
@@ -151,7 +151,7 @@ export const explainers = {
         panels: [
             { draw: 'window', img: `${ART}/veritas-1.png`, position: 'center top', caption: 'It sits on top of the video call', sub: 'Zoom, Teams or Google Meet' },
             { draw: 'apps', items: [ 'Gaze shifts and blink rate', 'Odd pauses, flat pitch', 'Answers that read like a script' ], caption: 'It watches, listens and reads', sub: 'Face tracking, audio analysis and a small language model' },
-            { draw: 'say', who: 'Flag', text: 'This answer was likely read from an AI tool.', caption: 'And flags the answer', sub: 'Script reading, and tools like ChatGPT or Cluely' },
+            { img: `${SRC}/glassbox-flags.jpg`, fit: 'contain', background: '#0b1016', span: 0.72, caption: 'And flags it while the candidate talks', sub: 'Here: an AI voice and script reading, integrity score 36' },
         ],
     },
 
