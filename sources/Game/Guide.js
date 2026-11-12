@@ -1,3 +1,4 @@
+import gsap from 'gsap'
 import { Game } from './Game.js'
 import { stops } from '../data/route.js'
 
@@ -53,9 +54,22 @@ export class Guide
                 step.blur()
                 const index = stops.indexOf(this.current ?? stops[0])
                 const next = stops[(index + Number(step.dataset.direction) + stops.length) % stops.length]
+
+                // Leaving a board that is open
+                for(const stop of stops)
+                {
+                    if(stop.board)
+                        this.game.world.areas[stop.respawn]?.close()
+                }
+
                 this.game.player.respawn(next.respawn, () =>
                 {
                     this.game.view.focusPoint.isTracking = true
+
+                    // The board at this stop is off to one side of a narrow
+                    // screen, so it opens by itself
+                    if(next.board)
+                        gsap.delayedCall(0.6, () => { this.game.world.areas[next.respawn]?.open() })
                 })
             })
             step.addEventListener('keydown', (event) => { event.preventDefault() })

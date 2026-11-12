@@ -1276,6 +1276,15 @@ export class LabArea extends Area
         })
     }
 
+    // Where the board is and how wide, for framing it on upright screens
+    getBoardFit()
+    {
+        const box = new THREE.Box3().setFromObject(this.images.mesh)
+        const size = box.getSize(new THREE.Vector3())
+
+        return { center: box.getCenter(new THREE.Vector3()), width: Math.hypot(size.x, size.z), raise: 0.22 }
+    }
+
     open()
     {
         if(this.state === LabArea.STATE_OPEN || this.state === LabArea.STATE_OPENING)
@@ -1298,7 +1307,8 @@ export class LabArea extends Area
         this.game.inputs.filters.add('cinematic')
 
         // View cinematic
-        this.game.view.cinematic.start(this.cinematic.position, this.cinematic.target)
+        this.game.view.cinematic.start(this.cinematic.position, this.cinematic.target, this.getBoardFit())
+        this.game.boardCaption?.show(this.navigation.current, () => { this.url.open() })
 
         // Interactive point
         this.game.interactivePoints.temporaryHide()
@@ -1358,6 +1368,7 @@ export class LabArea extends Area
 
         // View cinematic
         this.game.view.cinematic.end()
+        this.game.boardCaption?.hide()
 
         // Shade mix
         gsap.to(this.shadeMix.images.mixUniform, { value: this.shadeMix.images.min, duration: 1.5, ease: 'power2.inOut', overwrite: true })
@@ -1427,6 +1438,9 @@ export class LabArea extends Area
         // Save
         this.navigation.index = loopIndex
         this.navigation.current = labData[this.navigation.index]
+
+        if(this.state === LabArea.STATE_OPEN || this.state === LabArea.STATE_OPENING)
+            this.game.boardCaption?.show(this.navigation.current, () => { this.url.open() })
         this.navigation.previous = labData[(this.navigation.index - 1) < 0 ? labData.length - 1 : this.navigation.index - 1]
         this.navigation.next = labData[(this.navigation.index + 1) % labData.length]
         this.navigation.direction = direction

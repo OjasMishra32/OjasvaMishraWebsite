@@ -52,6 +52,7 @@ import { Scan } from './Scan.js'
 import { Keynote } from './Keynote.js'
 import { Route } from './Route.js'
 import { Guide } from './Guide.js'
+import { BoardCaption } from './BoardCaption.js'
 import { Machines } from './World/Machines.js'
 
 export class Game
@@ -205,6 +206,7 @@ export class Game
         this.route = new Route()
         this.machines = new Machines()
         this.guide = new Guide()
+        this.boardCaption = new BoardCaption()
 
         // Compile every material now, behind the loading screen, so nothing
         // freezes later when it first comes into view

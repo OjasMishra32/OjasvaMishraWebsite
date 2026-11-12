@@ -16,8 +16,8 @@ export const mapHalf = disc.radius + 2
 export const stops = [
     { id: 'start', label: 'Start', respawn: 'landing', x: 39.5, z: 37.8, accent: '#ffffff' },
     { id: 'experience', label: 'Experience', respawn: 'experience', x: 48.5, z: 33.6, accent: '#2ee6a8', beacon: false },
-    { id: 'projects', label: 'Projects', respawn: 'projects', x: 35.8, z: 17.6, accent: '#39b7ff' },
-    { id: 'research', label: 'Research', respawn: 'lab', x: 17.9, z: 18.8, accent: '#a47bff' },
+    { id: 'projects', label: 'Projects', respawn: 'projects', x: 35.8, z: 17.6, accent: '#39b7ff', board: true },
+    { id: 'research', label: 'Research', respawn: 'lab', x: 17.9, z: 18.8, accent: '#a47bff', board: true },
     { id: 'timeline', label: 'Timeline', respawn: 'career', x: 26.3, z: 9.6, accent: '#ffd27a' },
     { id: 'contact', label: 'Contact', respawn: 'social', x: 25.7, z: - 14.5, accent: '#ff9f0a' },
 ]

@@ -433,7 +433,10 @@ export class View
         // this.cinematic.targetHelper.userData.preventPreRender = true
         // this.game.scene.add(this.cinematic.targetHelper)
 
-        this.cinematic.start = (position, target) =>
+        // `fit` is the thing being looked at ({ center, width }). On an upright
+        // screen the camera goes straight to it and fills the width with it,
+        // where the default would back away until it is a speck.
+        this.cinematic.start = (position, target, fit = null) =>
         {
             this.cinematic.active = true
             this.cinematic.position = position.clone()
@@ -441,7 +444,23 @@ export class View
 
             this.cinematic.targetHelper?.position.copy(this.cinematic.target)
 
-            if(this.ratioOverflow > 0)
+            if(fit && this.game.viewport.ratio < 1)
+            {
+                // Looks down a little more steeply, over the props standing in front of the board
+                const direction = position.clone().sub(target).normalize()
+                direction.y += fit.raise ?? 0
+                direction.normalize()
+                const halfHeight = Math.tan(THREE.MathUtils.degToRad(this.camera.fov * 0.5))
+                const distance = fit.width * 0.5 / (halfHeight * this.game.viewport.ratio) * 1.1
+
+                // The board sits above the middle, leaving the lower part of the screen for its caption
+                const drop = distance * halfHeight * 0.22
+
+                this.cinematic.target.copy(fit.center)
+                this.cinematic.target.y -= drop
+                this.cinematic.position.copy(this.cinematic.target).addScaledVector(direction, distance)
+            }
+            else if(this.ratioOverflow > 0)
             {
                 const delta = this.cinematic.position.clone().sub(this.cinematic.target).setLength(this.ratioOverflow * this.cinematic.nonIdealRatioOffset)
                 this.cinematic.position.add(delta)
