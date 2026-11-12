@@ -256,6 +256,10 @@ export class Keynote
         this.bentoElement.innerHTML = tiles.map(tile => this.renderTile(tile, order.indexOf(tile))).join('')
         this.bentoElement.scrollTop = 0
 
+        // On phones it is the stage around the tiles that scrolls
+        if(this.bentoElement.parentElement)
+            this.bentoElement.parentElement.scrollTop = 0
+
         this.titleElement.textContent = this.type === 'projects' ? 'Projects' : 'Research'
         this.countElement.textContent = `${this.index + 1} of ${set.entries.length}`
 

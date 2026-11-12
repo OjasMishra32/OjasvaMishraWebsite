@@ -98,8 +98,8 @@ export const projectCards = {
     ],
 
     luciddreams: [
-        H([ 1, 1, 5, 2 ], 'Lucid Dreams', 'One video of a person becomes a life-size 3D teacher in your room.', 'Gator Hack V · built in 48 hours with Vishal, Ian and Atina'),
-        I([ 6, 1, 7, 3 ], 'lucid-guitar', 'A guitar teacher in the room through Quest passthrough. He slows each step down and waits for your turn.'),
+        H([ 1, 1, 5, 2 ], 'Lucid Dreams', 'Turns a video of a person into a life-size 3D human standing in your room.', 'Gator Hack V · built in 48 hours with Vishal, Ian and Atina'),
+        I([ 6, 1, 7, 3 ], 'lucid-guitar', 'From the demo: a guitarist filmed on a phone, standing life-size in the room through Quest passthrough'),
         S([ 1, 3, 3, 1 ], '290,000', 'Gaussians fit to every frame'),
         S([ 4, 3, 2, 1 ], '12', 'NVIDIA B200s on HiPerGator'),
         ST([ 1, 4, 8, 2 ], [
@@ -180,17 +180,19 @@ export const projectCards = {
     ],
 
     eyesight: [
-        H([ 1, 1, 6, 2 ], 'Eyesight', 'Tells blind and low-vision users what is in front of them, out loud, in real time.', 'Founder · built for the Apple Swift Student Challenge · 2025 to now'),
-        I([ 7, 1, 2, 2 ], 'eyesight', null, { contain: true, bg: '#000000' }),
-        S([ 9, 1, 4, 2 ], '0', 'bytes about where you are leave the phone'),
-        ST([ 1, 3, 12, 2 ], [
-            [ 'Sense', 'The iPhone\'s LiDAR measures depth' ],
-            [ 'Understand', 'CoreML models run on the device' ],
-            [ 'Warn', 'Obstacles are detected as you move' ],
-            [ 'Describe', 'The surroundings are narrated out loud' ],
+        H([ 1, 1, 5, 2 ], 'Eyesight', 'Tells blind and low-vision users what is in front of them, out loud, in real time.', 'Founder · built for the Apple Swift Student Challenge · 2025 to now'),
+        I([ 6, 1, 2, 4 ], 'eyesight-features', null, { contain: true, bg: '#070a18' }),
+        I([ 8, 1, 2, 4 ], 'eyesight-modes', null, { contain: true, bg: '#070a18' }),
+        S([ 10, 1, 3, 2 ], '20×', 'a second, LiDAR checks the path ahead'),
+        S([ 1, 3, 2, 2 ], 'Offline', 'works with no signal'),
+        T([ 3, 3, 3, 2 ], 'It runs on the phone, with no cloud and no internet needed. The TestFlight beta isn\'t taking new testers right now.'),
+        S([ 10, 3, 3, 2 ], '3 modes', 'hazards only, up to signs and rooms'),
+        ST([ 1, 5, 12, 2 ], [
+            [ 'Guard', 'LiDAR checks your path for collisions' ],
+            [ 'Recognise', 'People, vehicles and objects, with real distances' ],
+            [ 'Call out', '"Person, 12 o\'clock, 8 feet"' ],
+            [ 'Find', 'Say "find the door" and it guides your hand to it' ],
         ]),
-        S([ 1, 5, 4, 2 ], 'Offline', 'works with no signal'),
-        T([ 5, 5, 8, 2 ], 'Everything runs on the phone, so nothing about what you are looking at is sent anywhere. The TestFlight beta isn\'t taking new testers right now.'),
     ],
 
     preventaai: [
