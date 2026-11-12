@@ -119,9 +119,9 @@ export const explainers = {
         line: 'Tells blind and low-vision people what is in front of them, out loud, as they walk.',
         proof: 'LiDAR and on-device CoreML · TestFlight beta',
         panels: [
-            { draw: 'icon', img: 'static/projects/images/eyesight-1.webp', caption: 'Point an iPhone ahead', sub: 'Its LiDAR measures the distance to what is in view' },
-            { draw: 'say', who: 'For example, it says', spoken: true, text: 'Stop. Stairs down.', caption: 'It warns you, out loud', sub: 'Stairs, drop-offs and obstacles as you move' },
-            { draw: 'stat', value: '0 bytes', label: 'about where you are leave the phone', caption: 'Everything runs on the phone', sub: 'It works with no signal' },
+            { draw: 'phone', img: `${ART}/eyesight-features.png`, caption: 'Point an iPhone ahead', sub: 'Its LiDAR checks your path 20 times a second' },
+            { img: `${ART}/eyesight-callouts.png`, fit: 'contain', background: '#070a18', span: 1.25, caption: 'It says what is there, and where', sub: 'People, vehicles and objects, by clock direction and distance' },
+            { draw: 'phone', img: `${ART}/eyesight-modes.png`, caption: 'You choose how much it tells you', sub: 'Hazards only, or everything including signs and rooms' },
         ],
     },
 
