@@ -1,11 +1,10 @@
 /**
  * The site's icon and the pictures that stand for the world outside it:
- * the browser tab and home-screen icons, the image link previews show, and
- * the four stills on the first screen.
+ * the browser tab and home-screen icons, and the image link previews show.
  *
  * The icon is the rover's face: the white shell, the dark visor, two eyes.
- * The stills come from scripts/shots/world (captured with the interface
- * hidden).
+ * The share image comes from scripts/shots/world (captured with the
+ * interface hidden).
  *
  * Run: node scripts/build-icons.mjs
  */
@@ -68,11 +67,8 @@ fs.writeFileSync(out('favicons/web-app-manifest-512x512.png'), await png(face(0,
 fs.writeFileSync(out('favicons/favicon.ico'), ico([ { size: 32, data: await png(face(), 32) }, { size: 48, data: await png(face(), 48) } ]))
 console.log('icons')
 
-// Stills for the first screen, and the link preview
+// The image link previews show
 const shots = path.join(root, 'scripts/shots/world')
 
-for(const [ index, name ] of [ 'start', 'experience', 'board', 'contact' ].entries())
-    await sharp(path.join(shots, `${name}.png`)).resize({ width: 1120 }).webp({ quality: 78 }).toFile(out(`ui/previews/world-${index + 1}.webp`))
-
 await sharp(path.join(shots, 'start.png')).resize(1200, 630, { fit: 'cover', position: 'centre' }).jpeg({ quality: 88, mozjpeg: true }).toFile(out('social/share-image.jpg'))
-console.log('stills and share image')
+console.log('share image')

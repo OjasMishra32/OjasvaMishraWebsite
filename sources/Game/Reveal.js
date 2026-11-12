@@ -110,8 +110,7 @@ export class Reveal
                     let started = false
                     const next = () =>
                     {
-                        // Not while the first screen is still asking
-                        if(started || document.documentElement.classList.contains('is-choosing'))
+                        if(started)
                             return
 
                         started = true
@@ -155,7 +154,7 @@ export class Reveal
             // { name: 'right',                 categories: [ 'wandering', 'racing', 'cinematic' ], keys: [ 'Keyboard.ArrowRight', 'Keyboard.KeyD', 'Gamepad.right' ] },
                     this.game.inputs.events.on('introStart', inputCallback)
 
-                    // For the chooser and the page's world button, which start it without a tap on the rover
+                    // For the page's world button, which starts it without a tap on the rover
                     this.startNow = next
 
                     // On a touch screen, or any upright window (where the page shows the

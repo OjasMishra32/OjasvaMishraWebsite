@@ -170,6 +170,12 @@
         .home-preview .background
             object-position center 28%
 
+            // Upright, the panel is a wide band. Filling it would zoom in on
+            // the face, so the whole photo stands in the middle of it
+            @media only screen and (orientation portrait)
+                object-fit contain
+                object-position center
+
         .preview
             position absolute
             top 0

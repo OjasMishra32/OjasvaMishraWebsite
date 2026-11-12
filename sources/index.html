@@ -44,6 +44,8 @@
     <link rel="preload" href="/intro/sound.ktx" as="fetch" crossorigin>
     <link rel="preload" href="/palette.png?v=4" as="image">
 
+    <script>if(/skip|world/i.test(location.hash)) document.documentElement.classList.add('no-shell')</script>
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -73,6 +75,7 @@
     <div class="game">
         <!-- Shown while the world compiles; pure CSS, so it keeps moving while the page is busy -->
         <p class="start-hint" aria-hidden="true">Tap anywhere to start</p>
+        <button class="intro-read js-profile-open" data-section="top" type="button">Or just read about me<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
         <div class="boot" aria-hidden="true">
             <div class="boot-track"><div class="boot-bar"></div></div>
             <p class="boot-label">Building the world</p>
@@ -574,6 +577,26 @@
         </div>
 
         <!-- Modals -->
+        <!-- Phones only: the top of the About page as plain HTML, on screen before the script arrives. Profile.js removes it. -->
+        <div class="shell js-shell">
+            <p class="shell-hi">Hi, I am</p>
+            <p class="shell-name">Ojasva<br>Mishra</p>
+            <p class="shell-line">I work on robot control and AI agents.</p>
+            <ul class="shell-now">
+                <li><b>Co-founder &amp; CEO</b><i>/</i>Twinly</li>
+                <li><b>Researcher</b><i>/</i>CMU Robotics Institute</li>
+                <li><b>Quant research analyst</b><i>/</i>AlgoGators Investment Fund</li>
+                <li><b>Freshman</b><i>/</i>UF · B.S. CE + M.S. Finance</li>
+            </ul>
+            <div class="shell-buttons">
+                <a class="is-solid" href="/OjasMishraResume.pdf" target="_blank" rel="noreferrer">Résumé</a>
+                <a href="mailto:ojasvamishra32@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/ojasva-mishra-657b89352/" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="https://github.com/OjasMishra32" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <p class="shell-loading">Loading the rest of the page</p>
+        </div>
+
         <div class="js-modals modals">
 
             <!-- Circuit end -->

@@ -53,7 +53,6 @@ import { Keynote } from './Keynote.js'
 import { Route } from './Route.js'
 import { Guide } from './Guide.js'
 import { BoardCaption } from './BoardCaption.js'
-import { Chooser } from './Chooser.js'
 import { TimelineCaption } from './TimelineCaption.js'
 import { Machines } from './World/Machines.js'
 
@@ -104,12 +103,9 @@ export class Game
 
         // On a phone the About page comes first, and the 3D world is only
         // downloaded and built once the visitor asks for it
-        // The first screen asks: the 3D world, or the 2D page
-        this.chooser = new Chooser()
-
         const phone = Math.min(window.innerWidth, window.innerHeight) < 600 && matchMedia('(pointer: coarse)').matches
         if(phone && !location.hash.match(/skip|world/i))
-            await this.aboutFirst(!this.chooser.active)
+            await this.aboutFirst()
 
         this.rendering = new Rendering()
         await this.rendering.setRenderer()
@@ -235,7 +231,7 @@ export class Game
      * Shows the About page and waits. Resolves when it is closed (or its
      * "Explore the 3D world" button is used), which lets init() carry on.
      */
-    aboutFirst(openPage = true)
+    aboutFirst()
     {
         return new Promise((resolve) =>
         {
@@ -273,16 +269,14 @@ export class Game
                 }, 120)
             })
 
-            // With the chooser up, it decides whether the page opens
-            if(openPage)
-                this.profile.open()
+            this.profile.open()
         })
     }
 
     /**
-     * The visitor asked for the 3D world (the chooser, or the page's
-     * "Explore the 3D world" button): build it if a phone has been holding
-     * off, and go straight in without the extra tap on the rover.
+     * The visitor asked for the 3D world with the page's "Explore the 3D
+     * world" button: build it if a phone has been holding off, and go
+     * straight in without the extra tap on the rover.
      */
     enterWorld()
     {

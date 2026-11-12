@@ -57,6 +57,14 @@ export class Profile
 
         this.modal.events.on('open', () =>
         {
+            // The plain-HTML stand-in phones show first has done its job
+            const shell = document.querySelector('.js-shell')
+            if(shell)
+            {
+                shell.classList.add('is-leaving')
+                setTimeout(() => { shell.remove() }, 600)
+            }
+
             // Replay the entrance each time the page opens
             for(const element of this.revealElements)
                 element.classList.remove('is-in')
