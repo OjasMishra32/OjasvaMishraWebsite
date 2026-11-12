@@ -248,6 +248,8 @@ export class Profile
                 <div class="featured">
                     ${featured.map(project => `
                         <button class="card featured-card fade-up js-reveal js-entry" data-type="projects" data-id="${e(project.id)}" data-chip-track>
+                            <img class="project-strip" src="projects/images/${e(project.id)}-strip.webp" alt="" loading="lazy" decoding="async">
+                            <div class="featured-body">
                             <div class="featured-main">
                                 <p class="mono-label">${e(project.category)}</p>
                                 <h3>${e(project.title)}</h3>
@@ -258,12 +260,14 @@ export class Profile
                                 </div>
                             </div>
                             ${this.chip(project.id, 'is-large')}
+                            </div>
                         </button>
                     `).join('')}
                 </div>
                 <div class="project-grid">
                     ${others.map((project, index) => `
-                        <button class="card project fade-up js-reveal js-entry" data-type="projects" data-id="${e(project.id)}" style="--i:${index % 3}" data-chip-track>
+                        <button class="card project fade-up js-reveal js-entry" data-type="projects" data-id="${e(project.id)}" style="--i:${index % 2}" data-chip-track>
+                            <img class="project-strip" src="projects/images/${e(project.id)}-strip.webp" alt="" loading="lazy" decoding="async">
                             <div class="project-top"><span class="mono-label">${e(project.category)}</span><span>${dash(project.period)}</span></div>
                             <div class="project-main">
                                 <h3>${e(project.title)}</h3>
