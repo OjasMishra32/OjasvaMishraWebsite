@@ -46,8 +46,6 @@ export const plaques = [
 export const machines = {
     // Beside the stretch from Projects to Research, clear of the trees
     arm: { x: 29.3, z: 22.6 },
-    // A loop over the middle of the route
-    drone: { x: 31, z: 12, radiusX: 12, radiusZ: 15, height: 6.5 },
     // At the end of the route, past the contact plaza's letters
     terminal: { x: 32.2, z: - 21.2 },
 }

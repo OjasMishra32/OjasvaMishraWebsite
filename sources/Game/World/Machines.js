@@ -10,10 +10,9 @@ const CYAN = '#5fd4ff'
 const PLAIN = { grid: false }
 
 /**
- * The moving set pieces along the route: a robot arm that follows the rover,
- * a drone on patrol and a terminal that keeps running out of usage.
- * All three are built from primitives and animated here; where they stand
- * is in data/route.js.
+ * The set pieces along the route: a Franka Emika Panda arm that follows the
+ * rover and a terminal that keeps running out of usage. Where they stand is
+ * in data/route.js.
  */
 export class Machines
 {
@@ -22,7 +21,6 @@ export class Machines
         this.game = Game.getInstance()
 
         this.setArm()
-        this.setDrone()
         this.setTerminal()
 
         this.game.ticker.events.on('tick', () =>
@@ -119,48 +117,6 @@ export class Machines
             axis: new THREE.Vector3(0, 0, 1),
             turn: new THREE.Quaternion(),
         }
-    }
-
-    /**
-     * Drone: flies a slow loop over the route
-     */
-    setDrone()
-    {
-        const root = new THREE.Group()
-        this.game.scene.add(root)
-
-        const tilt = new THREE.Group()
-        root.add(tilt)
-
-        this.mesh(new THREE.BoxGeometry(1.5, 0.42, 1), SHELL, tilt)
-        this.mesh(new THREE.BoxGeometry(0.5, 0.3, 0.7), JOINT, tilt, 0.72, - 0.02, 0)
-
-        const light = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.06, 0.5), Kit.glow(CYAN, 3))
-        light.position.y = - 0.24
-        tilt.add(light)
-
-        const rotors = []
-        const bladeGeometry = new THREE.BoxGeometry(1.4, 0.035, 0.14)
-        const guardGeometry = new THREE.TorusGeometry(0.76, 0.035, 6, 28)
-        const boomGeometry = new THREE.BoxGeometry(1.5, 0.12, 0.16)
-        const motorGeometry = new THREE.CylinderGeometry(0.16, 0.2, 0.34, 12)
-
-        for(const [ x, z ] of [ [ 1, 1 ], [ 1, - 1 ], [ - 1, 1 ], [ - 1, - 1 ] ])
-        {
-            const boom = this.mesh(boomGeometry, JOINT, tilt, x * 0.75, 0.05, z * 0.75)
-            boom.rotation.y = - Math.atan2(z, x)
-
-            this.mesh(motorGeometry, JOINT, tilt, x * 1.25, 0.16, z * 1.25)
-
-            const guard = this.mesh(guardGeometry, SHELL, tilt, x * 1.25, 0.34, z * 1.25)
-            guard.rotation.x = Math.PI * 0.5
-
-            const rotor = this.mesh(bladeGeometry, JOINT, tilt, x * 1.25, 0.36, z * 1.25)
-            rotor.userData.direction = x * z
-            rotors.push(rotor)
-        }
-
-        this.drone = { root, tilt, rotors, angle: 0 }
     }
 
     /**
@@ -404,28 +360,6 @@ export class Machines
             state.grip += (grip - state.grip) * ease
             for(const finger of state.fingers)
                 finger.node.position.set(finger.rest.x, finger.rest.y + state.grip * finger.direction, finger.rest.z)
-        }
-
-        /**
-         * Drone
-         */
-        {
-            const state = this.drone
-            const loop = machines.drone
-            state.angle += delta * 0.09
-
-            const x = loop.x + Math.cos(state.angle) * loop.radiusX
-            const z = loop.z + Math.sin(state.angle) * loop.radiusZ
-            const velocityX = - Math.sin(state.angle) * loop.radiusX
-            const velocityZ = Math.cos(state.angle) * loop.radiusZ
-
-            state.root.position.set(x, loop.height + Math.sin(time * 0.9) * 0.35, z)
-            state.root.rotation.y = Math.atan2(- velocityZ, velocityX)
-            state.tilt.rotation.z = - 0.16
-            state.tilt.rotation.x = Math.sin(time * 0.7) * 0.05
-
-            for(const rotor of state.rotors)
-                rotor.rotation.y += delta * 26 * rotor.userData.direction
         }
 
         /**
