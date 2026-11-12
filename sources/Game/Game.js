@@ -339,6 +339,7 @@ export class Game
     enterWorld()
     {
         this.autoStart = true
+        document.documentElement.classList.add('is-auto-start')
         this.reveal?.startNow?.()
 
         // A phone that has been holding off starts building once the page has
