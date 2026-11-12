@@ -30,6 +30,7 @@ the settings in `vercel.json`.
 | The rover | `sources/Game/World/Rover.js` |
 | The route visitors are kept on, and the disc the world is cut to | `sources/data/route.js`, `sources/Game/Route.js` |
 | The stops bar | `sources/Game/Guide.js` |
+| The robot arm, the drone and the usage-limits terminal | `sources/Game/World/Machines.js` |
 | The map panel | `sources/Game/Map.js`, `scripts/build-map.mjs` |
 | Areas of the world | `sources/Game/World/Areas/` |
 | Time-of-day looks | `sources/Game/Cycles/DayCycles.js` |

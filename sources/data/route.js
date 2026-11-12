@@ -37,6 +37,18 @@ export const plaques = [
     [ 41.6, 33.2, 4 ],
 ]
 
+/**
+ * The moving set pieces (World/Machines.js)
+ */
+export const machines = {
+    // On the grass beside the stretch from Projects to Research
+    arm: { x: 27.2, z: 23.2 },
+    // A loop over the middle of the route
+    drone: { x: 31, z: 12, radiusX: 12, radiusZ: 15, height: 6.5 },
+    // At the end of the route, past the contact plaza's letters
+    terminal: { x: 32.2, z: - 21.2 },
+}
+
 // The path: [ x, z, half-width of the corridor there ]
 export const path = [
     [ 39.5, 40.5, 8.5 ],

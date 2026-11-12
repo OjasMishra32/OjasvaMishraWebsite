@@ -201,7 +201,7 @@ export const explainers = {
 
     courtside: {
         accent: '#12a150',
-        line: 'A camera that calls a tennis point before the ball lands, and what that head start is worth.',
+        line: 'A camera that calls a tennis or table tennis point before the ball lands, and what that head start is worth.',
         proof: 'Gator Quant Hacks 2026, Systematic Trading track · paper trading, no real money',
         panels: [
             { img: `${SRC}/courtside-call.png`, position: '60% 30%', caption: 'A camera tracks the ball in flight', sub: 'At 119.9 frames per second' },

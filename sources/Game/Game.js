@@ -52,6 +52,7 @@ import { Scan } from './Scan.js'
 import { Keynote } from './Keynote.js'
 import { Route } from './Route.js'
 import { Guide } from './Guide.js'
+import { Machines } from './World/Machines.js'
 
 export class Game
 {
@@ -194,6 +195,7 @@ export class Game
         this.world.step(1)
         this.overlay = new Overlay()
         this.route = new Route()
+        this.machines = new Machines()
         this.guide = new Guide()
 
         // Compile every material now, behind the loading screen, so nothing
