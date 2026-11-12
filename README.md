@@ -23,6 +23,7 @@ the settings in `vercel.json`.
 | Everything the site says about me | `sources/data/profile.js` |
 | The presentation of each project and paper | `sources/data/cards.js` |
 | Each project's colour and how its picture is framed | `sources/data/themes.js` |
+| How each project works, in three captioned pictures | `sources/data/explainers.js` |
 | The About page | `sources/Game/Profile.js`, `sources/style/about.styl` |
 | Presentations and their live tiles | `sources/Game/Keynote.js`, `sources/Game/KeynoteLive.js` |
 | Interface styles | `sources/style/ui.styl` |
@@ -46,7 +47,7 @@ one:
 npm run images    # presentation images, board images, lab images
 npm run palette   # repaints the world's colour strip
 npm run map       # redraws the map panel's picture
-npm run covers    # the cover on each project's and paper's board (needs Chrome)
+npm run covers    # the three-step explainer on each board, and the role plaques (needs Chrome)
 ```
 
 ## Controls

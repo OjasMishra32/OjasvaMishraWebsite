@@ -12,18 +12,38 @@ export const disc = { x: 31, z: 9, radius: 39 }
 // In visiting order. `respawn` is the name of the place the rover is put down.
 export const stops = [
     { id: 'start', label: 'Start', respawn: 'landing', x: 39.5, z: 37.8, accent: '#ffffff' },
+    { id: 'experience', label: 'Experience', respawn: 'experience', x: 48.5, z: 33.6, accent: '#2ee6a8', beacon: false },
     { id: 'projects', label: 'Projects', respawn: 'projects', x: 35.8, z: 17.6, accent: '#39b7ff' },
     { id: 'research', label: 'Research', respawn: 'lab', x: 17.9, z: 18.8, accent: '#a47bff' },
-    { id: 'experience', label: 'Experience', respawn: 'career', x: 26.3, z: 9.6, accent: '#2ee6a8' },
+    { id: 'timeline', label: 'Timeline', respawn: 'career', x: 26.3, z: 9.6, accent: '#ffd27a' },
     { id: 'contact', label: 'Contact', respawn: 'social', x: 25.7, z: - 14.5, accent: '#ff9f0a' },
+]
+
+// Places the rover can be put down that the island's own list doesn't have
+export const extraRespawns = [
+    { name: 'experience', x: 45.6, z: 34.6, rotation: 0.6 },
+]
+
+/**
+ * Experience comes first: the most recent roles stand as plaques along the
+ * stretch from the start to the bridge. [ x, z, index of the role in
+ * `experience` (data/profile.js) ]. Placed in the open ground between the
+ * props that were already there.
+ */
+export const plaques = [
+    [ 49.3, 35.9, 0 ],
+    [ 52.6, 33.2, 1 ],
+    [ 55.6, 30.2, 2 ],
+    [ 41.6, 33.2, 4 ],
 ]
 
 // The path: [ x, z, half-width of the corridor there ]
 export const path = [
     [ 39.5, 40.5, 8.5 ],
     [ 39.5, 37.8, 9 ],
-    [ 46.5, 33, 6.5 ],
-    [ 51.5, 27.5, 6 ],
+    [ 46.5, 34, 7.5 ],
+    [ 51.8, 29.5, 7 ],
+    [ 51.5, 26.5, 5 ],
     [ 47, 23, 4.2 ],
     [ 41, 20.8, 4.2 ],
     [ 35.8, 17.6, 10.5 ],

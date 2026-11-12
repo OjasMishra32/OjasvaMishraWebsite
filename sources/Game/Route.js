@@ -1,7 +1,7 @@
 import * as THREE from 'three/webgpu'
 import { Game } from './Game.js'
 import { Kit } from './World/Kit.js'
-import { path, stops, nearest } from '../data/route.js'
+import { path, stops, nearest, plaques, extraRespawns } from '../data/route.js'
 
 /**
  * Keeps the visit on rails (see data/route.js).
@@ -18,14 +18,82 @@ export class Route
     {
         this.game = Game.getInstance()
 
+        this.setRespawns()
         this.setFence()
         this.setArrows()
         this.setBeacons()
+        this.setPlaques()
 
         this.game.ticker.events.on('tick', () =>
         {
             this.update()
         }, 5)
+    }
+
+    setRespawns()
+    {
+        for(const respawn of extraRespawns)
+        {
+            this.game.respawns.items.set(respawn.name, {
+                name: respawn.name,
+                position: new THREE.Vector3(respawn.x, 4, respawn.z),
+                rotation: respawn.rotation,
+            })
+        }
+    }
+
+    /**
+     * Experience: one plaque per role, leaning back to face the camera so
+     * it reads as you drive past (the cards are drawn by
+     * scripts/build-covers.mjs)
+     */
+    setPlaques()
+    {
+        const loader = new THREE.TextureLoader()
+        const width = 3.9
+        const height = width * 800 / 1280
+        const lean = - (Math.PI * 0.5 - this.game.view.spherical.phi)
+
+        const frameGeometry = new THREE.BoxGeometry(width + 0.22, height + 0.22, 0.12)
+        const faceGeometry = new THREE.PlaneGeometry(width, height)
+        const legGeometry = new THREE.BoxGeometry(0.12, 1.2, 0.12)
+
+        plaques.forEach(([ x, z, index ]) =>
+        {
+            const group = new THREE.Group()
+            group.rotation.order = 'YXZ'
+            group.rotation.y = Math.PI * 0.25
+            group.rotation.x = lean
+            group.position.set(x, 1.3, z)
+            this.game.scene.add(group)
+
+            const frame = new THREE.Mesh(frameGeometry, Kit.flat('#161a24', { grid: false }))
+            frame.castShadow = true
+            group.add(frame)
+
+            const map = loader.load(`experience/role-${index}.webp`)
+            map.colorSpace = THREE.SRGBColorSpace
+            map.anisotropy = 8
+            const face = new THREE.Mesh(faceGeometry, Kit.screen(map, 0.98))
+            face.position.z = 0.065
+            group.add(face)
+
+            for(const side of [ - 1, 1 ])
+            {
+                const leg = new THREE.Mesh(legGeometry, Kit.flat('#161a24', { grid: false }))
+                leg.castShadow = true
+                leg.position.set(x + side * (width / 2 - 0.4) * Math.SQRT1_2, 0.6, z - side * (width / 2 - 0.4) * Math.SQRT1_2)
+                this.game.scene.add(leg)
+            }
+
+            this.game.objects.add(null, {
+                type: 'fixed',
+                position: { x, y: 0.6, z },
+                rotation: new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI * 0.25),
+                friction: 0.3,
+                colliders: [ { shape: 'cuboid', parameters: [ width / 2, 0.6, 0.35 ], category: 'floor' } ],
+            })
+        })
     }
 
     /**
@@ -176,7 +244,7 @@ export class Route
 
         for(const stop of stops)
         {
-            if(stop.id === 'start')
+            if(stop.id === 'start' || stop.beacon === false)
                 continue
 
             const group = new THREE.Group()

@@ -1,0 +1,244 @@
+/**
+ * How each project works, in three pictures.
+ *
+ * This is what goes on a project's board in the world
+ * (scripts/build-covers.mjs draws it). Someone who has never heard of the
+ * project should understand it from the three panels and their captions:
+ * what goes in, what the project does to it, what comes out.
+ *
+ * A panel is either a real picture (`img`, relative to the repository root)
+ * or a small drawn stand-in (`draw`) where no picture exists. Every caption
+ * comes from the project's own README, paper or write-up.
+ */
+const ART = 'scripts/shots/art'
+const SRC = 'scripts/shots/art/src'
+
+export const explainers = {
+    dejaview: {
+        accent: '#0a84ff',
+        line: 'Turns a video of any place into a 3D world you can walk into.',
+        proof: '1st place in the AI/ML and DeepSpace tracks at SwampHacks XII',
+        panels: [
+            { img: `${SRC}/dejaview-photo1.jpg`, caption: 'Film a place', sub: 'A phone video, one photo or a game screenshot' },
+            { img: `${SRC}/dejaview-splats-discs.jpg`, caption: 'It becomes a million 3D splats', sub: 'A world model fills in what the camera never saw' },
+            { img: `${SRC}/dejaview-headset.jpg`, caption: 'Walk around inside it', sub: 'In a Meta Quest, a browser or a Roblox map' },
+        ],
+    },
+
+    applytwin: {
+        accent: '#1f6bff',
+        line: 'Finds the internship, tailors your résumé, fills out the form.',
+        proof: 'Reads 600+ company career sites · runs on your Claude Code or Codex plan',
+        panels: [
+            { draw: 'feed', caption: 'It finds the roles that fit you', sub: 'Greenhouse, Lever, Ashby, Workday and more' },
+            { draw: 'sheets', images: [ `${SRC}/applytwin-data.png`, `${SRC}/applytwin-ml.png`, `${SRC}/applytwin-swe.png` ], caption: 'Writes a one-page résumé for each', sub: 'Only from what you wrote, checked line by line' },
+            { draw: 'form', caption: 'Fills out the application', sub: 'Uploads the PDF and stops at Submit' },
+        ],
+    },
+
+    luciddreams: {
+        accent: '#7c5cff',
+        line: 'Lifts a person out of an ordinary video and rebuilds them as a life-size 3D human.',
+        proof: 'Built in 48 hours at Gator Hack V on 12 NVIDIA B200 GPUs',
+        panels: [
+            { img: `${SRC}/lucid-input.jpg`, position: 'center 22%', caption: 'Start with a phone video of someone', sub: 'One clip. No studio, no markers.' },
+            { img: `${SRC}/lucid-cameras.jpg`, position: '50% 66%', zoom: 1.5, caption: 'They are lifted out and rebuilt in 3D', sub: '48 views generated around them, then fitted with Gaussians frame by frame' },
+            { img: `${SRC}/lucid-talk.jpg`, position: '38% center', caption: 'A life-size 3D copy stands in your room', sub: 'Seen through a Meta Quest. Walk around them.' },
+        ],
+    },
+
+    twinly: {
+        accent: '#7fa800',
+        line: 'An AI agent that operates your computer for you, the way you would.',
+        proof: 'Z Fellows, September 2026 cohort · 1,000+ active users on macOS, Windows and iOS',
+        panels: [
+            { draw: 'say', who: 'You', text: 'Reply to Sam, move Friday\'s meeting and call the dentist.', caption: 'Tell it what you need done', sub: 'In plain words' },
+            { draw: 'apps', items: [ 'Email', 'Calendar', 'Browser', 'Files', 'Phone call' ], caption: 'It does the work in your real apps', sub: 'Through each app\'s own controls. It clicks on pixels only as a last resort.' },
+            { draw: 'stat', value: '1,000+', label: 'people use it today', caption: 'And it sounds like you', sub: 'It learns how you write, and calls in a clone of your voice' },
+        ],
+    },
+
+    drift: {
+        accent: '#ff4d6d',
+        line: 'Describe what a robot should do. Drift builds the simulation and runs it.',
+        proof: '#5 Product of the Day on Product Hunt · 1,000+ robotics engineers · backed by Antler',
+        panels: [
+            { draw: 'say', who: 'You', text: 'Pick up the red cube and put it in the bin.', caption: 'Describe the task in a sentence', sub: 'No simulation code to write' },
+            { draw: 'window', img: 'scripts/shots/raw/drift.png', position: '88% 40%', zoom: 1.9, caption: 'It builds the scene and runs it', sub: 'In ROS2, Gazebo, MuJoCo or Isaac Sim' },
+            { draw: 'stat', value: '129', label: 'robots ready to drop in', caption: 'With a catalog of real robots', sub: 'I built the catalog and the pipeline that turns photos into worlds' },
+        ],
+    },
+
+    hive: {
+        accent: '#e08a00',
+        line: 'Coordinates a group of people building something, one spoken instruction at a time.',
+        proof: '1st place at YC Transpose',
+        panels: [
+            { draw: 'say', who: 'The goal', text: 'Build a red, blue and green tower.', caption: 'Give it one goal', sub: 'One sentence is the whole brief' },
+            { draw: 'window', img: `${ART}/hive-host.png`, position: '62% 30%', zoom: 1.5, caption: 'It works out who does what, and when', sub: 'A task graph, scheduled by reach, workload and collision risk' },
+            { draw: 'phone', img: `${ART}/hive-worker.png`, caption: 'Each phone gets only its next step', sub: 'A camera checks the work and replans when it goes wrong' },
+        ],
+    },
+
+    evbots: {
+        accent: '#1f9d55',
+        line: 'A robot arm that finds an electric car\'s charging port and plugs in by itself.',
+        proof: 'Work that went into several provisional patents',
+        panels: [
+            { img: 'scripts/shots/raw/yt_2A_RMrd1qKo.jpg', span: 2, caption: 'The arm finds the port and plugs itself in', sub: 'Built for charging fleets of electric vehicles with nobody standing by' },
+            { draw: 'stat', value: '1st', label: 'autonomous prototype at the company to work end to end', caption: 'From nothing to a working robot', sub: 'I built it as an AI robotics engineering intern' },
+        ],
+    },
+
+    kinetix: {
+        accent: '#0fb5a0',
+        line: 'A physical therapy coach that watches you exercise through a webcam and corrects your form out loud.',
+        proof: 'I was 1 of 3 high schoolers accepted to the hackathon, out of 1,500+ applicants',
+        panels: [
+            { img: 'scripts/shots/raw/yt_-k4Ks9YATTI.jpg', position: '55% center', caption: 'A webcam watches you exercise', sub: 'It reads your pose and measures your joint angles' },
+            { draw: 'say', who: 'It says', spoken: true, text: 'Arms straight. Keep your body aligned.', caption: 'It tells you what to fix, out loud', sub: 'While you are still mid-rep' },
+            { draw: 'apps', items: [ 'Reps counted', 'Holds timed', 'Form checked each rep' ], caption: 'And keeps count for you', sub: 'Feedback also shows in a Meta Quest headset' },
+        ],
+    },
+
+    fuse: {
+        accent: '#ff9f0a',
+        line: 'Put one thing on each half of a foldable iPhone, fold it shut, and get the one result that needs both.',
+        proof: 'Native Swift app with 12 kinds of result',
+        panels: [
+            { draw: 'pair', left: 'A job posting', right: 'Your résumé', caption: 'Put one thing on each screen', sub: 'A web page, a note, a photo, a PDF, your calendar' },
+            { img: 'scripts/shots/raw/yt_h8jK9cSw0xU.jpg', fit: 'contain', background: '#000000', caption: 'Fold the phone shut', sub: 'The fold is the command. There is no menu.' },
+            { draw: 'card', title: 'Cover email', rows: [ 62, 88, 74, 81, 40 ], caption: 'Get the result that needs both', sub: 'Here, a cover email that quotes the posting and the résumé' },
+        ],
+    },
+
+    eyesight: {
+        accent: '#0a6cff',
+        line: 'Tells blind and low-vision people what is in front of them, out loud, as they walk.',
+        proof: 'LiDAR and on-device CoreML · TestFlight beta',
+        panels: [
+            { draw: 'icon', img: 'static/projects/images/eyesight-1.webp', caption: 'Point an iPhone ahead', sub: 'Its LiDAR measures the distance to what is in view' },
+            { draw: 'say', who: 'It says', spoken: true, text: 'Obstacle ahead. Door on your left.', caption: 'It warns and describes, out loud', sub: 'Obstacles as you move, then the surroundings' },
+            { draw: 'stat', value: '0 bytes', label: 'about where you are leave the phone', caption: 'Everything runs on the phone', sub: 'It works with no signal' },
+        ],
+    },
+
+    preventaai: {
+        accent: '#7b3ff2',
+        line: 'A health app for tracking medication, marking symptoms on a body map and asking an AI assistant.',
+        proof: 'One user reported it helped them catch severe tuberculosis earlier than standard screening did',
+        panels: [
+            { img: 'scripts/shots/raw/preventaai.png', span: 2, position: '78% 86%', zoom: 1.55, caption: 'Schedules, a body map for symptoms, and an assistant', sub: 'Mark where it hurts and how badly, then ask about it' },
+            { draw: 'stat', value: '5.0', label: 'rating on the App Store', caption: 'Live on the App Store', sub: 'Free, with in-app purchases' },
+        ],
+    },
+
+    quickcitepro: {
+        accent: '#f08c00',
+        line: 'Triple-click a citation in any paper and the source PDF opens.',
+        proof: 'Rated 5.0 on the Chrome Web Store · used by professors and lab teammates',
+        panels: [
+            { draw: 'cite', caption: 'Triple-click a reference', sub: 'In any paper you are reading' },
+            { draw: 'sheets', images: [ `${ART}/arxiv-p8.png`, `${ART}/arxiv-p1.png` ], caption: 'The paper it points to opens', sub: 'No copying the title, no fixing the DOI, no dead links' },
+            { draw: 'stat', value: '3 clicks', label: 'from a reference to the paper', caption: 'Built because I needed it', sub: 'During the CMU research work' },
+        ],
+    },
+
+    glassbox: {
+        accent: '#0fb58a',
+        line: 'Flags AI-assisted answers during a live video interview.',
+        proof: '2nd of 200+ at Startup in a Weekend Philly, built in 48 hours, the only high school team',
+        panels: [
+            { draw: 'window', img: `${ART}/veritas-1.png`, position: 'center top', caption: 'It sits on top of the video call', sub: 'Zoom, Teams or Google Meet' },
+            { draw: 'apps', items: [ 'Gaze shifts and blink rate', 'Odd pauses, flat pitch', 'Answers that read like a script' ], caption: 'It watches, listens and reads', sub: 'Face tracking, audio analysis and a small language model' },
+            { draw: 'say', who: 'Flag', text: 'This answer was likely read from an AI tool.', caption: 'And flags the answer', sub: 'Script reading, and tools like ChatGPT or Cluely' },
+        ],
+    },
+
+    tsa: {
+        accent: '#c8102e',
+        line: 'Eight engineering builds for one season of TSA nationals. This is the one that led.',
+        proof: 'Captain for 6 events · national finalist in 2',
+        panels: [
+            { img: `${ART}/tsa-dome-side.jpg`, caption: 'A 3D-printed dome packed with zeolite', sub: 'It sits over fertilized soil' },
+            { img: `${ART}/tsa-chart.png`, fit: 'contain', background: '#ffffff', caption: 'It pulls nitrous oxide out of the air', sub: 'Gas pressure with and without it, over five trials' },
+            { img: `${ART}/drone-assembled.jpg`, caption: 'The same season: a drone from parts', sub: 'And six more events, from design to competition' },
+        ],
+    },
+
+    'pid-gain': {
+        accent: '#e8590c',
+        line: 'Tunes a robot joint\'s controller for the torque its motor can actually deliver.',
+        proof: 'Under review at IEEE Transactions on Robotics · arXiv 2601.18639',
+        panels: [
+            { draw: 'plot', caption: 'Every motor has a torque limit', sub: 'Ask for more and an ordinary controller overshoots' },
+            { draw: 'sheets', images: [ `${ART}/arxiv-p8.png`, `${ART}/arxiv-p1.png` ], caption: 'So the limit goes into the tuning itself', sub: 'Stability regions, anti-windup and a search that rejects unsafe gains' },
+            { draw: 'stat', value: '0.687 → 0.470', label: 'median tracking error', caption: 'Tracking error drops by a third', sub: 'With under 2% overshoot. Simulation only.' },
+        ],
+    },
+
+    scig: {
+        accent: '#0a84ff',
+        line: 'A safety filter that keeps a robot joint in its safe range even when its commands are tampered with.',
+        proof: 'Under review at IEEE IROS',
+        panels: [
+            { img: `${ART}/scig-franka.jpg`, caption: 'A robot arm whose signals are attacked', sub: 'Sensor readings biased, packets dropped' },
+            { img: `${ART}/scig-method.png`, fit: 'contain', background: '#ffffff', caption: 'A filter checks each command first', sub: 'It wraps the controller you already have: PID, MPC or impedance' },
+            { draw: 'stat', value: 'Bounded', label: 'risk, stated explicitly', caption: 'The joint stays in its safe range', sub: 'The bound comes from conformal prediction' },
+        ],
+    },
+
+    'feedback-authority': {
+        accent: '#7c5cff',
+        line: 'Bounds how much damage a command can do if it slips past the attack detector.',
+        proof: 'IEEE ICRA 2027',
+        panels: [
+            { draw: 'say', who: 'The threat', text: 'An attacker replaces or drops a robot\'s fast state messages.', caption: 'Some attacks get past any detector', sub: 'Especially on joints that are torque-limited' },
+            { img: `${ART}/icra-fig1.png`, fit: 'contain', background: '#ffffff', caption: 'So bound what an accepted message can do', sub: 'To the torque, before the torque filter' },
+            { draw: 'stat', value: '0', label: 'extra trusted sensors needed', caption: 'The command stays feasible', sub: 'The only method in the paper\'s comparison that needs none' },
+        ],
+    },
+
+    courtside: {
+        accent: '#12a150',
+        line: 'A camera that calls a tennis point before the ball lands, and what that head start is worth.',
+        proof: 'Gator Quant Hacks 2026, Systematic Trading track · paper trading, no real money',
+        panels: [
+            { img: `${SRC}/courtside-call.png`, position: '60% 30%', caption: 'A camera tracks the ball in flight', sub: 'At 119.9 frames per second' },
+            { img: `${SRC}/courtside-call.png`, position: '24% 72%', zoom: 1.22, caption: 'It calls the point before the bounce', sub: 'A median of 162 ms early, with none wrong' },
+            { draw: 'stat', value: '$42–74', label: 'a day is what the first second is worth', caption: 'That head start has a price', sub: 'Betting markets lag each point by about a second' },
+        ],
+    },
+
+    volition: {
+        accent: '#5e5ce6',
+        line: 'A brain-controlled exoskeleton, designed for people with complete paraplegia.',
+        proof: 'Concept design and simulation · not built',
+        panels: [
+            { img: `${SRC}/volition-poster.jpg`, position: '42% center', caption: 'Imagine moving a foot', sub: 'A 16-channel EEG cap reads it, and a crutch button confirms' },
+            { img: `${ART}/actuator_cutaway.png`, fit: 'contain', background: '#ffffff', caption: 'A custom actuator drives each joint', sub: 'A frameless motor with a 100:1 strain-wave gear' },
+            { img: `${ART}/exo_iso.png`, fit: 'contain', background: '#ffffff', caption: 'Sit, stand, walk', sub: '8 steps walked in a 1 kHz closed-loop simulation' },
+        ],
+    },
+
+    neurospine: {
+        accent: '#2f6fed',
+        line: 'Scores bone quality in the spine from CT and MRI scans, to help surgeons before they operate.',
+        proof: 'Dream Team Engineering, with the UF Department of Neurosurgery · in progress',
+        panels: [
+            { draw: 'spine', mode: 'scan', caption: 'CT and MRI scans go in', sub: 'The standard test leaves a gray area' },
+            { draw: 'spine', mode: 'segment', caption: 'Each vertebra is found and outlined', sub: 'With nnU-Net and TotalSegmentator' },
+            { draw: 'spine', mode: 'score', caption: 'Each one gets a bone quality score', sub: 'Hounsfield units and VBQ, per vertebra' },
+        ],
+    },
+
+    textbook: {
+        accent: '#b8860b',
+        line: 'A free robotics textbook, written for students who can\'t get the material any other way.',
+        proof: 'Published open access on SSRN as the FusionBots robotics curriculum',
+        panels: [
+            { draw: 'sheets', images: [ `${ART}/textbook-p2.png`, `${ART}/textbook-p1.png` ], span: 2, caption: 'Robotics and programming from first principles', sub: 'Modules, units and lessons, from beginner to advanced' },
+            { draw: 'stat', value: '120', label: 'pages, free for anyone', caption: 'Free to read', sub: 'Open access on SSRN' },
+        ],
+    },
+}
