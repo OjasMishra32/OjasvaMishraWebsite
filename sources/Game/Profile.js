@@ -1,5 +1,7 @@
 import { Game } from './Game.js'
 import { person, projects, research, experience, emblems } from '../data/profile.js'
+import { Cursor } from './About/Cursor.js'
+import { Reactions } from './About/Reactions.js'
 
 const ARROW = '<svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>'
 const ICONS = {
@@ -44,6 +46,10 @@ export class Profile
         this.setEntries()
         this.setInputs()
 
+        // From the previous site: the jelly cursor and right-click reactions
+        this.cursor = new Cursor(this.element)
+        this.reactions = new Reactions(this.element)
+
         this.modal.events.on('open', () =>
         {
             // Replay the entrance each time the page opens
@@ -65,12 +71,16 @@ export class Profile
         this.modal.events.on('opened', () =>
         {
             this.game.ticker.paused = true
+            this.cursor.start()
+            this.reactions.start()
             this.scrollerElement.focus({ preventScroll: true })
         })
 
         this.modal.events.on('close', () =>
         {
             this.game.ticker.paused = false
+            this.cursor.stop()
+            this.reactions.stop()
         })
     }
 
