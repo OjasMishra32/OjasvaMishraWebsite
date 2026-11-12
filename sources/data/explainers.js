@@ -75,7 +75,7 @@ export const explainers = {
         line: 'Coordinates a group of people building something, one spoken instruction at a time.',
         proof: '1st place at YC Transpose',
         panels: [
-            { draw: 'say', who: 'For example', text: 'Build a red, blue and green tower.', caption: 'Give it one goal', sub: 'One sentence is the whole brief' },
+            { draw: 'window', img: `${ART}/hive-objective.png`, position: 'left top', caption: 'Give it one goal', sub: 'One sentence is the whole brief' },
             { draw: 'window', img: `${ART}/hive-host.png`, position: '62% 30%', zoom: 1.5, caption: 'It works out who does what, and when', sub: 'A task graph, scheduled by reach, workload and collision risk' },
             { draw: 'phone', img: `${ART}/hive-worker.png`, caption: 'Each phone gets only its next step', sub: 'A camera checks the work and replans when it goes wrong' },
         ],
