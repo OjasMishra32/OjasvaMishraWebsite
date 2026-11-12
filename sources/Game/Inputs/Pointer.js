@@ -17,6 +17,7 @@ export class Pointer
         this.isDown = false
         this.mode = Pointer.MODE_MOUSE
         this.upcomingDown = false
+        this.releasePending = false
         this.hasMoved = false
         this.upcomingTouches = []
         this.touches = []
@@ -56,7 +57,7 @@ export class Pointer
         {
             _event.preventDefault()
 
-            this.upcomingDown = false
+            this.release()
         })
 
         this.element.addEventListener('touchmove', (_event) =>
@@ -115,13 +116,26 @@ export class Pointer
             this.upcomingTouches = [ ..._event.touches ]
 
             if(this.upcomingTouches.length === 0 || this.upcomingTouches.length === 1)
-                this.upcomingDown = false
+                this.release()
         })
 
         this.element.addEventListener('contextmenu', (_event) =>
         {
             _event.preventDefault()
         })
+    }
+
+    /**
+     * A quick tap can start and end between two frames. If the press hasn't
+     * been reported yet, the release is held back until it has, so a tap is
+     * never lost (it used to be, on slow phones).
+     */
+    release()
+    {
+        if(this.upcomingDown && !this.isDown)
+            this.releasePending = true
+        else
+            this.upcomingDown = false
     }
 
     update()
@@ -185,7 +199,16 @@ export class Pointer
             this.isDown = this.upcomingDown
 
             if(this.isDown)
+            {
                 this.events.trigger('down')
+
+                // The finger is already up: report that on the next frame
+                if(this.releasePending)
+                {
+                    this.releasePending = false
+                    this.upcomingDown = false
+                }
+            }
             else
                 this.events.trigger('up')
         }
