@@ -255,8 +255,19 @@ export class Game
         if(connection?.saveData || /2g/.test(connection?.effectiveType ?? ''))
             return
 
-        const files = this.worldFiles().map(file => file[1])
+        // The decoders the models and textures need come first, then the files themselves
+        const files = [
+            './basis/basis_transcoder.js',
+            './basis/basis_transcoder.wasm',
+            './draco/draco_wasm_wrapper.js',
+            './draco/draco_decoder.wasm',
+            ...this.worldFiles().map(file => file[1]),
+        ]
         let index = 0
+
+        // The physics engine is the largest single piece. Importing it here is
+        // the same import the world makes later, which then costs nothing.
+        import('@dimforge/rapier3d').catch(() => {})
 
         // Two at a time, so the page being read keeps the connection's attention
         const next = () =>
