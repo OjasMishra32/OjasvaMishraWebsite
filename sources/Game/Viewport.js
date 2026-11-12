@@ -13,7 +13,7 @@ export class Viewport
         this.pixelRatioMax = 2
 
         // Total pixels the renderer is asked to fill, whatever the screen
-        this.pixelBudget = 4.5e6
+        this.pixelBudget = 2.6e6
 
         this.measure()
         this.setResize()

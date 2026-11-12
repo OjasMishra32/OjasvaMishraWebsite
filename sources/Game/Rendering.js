@@ -40,7 +40,7 @@ export class Rendering
         this.renderer = new THREE.WebGPURenderer({
             canvas: this.game.canvasElement,
             powerPreference: 'high-performance',
-            forceWebGL: false,
+            forceWebGL: /webgl/i.test(location.hash),
             antialias: this.game.viewport.pixelRatio < 2
         })
         this.renderer.setSize(this.game.viewport.width, this.game.viewport.height)
@@ -202,7 +202,7 @@ export class Rendering
         }
 
         governor.times.push(frame)
-        if(governor.times.length < 90)
+        if(governor.times.length < 45)
             return
 
         const sorted = governor.times.sort((a, b) => a - b)
