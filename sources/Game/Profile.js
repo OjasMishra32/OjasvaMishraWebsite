@@ -2,6 +2,7 @@ import { Game } from './Game.js'
 import { person, projects, research, experience, emblems } from '../data/profile.js'
 import { Cursor } from './About/Cursor.js'
 import { Reactions } from './About/Reactions.js'
+import { Keyboard } from './About/Keyboard.js'
 
 const ARROW = '<svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>'
 const ICONS = {
@@ -49,6 +50,7 @@ export class Profile
         // From the previous site: the jelly cursor and right-click reactions
         this.cursor = new Cursor(this.element)
         this.reactions = new Reactions(this.element)
+        this.keyboard = new Keyboard(this.bodyElement.querySelector('.about-hero'))
 
         this.modal.events.on('open', () =>
         {
@@ -73,6 +75,7 @@ export class Profile
             this.game.ticker.paused = true
             this.cursor.start()
             this.reactions.start()
+            this.keyboard.start()
             this.scrollerElement.focus({ preventScroll: true })
         })
 
@@ -81,6 +84,7 @@ export class Profile
             this.game.ticker.paused = false
             this.cursor.stop()
             this.reactions.stop()
+            this.keyboard.stop()
         })
     }
 
@@ -170,6 +174,9 @@ export class Profile
                         <a class="icon-button" href="${e(person.links.linkedin)}" target="_blank" rel="noreferrer" aria-label="LinkedIn">${ICONS.linkedin}</a>
                         <a class="icon-button" href="mailto:${e(person.email)}" aria-label="Email">${ICONS.mail}</a>
                     </div>
+                </div>
+                <div class="hero-keyboard js-hero-keyboard">
+                    <div class="keyboard-caption js-keyboard-caption"><b></b><span></span></div>
                 </div>
                 <div class="hero-chips">
                     ${person.now.map((item, index) => `<span class="hero-chip swing-in js-reveal" style="--d:${index + 3}">${this.chip(item.emblem, 'is-hero')}</span>`).join('')}

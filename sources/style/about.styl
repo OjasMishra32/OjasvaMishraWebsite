@@ -513,6 +513,62 @@ $a-ease = cubic-bezier(0.2, 0.8, 0.2, 1)
         gap 8px
         margin-top 12px
 
+    // The skills keyboard takes the right half once its scene has loaded;
+    // until then (and on small screens) the logo chips stand there
+    .hero-keyboard
+        display none
+        position relative
+        grid-column 2
+        grid-row 1
+        align-self stretch
+        min-height 560px
+
+        // Wider than its column so the keyboard can turn without being cut off
+        canvas
+            position absolute
+            top 0
+            left -18%
+            width 136% !important
+            height 100% !important
+            outline none
+
+    .about-hero.has-keyboard
+        .hero-keyboard
+            display block
+
+        .hero-chips
+            display none
+
+    .keyboard-caption
+        position absolute
+        left 50%
+        bottom 6%
+        width @css{ min(380px, 90%) }
+        text-align center
+        opacity 0
+        transform translate(-50%, 8px)
+        transition opacity 0.25s, transform 0.3s $a-ease
+        pointer-events none
+
+        &.is-visible
+            opacity 1
+            transform translate(-50%, 0)
+
+        b
+            display block
+            font-family $a-display
+            font-size 22px
+            font-weight 700
+            letter-spacing -0.02em
+            color $a-ink
+
+        span
+            display block
+            margin-top 6px
+            font-size 15px
+            line-height 1.45
+            color $a-muted
+
     .hero-chips
         display grid
         grid-template-columns repeat(2, 128px)
