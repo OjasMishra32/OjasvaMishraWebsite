@@ -98,6 +98,13 @@ export class Game
         this.menu = new Menu()
         this.profile = new Profile()
         this.keynote = new Keynote()
+
+        // On a phone the About page comes first, and the 3D world is only
+        // downloaded and built once the visitor asks for it
+        const phone = Math.min(window.innerWidth, window.innerHeight) < 600 && matchMedia('(pointer: coarse)').matches
+        if(phone && !location.hash.match(/skip|world/i))
+            await this.aboutFirst()
+
         this.rendering = new Rendering()
         await this.rendering.setRenderer()
 
@@ -214,6 +221,52 @@ export class Game
         {
             this.achievements.setProgress('debug', 1)
         }
+    }
+
+    /**
+     * Shows the About page and waits. Resolves when it is closed (or its
+     * "Explore the 3D world" button is used), which lets init() carry on.
+     */
+    aboutFirst()
+    {
+        return new Promise((resolve) =>
+        {
+            // Nothing drives the ticker until there is a renderer
+            let waiting = true
+            const loop = (time) =>
+            {
+                if(!waiting)
+                    return
+
+                this.ticker.update(time)
+                requestAnimationFrame(loop)
+            }
+            requestAnimationFrame(loop)
+
+            this.startWorld = () =>
+            {
+                if(!waiting)
+                    return
+
+                waiting = false
+                this.startWorld = null
+                this.inputs.filters.clear()
+                this.inputs.filters.add('intro')
+                resolve()
+            }
+
+            // Closed with nothing else opening after it (a presentation, say)
+            this.modals.events.on('closed', () =>
+            {
+                setTimeout(() =>
+                {
+                    if(this.startWorld && this.modals.state === Modals.CLOSED)
+                        this.startWorld()
+                }, 120)
+            })
+
+            this.profile.open()
+        })
     }
 
     reset()

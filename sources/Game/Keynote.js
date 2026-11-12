@@ -282,7 +282,7 @@ export class Keynote
             })
         })
 
-        this.game.achievements.setProgress(this.type === 'projects' ? 'projects' : 'lab', entry.id)
+        this.game.achievements?.setProgress(this.type === 'projects' ? 'projects' : 'lab', entry.id)
     }
 
     /**

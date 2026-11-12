@@ -487,7 +487,8 @@ export class Profile
      */
     showInWorld(areaName, index)
     {
-        const area = this.game.world.areas?.[areaName]
+        // (on a phone the world may not be built yet)
+        const area = this.game.world?.areas?.[areaName]
         this.game.modals.close()
 
         if(!area)

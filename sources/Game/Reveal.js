@@ -53,12 +53,6 @@ export class Reveal
         {
             document.documentElement.classList.add('is-ready')
 
-            // On a phone the About page comes first: it says everything
-            // without any driving. The world is one tap away from there.
-            const phone = Math.min(window.innerWidth, window.innerHeight) < 600 && matchMedia('(pointer: coarse)').matches
-            if(phone && !location.hash.match(/skip|world/i))
-                this.game.ticker.wait(2, () => { this.game.profile.open() })
-
             // Intro loader => Hide circle
             this.game.world.intro.circle.hide(() =>
             {

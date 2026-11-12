@@ -83,11 +83,12 @@ export const explainers = {
 
     evbots: {
         accent: '#1f9d55',
-        line: 'A robot arm that finds an electric car\'s charging port and plugs in by itself.',
-        proof: 'Work that went into several provisional patents',
+        line: 'A robot that drives a battery to an electric car, finds the charging port and plugs in by itself.',
+        proof: 'First autonomous prototype at the company to work end to end · several provisional patents',
         panels: [
-            { img: 'scripts/shots/raw/yt_2A_RMrd1qKo.jpg', span: 2, caption: 'The arm finds the port and plugs itself in', sub: 'Built for charging fleets of electric vehicles with nobody standing by' },
-            { draw: 'stat', value: '1st', label: 'autonomous prototype at the company to work end to end', caption: 'From nothing to a working robot', sub: 'I built it as an AI robotics engineering intern' },
+            { img: `${SRC}/evbots-rover.jpg`, position: '45% center', caption: 'A rover brings the battery to the car', sub: 'So a fleet can be charged where it is parked' },
+            { img: `${SRC}/evbots-reach.jpg`, position: '40% center', caption: 'Its arm finds the charging port', sub: 'And lines the plug up with it' },
+            { img: `${SRC}/evbots-plug.jpg`, caption: 'And plugs in, with nobody standing by', sub: 'I built it as an AI robotics engineering intern' },
         ],
     },
 
@@ -96,9 +97,9 @@ export const explainers = {
         line: 'A physical therapy coach that watches you exercise through a webcam and corrects your form out loud.',
         proof: 'I was 1 of 3 high schoolers accepted to the hackathon, out of 1,500+ applicants',
         panels: [
-            { img: 'scripts/shots/raw/yt_-k4Ks9YATTI.jpg', position: '55% center', caption: 'A webcam watches you exercise', sub: 'It reads your pose and measures your joint angles' },
-            { draw: 'say', who: 'For example, it says', spoken: true, text: 'Get into starting position: arms straight, body aligned.', caption: 'It tells you what to fix, out loud', sub: 'While you are still mid-rep' },
-            { draw: 'apps', items: [ 'Reps counted', 'Holds timed', 'Form checked each rep' ], caption: 'And keeps count for you', sub: 'Feedback also shows in a Meta Quest headset' },
+            { img: `${SRC}/kinetix-track.jpg`, position: '55% center', caption: 'A webcam tracks your joints', sub: 'It measures the angles at your elbows, shoulders and hips' },
+            { img: `${SRC}/kinetix-judge.jpg`, position: '50% center', caption: 'It judges each rep and says so, out loud', sub: 'Good form, or what to fix, while you are still moving' },
+            { img: `${SRC}/kinetix-count.jpg`, position: '60% center', caption: 'It counts reps and holds for you', sub: 'Feedback also shows in a Meta Quest headset' },
         ],
     },
 

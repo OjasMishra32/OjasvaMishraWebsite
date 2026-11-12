@@ -1006,7 +1006,10 @@ $spring = cubic-bezier(0.2, 0.8, 0.2, 1)
     pointer-events none
     transition opacity 0.5s
 
-    html.is-ready &
+    // Hidden once the world is ready, and while a page covers it
+    html.is-ready &,
+    html.input-filter-modal &,
+    html.input-filter-menu &
         opacity 0
 
 .boot-track

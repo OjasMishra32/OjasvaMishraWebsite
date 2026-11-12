@@ -58,7 +58,7 @@ export class Menu
         {
             event.preventDefault()
 
-            if(this.game.world.areas?.circuit?.state === CircuitArea.STATE_RUNNING || this.game.world.areas?.circuit?.state === CircuitArea.STATE_STARTING)
+            if(this.game.world?.areas?.circuit?.state === CircuitArea.STATE_RUNNING || this.game.world?.areas?.circuit?.state === CircuitArea.STATE_STARTING)
                 this.open('circuit')
             else
                 this.open()
