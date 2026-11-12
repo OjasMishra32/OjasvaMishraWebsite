@@ -1,6 +1,6 @@
 import * as THREE from 'three/webgpu'
 import { Game } from '../Game.js'
-import { Fn, color, float, frontFacing, If, max, mix, normalWorld, positionWorld, vec2, vec3, vec4 } from 'three/tsl'
+import { Fn, color, float, frontFacing, If, max, mix, normalWorld, positionWorld, uniform, vec2, vec3, vec4 } from 'three/tsl'
 
 export class MeshDefaultMaterial extends THREE.MeshLambertNodeMaterial
 {
@@ -40,7 +40,23 @@ export class MeshDefaultMaterial extends THREE.MeshLambertNodeMaterial
         this.hasGrid = parameters.hasGrid ?? false
         this.hasPulse = parameters.hasPulse ?? this.hasGrid
 
+        // On the light tier (Safari, phones) every distinct shader costs load
+        // time, so the options that only add polish are switched off. That
+        // lets many materials share one compiled shader.
+        if(this.game.quality?.light)
+        {
+            this.hasWater = false
+            this.hasLightBounce = false
+            this.hasDropShadows = false // shadow maps are off there anyway
+            this.hasPulse = this.hasGrid
+        }
+
         this._colorNode = parameters.colorNode ?? color(0xffffff)
+
+        // A constant colour is written into the shader, which makes one
+        // shader per colour. As a uniform, all of them share one.
+        if(this._colorNode.isConstNode && this._colorNode.value?.isColor)
+            this._colorNode = uniform(this._colorNode.value)
         this._normalNode = parameters.normalNode ?? normalWorld
         this._alphaNode = parameters.alphaNode ?? float(1)
         this._shadowNode = parameters.shadowNode ?? float(0)
