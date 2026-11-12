@@ -153,9 +153,16 @@ export class Reveal
             // { name: 'right',                 categories: [ 'wandering', 'racing', 'cinematic' ], keys: [ 'Keyboard.ArrowRight', 'Keyboard.KeyD', 'Gamepad.right' ] },
                     this.game.inputs.events.on('introStart', inputCallback)
 
-                    // On a touch screen a tap anywhere starts it, not only one on the rover
-                    if(matchMedia('(pointer: coarse)').matches)
+                    // On a touch screen, or any upright window (where the page shows the
+                    // prompt as text), anywhere on the scene starts it, not only the rover
+                    const coarse = matchMedia('(pointer: coarse)').matches
+
+                    if(coarse || this.game.viewport.ratio < 0.8)
                         this.game.canvasElement.addEventListener('pointerup', next)
+
+                    const hint = document.querySelector('.start-hint')
+                    if(hint && !coarse)
+                        hint.textContent = 'Click anywhere to start'
                 }
             })
         }
