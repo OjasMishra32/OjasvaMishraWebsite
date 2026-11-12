@@ -1361,6 +1361,9 @@ export class ProjectsArea extends Area
         this.game.view.cinematic.start(this.cinematic.position, this.cinematic.target, this.getBoardFit())
         this.game.boardCaption?.show(this.navigation.current, () => { this.url.open() })
 
+        // The contact logos stand in the distance right behind the board: out of the shot
+        this.game.world.areas.social?.setLinksVisible(false)
+
         // Interactive point
         this.game.interactivePoints.temporaryHide()
 
@@ -1425,6 +1428,7 @@ export class ProjectsArea extends Area
         // View cinematic
         this.game.view.cinematic.end()
         this.game.boardCaption?.hide()
+        gsap.delayedCall(0.9, () => { if(this.state !== ProjectsArea.STATE_OPEN && this.state !== ProjectsArea.STATE_OPENING) this.game.world.areas.social?.setLinksVisible(true) })
 
         // Shade mix
         gsap.to(this.shadeMix.images.mixUniform, { value: this.shadeMix.images.min, duration: 1.5, ease: 'power2.inOut', overwrite: true })

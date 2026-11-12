@@ -84,6 +84,12 @@ export class SocialArea extends Area
      * standing in a row behind the letters and leaning back to face the
      * camera. Drive up to one and press Enter.
      */
+    setLinksVisible(visible)
+    {
+        for(const group of this.linkGroups ?? [])
+            group.visible = visible
+    }
+
     setLinks()
     {
         const links = [
@@ -128,6 +134,9 @@ export class SocialArea extends Area
         const plateFace = new THREE.PlaneGeometry(size, 0.5)
         const standGeometry = new THREE.BoxGeometry(0.5, 1, 0.3)
 
+        // Kept so the row can step aside while a board in front of it is being read
+        this.linkGroups = []
+
         // A phone at this stop sees the whole row
         const frameCenter = this.center.clone().addScaledVector(back, 1.6).addScaledVector(right, - 1.2)
         this.stopFrame = { x: frameCenter.x, z: frameCenter.z, width: (links.length - 1) * spacing + size + 1 }
@@ -144,6 +153,7 @@ export class SocialArea extends Area
             group.rotation.x = lean
             group.position.set(position.x, 2, position.z)
             this.game.scene.add(group)
+            this.linkGroups.push(group)
 
             // Block
             const block = new THREE.Mesh(blockGeometry, Kit.flat(link.color, { grid: false }))

@@ -628,6 +628,7 @@ export const timeline = {
         { lane: 0, from: 2025.85, to: 2026.65, color: 'orange', label: [ 'DRIFT', 'FOUNDING ENG', '1,000+ USERS' ], name: 'Drift', detail: "Founding engineer · 1,000+ users" },
         { lane: 3, from: 2025.95, to: null, color: 'blue', label: [ 'TWINLY', 'CO-FOUNDER & CEO', 'Z FELLOWS \'26' ], name: 'Twinly', detail: "Co-founder & CEO · Z Fellows '26" },
         { lane: 1, from: 2026.65, to: null, color: 'purple', label: [ 'UNIV. OF FLORIDA', 'B.S. CE + M.S. FIN', 'FULL MERIT' ], name: 'University of Florida', detail: "B.S. CE + M.S. Finance · full merit" },
+        { lane: 0, from: 2026.7, to: null, color: 'blue', label: [ 'DREAM TEAM ENG', 'NEUROSPINE RESEARCH', 'UF NEUROSURGERY' ], name: 'Dream Team Engineering', detail: 'NeuroSpine researcher · with UF Neurosurgery' },
         { lane: 4, from: 2026.7, to: null, color: 'orange', label: [ 'ALGOGATORS', 'QUANT RESEARCH', '$500K FUND' ], name: 'AlgoGators', detail: "Quant research · $500K fund" },
     ],
 }
