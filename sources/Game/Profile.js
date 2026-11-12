@@ -19,6 +19,9 @@ const ICONS = {
  * and is filled from data/profile.js. Projects and papers open their
  * presentation (Keynote.js) from here.
  */
+// Roles from this position on are shown collapsed on phones, where the full list runs to about ten screens
+const OLDER_FROM = 5
+
 export class Profile
 {
     constructor()
@@ -196,8 +199,8 @@ export class Profile
             <section class="about-section" data-section="experience">
                 ${header('Experience', 'Jobs, research and the teams I\'ve led.')}
                 <div class="timeline">
-                    ${experience.map(role => `
-                        <article class="card role fade-up js-reveal" data-chip-track>
+                    ${experience.map((role, index) => `
+                        <article class="card role fade-up js-reveal ${index >= OLDER_FROM ? 'is-older' : ''}" data-chip-track>
                             <div class="role-logo">${this.chip(role.company)}</div>
                             <div class="role-main">
                                 <div class="role-top">
@@ -210,6 +213,7 @@ export class Profile
                                 </div>
                                 ${role.metrics?.length ? `<dl class="role-metrics">${role.metrics.map(([ value, label ]) => `<div><dt>${e(value)}</dt><dd>${e(label)}</dd></div>`).join('')}</dl>` : ''}
                                 <ul class="role-points">${role.points.map(point => `<li>${e(point)}</li>`).join('')}</ul>
+                                ${index >= OLDER_FROM ? '<button class="role-more js-role-more" type="button" aria-expanded="false">Details</button>' : ''}
                             </div>
                         </article>
                     `).join('')}
@@ -224,6 +228,7 @@ export class Profile
                 <ol class="papers">
                     ${research.map((entry, index) => `
                         <li class="card paper fade-up js-reveal" style="--i:${index % 3}">
+                            <img class="project-strip" src="lab/images/${e(entry.id)}-strip.webp" alt="" loading="lazy" decoding="async">
                             <div class="paper-top"><span class="venue-pill">${e(entry.venue)}</span><span class="venue-status">${e(entry.status)}</span><span class="paper-year">${e(entry.year)}</span></div>
                             <h3>${e(entry.fullTitle)}</h3>
                             <p class="paper-authors">${e(entry.authors).replace('Ojasva Mishra', '<strong>Ojasva Mishra</strong>')}</p>
@@ -301,6 +306,18 @@ export class Profile
         `
 
         this.bodyElement.innerHTML = hero + experienceHtml + researchHtml + projectsHtml + contact
+
+        // On phones the older roles show their heading only, and open on a tap
+        this.bodyElement.addEventListener('click', (event) =>
+        {
+            const button = event.target.closest('.js-role-more')
+            if(!button)
+                return
+
+            const open = button.closest('.role').classList.toggle('is-open')
+            button.textContent = open ? 'Less' : 'Details'
+            button.setAttribute('aria-expanded', open)
+        })
     }
 
     setTriggers()

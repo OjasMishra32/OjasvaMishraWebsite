@@ -281,13 +281,6 @@ for(const entry of entries)
     await sharp(png).webp({ quality: 90 }).toFile(path.join(root, entry.output))
 
     // The three pictures alone, without the words: the About page sets its own type around them
-    if(!entry.output.startsWith('static/projects/'))
-    {
-        fs.unlinkSync(html)
-        console.log('cover', entry.output)
-        continue
-    }
-
     const strip = await tab.screenshot({ type: 'png', clip: { x: 52, y: 196, width: 1496, height: 482 } })
     await sharp(strip).resize({ width: 1200 }).webp({ quality: 84 }).toFile(path.join(root, entry.output.replace('-cover.webp', '-strip.webp')))
     fs.unlinkSync(html)

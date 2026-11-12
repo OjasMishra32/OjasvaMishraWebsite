@@ -742,6 +742,51 @@ $a-ease = cubic-bezier(0.2, 0.8, 0.2, 1)
     /*
      * Research
      */
+    // Phones: older roles collapse to their heading
+    .role-more
+        display none
+        align-items center
+        height 34px
+        margin-top 14px
+        padding 0 14px
+        border 0
+        border-radius 17px
+        background rgba(15, 23, 42, 0.06)
+        color $a-ink
+        font inherit
+        font-size 13px
+        font-weight 600
+        cursor pointer
+
+    @media only screen and (max-width 640px)
+        .role.is-older
+            .role-more
+                display inline-flex
+
+            &:not(.is-open)
+                .role-metrics,
+                .role-points
+                    display none
+
+    .paper .project-strip
+        margin-bottom 20px
+
+    // Wide screens: the pictures sit beside the text, so a paper doesn't take a whole screen
+    @media only screen and (min-width 901px)
+        .paper
+            display grid
+            grid-template-columns minmax(0, 1fr) 380px
+            column-gap 36px
+
+            > *
+                grid-column 1
+
+            .project-strip
+                grid-column 2
+                grid-row 1 / span 6
+                align-self center
+                margin-bottom 0
+
     .papers
         display flex
         flex-direction column
